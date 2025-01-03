@@ -1,11 +1,16 @@
-import "./App.css";
-import ThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
+import { Navigate, Route, Routes } from "react-router-dom";
+import WelcomePage from "./pages/WelcomePage/WelcomePage";
 
 export default function App() {
   return (
-    <div className="bg-background">
-      <ThemeSwitcher />
-      <h1 className=" text-3xl font-bold">Hello world!</h1>
+    <div>
+      <Routes>
+        <Route path="/" element={<Navigate to="/welcome" />} />
+
+        {/* <Route path="/home" element={<HomePage />} /> */}
+        <Route path="/welcome" element={<WelcomePage />} />
+        {/* <Route path="/auth/:id" element={<AuthPage />} /> */}
+      </Routes>
     </div>
   );
 }

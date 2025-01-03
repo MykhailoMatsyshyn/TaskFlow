@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import avatarMobile from "../../assets/avatar/avatar-mobile.png";
 import avatarDesktop from "../../assets/avatar/avatar-desktop.png";
-import logoIcon from "../../assets/icons/iconTaskFlow.svg";
+import LogoWithTitle from "../../components/LogoWithTitle/LogoWithTitle";
 
 const WelcomePage = () => {
   return (
@@ -19,17 +19,7 @@ const WelcomePage = () => {
           className="hidden md:block w-[162px] h-[162px] mx-auto"
         />
 
-        <div className="flex items-center justify-center gap-5 mt-[14px] mb-[25px] md:mt-[30px]mb-[30px]">
-          <img
-            src={logoIcon}
-            alt="Task Flow Logo"
-            className="w-10 h-10 md:w-12 md:h-12"
-          />
-
-          <h1 className="font-semibold text-[28px] tracking-tight md:text-[40px] ">
-            Task Flow
-          </h1>
-        </div>
+        <LogoWithTitle />
 
         <p className="w-[335px] md:w-[473px] mb-[48px] font-normal  leading-[129%] tracking-tight">
           Supercharge your productivity and take control of your tasks with Task

@@ -1,51 +1,69 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import InputField from "../InputField/InputField";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-// Валідація для пароля
-const schema = yup.object().shape({
-  name: yup.string().when("type", {
-    is: "register",
-    then: yup.string().required("Name is required"),
-  }),
-  email: yup
-    .string()
-    .email("Invalid email address")
-    .required("Email is required"),
-  password: yup
-    .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match") // Перевірка на співпадіння паролів
-    .required("Confirm password is required"),
-});
+import { registerSchema, loginSchema } from "../../validation/authValidation";
+import {
+  AuthSwitch,
+  SubmitButton,
+  RoleSelectField,
+  InputField,
+} from "./components";
+import { useAuthMutation } from "../../hooks/useAuthMutation";
+import { LoginCredentials, RegisterUserData } from "../../types/auth";
+import { loginUser } from "../../api/authService";
 
 const AuthForm = ({ type }: { type: "login" | "register" }) => {
+  const navigate = useNavigate();
+
+  // Determine validation schema based on the form type (login or register)
+  const schema = type === "register" ? registerSchema : loginSchema;
+
+  // Initialize react-hook-form with validation resolver
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
-    resolver: yupResolver(schema), // Використовуємо yup для валідації
+  } = useForm<RegisterUserData | LoginCredentials>({
+    resolver: yupResolver(schema),
   });
-  const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  // Using a hook for authentication logic
+  const mutation = useAuthMutation(type);
 
-    // Логіка для обробки логіну чи реєстрації
-    // При успішному логіні або реєстрації редірект на головну сторінку
-    navigate("/home");
+  // Form submission processing
+  const onSubmit = (data: RegisterUserData | LoginCredentials) => {
+    const filteredData =
+      type === "register"
+        ? (({ confirmPassword, ...rest }) => rest)(data)
+        : data;
+
+    mutation.mutate(filteredData, {
+      onSuccess: async () => {
+        if (type === "register") {
+          // Після реєстрації викликаємо логін
+          try {
+            const loginResponse = await loginUser({
+              email: (data as RegisterUserData).email,
+              password: (data as RegisterUserData).password,
+            });
+            localStorage.setItem("token", loginResponse.accessToken);
+          } catch (error) {
+            console.error("Automatic login failed:", error);
+          }
+        }
+        navigate("/home"); // Redirect після успішної авторизації
+      },
+      onError: (error) => {
+        console.error("Error during authentication:", error.message);
+      },
+    });
   };
 
   useEffect(() => {
-    reset(); // Скидаємо значення та помилки при зміні типу форми
+    // Reset form values and errors when form type changes
+    reset();
   }, [type, reset]);
 
   return (
@@ -53,26 +71,15 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
       onSubmit={handleSubmit(onSubmit)}
       className="w-[335px] mx-auto p-6 bg-[#151515] rounded-lg"
     >
-      <div className="flex justify-center space-x-6 mb-6">
-        <Link
-          to="/auth/register"
-          className={`text-sm font-medium cursor-pointer ${
-            type === "register" ? "text-white" : "text-gray-500"
-          }`}
-        >
-          Registration
-        </Link>
-        <Link
-          to="/auth/login"
-          className={`text-sm font-medium cursor-pointer ${
-            type === "login" ? "text-white" : "text-gray-500"
-          }`}
-        >
-          Log In
-        </Link>
-      </div>
+      {/* Render the switch between login and register */}
+      <AuthSwitch type={type} />
 
-      {/* Поле Name тільки для реєстрації */}
+      {/* Role selection field, only visible during registration */}
+      {type === "register" && (
+        <RoleSelectField register={register} errors={errors} />
+      )}
+
+      {/* Name input field, only visible during registration */}
       {type === "register" && (
         <InputField
           label="Name"
@@ -84,7 +91,7 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
         />
       )}
 
-      {/* Поле Email */}
+      {/* Email input field */}
       <InputField
         label="Email"
         type="email"
@@ -94,7 +101,7 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
         errors={errors}
       />
 
-      {/* Поле Password */}
+      {/* Password input field */}
       <InputField
         label="Password"
         type="password"
@@ -104,7 +111,7 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
         errors={errors}
       />
 
-      {/* Поле для підтвердження пароля, тільки для реєстрації */}
+      {/* Confirm password field, only visible during registration */}
       {type === "register" && (
         <InputField
           label="Confirm Password"
@@ -116,12 +123,8 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
         />
       )}
 
-      <button
-        type="submit"
-        className="w-full h-[49px] bg-[#BEDBB0] text-[#161616] rounded-lg font-medium text-[14px] tracking-tight"
-      >
-        {type === "login" ? "Log In " : "Register "}Now
-      </button>
+      {/* Submit button */}
+      <SubmitButton type={type} />
     </form>
   );
 };

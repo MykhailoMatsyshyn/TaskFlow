@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import avatarMobile from "../../assets/avatar/avatar-mobile.png";
 import avatarDesktop from "../../assets/avatar/avatar-desktop.png";
 import LogoWithTitle from "../../components/LogoWithTitle/LogoWithTitle";
+import { useAuth } from "../../hooks/useAuth";
 
 const WelcomePage = () => {
+  const isAuthenticated = useAuth();
+
   return (
     <div className="min-h-screen flex items-center justify-center text-center text-[14px] text-[#161616] bg-custom-gradient ">
       <div>
@@ -27,13 +30,30 @@ const WelcomePage = () => {
         </p>
 
         <div className="flex flex-col w-[335px] mx-auto tracking-tight font-medium">
-          <button className="bg-[#161616] h-[49px] text-white rounded-[8px] mb-[14px]">
-            <Link to="/auth/register">Registration</Link>
-          </button>
+          {isAuthenticated ? (
+            <NavLink
+              to="/home"
+              className="bg-[#161616] h-[49px] text-white rounded-[8px] mb-[14px] flex items-center justify-center no-underline"
+            >
+              Boost Productivity Now
+            </NavLink>
+          ) : (
+            <>
+              <NavLink
+                to="/auth/register"
+                className="bg-[#161616] h-[49px] text-white rounded-[8px] mb-[14px] flex items-center justify-center no-underline"
+              >
+                Registration
+              </NavLink>
 
-          <button>
-            <Link to="/auth/login">Log In</Link>
-          </button>
+              <NavLink
+                to="/auth/login"
+                className=" text-[#161616]  flex items-center justify-center no-underline"
+              >
+                Log In
+              </NavLink>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "email": "Member@Member",
+      "password": "$2a$10$fjaMyi2j9TiU6feIO9Oo6e6QGoUqedUVKdywP6FSQabxSr5Q78wp6",
+      "role": "Team Member",
+      "name": "Member",
+      "id": 1
+    }
+  ],
+  "projects": [],
+  "tasks": []
+}

@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "server": "nodemon --watch server/db.json --watch server/routes.json --exec \"json-server-auth server/db.json -r server/routes.json\"",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -11,6 +12,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
+    "@tanstack/react-query-devtools": "^5.62.14",
+    "axios": "^1.7.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",
@@ -31,7 +34,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
-    "json-server": "^1.0.0-beta.3",
+    "json-server": "^0.17.1",
     "json-server-auth": "^2.1.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",

@@ -4,10 +4,33 @@
 
 /* Light theme */
 :root {
-  --bg-color: #fdfdfd;
+  --primary-bg: #f6f6f7;
+  --secondary-bg: #fcfcfc;
+  --highlight-bg: #fff;
 }
 
 /* Dark theme */
 :root.dark {
-  --bg-color: #232323;
+  --primary-bg: #1f1f1f;
+  --secondary-bg: #161616;
+  --highlight-bg: #121212;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Анімація для модального вікна */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.9); /* Зменшуємо модальне вікно на початку */
+  }
+  to {
+    transform: scale(1); /* Збільшуємо модальне вікно до нормального розміру */
+  }
 }

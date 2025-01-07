@@ -4,13 +4,23 @@ import { useAuth } from "../hooks/useAuth";
 interface PrivateRouteProps {
   component: JSX.Element;
   redirectTo?: string;
+  allowedRoles?: string[];
 }
 
 export const PrivateRoute = ({
   component,
   redirectTo = "/welcome",
+  allowedRoles = [],
 }: PrivateRouteProps) => {
-  const isLoggedIn = useAuth();
+  const { isLoggedIn, userRole } = useAuth();
 
-  return isLoggedIn ? component : <Navigate to={redirectTo} />;
+  if (!isLoggedIn) {
+    return <Navigate to={redirectTo} />;
+  }
+
+  if (allowedRoles.length > 0 && !allowedRoles.includes(userRole || "")) {
+    return <Navigate to={redirectTo} />;
+  }
+
+  return component;
 };

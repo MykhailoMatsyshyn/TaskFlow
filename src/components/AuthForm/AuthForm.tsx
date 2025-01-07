@@ -9,7 +9,7 @@ import {
   RoleSelectField,
   InputField,
 } from "./components";
-import { useAuthMutation } from "../../hooks/useAuthMutation";
+import useAuthMutation from "../../hooks/useAuthMutation";
 import { LoginCredentials, RegisterUserData } from "../../types/auth";
 import { loginUser } from "../../api/authService";
 
@@ -53,7 +53,7 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
             console.error("Automatic login failed:", error);
           }
         }
-        navigate("/home"); // Redirect після успішної авторизації
+        navigate("/dashboard"); // Redirect після успішної авторизації
       },
       onError: (error) => {
         console.error("Error during authentication:", error.message);

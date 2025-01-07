@@ -8,9 +8,9 @@ interface RestrictedRouteProps {
 
 export const RestrictedRoute = ({
   component,
-  redirectTo = "/home",
+  redirectTo = "/dashboard",
 }: RestrictedRouteProps) => {
-  const isLoggedIn = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return isLoggedIn ? <Navigate to={redirectTo} /> : component;
 };

@@ -5,7 +5,7 @@ import LogoWithTitle from "../../components/LogoWithTitle/LogoWithTitle";
 import { useAuth } from "../../hooks/useAuth";
 
 const WelcomePage = () => {
-  const isAuthenticated = useAuth();
+  const { isLoggedIn } = useAuth();
 
   return (
     <div className="min-h-screen flex items-center justify-center text-center text-[14px] text-[#161616] bg-custom-gradient ">
@@ -30,9 +30,9 @@ const WelcomePage = () => {
         </p>
 
         <div className="flex flex-col w-[335px] mx-auto tracking-tight font-medium">
-          {isAuthenticated ? (
+          {isLoggedIn ? (
             <NavLink
-              to="/home"
+              to="/dashboard"
               className="bg-[#161616] h-[49px] text-white rounded-[8px] mb-[14px] flex items-center justify-center no-underline"
             >
               Boost Productivity Now

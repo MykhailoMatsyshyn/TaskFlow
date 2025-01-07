@@ -8,7 +8,9 @@ export default {
         sans: ["Poppins", "sans-serif"],
       },
       colors: {
-        background: "var(--bg-color)",
+        background: "var(--primary-bg)",
+        "background-secondary": "var(--secondary-bg)",
+        "background-highlight": "var(--highlight-bg)",
       },
       backgroundImage: {
         "custom-gradient":

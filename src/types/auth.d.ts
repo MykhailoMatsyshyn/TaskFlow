@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 // Type representing authentication types (register or login)
 export type AuthType = "register" | "login";
 
@@ -6,7 +8,7 @@ export interface RegisterUserData {
   email: string;
   password: string;
   name: string;
-  role: string;
+  role: "Admin" | "Project Manager" | "Team Member";
 }
 
 // Interface for login credentials
@@ -15,7 +17,8 @@ export interface LoginCredentials {
   password: string;
 }
 
-// Interface for server response (e.g., access token)
+// Interface for server response
 export interface AuthResponse {
   accessToken: string;
+  user: User;
 }

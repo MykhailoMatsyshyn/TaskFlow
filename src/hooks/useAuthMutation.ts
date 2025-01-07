@@ -6,8 +6,11 @@ import {
   AuthResponse,
   AuthType,
 } from "../types/auth";
+import useUserStore from "../stores/userStore";
 
-export const useAuthMutation = (type: AuthType) => {
+const useAuthMutation = (type: AuthType) => {
+  const { setCurrentUser } = useUserStore();
+
   const mutationFn = (data: RegisterUserData | LoginCredentials) => {
     return type === "register"
       ? registerUser(data as RegisterUserData)
@@ -19,6 +22,13 @@ export const useAuthMutation = (type: AuthType) => {
     onSuccess: (data: AuthResponse) => {
       if (type === "login") {
         localStorage.setItem("token", data.accessToken);
+
+        setCurrentUser({
+          email: data.user.email,
+          role: data.user.role,
+          name: data.user.name,
+          id: data.user.id,
+        });
       }
       console.log(
         `${type === "register" ? "Registered" : "Logged in"} successfully:`,
@@ -33,3 +43,5 @@ export const useAuthMutation = (type: AuthType) => {
     },
   });
 };
+
+export default useAuthMutation;

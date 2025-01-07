@@ -6,6 +6,41 @@
       "role": "Team Member",
       "name": "Member",
       "id": 1
+    },
+    {
+      "email": "q1@q1",
+      "password": "$2a$10$LuJaq2bEjrnlWZufsLdedOQxipvMOSyP3WU7JmSxNjFr6jk5f6NUq",
+      "role": "Admin",
+      "name": "q1",
+      "id": 2
+    },
+    {
+      "email": "Adminchyk@Adminchyk",
+      "password": "$2a$10$3/lO0bkoXQN07ZdLX/gNgur8DQnRhWNyqn63Ee/CBMXtNWD2KxUGS",
+      "role": "Admin",
+      "name": "Adminchyk",
+      "id": 3
+    },
+    {
+      "email": "PM@PM",
+      "password": "$2a$10$1f9cuNfulUbr8szpmcq3aOx2DFAHlyv.fWgSwGciZEnV8z6wsHf8W",
+      "role": "Project Manager",
+      "name": "PM",
+      "id": 4
+    },
+    {
+      "email": "TEst@TEst",
+      "password": "$2a$10$31CHrjFsm3yeeZ6K4aNAiu5dSdTsjeBk2jh3Kr4bQ2xnlXvZ5fyGO",
+      "role": "Project Manager",
+      "name": "TEst",
+      "id": 5
+    },
+    {
+      "email": "Admintest@Admintest",
+      "password": "$2a$10$d1Zwq7M6eDftkAMILq6NZuGsQyWwI2vORqJUeCYXOvQBFkcr7a.Gy",
+      "role": "Admin",
+      "name": "Admintest",
+      "id": 6
     }
   ],
   "projects": [],

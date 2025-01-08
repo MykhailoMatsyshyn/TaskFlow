@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { Icon } from "../../../Icon/Icon";
 import Modal from "../../../Modal/Modal"; // Імпортуємо Modal
 import useModalStore from "../../../../stores/modalStore"; // Імпортуємо useModalStore для керування станом модального вікна
+import useUserStore from "../../../../stores/userStore";
 
 const LogOut = () => {
   const navigate = useNavigate();
+  const { setCurrentUser } = useUserStore(); // Отримуємо стан користувача та змінюємо ��ого зміст використовуючи useUserStore
   const { isModalOpen, openModal, closeModal } = useModalStore(); // Отримуємо стан модального вікна
 
   const handleOpenModal = () => {
@@ -17,6 +19,7 @@ const LogOut = () => {
 
   const handleConfirmLogout = () => {
     localStorage.removeItem("token"); // Видаляємо токен з localStorage
+    setCurrentUser(null);
     navigate("/welcome"); // Перенаправляємо на сторінку вітання
     closeModal(); // Закриваємо модальне вікно після підтвердження
   };

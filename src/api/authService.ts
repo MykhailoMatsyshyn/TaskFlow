@@ -33,3 +33,18 @@ export const getUserInfo = (token: string, userId: string): Promise<User> => {
       );
     });
 };
+
+export const getUsers = (token: string | null): Promise<User[]> => {
+  return axiosInstance
+    .get<User[]>("/users", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      throw new Error(
+        error.response?.data?.message || "Error fetching users list"
+      );
+    });
+};

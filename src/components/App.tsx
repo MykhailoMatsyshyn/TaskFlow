@@ -16,8 +16,13 @@ export default function App() {
   const { setCurrentUser, currentUser } = useUserStore();
   const location = useLocation(); // Для перевірки поточного шляху
 
+  console.log("in App", data);
+
   useEffect(() => {
+    console.log("in useEffect", data);
+    console.log("in useEffect currentUser", currentUser);
     if (data && data !== currentUser) {
+      console.log("in if useEffect", data);
       setCurrentUser(data);
     }
   }, [data, currentUser, setCurrentUser]);

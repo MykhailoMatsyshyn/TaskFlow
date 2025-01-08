@@ -4,7 +4,7 @@ import { devtools } from "zustand/middleware";
 
 type UserStore = {
   currentUser: User | null;
-  setCurrentUser: (user: User) => void;
+  setCurrentUser: (user: User | null) => void;
   clearUser: () => void;
 };
 

@@ -41,6 +41,13 @@
       "role": "Admin",
       "name": "Admintest",
       "id": 6
+    },
+    {
+      "email": "PM1@PM1",
+      "password": "$2a$10$r99n4hrCsZEmSKbtp4T7cOQShplbs8.fvOGc.hijL1B6as5uu8I42",
+      "role": "Project Manager",
+      "name": "PM1",
+      "id": 7
     }
   ],
   "projects": [],

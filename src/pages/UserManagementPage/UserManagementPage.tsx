@@ -1,99 +1,121 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Table from "../../components/Table/Table";
-// import { User } from "../../types/user";
-import React from "react";
-import { faker } from "@faker-js/faker";
-import useFetchUsers from "../../hooks/useFetchUsers";
-
-// const users = [
-//   { id: "1", name: "John Doe", email: "john@example.com", role: "Admin" },
-//   { id: "2", name: "Jane Smith", email: "jane@example.com", role: "User" },
-// ];
-
-const newPerson = (): Person => {
-  return {
-    firstName: faker.person.firstName(),
-    lastName: faker.person.lastName(),
-    age: faker.number.int(40), // випадковий вік до 40
-    visits: faker.number.int(1000), // випадкова кількість відвідувань
-    progress: faker.number.int(100), // випадковий прогрес (від 0 до 100)
-    status: faker.helpers.shuffle<Person["status"]>([
-      "relationship",
-      "complicated",
-      "single",
-    ])[0]!, // випадковий статус
-  };
-};
-
-// Генерація масиву фейкових користувачів
-export function makeFakeUsers(num: number): Person[] {
-  const users: Person[] = [];
-  for (let i = 0; i < num; i++) {
-    users.push(newPerson()); // додаємо нового користувача
-  }
-  return users;
-}
-
-export type Person = {
-  firstName: string;
-  lastName: string;
-  age: number;
-  visits: number;
-  progress: number;
-  status: "relationship" | "complicated" | "single";
-  subRows?: Person[];
-};
+import { User } from "../../types/user";
+import React, { useState } from "react";
+import useFetchUsers, { useDeleteUser } from "../../hooks/useFetchUsers";
+import { Icon } from "../../components/Icon/Icon";
+import useModalStore from "../../stores/modalStore";
+import Modal from "../../components/Modal/Modal";
 
 const UserManagementPage = () => {
-  const token = localStorage.getItem("token");
-  const { data } = useFetchUsers(token);
+  const { data, isLoading, isError } = useFetchUsers();
+  const { openModal, closeModal } = useModalStore();
+  const { mutate: deleteUserMutation } = useDeleteUser();
+  const [userIdToDelete, setUserIdToDelete] = useState<string | null>(null);
 
-  console.log("UserManagementPage", data);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  const users = makeFakeUsers(30);
+  if (isError) {
+    return <div>Error loading users.</div>;
+  }
 
-  const columns = React.useMemo<ColumnDef<Person>[]>(
-    () => [
-      {
-        accessorKey: "firstName",
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-      },
-      {
-        accessorFn: (row) => row.lastName,
-        id: "lastName",
-        cell: (info) => info.getValue(),
-        header: () => <span>Last Name</span>,
-        footer: (props) => props.column.id,
-      },
-      {
-        accessorKey: "age",
-        header: () => "Age",
-        footer: (props) => props.column.id,
-      },
-      {
-        accessorKey: "visits",
-        header: () => <span>Visits</span>,
-        footer: (props) => props.column.id,
-      },
-      {
-        accessorKey: "status",
-        header: "Status",
-        footer: (props) => props.column.id,
-      },
-      {
-        accessorKey: "progress",
-        header: "Profile Progress",
-        footer: (props) => props.column.id,
-      },
-    ],
-    []
-  );
+  // Перевірка, чи є дані перед передачею їх в таблицю
+  if (!data || data.length === 0) {
+    return <div>No users available.</div>;
+  }
+
+  const handleDelete = (id: string) => {
+    setUserIdToDelete(id); // Зберігаємо ID користувача для видалення
+    openModal(); // Відкриваємо модальне вікно
+  };
+
+  const confirmDelete = () => {
+    if (userIdToDelete) {
+      deleteUserMutation(userIdToDelete); // Викликаємо мутацію для видалення
+      closeModal(); // Закриваємо модальне вікно
+    }
+  };
+
+  const cancelDelete = () => {
+    setUserIdToDelete(null);
+    closeModal(); // Закриваємо модальне вікно, якщо скасувати
+  };
+
+  // Додаємо колонки для кнопок редагування та видалення
+  const columns = React.useMemo<ColumnDef<User>[]>(() => [
+    {
+      accessorKey: "id",
+      header: "ID",
+      footer: (props) => props.column.id,
+    },
+    {
+      accessorKey: "name",
+      cell: (info) => info.getValue(),
+      header: "Name",
+      footer: (props) => props.column.id,
+    },
+    {
+      accessorKey: "email",
+      header: "Email",
+      footer: (props) => props.column.id,
+    },
+    {
+      accessorKey: "role",
+      header: "Role",
+      footer: (props) => props.column.id,
+    },
+    {
+      id: "actions", // Вказуємо ідентифікатор для цієї колонки
+      header: "Actions", // Назва колонки
+      cell: ({ row }) => (
+        <div>
+          <button
+            className="border-[2px] border-[#59B17A] border-opacity-50 rounded-[50%] p-2"
+            onClick={() => handleEdit(row.original.id)}
+          >
+            <Icon
+              id={"edit"}
+              size={16}
+              className=" stroke-[#59B17A] fill-none"
+            />
+          </button>
+          <button
+            className="border-[2px] border-[#E85050] border-opacity-50 rounded-[50%] p-2"
+            onClick={() => handleDelete(row.original.id)}
+          >
+            <Icon
+              id={"trash2"}
+              size={16}
+              className="stroke-[#E85050] fill-none"
+            />
+          </button>
+        </div>
+      ),
+    },
+  ]);
+
+  const handleEdit = (id: string) => {
+    console.log(`Editing user with ID: ${id}`);
+    // Логіка для редагування користувача
+  };
 
   return (
     <div>
       <h1>User Management</h1>
-      <Table data={users} columns={columns} />
+      <Table data={data} columns={columns} />
+
+      {/* Модальне вікно для підтвердження видалення */}
+      <Modal onClose={cancelDelete}>
+        <div>
+          <h2>Are you sure you want to delete this user?</h2>
+          <div>
+            <button onClick={confirmDelete}>Yes</button>
+            <button onClick={cancelDelete}>No</button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

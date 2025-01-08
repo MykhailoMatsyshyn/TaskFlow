@@ -34,17 +34,24 @@ export const getUserInfo = (token: string, userId: string): Promise<User> => {
     });
 };
 
-export const getUsers = (token: string | null): Promise<User[]> => {
+export const getUsers = (): Promise<User[]> => {
   return axiosInstance
-    .get<User[]>("/users", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .get<User[]>("/users")
     .then((response) => response.data)
     .catch((error) => {
       throw new Error(
         error.response?.data?.message || "Error fetching users list"
       );
+    });
+};
+
+export const deleteUser = (userId: string): Promise<void> => {
+  return axiosInstance
+    .delete(`/users/${userId}`)
+    .then(() => {
+      console.log(`User with ID ${userId} has been deleted.`);
+    })
+    .catch((error) => {
+      throw new Error(error.response?.data?.message || "Error deleting user");
     });
 };

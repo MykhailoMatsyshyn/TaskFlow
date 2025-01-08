@@ -8,25 +8,15 @@ import {
   getFilteredRowModel,
   flexRender,
 } from "@tanstack/react-table";
-// import { User } from "../../types/user";
+import { User } from "../../types/user";
 import "./TableStyles.css";
-
-export type Person = {
-  firstName: string;
-  lastName: string;
-  age: number;
-  visits: number;
-  progress: number;
-  status: "relationship" | "complicated" | "single";
-  subRows?: Person[];
-};
 
 const Table = ({
   data,
   columns,
 }: {
-  data: Person[];
-  columns: ColumnDef<Person>[];
+  data: User[] | undefined;
+  columns: ColumnDef<User>[];
 }) => {
   const [pagination, setPagination] = React.useState({
     pageIndex: 0,
@@ -160,7 +150,7 @@ const Table = ({
             table.setPageSize(Number(e.target.value));
           }}
         >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
+          {[5, 10, 15, 20, 25].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
@@ -171,7 +161,7 @@ const Table = ({
         Showing {table.getRowModel().rows.length.toLocaleString()} of{" "}
         {table.getRowCount().toLocaleString()} Rows
       </div>
-      <pre>{JSON.stringify(table.getState().pagination, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(table.getState().pagination, null, 2)}</pre> */}
     </div>
   );
 };

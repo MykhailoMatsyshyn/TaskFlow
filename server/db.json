@@ -1,13 +1,6 @@
 {
   "users": [
     {
-      "email": "admin1@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
-      "role": "Admin",
-      "name": "Admin1",
-      "id": 1
-    },
-    {
       "email": "admin2@example.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Admin",
@@ -29,25 +22,11 @@
       "id": 4
     },
     {
-      "email": "pm1@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
-      "role": "Project Manager",
-      "name": "ProjectManager1",
-      "id": 5
-    },
-    {
       "email": "pm2@example.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Project Manager",
       "name": "ProjectManager2",
       "id": 6
-    },
-    {
-      "email": "pm3@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
-      "role": "Project Manager",
-      "name": "ProjectManager3",
-      "id": 7
     },
     {
       "email": "pm4@example.com",

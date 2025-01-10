@@ -6,6 +6,7 @@ import {
 import { User } from "../types/user";
 import { handleRequest } from "./handleRequest";
 import axiosInstance from "./axiosInstance";
+import { UserFilters } from "../types/filters";
 
 export const registerUser = (
   userData: RegisterUserData
@@ -34,10 +35,29 @@ export const getUserInfo = (token: string, userId: string): Promise<User> => {
     });
 };
 
-export const getUsers = (): Promise<User[]> => {
+export const getUsers = (
+  filters: UserFilters
+): Promise<{ data: User[]; totalCount: number }> => {
+  const query = new URLSearchParams({
+    _page: String(filters.pageIndex),
+    _limit: String(filters.pageSize),
+    ...(filters.name && { name_like: filters.name }),
+    ...(filters.email && { email_like: filters.email }),
+    ...(filters.role && { role: filters.role }),
+    ...(filters.id && { id_like: filters.id }),
+  }).toString();
+
   return axiosInstance
-    .get<User[]>("/users")
-    .then((response) => response.data)
+    .get<User[]>(`/users?${query}`)
+    .then((response) => {
+      const totalCount = parseInt(response.headers["x-total-count"], 10); // Загальна кількість записів
+      console.log(totalCount);
+
+      return {
+        data: response.data,
+        totalCount,
+      };
+    })
     .catch((error) => {
       throw new Error(
         error.response?.data?.message || "Error fetching users list"

@@ -21,6 +21,8 @@ export const loginUser = (
 };
 
 export const getUserInfo = (token: string, userId: string): Promise<User> => {
+  console.log("      Authorization: `Bearer ${token}`,", token);
+
   return axiosInstance
     .get<User>(`/users/${userId}`, {
       headers: {

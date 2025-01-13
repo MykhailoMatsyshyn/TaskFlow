@@ -134,6 +134,48 @@
       "id": 25
     }
   ],
-  "projects": [],
+  "projects": [
+    {
+      "title": "First project",
+      "description": "First project",
+      "startDate": "2025-01-13",
+      "endDate": "2025-01-31",
+      "assignedMembers": [
+        "1",
+        "2"
+      ],
+      "status": "In Progress",
+      "icon": "palette",
+      "userId": "4",
+      "id": 1
+    },
+    {
+      "title": "dfgh",
+      "description": "dfgh",
+      "startDate": "2025-01-13",
+      "endDate": "2025-01-16",
+      "assignedMembers": [
+        "2"
+      ],
+      "status": "In Progress",
+      "icon": "hexagon",
+      "userId": "4",
+      "id": 2
+    },
+    {
+      "title": "вап",
+      "description": "івап",
+      "startDate": "2025-01-13",
+      "endDate": "2025-01-17",
+      "assignedMembers": [
+        "1",
+        "2"
+      ],
+      "status": "In Progress",
+      "icon": "hexagon",
+      "userId": 4,
+      "id": 3
+    }
+  ],
   "tasks": []
 }

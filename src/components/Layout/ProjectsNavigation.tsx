@@ -45,7 +45,7 @@ const ProjectNavigation = ({ projects, onEdit, onDelete, userRole }) => {
                 text={project.title}
                 length={18}
                 className={`text-sm font-medium tracking-[-0.02em] ${
-                  project.active ? "text-white" : "text-gray-500"
+                  project.active ? "text-white" : "text-white/50"
                 }`}
               />
             </Tooltip>

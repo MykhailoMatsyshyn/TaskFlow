@@ -6,6 +6,9 @@ import useFetchUser from "../hooks/useFetchUser";
 import useUserStore from "../stores/userStore";
 import { useEffect } from "react";
 import UserManagementPage from "../pages/UserManagementPage/UserManagementPage";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const WelcomePage = lazy(() => import("../pages/WelcomePage/WelcomePage"));
 const AuthPage = lazy(() => import("../pages/AuthPage/AuthPage"));

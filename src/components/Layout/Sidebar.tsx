@@ -37,7 +37,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       {/* Накладка */}
       {isOpen && (
         <div
-          className={`fixed inset-0 bg-black bg-opacity-50 z-40`}
+          className={`fixed inset-0 bg-black bg-opacity-50 z-4`}
           onClick={toggleSidebar}
           role="button"
           tabIndex={0}
@@ -48,7 +48,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
       {/* Сайдбар */}
       <div
-        className={`fixed top-0 left-0 h-full w-[225px] bg-background-highlight z-50 transform transition-transform duration-300 pt-[14px] ${
+        className={`fixed top-0 left-0 h-full w-[225px] bg-background-highlight z-5 transform transition-transform duration-300 pt-[14px] ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >

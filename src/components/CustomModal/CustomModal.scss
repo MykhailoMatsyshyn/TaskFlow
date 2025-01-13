@@ -1,0 +1,33 @@
+.custom-modal {
+  position: relative;
+
+  &__close {
+    position: absolute;
+    top: -30px;
+    right: -10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #ff0000;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  &__content {
+    margin-top: 15px;
+    font-size: 16px;
+  }
+}

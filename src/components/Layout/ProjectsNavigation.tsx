@@ -29,34 +29,34 @@ const ProjectNavigation = ({ projects, onEdit, onDelete, userRole }) => {
                 project.active ? "stroke-white" : "stroke-white/50"
               }`}
             />
-            <p
+            {/* <p
               className={`font-medium text-sm tracking-[-0.02em] ${
                 project.active ? "text-white" : "text-white/50"
               }`}
+            > */}
+            <Tooltip
+              title={project.title.length > 18 ? project.title : " "}
+              theme={theme === "dark" ? "dark" : "light"}
+              position="top"
+              animation="fade"
+              trigger="mouseenter"
             >
-              <Tooltip
-                title={project.title.length > 18 ? project.title : " "}
-                theme={theme === "dark" ? "dark" : "light"}
-                position="top"
-                animation="fade"
-                trigger="mouseenter"
-              >
-                <EllipsisText
-                  text={project.title}
-                  length={18}
-                  className={`text-sm font-medium ${
-                    project.active ? "text-white" : "text-gray-500"
-                  }`}
-                />
-              </Tooltip>
-              {/* <EllipsisText
+              <EllipsisText
+                text={project.title}
+                length={18}
+                className={`text-sm font-medium tracking-[-0.02em] ${
+                  project.active ? "text-white" : "text-gray-500"
+                }`}
+              />
+            </Tooltip>
+            {/* <EllipsisText
                 text={project.title}
                 length={10}
                 className={`text-sm font-medium ${
                   project.active ? "text-white" : "text-gray-500"
                 }`}
               /> */}
-            </p>
+            {/* </p> */}
           </div>
           {project.active && canEditOrDelete(userRole) && (
             <div className="flex gap-2">

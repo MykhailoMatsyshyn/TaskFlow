@@ -1,27 +1,38 @@
 import { useNavigate } from "react-router-dom";
 import { Icon } from "../../../Icon/Icon";
-import Modal from "../../../Modal/Modal"; // Імпортуємо Modal
-import useModalStore from "../../../../stores/modalStore"; // Імпортуємо useModalStore для керування станом модального вікна
+// import Modal from "../../../Modal/Modal"; // Імпортуємо Modal
+// import useModalStore from "../../../../stores/modalStore"; // Імпортуємо useModalStore для керування станом модального вікна
 import useUserStore from "../../../../stores/userStore";
+import { useState } from "react";
+import CustomModal from "../../../CustomModal/CustomModal";
 
 const LogOut = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { setCurrentUser } = useUserStore(); // Отримуємо стан користувача та змінюємо ��ого зміст використовуючи useUserStore
-  const { isModalOpen, openModal, closeModal } = useModalStore(); // Отримуємо стан модального вікна
+  // const { isModalOpen, openModal, closeModal } = useModalStore(); // Отримуємо стан модального вікна
+
+  // const handleOpenModal = () => {
+  //   openModal(); // Відкриваємо модальне вікно
+  // };
+
+  // const handleCloseModal = () => {
+  //   closeModal(); // Закриваємо модальне вікно
+  // };
 
   const handleOpenModal = () => {
-    openModal(); // Відкриваємо модальне вікно
+    setIsModalOpen(true); // Відкриваємо модальне вікно
   };
 
   const handleCloseModal = () => {
-    closeModal(); // Закриваємо модальне вікно
+    setIsModalOpen(false); // Закриваємо модальне вікно
   };
 
   const handleConfirmLogout = () => {
     localStorage.removeItem("token"); // Видаляємо токен з localStorage
     setCurrentUser(null);
     navigate("/welcome"); // Перенаправляємо на сторінку вітання
-    closeModal(); // Закриваємо модальне вікно після підтвердження
+    handleCloseModal(); // Закриваємо модальне вікно після підтвердження
   };
 
   return (
@@ -38,9 +49,12 @@ const LogOut = () => {
         <p className="text-lg font-medium">Log Out</p>
       </button>
 
-      {/* Використовуємо Modal і передаємо пропс isOpen для керування видимістю */}
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2>Are you sure you want to log out?</h2>
+      <CustomModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        title="Log Out"
+      >
+        <p>Are you sure you want to log out?</p>
         <div className="flex justify-between mt-4">
           <button
             className="bg-green-500 text-white px-4 py-2 rounded"
@@ -48,8 +62,14 @@ const LogOut = () => {
           >
             Yes
           </button>
+          <button
+            className="bg-gray-300 text-black px-4 py-2 rounded"
+            onClick={handleCloseModal}
+          >
+            No
+          </button>
         </div>
-      </Modal>
+      </CustomModal>
     </div>
   );
 };

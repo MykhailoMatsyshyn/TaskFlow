@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import useFetchUsers, { useDeleteUser } from "../../hooks/useFetchUsers";
 import { Icon } from "../../components/Icon/Icon";
 import useModalStore from "../../stores/modalStore";
-import Modal from "../../components/Modal/Modal";
+import Modal from "../../components/CustomModal/CustomModal";
 import useFilterStore from "../../stores/filterStore";
 
 const UserManagementPage = () => {

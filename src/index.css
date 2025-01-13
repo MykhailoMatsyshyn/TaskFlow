@@ -16,6 +16,11 @@
   --highlight-bg: #121212;
 }
 
+.container {
+  width: 335px;
+  margin: 0 auto;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -33,4 +38,20 @@
   to {
     transform: scale(1); /* Збільшуємо модальне вікно до нормального розміру */
   }
+}
+
+.tippy-tooltip.light-theme {
+  background-color: #f9f9f9;
+  color: #333;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.tippy-tooltip.dark-theme {
+  background-color: #333;
+  color: #fff;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 12px;
 }

@@ -11,21 +11,24 @@ const LogoWithTitle = () => {
     }
   };
 
+  const isDashboard = location.pathname === "/dashboard";
   return (
     <div
-      className={`flex items-center justify-center gap-5 mt-[14px] mb-[25px] md:mt-[30px] md:mb-[30px] ${
-        location.pathname === "/welcome" ? "" : "cursor-pointer"
-      }`}
+      className={`flex items-center ${
+        isDashboard
+          ? "font-semibold text-[16px] tracking-[-0.04em] text-white gap-2"
+          : "justify-center mt-[14px] mb-[25px] md:mt-[30px] md:mb-[30px]"
+      } ${location.pathname !== "/welcome" ? "cursor-pointer" : ""}`}
       onClick={handleClick}
     >
       <img
         src={logoIcon}
         alt="Task Flow Logo"
-        className="w-10 h-10 md:w-12 md:h-12"
+        className={`w-10 h-10 md:w-12 md:h-12 ${
+          isDashboard ? "w-8 h-8 md:w-8 md:h-8" : ""
+        }`}
       />
-      <h1 className="font-semibold text-[28px] tracking-tight md:text-[40px]">
-        Task Flow
-      </h1>
+      <h1>Task Flow</h1>
     </div>
   );
 };

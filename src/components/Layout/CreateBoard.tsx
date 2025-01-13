@@ -1,0 +1,20 @@
+import { Icon } from "../Icon/Icon";
+
+const CreateBoard = () => {
+  return (
+    <>
+      <div className="flex justify-between items-center pr-1 my-[14px]">
+        <p className="font-medium text-sm tracking-[-0.02em] h-[42px]">
+          Create a <br /> new board
+        </p>
+
+        <button className="px-[10px] py-2 w-10 h-[36px] rounded-md bg-[#BEDBB0]">
+          <Icon id="plus" size={20} />
+        </button>
+      </div>
+      <hr className="border-white/10 mb-10" />
+    </>
+  );
+};
+
+export default CreateBoard;

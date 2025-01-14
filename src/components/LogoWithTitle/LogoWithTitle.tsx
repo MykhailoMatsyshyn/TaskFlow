@@ -11,7 +11,8 @@ const LogoWithTitle = () => {
     }
   };
 
-  const isDashboard = location.pathname === "/dashboard";
+  const isDashboard = location.pathname.startsWith("/dashboard");
+
   return (
     <div
       className={`flex items-center ${

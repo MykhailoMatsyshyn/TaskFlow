@@ -16,6 +16,9 @@ export default {
         "custom-gradient":
           "linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%)",
       },
+      screens: {
+        xl: "1440px",
+      },
     },
   },
   plugins: [],

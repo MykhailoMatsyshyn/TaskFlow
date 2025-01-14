@@ -13,19 +13,20 @@ Modal.setAppElement("#root");
 const WelcomePage = lazy(() => import("../pages/WelcomePage/WelcomePage"));
 const AuthPage = lazy(() => import("../pages/AuthPage/AuthPage"));
 const Layout = lazy(() => import("./Layout/Layout"));
+const ProjectPage = lazy(() => import("../pages/ProjectPage/ProjectPage"));
 
 export default function App() {
   const { data, isLoading, isError } = useFetchUser();
   const { setCurrentUser, currentUser } = useUserStore();
   const location = useLocation(); // Для перевірки поточного шляху
 
-  console.log("in App", data);
+  // console.log("in App", data);
 
   useEffect(() => {
-    console.log("in useEffect", data);
-    console.log("in useEffect currentUser", currentUser);
+    // console.log("in useEffect", data);
+    // console.log("in useEffect currentUser", currentUser);
     if (data && data !== currentUser) {
-      console.log("in if useEffect", data);
+      // console.log("in if useEffect", data);
       setCurrentUser(data);
     }
   }, [data, currentUser, setCurrentUser]);
@@ -69,6 +70,10 @@ export default function App() {
                   allowedRoles={["Admin"]}
                 />
               }
+            />
+            <Route
+              path="/dashboard/:boardId"
+              element={<PrivateRoute component={<ProjectPage />} />}
             />
           </Route>
 

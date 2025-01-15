@@ -19,13 +19,13 @@ const AddColumnButton = (projectId: any) => {
 
   return (
     <>
-      <div className="mr-5 lg:mr-8 xl:mr-6">
+      <div>
         <button
-          className="flex items-center w-[335px] py-3 px-20 bg-blue-500 text-white rounded-md font-medium tracking-[-0.28px] transition-transform duration-250 hover:scale-105 scroll-snap-align-center"
+          className="flex items-center justify-center gap-2 w-[335px] h-[56px] bg-[#121212] rounded-lg text-[#fff] font-medium tracking-[-0.02em] transition-transform duration-250 hover:scale-105"
           onClick={openModal}
         >
-          <span className="flex justify-center items-center mr-2 w-7 h-7 bg-blue-700 rounded-lg">
-            <Icon id={"plus"} />
+          <span className="p-[7px] rounded-md bg-[#FFFFFF]">
+            <Icon id="plus" size={14} className="fill-[#121212]" />
           </span>
           Add another column
         </button>

@@ -151,16 +151,8 @@
       "userId": "4",
       "columns": [
         {
-          "id": "acb2f089-bd7c-4108-a02e-349260cb0a7f",
-          "title": "HJKK"
-        },
-        {
           "id": "to-do",
           "title": "To Do"
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress"
         },
         {
           "id": "done",
@@ -169,6 +161,14 @@
         {
           "id": "d90b2195-92dd-40a4-b481-74e8518c339e",
           "title": "івапр"
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress"
+        },
+        {
+          "id": "acb2f089-bd7c-4108-a02e-349260cb0a7f",
+          "title": "HJKK"
         }
       ]
     },
@@ -204,12 +204,101 @@
         }
       ],
       "id": 7
+    },
+    {
+      "title": "Project 2",
+      "description": "Project 2",
+      "startDate": "2025-01-16",
+      "endDate": "2025-01-24",
+      "assignedMembers": [
+        "1",
+        "2"
+      ],
+      "status": "In Progress",
+      "icon": "container",
+      "userId": 4,
+      "slug": "project-2",
+      "columns": [
+        {
+          "id": "to-do",
+          "title": "To Do"
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress"
+        },
+        {
+          "id": "done",
+          "title": "Done"
+        }
+      ],
+      "id": 8
     }
   ],
   "tasks": [
     {
       "id": 1,
-      "title": "Tasik",
+      "title": "Tasik1",
+      "description": "Treba vykonasik",
+      "status": "to-do",
+      "assignedMember": 2,
+      "deadline": "2025-01-15",
+      "priority": "High",
+      "projectId": 1
+    },
+    {
+      "id": 2,
+      "title": "Tasik2",
+      "description": "Treba vykonasik",
+      "status": "to-do",
+      "assignedMember": 2,
+      "deadline": "2025-01-15",
+      "priority": "High",
+      "projectId": 1
+    },
+    {
+      "id": 3,
+      "title": "Tasik3",
+      "description": "Treba vykonasik",
+      "status": "to-do",
+      "assignedMember": 2,
+      "deadline": "2025-01-15",
+      "priority": "High",
+      "projectId": 1
+    },
+    {
+      "id": 4,
+      "title": "Tasik4",
+      "description": "Treba vykonasik",
+      "status": "to-do",
+      "assignedMember": 2,
+      "deadline": "2025-01-15",
+      "priority": "High",
+      "projectId": 1
+    },
+    {
+      "id": 5,
+      "title": "Tasik5",
+      "description": "Treba vykonasik",
+      "status": "to-do",
+      "assignedMember": 2,
+      "deadline": "2025-01-15",
+      "priority": "High",
+      "projectId": 1
+    },
+    {
+      "id": 6,
+      "title": "Tasik6",
+      "description": "Treba vykonasik",
+      "status": "to-do",
+      "assignedMember": 2,
+      "deadline": "2025-01-15",
+      "priority": "High",
+      "projectId": 1
+    },
+    {
+      "id": 7,
+      "title": "Tasik7",
       "description": "Treba vykonasik",
       "status": "to-do",
       "assignedMember": 2,

@@ -57,7 +57,7 @@ const KanbanBoard = ({ projectId }: { projectId: string }) => {
   if (isLoading || tasksLoading) return <div>Loading...</div>;
 
   return (
-    <div className="flex gap-5  overflow-x-auto overflow-y-hidden bg-gray-100 w-full h-full">
+    <div className="flex gap-5 overflow-x-auto overflow-y-hidden w-full h-full custom-scrollbar">
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="board" type="COLUMN" direction="horizontal">
           {(provided) => (

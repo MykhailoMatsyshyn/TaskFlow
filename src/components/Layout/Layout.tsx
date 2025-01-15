@@ -20,7 +20,7 @@ const Layout = () => {
         <Header toggleSidebar={toggleSidebar} />
       </header>
 
-      <main className="p-4 overflow-auto xl:col-start-2 xl:row-start-2">
+      <main className="py-5 pl-5 overflow-hidden xl:col-start-2 xl:row-start-2 relative">
         <Outlet />
       </main>
     </div>
@@ -28,6 +28,7 @@ const Layout = () => {
 };
 
 export default Layout;
+
 // import { Outlet } from "react-router-dom";
 // import Sidebar from "./Sidebar";
 // import Header from "./Header";

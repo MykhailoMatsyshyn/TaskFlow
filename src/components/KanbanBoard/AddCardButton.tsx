@@ -16,17 +16,15 @@ const AddCardButton = ({ columnId }) => {
 
   return (
     <>
-      <div className="mt-2">
-        <button
-          className="flex items-center w-[335px] py-3 px-20 bg-green-500 text-white rounded-md font-medium tracking-[-0.28px] transition-transform duration-250 hover:scale-105"
-          onClick={openModal}
-        >
-          <span className="flex justify-center items-center mr-2 w-7 h-7 bg-green-700 rounded-lg">
-            <Icon id={"plus"} />
-          </span>
-          Add another card
-        </button>
-      </div>
+      <button
+        className="flex items-center justify-center gap-2 w-[335px] h-[56px] mt-[14px] mb-[24px] md:mb-[52px] xl:mb-[16px] bg-[#BEDBB0] rounded-lg text-[#161616] font-medium tracking-[-0.02em] transition-transform duration-250 hover:scale-105"
+        onClick={openModal}
+      >
+        <span className="p-[7px] rounded-md bg-[#161616]">
+          <Icon id="plus" size={14} className="fill-white" />
+        </span>
+        Add another card
+      </button>
       {isModalOpen && (
         <CustomModal isOpen={isModalOpen} onClose={closeModal}>
           {/* <AddCardForm onClose={closeModal} columnId={columnId} /> */}

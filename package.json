@@ -13,6 +13,7 @@
   "dependencies": {
     "@dicebear/avatars": "^4.10.8",
     "@dicebear/avatars-bottts-sprites": "^4.10.8",
+    "@hello-pangea/dnd": "^17.0.0",
     "@hookform/resolvers": "^3.9.1",
     "@tanstack/react-query-devtools": "^5.62.14",
     "@tanstack/react-table": "^8.20.6",
@@ -35,6 +36,7 @@
     "react-transition-group": "^4.4.5",
     "sass": "^1.83.0",
     "use-draggable-scroll": "^0.1.0",
+    "uuid": "^11.0.5",
     "yup": "^1.6.1",
     "zustand": "^5.0.3"
   },

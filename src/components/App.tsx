@@ -72,7 +72,7 @@ export default function App() {
               }
             />
             <Route
-              path="/dashboard/:boardId"
+              path="/dashboard/:slug"
               element={<PrivateRoute component={<ProjectPage />} />}
             />
           </Route>

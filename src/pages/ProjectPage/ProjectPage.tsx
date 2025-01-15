@@ -1,14 +1,20 @@
+import { useParams } from "react-router-dom";
 import HeaderDashboard from "../../components/KanbanBoard/HeaderDashboard";
+import KanbanBoard from "../../components/KanbanBoard/KanbanBoard";
 import MainDashboard from "../../components/KanbanBoard/MainDashboard";
 
 const ProjectPage = () => {
+  const { slug } = useParams();
+
   return (
-    <div className="p-4 space-y-6">
+    <div>
+      <KanbanBoard projectId={slug} />
+      {/* Заголовок дошки */}
       {/* Шапка дошки */}
-      <HeaderDashboard />
+      {/* <HeaderDashboard /> */}
 
       {/* Основний контент */}
-      <MainDashboard />
+      {/* <MainDashboard /> */}
     </div>
   );
 };

@@ -14,13 +14,6 @@ const CreateBoard = () => {
     setIsModalOpen(false);
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Логіка створення нового проєкту
-    console.log("Form submitted");
-    handleCloseModal();
-  };
-
   return (
     <>
       <div className="flex justify-between items-center pr-1 my-[14px]">
@@ -44,8 +37,7 @@ const CreateBoard = () => {
         title="Create New Board"
       >
         <CreateBoardForm
-          onSubmit={handleFormSubmit} // Передаємо логіку для сабміту
-          onCancel={handleCloseModal} // Передаємо логіку для закриття
+          onCancel={handleCloseModal}
           teamMembers={[
             { id: "1", name: "Alice" },
             { id: "2", name: "Bob" },

@@ -1,11 +1,10 @@
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Icon } from "../Icon/Icon";
 import { useAuth } from "../../hooks/useAuth";
 import { useCreateProject } from "../../hooks/useCreateProject";
 
 interface CreateProjectFormProps {
-  onSubmit: (formData: any) => void; // Callback для сабміту форми
   onCancel: () => void; // Callback для закриття форми
   teamMembers: { id: string; name: string }[]; // Динамічний список учасників
 }
@@ -22,7 +21,6 @@ const iconNames = [
 ];
 
 const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
-  onSubmit,
   onCancel,
   teamMembers,
 }) => {
@@ -48,14 +46,33 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
 
   const { mutate: createProject } = useCreateProject();
 
+  // Функція для створення slug
+  const generateSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-") // Замінюємо всі символи, окрім літер і цифр, на "-"
+      .replace(/^-+|-+$/g, ""); // Видаляємо початкові і кінцеві "-"
+  };
+
   const onSubmitHandler = (data: any) => {
+    const slug = generateSlug(data.title); // Генеруємо slug з назви проекту
+
+    const defaultColumns = [
+      { id: "to-do", title: "To Do" },
+      { id: "in-progress", title: "In Progress" },
+      { id: "done", title: "Done" },
+    ];
+
     const projectData = {
       ...data,
-      userId: Number(userId), // Додаємо userId до даних проекту
+      userId: Number(userId),
+      slug, // Додаємо slug
+      columns: defaultColumns, // Додаємо дефолтні колонки
     };
-    console.log(projectData); // Вивід об'єкта у консоль
-    //   onSubmit(projectData); // Передаємо об'єкт для сабміту
+
+    console.log(projectData); // Перевірка даних у консолі
     createProject(projectData);
+    onCancel();
   };
 
   return (

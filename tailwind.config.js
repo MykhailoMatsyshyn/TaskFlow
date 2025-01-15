@@ -19,6 +19,12 @@ export default {
       screens: {
         xl: "1440px",
       },
+      gridTemplateColumns: {
+        layout: "260px 1fr", // Сайдбар і основний контент
+      },
+      gridTemplateRows: {
+        layout: "auto 1fr", // Хедер і мейн
+      },
     },
   },
   plugins: [],

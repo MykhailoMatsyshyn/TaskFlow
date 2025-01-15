@@ -136,49 +136,86 @@
   ],
   "projects": [
     {
+      "id": 1,
       "title": "First project",
+      "slug": "first-project",
       "description": "First project",
       "startDate": "2025-01-13",
       "endDate": "2025-01-31",
-      "assignedMembers": ["1", "2"],
+      "assignedMembers": [
+        "1",
+        "2"
+      ],
       "status": "In Progress",
       "icon": "palette",
       "userId": "4",
-      "id": 1
+      "columns": [
+        {
+          "id": "acb2f089-bd7c-4108-a02e-349260cb0a7f",
+          "title": "HJKK"
+        },
+        {
+          "id": "to-do",
+          "title": "To Do"
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress"
+        },
+        {
+          "id": "done",
+          "title": "Done"
+        },
+        {
+          "id": "d90b2195-92dd-40a4-b481-74e8518c339e",
+          "title": "івапр"
+        }
+      ]
     },
     {
-      "title": "dfgh",
-      "description": "dfgh",
-      "startDate": "2025-01-13",
-      "endDate": "2025-01-16",
-      "assignedMembers": ["2"],
-      "status": "In Progress",
-      "icon": "hexagon",
-      "userId": "4",
-      "id": 2
-    },
-    {
-      "title": "вап",
-      "description": "івап",
-      "startDate": "2025-01-13",
+      "title": "Board Title",
+      "description": "Board Description",
+      "startDate": "2025-01-15",
       "endDate": "2025-01-17",
-      "assignedMembers": ["1", "2"],
+      "assignedMembers": [
+        "1",
+        "2"
+      ],
       "status": "In Progress",
-      "icon": "hexagon",
+      "icon": "loading",
       "userId": 4,
-      "id": 3
-    },
-    {
-      "title": "sdfgh",
-      "description": "dfgh",
-      "startDate": "2025-01-13",
-      "endDate": "2025-01-13",
-      "assignedMembers": ["2"],
-      "status": "In Progress",
-      "icon": "lightning",
-      "userId": 4,
-      "id": 6
+      "slug": "board-title",
+      "columns": [
+        {
+          "id": "to-do",
+          "title": "To Do"
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress"
+        },
+        {
+          "id": "done",
+          "title": "Done"
+        },
+        {
+          "id": "22f99dd8-01ab-421e-937c-6a7d03781745",
+          "title": "оо"
+        }
+      ],
+      "id": 7
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Tasik",
+      "description": "Treba vykonasik",
+      "status": "to-do",
+      "assignedMember": 2,
+      "deadline": "2025-01-15",
+      "priority": "High",
+      "projectId": 1
+    }
+  ]
 }

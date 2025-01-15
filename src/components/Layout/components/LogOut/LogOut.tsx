@@ -36,10 +36,10 @@ const LogOut = () => {
   };
 
   return (
-    <div className="flex px-3">
+    <div className="flex px-6">
       <button
-        onClick={handleOpenModal} // Відкриваємо модальне вікно при натисканні на кнопку
-        className="flex justify-between items-center w-[105px] mt-5 p-0 bg-transparent text-base font-medium hover:fill-[#9DC888]"
+        onClick={handleOpenModal}
+        className="flex justify-between items-center gap-[14px] bg-transparent text-base font-medium hover:fill-[#9DC888]"
       >
         <Icon
           id="logout"

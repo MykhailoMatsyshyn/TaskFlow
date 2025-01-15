@@ -18,17 +18,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-4 xl:hidden"
           onClick={toggleSidebar}
-          role="button"
-          tabIndex={0}
-          onKeyDown={toggleSidebar}
-          aria-label="Close sidebar"
         />
       )}
 
       {/* Сайдбар */}
       <div
-        className={`fixed xl:static top-0 left-0 h-full  xl:h-screen w-[225px] bg-background-highlight z-5 transform transition-transform duration-300 pt-[14px] pb-6 flex flex-col ${`${
-          isOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed xl:static top-0 left-0 h-full  xl:h-screen w-[225px] md:w-[260px] bg-background-highlight z-5 transform transition-transform duration-300 pt-[14px] pb-6 flex flex-col ${`${
+          isOpen ? "translate-x-0" : "-translate-x-[101%]"
         } xl:translate-x-0`}`}
       >
         <div className="flex-grow">

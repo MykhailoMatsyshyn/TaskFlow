@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Column from "./Column";
+import AddColumnButton from "./AddColumnButton";
 
 const MainDashboard = () => {
   const [columns, setColumns] = useState([]);
@@ -9,7 +10,7 @@ const MainDashboard = () => {
   };
 
   return (
-    <div className="flex gap-4 p-4 overflow-x-auto bg-gray-100 h-full">
+    <div className="">
       {columns.map((column) => (
         <Column
           key={column.id}
@@ -19,12 +20,7 @@ const MainDashboard = () => {
           }
         />
       ))}
-      <button
-        className="min-w-[200px] bg-blue-500 text-white rounded px-4 py-2"
-        onClick={() => addColumn("New Column")}
-      >
-        Add Column
-      </button>
+      <AddColumnButton />
     </div>
   );
 };

@@ -79,6 +79,7 @@ const KanbanBoard = ({ projectId }: { projectId: string }) => {
                       {...provided.dragHandleProps}
                     >
                       <Column
+                        projectId={project?.id}
                         column={column}
                         tasks={tasks.filter(
                           (task) => task.status === column.id

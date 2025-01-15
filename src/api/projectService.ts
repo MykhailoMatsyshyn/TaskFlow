@@ -7,6 +7,16 @@ export const createProject = (projectData: Project): Promise<Project> => {
   return handleRequest<Project, Project>("/projects", projectData);
 };
 
+export const deleteProject = async (projectId: number): Promise<void> => {
+  try {
+    await axiosInstance.delete(`/projects/${projectId}`);
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data?.message || "Error deleting the project"
+    );
+  }
+};
+
 export const getUserProjects = (userId: number) => {
   return axiosInstance.get(`/projects?userId=${userId}`);
 };
@@ -77,6 +87,35 @@ export const addColumnToProject = async (
     // Step 5: Error handling
     throw new Error(
       error.response?.data?.message || "Error adding column to project"
+    );
+  }
+};
+
+export const deleteColumnFromProject = async (
+  projectId: number,
+  columnId: string
+): Promise<Project> => {
+  try {
+    // Step 1: Отримуємо проект
+    const { data: project } = await axiosInstance.get<Project>(
+      `/projects/${projectId}`
+    );
+
+    // Step 2: Фільтруємо колонки, видаляючи потрібну
+    const updatedColumns = project.columns.filter(
+      (column) => column.id !== columnId
+    );
+
+    // Step 3: Оновлюємо проект на сервері
+    const { data: updatedProject } = await axiosInstance.patch<Project>(
+      `/projects/${projectId}`,
+      { columns: updatedColumns }
+    );
+
+    return updatedProject;
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data?.message || "Error deleting column from project"
     );
   }
 };

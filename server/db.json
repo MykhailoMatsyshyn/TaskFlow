@@ -159,103 +159,13 @@
           "title": "Done"
         },
         {
-          "id": "d90b2195-92dd-40a4-b481-74e8518c339e",
-          "title": "івапр"
-        },
-        {
           "id": "in-progress",
           "title": "In Progress"
-        },
-        {
-          "id": "acb2f089-bd7c-4108-a02e-349260cb0a7f",
-          "title": "HJKK"
         }
       ]
-    },
-    {
-      "title": "Board Title",
-      "description": "Board Description",
-      "startDate": "2025-01-15",
-      "endDate": "2025-01-17",
-      "assignedMembers": [
-        "1",
-        "2"
-      ],
-      "status": "In Progress",
-      "icon": "loading",
-      "userId": 4,
-      "slug": "board-title",
-      "columns": [
-        {
-          "id": "to-do",
-          "title": "To Do"
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress"
-        },
-        {
-          "id": "done",
-          "title": "Done"
-        },
-        {
-          "id": "22f99dd8-01ab-421e-937c-6a7d03781745",
-          "title": "оо"
-        }
-      ],
-      "id": 7
-    },
-    {
-      "title": "Project 2",
-      "description": "Project 2",
-      "startDate": "2025-01-16",
-      "endDate": "2025-01-24",
-      "assignedMembers": [
-        "1",
-        "2"
-      ],
-      "status": "In Progress",
-      "icon": "container",
-      "userId": 4,
-      "slug": "project-2",
-      "columns": [
-        {
-          "id": "to-do",
-          "title": "To Do"
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress"
-        },
-        {
-          "id": "done",
-          "title": "Done"
-        }
-      ],
-      "id": 8
     }
   ],
   "tasks": [
-    {
-      "id": 1,
-      "title": "Tasik1",
-      "description": "Treba vykonasik",
-      "status": "to-do",
-      "assignedMember": 2,
-      "deadline": "2025-01-15",
-      "priority": "High",
-      "projectId": 1
-    },
-    {
-      "id": 2,
-      "title": "Tasik2",
-      "description": "Treba vykonasik",
-      "status": "to-do",
-      "assignedMember": 2,
-      "deadline": "2025-01-15",
-      "priority": "High",
-      "projectId": 1
-    },
     {
       "id": 3,
       "title": "Tasik3",
@@ -269,16 +179,6 @@
     {
       "id": 4,
       "title": "Tasik4",
-      "description": "Treba vykonasik",
-      "status": "to-do",
-      "assignedMember": 2,
-      "deadline": "2025-01-15",
-      "priority": "High",
-      "projectId": 1
-    },
-    {
-      "id": 5,
-      "title": "Tasik5",
       "description": "Treba vykonasik",
       "status": "to-do",
       "assignedMember": 2,

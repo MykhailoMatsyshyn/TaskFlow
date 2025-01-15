@@ -20,10 +20,6 @@ const ProjectNavigationList = () => {
     console.log("Edit project with id:", id);
   };
 
-  const handleDelete = (id) => {
-    console.log("Delete project with id:", id);
-  };
-
   if (isLoading) return <p>Loading...</p>;
   if (isError || !projects) return <p>Error loading projects</p>;
 
@@ -39,7 +35,6 @@ const ProjectNavigationList = () => {
             key={project.id}
             project={project}
             onEdit={handleEdit}
-            onDelete={handleDelete}
           />
         ))}
       </ul>

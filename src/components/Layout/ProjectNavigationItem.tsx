@@ -1,43 +1,44 @@
+import { useState } from "react";
 import { Tooltip } from "react-tippy";
 import { Icon } from "../Icon/Icon";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { kebabCase } from "lodash";
 import EllipsisText from "react-ellipsis-text";
 import "react-tippy/dist/tippy.css";
 import useUserStore from "../../stores/userStore";
+import CustomModal from "../CustomModal/CustomModal";
+import { useDeleteProject } from "../../hooks/useDeleteProject";
 
-const ProjectNavigationItem = ({ project, userRole, onEdit, onDelete }) => {
-  const location = useLocation(); // Отримуємо поточний шлях
+const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // Стан модалки
+  const location = useLocation();
   const theme = localStorage.getItem("theme");
   const { currentUser } = useUserStore();
-
-  console.log("currentUser", currentUser);
-  console.log("currentUser.role", currentUser.role);
+  const { mutate: deleteProject } = useDeleteProject();
+  const navigate = useNavigate();
 
   const role = currentUser?.role;
 
-  console.log("role", role);
-
-  // Логіка визначення, чи проект активний
   const isActive =
     location.pathname ===
     `/dashboard/${encodeURIComponent(kebabCase(project.title))}`;
 
-  console.log("project.title", kebabCase(project.title));
+  const canEditOrDelete = (role) =>
+    role === "Admin" || role === "Project Manager";
 
-  const canEditOrDelete = (role) => {
-    console.log("project.canEditOrDelete", role);
-    return role === "Admin" || role === "Project Manager";
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const handleDeleteConfirm = () => {
+    deleteProject(project.id);
+    console.log("navigate here");
+    navigate("/dashboard");
+    closeModal();
   };
-
-  console.log("canEditOrDelete", canEditOrDelete(role));
 
   return (
     <li className="list-none scroll-snap-start">
-      <Link
-        to={`/dashboard/${kebabCase(project.title)}`} // Генеруємо посилання на проект
-        className="block"
-      >
+      <Link to={`/dashboard/${kebabCase(project.title)}`} className="block">
         <div
           className={`relative flex justify-between items-center pl-[14px] py-[22px] px-[14px] h-[61px] hover:bg-[#1f1f1f] ${
             isActive
@@ -78,7 +79,7 @@ const ProjectNavigationItem = ({ project, userRole, onEdit, onDelete }) => {
                   className="fill-none stroke-white/50"
                 />
               </button>
-              <button onClick={() => onDelete(project.id)}>
+              <button onClick={openModal}>
                 <Icon
                   id="trash2"
                   size={16}
@@ -89,6 +90,29 @@ const ProjectNavigationItem = ({ project, userRole, onEdit, onDelete }) => {
           )}
         </div>
       </Link>
+
+      {/* Модалка підтвердження видалення */}
+      <CustomModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title="Confirm Deletion"
+      >
+        <p>Are you sure you want to delete the project "{project.title}"?</p>
+        <div className="flex justify-end gap-4 mt-4">
+          <button
+            onClick={closeModal}
+            className="px-4 py-2 bg-gray-500 text-white rounded"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleDeleteConfirm}
+            className="px-4 py-2 bg-red-600 text-white rounded"
+          >
+            Delete
+          </button>
+        </div>
+      </CustomModal>
     </li>
   );
 };

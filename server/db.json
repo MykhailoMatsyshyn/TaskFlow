@@ -151,16 +151,16 @@
       "userId": "4",
       "columns": [
         {
+          "id": "in-progress",
+          "title": "In Progress"
+        },
+        {
           "id": "to-do",
           "title": "To Do"
         },
         {
           "id": "done",
           "title": "Done"
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress"
         }
       ]
     }
@@ -201,6 +201,16 @@
       "title": "Tasik7",
       "description": "Treba vykonasik",
       "status": "to-do",
+      "assignedMember": 2,
+      "deadline": "2025-01-15",
+      "priority": "High",
+      "projectId": 1
+    },
+    {
+      "id": 1,
+      "title": "Tasik1",
+      "description": "Treba vykonasik",
+      "status": "in-progress",
       "assignedMember": 2,
       "deadline": "2025-01-15",
       "priority": "High",

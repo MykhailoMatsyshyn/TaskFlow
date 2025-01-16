@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Icon } from "../Icon/Icon";
 import { useAuth } from "../../hooks/useAuth";
 import { useCreateProject } from "../../hooks/useCreateProject";
+import CustomDatePicker from "../CustomDatePicker";
 
 interface CreateProjectFormProps {
   onCancel: () => void; // Callback для закриття форми
@@ -24,7 +25,13 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
   onCancel,
   teamMembers,
 }) => {
-  const { register, handleSubmit, control, setValue, watch } = useForm({
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       title: "",
       description: "",
@@ -35,6 +42,9 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
       icon: iconNames[0],
     },
   });
+
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [deadline, setDeadline] = useState<Date | null>(null);
 
   const selectedIcon = watch("icon");
 
@@ -57,6 +67,11 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
   const onSubmitHandler = (data: any) => {
     const slug = generateSlug(data.title); // Генеруємо slug з назви проекту
 
+    if (!startDate || !deadline) {
+      alert("Please select both start date and deadline.");
+      return;
+    }
+
     const defaultColumns = [
       { id: "to-do", title: "To Do" },
       { id: "in-progress", title: "In Progress" },
@@ -68,6 +83,8 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
       userId: Number(userId),
       slug, // Додаємо slug
       columns: defaultColumns, // Додаємо дефолтні колонки
+      startDate: startDate.toISOString(),
+      deadline: deadline.toISOString(),
     };
 
     console.log(projectData); // Перевірка даних у консолі
@@ -81,7 +98,7 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
       className="flex flex-col gap-4"
     >
       {/* Title */}
-      <div>
+      {/* <div>
         <label htmlFor="title" className="block font-medium mb-1">
           Project Title
         </label>
@@ -93,6 +110,24 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
           placeholder="Enter project title"
           required
         />
+      </div> */}
+
+      {/* Title */}
+      <div className="relative">
+        <input
+          type="text"
+          id="title"
+          placeholder="Enter project title"
+          {...register("title", { required: "Project title is required" })}
+          className={`w-full h-[49px] mb-[14px] p-[18px] border ${
+            errors.title ? "border-red-500" : "border-[#BEDBB0]"
+          } bg-[#1F1F1F] rounded-md opacity-40 focus:outline-none focus:opacity-100 text-white font-normal text-[14px] tracking-tight`}
+        />
+        {errors.title && (
+          <p className="absolute text-red-500 text-xs mt-[-18px] ml-[13px] backdrop-blur-sm bg-opacity-30 bg-black rounded px-[5px]">
+            {errors.title.message}
+          </p>
+        )}
       </div>
 
       {/* Description */}
@@ -108,33 +143,24 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
         />
       </div>
 
-      {/* Start Date */}
-      <div>
-        <label htmlFor="startDate" className="block font-medium mb-1">
-          Start Date
-        </label>
-        <input
-          type="date"
-          id="startDate"
-          {...register("startDate")}
-          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-          required
-        />
-      </div>
+      {/* Start Date Picker */}
+      <CustomDatePicker
+        label="Start Date"
+        selectedDate={startDate}
+        onDateChange={setStartDate}
+      />
 
-      {/* End Date */}
-      <div>
-        <label htmlFor="endDate" className="block font-medium mb-1">
-          End Date
-        </label>
-        <input
-          type="date"
-          id="endDate"
-          {...register("endDate")}
-          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-          required
-        />
-      </div>
+      {/* Deadline Picker */}
+      <CustomDatePicker
+        label="End Date"
+        selectedDate={deadline}
+        onDateChange={setDeadline}
+        minDate={startDate} // Обмеження дедлайну мінімальною датою початку
+        highlightRange={{
+          start: startDate,
+          end: deadline,
+        }} // Передача проміжку для виділення
+      />
 
       {/* Assigned Team Members */}
       <div>

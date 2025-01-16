@@ -7,6 +7,7 @@ import useUserStore from "../stores/userStore";
 import { useEffect } from "react";
 import UserManagementPage from "../pages/UserManagementPage/UserManagementPage";
 import Modal from "react-modal";
+import TestDatePicker from "./TestDatePicker";
 
 Modal.setAppElement("#root");
 
@@ -60,7 +61,14 @@ export default function App() {
 
           {/* Private Routes */}
           <Route element={<PrivateRoute component={<Layout />} />}>
-            <Route path="/dashboard" element={<div>Dashboard Content</div>} />
+            <Route
+              path="/dashboard"
+              element={
+                <div>
+                  Dashboard Content <TestDatePicker />
+                </div>
+              }
+            />
             <Route
               path="/dashboard/users"
               element={

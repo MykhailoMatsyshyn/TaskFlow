@@ -23,7 +23,7 @@ const AddCardButton = ({ columnId }) => {
         <span className="p-[7px] rounded-md bg-[#161616]">
           <Icon id="plus" size={14} className="fill-white" />
         </span>
-        Add another card
+        Add a card
       </button>
       {isModalOpen && (
         <CustomModal isOpen={isModalOpen} onClose={closeModal}>

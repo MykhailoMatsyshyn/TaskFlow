@@ -80,3 +80,17 @@
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
 }
+
+.custom-modal__content.custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(190, 219, 176, 0.15);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(190, 219, 176, 0.05);
+  }
+}

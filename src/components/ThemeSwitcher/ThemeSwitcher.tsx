@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Icon } from "../Icon/Icon";
+import { CustomIcon } from "../CustomIcon/CustomIcon";
 
 const ThemeSwitcher = () => {
   const [theme, setTheme] = useState<string>(
@@ -41,7 +41,7 @@ const ThemeSwitcher = () => {
         className="flex items-center justify-between gap-1 w-[68px]  font-medium"
       >
         Theme
-        <Icon
+        <CustomIcon
           id="arrow-down"
           size={16}
           className={`fill-none  stroke-white/80 ${

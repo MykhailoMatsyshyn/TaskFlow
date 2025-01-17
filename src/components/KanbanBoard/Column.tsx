@@ -2,7 +2,7 @@ import { Droppable, Draggable } from "@hello-pangea/dnd";
 import Card from "./Card";
 import { Task } from "../../types/task";
 import AddCardButton from "./AddCardButton";
-import { Icon } from "../Icon/Icon";
+import { CustomIcon } from "../CustomIcon/CustomIcon";
 import { useDeleteColumn } from "../../hooks/useDeleteColumn";
 import { useState } from "react";
 import CustomModal from "../CustomModal/CustomModal";
@@ -44,10 +44,18 @@ const Column = ({
             onClick={() => console.log("✏️", column.id)}
             className="text-blue-500"
           >
-            <Icon id="edit" size={16} className="fill-none stroke-white/50" />
+            <CustomIcon
+              id="edit"
+              size={16}
+              className="fill-none stroke-white/50"
+            />
           </button>
           <button onClick={openModal} className="text-blue-500">
-            <Icon id="trash2" size={16} className="fill-none stroke-white/50" />
+            <CustomIcon
+              id="trash2"
+              size={16}
+              className="fill-none stroke-white/50"
+            />
           </button>
         </div>
       </div>

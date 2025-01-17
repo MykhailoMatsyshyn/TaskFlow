@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Icon } from "../../../Icon/Icon";
+import { CustomIcon } from "../../../CustomIcon/CustomIcon";
 // import Modal from "../../../Modal/Modal"; // Імпортуємо Modal
 // import useModalStore from "../../../../stores/modalStore"; // Імпортуємо useModalStore для керування станом модального вікна
 import useUserStore from "../../../../stores/userStore";
@@ -41,9 +41,10 @@ const LogOut = () => {
         onClick={handleOpenModal}
         className="flex justify-between items-center gap-[14px] bg-transparent text-base font-medium hover:fill-[#9DC888]"
       >
-        <Icon
+        <CustomIcon
           id="logout"
           size={32}
+          color="#BEDBB0"
           className="fill-[#BEDBB0] group-hover:fill-[#9DC888]"
         />
         <p className="text-lg font-medium">Log Out</p>

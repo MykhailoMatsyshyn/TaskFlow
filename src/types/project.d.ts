@@ -6,6 +6,6 @@ export interface Project {
   endDate: string;
   assignedMembers: string[];
   status: "Planned" | "In Progress" | "Completed";
-  icon: string;
+  CustomIcon: string;
   userId: number;
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import AddCardForm from "components/AddCardForm";
 import CustomModal from "../CustomModal/CustomModal";
-import { Icon } from "../Icon/Icon";
+import { CustomIcon } from "../CustomIcon/CustomIcon";
 
 const AddCardButton = ({ columnId }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -21,7 +21,7 @@ const AddCardButton = ({ columnId }) => {
         onClick={openModal}
       >
         <span className="p-[7px] rounded-md bg-[#161616]">
-          <Icon id="plus" size={14} className="fill-white" />
+          <CustomIcon id="plus" size={14} className="fill-white" />
         </span>
         Add a card
       </button>

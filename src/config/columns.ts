@@ -37,13 +37,13 @@
 //           className="border-[2px] border-[#59B17A] border-opacity-50 rounded-[50%] p-2"
 //           onClick={() => handleEdit(row.original.id)}
 //         >
-//           <Icon id={"edit"} size={16} className="stroke-[#59B17A] fill-none" />
+//           <CustomIcon id={"edit"} size={16} className="stroke-[#59B17A] fill-none" />
 //         </button>
 //         <button
 //           className="border-[2px] border-[#E85050] border-opacity-50 rounded-[50%] p-2"
 //           onClick={() => handleDelete(row.original.id)}
 //         >
-//           <Icon
+//           <CustomIcon
 //             id={"trash2"}
 //             size={16}
 //             className="stroke-[#E85050] fill-none"

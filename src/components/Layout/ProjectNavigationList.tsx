@@ -27,7 +27,7 @@ const ProjectNavigationList = () => {
     <div
       ref={ref}
       onMouseDown={onMouseDown}
-      className="overflow-y-auto max-h-[200px] scrollbar-thin scrollbar-thumb-[#BEDBB0] scrollbar-track-[#1F1F1F] scroll-snap-y scroll-snap-mandatory"
+      className=" overflow-y-auto max-h-[200px] scrollbar-thin scrollbar-thumb-[#BEDBB0] scrollbar-track-[#1F1F1F] scroll-snap-y scroll-snap-mandatory .scrollbar-hidden "
     >
       <ul className="space-y-2">
         {projects.data.map((project) => (

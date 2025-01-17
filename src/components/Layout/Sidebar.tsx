@@ -5,8 +5,8 @@ import useUserStore from "../../stores/userStore";
 import CreateBoard from "./CreateBoard";
 import ProjectNavigationList from "./ProjectNavigationList";
 
-import { MdOutlineDashboard } from "react-icons/md";
-import { FaUsersCog } from "react-icons/fa";
+import { MdOutlineDashboard } from "react-Icons/md";
+import { FaUsersCog } from "react-Icons/fa";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { currentUser } = useUserStore();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Icon } from "../Icon/Icon";
+import { CustomIcon } from "../CustomIcon/CustomIcon";
 import CustomModal from "../CustomModal/CustomModal";
-import CreateBoardForm from "./CreateBoardForm"; // Імпортуємо форму
+import CreateBoardForm from "./CreateBoardForm/CreateBoardForm"; // Імпортуємо форму
 
 const CreateBoard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +25,7 @@ const CreateBoard = () => {
           onClick={handleOpenModal}
           className="px-[10px] py-2 w-10 h-[36px] rounded-md bg-[#BEDBB0]"
         >
-          <Icon id="plus" size={20} />
+          <CustomIcon id="plus" size={20} />
         </button>
       </div>
       <hr className="border-white/10 mb-10" />
@@ -34,15 +34,9 @@ const CreateBoard = () => {
       <CustomModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        title="Create New Board"
+        title="Create New Project"
       >
-        <CreateBoardForm
-          onCancel={handleCloseModal}
-          teamMembers={[
-            { id: "1", name: "Alice" },
-            { id: "2", name: "Bob" },
-          ]}
-        />
+        <CreateBoardForm onCancel={handleCloseModal} />
       </CustomModal>
     </>
   );

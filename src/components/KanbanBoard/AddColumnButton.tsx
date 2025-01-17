@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import CustomModal from "../CustomModal/CustomModal";
-import { Icon } from "../Icon/Icon";
+import { CustomIcon } from "../CustomIcon/CustomIcon";
 import AddColumnForm from "./AddColumnForm";
 
 const AddColumnButton = (projectId: any) => {
@@ -25,7 +25,7 @@ const AddColumnButton = (projectId: any) => {
           onClick={openModal}
         >
           <span className="p-[7px] rounded-md bg-[#FFFFFF]">
-            <Icon id="plus" size={14} className="fill-[#121212]" />
+            <CustomIcon id="plus" size={14} className="fill-[#121212]" />
           </span>
           Add another column
         </button>

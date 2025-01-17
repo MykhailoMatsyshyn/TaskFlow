@@ -77,3 +77,14 @@ export const deleteUser = (userId: string): Promise<void> => {
       throw new Error(error.response?.data?.message || "Error deleting user");
     });
 };
+
+export const getTeamMembers = (emailLike: string): Promise<User[]> => {
+  return axiosInstance
+    .get<User[]>(`/users?role=Team%20Member&email_like=${emailLike}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw new Error(
+        error.response?.data?.message || "Error fetching team members"
+      );
+    });
+};

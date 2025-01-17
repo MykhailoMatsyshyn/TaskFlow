@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Tooltip } from "react-tippy";
-import { Icon } from "../Icon/Icon";
+import { CustomIcon } from "../CustomIcon/CustomIcon";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { kebabCase } from "lodash";
 import EllipsisText from "react-ellipsis-text";
@@ -42,17 +42,22 @@ const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
         <div
           className={`relative flex justify-between items-center pl-[14px] py-[22px] px-[14px] h-[61px] hover:bg-[#1f1f1f] ${
             isActive
-              ? "bg-[#1F1F1F] after:content-[''] after:block after:bg-[#BEDBB0] after:rounded-l-md after:w-[4px] after:h-[61px] after:absolute after:right-0 after:top-[calc(50%-30.5px)]"
+              ? `bg-[#1F1F1F] after:content-[''] after:block after:rounded-l-md after:w-[4px] after:h-[61px] after:absolute after:right-0 after:top-[calc(50%-30.5px)] ${
+                  project.status === "Planned"
+                    ? "after:bg-[#8FA1D0]"
+                    : project.status === "In Progress"
+                    ? "after:bg-[#E09CB5]"
+                    : "after:bg-[#BEDBB0]"
+                }`
               : ""
           }`}
         >
           <div className="flex items-center">
-            <Icon
+            <CustomIcon
               id={project.icon}
               size={18}
-              className={`fill-none mr-2 ${
-                isActive ? "stroke-white" : "stroke-white/50"
-              }`}
+              className={`mr-2`}
+              color={isActive ? "#fff" : "rgba(255, 255, 255, 0.5)"}
             />
             <Tooltip
               title={project.title.length > 18 ? project.title : " "}
@@ -73,14 +78,14 @@ const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
           {isActive && canEditOrDelete(role) && (
             <div className="flex gap-2">
               <button onClick={() => onEdit(project.id)}>
-                <Icon
+                <CustomIcon
                   id="edit"
                   size={16}
                   className="fill-none stroke-white/50"
                 />
               </button>
               <button onClick={openModal}>
-                <Icon
+                <CustomIcon
                   id="trash2"
                   size={16}
                   className="fill-none stroke-white/50"

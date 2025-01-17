@@ -9,6 +9,7 @@ interface CustomDatePickerProps {
   onDateChange: (date: Date | null) => void;
   minDate?: Date | undefined;
   highlightRange?: { start: Date | null; end: Date | null };
+  error?: string;
 }
 
 const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
@@ -17,6 +18,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
   onDateChange,
   minDate,
   highlightRange,
+  error,
 }) => {
   const formatDate = (date: Date | null): string => {
     if (!date) return "Select a date";
@@ -31,7 +33,14 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 
   return (
     <div className="relative">
-      <h3 className="text-gray-400 text-sm mb-1">{label}</h3>
+      <h3 className="font-normal text-[12px] tracking-[-0.02em] text-white/50 mb-1">
+        {label}
+      </h3>
+      {error && (
+        <p className="absolute text-red-500 text-xs mt-[-21px] ml-[65px] backdrop-blur-sm bg-opacity-30 bg-black rounded px-[5px]">
+          {error}
+        </p>
+      )}
       <DatePicker
         selected={selectedDate}
         onChange={onDateChange}
@@ -49,8 +58,11 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
         popperPlacement="bottom-start"
         portalId="datepicker-portal"
         customInput={
-          <button className="text-left text-white bg-transparent w-full">
-            <span className="text-green-500 font-medium">
+          <button
+            type="button"
+            className="text-left text-white bg-transparent w-full"
+          >
+            <span className="font-medium text-[14px] tracking-[-0.02em] text-[#BEDBB0]">
               {selectedDate ? formatDate(selectedDate) : "Select a date"}
             </span>
           </button>

@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import logoIcon from "../../assets/icons/iconTaskFlow.svg";
+import logoCustomIcon from "../../assets/icons/iconTaskFlow.svg";
 
 const LogoWithTitle = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const LogoWithTitle = () => {
       onClick={handleClick}
     >
       <img
-        src={logoIcon}
+        src={logoCustomIcon}
         alt="Task Flow Logo"
         className={`w-10 h-10 md:w-12 md:h-12 ${
           isDashboard ? "w-8 h-8 md:w-8 md:h-8" : ""

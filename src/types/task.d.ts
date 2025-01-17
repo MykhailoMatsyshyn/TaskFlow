@@ -4,7 +4,7 @@ export interface Task {
   description: string;
   status: string;
   assignedMember: number;
-  deadline: string;
+  endDate: string;
   priority: "Low" | "Medium" | "High" | "No Priority";
   projectId: number;
 }

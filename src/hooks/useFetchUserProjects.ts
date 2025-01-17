@@ -2,9 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserProjects } from "../api/projectService";
 
 const useFetchUserProjects = (userId?: number) => {
-  console.log("============= useFetchUserProjects =============");
-  console.log("userId", userId);
-
   return useQuery({
     queryKey: ["projects", userId],
     queryFn: () => {

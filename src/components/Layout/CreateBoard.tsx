@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CustomIcon } from "../CustomIcon/CustomIcon";
 import CustomModal from "../CustomModal/CustomModal";
-import CreateBoardForm from "./CreateBoardForm/CreateBoardForm"; // Імпортуємо форму
+import ProjectForm from "./ProjectForm/ProjectForm";
+import { useCreateProject } from "../../hooks/useCreateProject";
 
 const CreateBoard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { mutate: createProject } = useCreateProject();
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -12,6 +14,18 @@ const CreateBoard = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleCreateProject = (projectData: any) => {
+    createProject(projectData, {
+      onSuccess: () => {
+        console.log("Project created successfully");
+        handleCloseModal();
+      },
+      onError: (error) => {
+        console.error("Failed to create project:", error.message);
+      },
+    });
   };
 
   return (
@@ -36,7 +50,10 @@ const CreateBoard = () => {
         onClose={handleCloseModal}
         title="Create New Project"
       >
-        <CreateBoardForm onCancel={handleCloseModal} />
+        <ProjectForm
+          onSubmit={handleCreateProject}
+          onCancel={handleCloseModal}
+        />
       </CustomModal>
     </>
   );

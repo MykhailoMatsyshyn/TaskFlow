@@ -8,13 +8,18 @@ import "react-tippy/dist/tippy.css";
 import useUserStore from "../../stores/userStore";
 import CustomModal from "../CustomModal/CustomModal";
 import { useDeleteProject } from "../../hooks/useDeleteProject";
+import ProjectForm from "./ProjectForm/ProjectForm";
+import { useUpdateProject } from "../../hooks/useUpdateProject";
 
 const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Стан модалки
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const location = useLocation();
   const theme = localStorage.getItem("theme");
   const { currentUser } = useUserStore();
   const { mutate: deleteProject } = useDeleteProject();
+  const { mutate: updateProject } = useUpdateProject();
   const navigate = useNavigate();
 
   const role = currentUser?.role;
@@ -29,11 +34,53 @@ const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const openEditModal = (project) => {
+    setSelectedProject(project);
+    setEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setSelectedProject(null);
+    setEditModalOpen(false);
+  };
+
   const handleDeleteConfirm = () => {
     deleteProject(project.id);
     console.log("navigate here");
     navigate("/dashboard");
     closeModal();
+  };
+
+  const handleEdit = (updatedData) => {
+    if (!selectedProject?.id) {
+      console.error("Project ID is undefined!");
+      return;
+    }
+
+    const dataWithId = {
+      id: selectedProject.id,
+      data: updatedData,
+    };
+
+    updateProject(dataWithId, {
+      onSuccess: (updatedProject) => {
+        console.log("Project updated successfully:", updatedProject);
+
+        // Перевіряємо, чи змінився slug (або title)
+        const newSlug = kebabCase(updatedProject.title);
+        const currentSlug = kebabCase(selectedProject.title);
+
+        if (newSlug !== currentSlug) {
+          // Перенаправлення на новий URL
+          navigate(`/dashboard/${encodeURIComponent(newSlug)}`);
+        }
+
+        closeEditModal();
+      },
+      onError: (error) => {
+        console.error("Failed to update project:", error.message);
+      },
+    });
   };
 
   return (
@@ -77,7 +124,7 @@ const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
           </div>
           {isActive && canEditOrDelete(role) && (
             <div className="flex gap-2">
-              <button onClick={() => onEdit(project.id)}>
+              <button onClick={() => openEditModal(project)}>
                 <CustomIcon
                   id="edit"
                   size={16}
@@ -118,6 +165,21 @@ const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
           </button>
         </div>
       </CustomModal>
+
+      {/* Модалка редагування */}
+      {isEditModalOpen && (
+        <CustomModal
+          isOpen={isEditModalOpen}
+          onClose={closeEditModal}
+          title="Edit Project"
+        >
+          <ProjectForm
+            initialData={selectedProject} // Передаємо дані проєкту
+            onCancel={closeEditModal}
+            onSubmit={handleEdit}
+          />
+        </CustomModal>
+      )}
     </li>
   );
 };

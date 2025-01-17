@@ -88,3 +88,9 @@ export const getTeamMembers = (emailLike: string): Promise<User[]> => {
       );
     });
 };
+
+export const getTeamMembersByIds = async (ids: number[]): Promise<User[]> => {
+  const requests = ids.map((id) => axiosInstance.get<User>(`/users/${id}`));
+  const responses = await Promise.all(requests);
+  return responses.map((response) => response.data);
+};

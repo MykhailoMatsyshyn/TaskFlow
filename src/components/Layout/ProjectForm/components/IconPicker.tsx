@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomIcon } from "./../../../CustomIcon/CustomIcon";
+import { CustomIcon } from "../../../CustomIcon/CustomIcon";
 
 interface IconPickerProps {
   IconNames: string[];

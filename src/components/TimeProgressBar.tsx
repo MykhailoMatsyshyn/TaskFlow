@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const TimeProgressBar = ({ startDateTime, deadline }) => {
+const TimeProgressBar = ({ startDateTime, endDate }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const start = new Date(startDateTime).getTime();
-    const end = new Date(deadline).getTime();
+    const end = new Date(endDate).getTime();
     const totalDuration = end - start;
 
     const updateProgress = () => {
@@ -19,7 +19,7 @@ const TimeProgressBar = ({ startDateTime, deadline }) => {
     const interval = setInterval(updateProgress, 1000); // Update every second
 
     return () => clearInterval(interval); // Cleanup on unmount
-  }, [startDateTime, deadline]);
+  }, [startDateTime, endDate]);
 
   return (
     <div
@@ -40,7 +40,7 @@ const TimeProgressBar = ({ startDateTime, deadline }) => {
         }}
       >
         <span>{new Date(startDateTime).toLocaleString()}</span>
-        <span>{new Date(deadline).toLocaleString()}</span>
+        <span>{new Date(endDate).toLocaleString()}</span>
       </div>
       <div
         style={{

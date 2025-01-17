@@ -137,26 +137,26 @@
   "projects": [
     {
       "id": 1,
-      "title": "First project",
-      "slug": "first-project",
-      "description": "First project",
-      "startDate": "2025-01-13",
-      "endDate": "2025-01-31",
+      "title": "Website Redesign",
+      "slug": "website-redesign",
+      "description": "Complete redesign of the corporate website to improve user experience and SEO.",
+      "startDate": "2025-01-04T22:00:00.000Z",
+      "endDate": "2025-01-16T03:05:00.000Z",
       "assignedMembers": [
-        "1",
-        "2"
+        12,
+        11
       ],
       "status": "In Progress",
-      "icon": "palette",
-      "userId": "4",
+      "icon": "puzzle",
+      "userId": 4,
       "columns": [
-        {
-          "id": "in-progress",
-          "title": "In Progress"
-        },
         {
           "id": "to-do",
           "title": "To Do"
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress"
         },
         {
           "id": "done",
@@ -165,10 +165,10 @@
       ]
     },
     {
-      "title": "TItle",
+      "title": "Title",
       "description": "",
       "startDate": "2025-01-16T22:00:00.000Z",
-      "endDate": "",
+      "endDate": "2025-01-23T22:00:00.000Z",
       "assignedMembers": [],
       "status": "Planned",
       "icon": "project",
@@ -188,19 +188,18 @@
           "title": "Done"
         }
       ],
-      "deadline": "2025-01-22T22:00:00.000Z",
       "id": 2
     },
     {
-      "title": "еше",
+      "title": "New",
       "description": "",
-      "startDate": "2025-01-17T22:00:00.000Z",
-      "endDate": "",
+      "startDate": "2025-01-16T22:00:00.000Z",
+      "endDate": "2025-01-23T22:00:00.000Z",
       "assignedMembers": [],
-      "status": "Planned",
-      "icon": "project",
+      "status": "Completed",
+      "icon": "hexagon",
       "userId": 4,
-      "slug": "",
+      "slug": "new",
       "columns": [
         {
           "id": "to-do",
@@ -215,7 +214,6 @@
           "title": "Done"
         }
       ],
-      "deadline": "2025-01-16T22:00:00.000Z",
       "id": 3
     }
   ],
@@ -226,7 +224,7 @@
       "description": "Treba vykonasik",
       "status": "to-do",
       "assignedMember": 2,
-      "deadline": "2025-01-15",
+      "endDate": "2025-01-15",
       "priority": "High",
       "projectId": 1
     },
@@ -236,7 +234,7 @@
       "description": "Treba vykonasik",
       "status": "to-do",
       "assignedMember": 2,
-      "deadline": "2025-01-15",
+      "endDate": "2025-01-15",
       "priority": "High",
       "projectId": 1
     },
@@ -246,7 +244,7 @@
       "description": "Treba vykonasik",
       "status": "to-do",
       "assignedMember": 2,
-      "deadline": "2025-01-15",
+      "endDate": "2025-01-15",
       "priority": "High",
       "projectId": 1
     },
@@ -256,7 +254,7 @@
       "description": "Treba vykonasik",
       "status": "to-do",
       "assignedMember": 2,
-      "deadline": "2025-01-15",
+      "endDate": "2025-01-15",
       "priority": "High",
       "projectId": 1
     },
@@ -266,7 +264,7 @@
       "description": "Treba vykonasik",
       "status": "in-progress",
       "assignedMember": 2,
-      "deadline": "2025-01-15",
+      "endDate": "2025-01-15",
       "priority": "High",
       "projectId": 1
     }

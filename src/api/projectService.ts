@@ -43,6 +43,21 @@ export const getProjectBySlug = (slug: string): Promise<Project> => {
     });
 };
 
+export const updateProject = async (
+  projectId: number,
+  updatedData: Partial<Project>
+): Promise<Project> => {
+  try {
+    const { data: updatedProject } = await axiosInstance.patch<Project>(
+      `/projects/${projectId}`,
+      updatedData
+    );
+    return updatedProject;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Error updating project");
+  }
+};
+
 export const updateProjectColumns = (
   projectId: number,
   columns: { id: string; title: string }[]

@@ -27,9 +27,17 @@ const ProjectNavigationList = () => {
     <div
       ref={ref}
       onMouseDown={onMouseDown}
-      className=" overflow-y-auto max-h-[200px] scrollbar-thin scrollbar-thumb-[#BEDBB0] scrollbar-track-[#1F1F1F] scroll-snap-y scroll-snap-mandatory .scrollbar-hidden "
+      className="overflow-y-auto max-h-[200px]  custom-scrollbar"
+      style={{
+        direction: "rtl", // Інверсія напрямку
+      }}
     >
-      <ul className="space-y-2">
+      <ul
+        className="space-y-2"
+        style={{
+          direction: "ltr", // Відновлення нормального напрямку для контенту
+        }}
+      >
         {projects.data.map((project) => (
           <ProjectNavigationItem
             key={project.id}

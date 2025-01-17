@@ -11,7 +11,7 @@ const ProjectPage = () => {
     <div>
       {/* <TimeProgressBar
         startDateTime="2025-01-16T21:47:00.000Z"
-        deadline="2025-01-16T21:49:00.000Z"
+        endDate="2025-01-16T21:49:00.000Z"
       /> */}
 
       <KanbanBoard projectId={slug} />

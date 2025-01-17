@@ -3,9 +3,9 @@ import CustomDatePicker from "../../../CustomDatePicker";
 
 interface DatePickerFieldsProps {
   onStartDateChange: (date: Date | null) => void;
-  onDeadlineChange: (date: Date | null) => void;
+  onEndDateChange: (date: Date | null) => void;
   startDate: Date | null;
-  deadline: Date | null;
+  endDate: Date | null;
   // register: UseFormRegister<{ title: string }>;
   errors: {
     startDate?: string;
@@ -15,9 +15,9 @@ interface DatePickerFieldsProps {
 
 const DatePickerFields: React.FC<DatePickerFieldsProps> = ({
   onStartDateChange,
-  onDeadlineChange,
+  onEndDateChange,
   startDate,
-  deadline,
+  endDate,
   // register,
   errors,
 }) => {
@@ -34,15 +34,15 @@ const DatePickerFields: React.FC<DatePickerFieldsProps> = ({
           error={errors.startDate}
         />
 
-        {/* Deadline Picker */}
+        {/* EndDate Picker */}
         <CustomDatePicker
           label="End Date"
-          selectedDate={deadline}
-          onDateChange={onDeadlineChange}
+          selectedDate={endDate}
+          onDateChange={onEndDateChange}
           minDate={startDate || undefined}
           highlightRange={{
             start: startDate,
-            end: deadline,
+            end: endDate,
           }}
           // {...register("title", { required: "Project title is required" })}
           error={errors.endDate}

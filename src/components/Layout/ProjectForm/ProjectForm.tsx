@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../../hooks/useAuth";
-import { useCreateProject } from "../../../hooks/useCreateProject";
 import {
   IconPicker,
   DatePickerFields,
@@ -11,9 +10,12 @@ import {
   TeamMemberPicker,
   Buttons,
 } from "./components";
+import { kebabCase } from "lodash";
 
-interface CreateProjectFormProps {
-  onCancel: () => void;
+interface ProjectFormProps {
+  initialData?: any; // Данні проєкту (для редагування)
+  onSubmit: (data: any) => void; // Дія при сабміті
+  onCancel: () => void; // Закриття форми
 }
 
 const IconNames = [
@@ -27,7 +29,11 @@ const IconNames = [
   "star",
 ];
 
-const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onCancel }) => {
+const ProjectForm: React.FC<ProjectFormProps> = ({
+  initialData,
+  onSubmit,
+  onCancel,
+}) => {
   const {
     register,
     handleSubmit,
@@ -49,7 +55,7 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onCancel }) => {
   });
 
   const [startDate, setStartDate] = useState<Date | null>(null);
-  const [deadline, setDeadline] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   const selectedIcon = watch("icon");
 
@@ -58,15 +64,6 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onCancel }) => {
   };
 
   const { userId } = useAuth();
-
-  const { mutate: createProject } = useCreateProject();
-
-  const generateSlug = (title: string) => {
-    return title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-  };
 
   const validateDates = () => {
     if (!startDate) {
@@ -78,7 +75,7 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onCancel }) => {
       clearErrors("startDate");
     }
 
-    if (!deadline) {
+    if (!endDate) {
       setError("endDate", {
         type: "required",
         message: "End Date is required",
@@ -91,11 +88,11 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onCancel }) => {
   const onSubmitHandler = (data: any) => {
     validateDates();
 
-    if (!startDate || !deadline || errors.startDate || errors.endDate) {
+    if (!startDate || !endDate || errors.startDate || errors.endDate) {
       return;
     }
 
-    const slug = generateSlug(data.title);
+    const slug = kebabCase(data.title);
 
     const defaultColumns = [
       { id: "to-do", title: "To Do" },
@@ -109,12 +106,29 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onCancel }) => {
       slug,
       columns: defaultColumns,
       startDate: startDate.toISOString(),
-      deadline: deadline.toISOString(),
+      endDate: endDate.toISOString(),
     };
 
-    createProject(projectData);
+    onSubmit(projectData);
     onCancel();
   };
+
+  useEffect(() => {
+    if (initialData) {
+      // Установлюємо значення у стани дати
+      setStartDate(
+        initialData.startDate ? new Date(initialData.startDate) : null
+      );
+      setEndDate(initialData.endDate ? new Date(initialData.endDate) : null);
+
+      // Установлюємо значення в поля форми
+      setValue("title", initialData.title || "");
+      setValue("description", initialData.description || "");
+      setValue("assignedMembers", initialData.assignedMembers || []);
+      setValue("status", initialData.status || "Planned");
+      setValue("icon", initialData.icon || IconNames[0]);
+    }
+  }, [initialData, setValue]);
 
   return (
     <form
@@ -132,22 +146,23 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onCancel }) => {
             selectedMembers.map((member) => member.id)
           )
         }
+        defaultMembers={initialData?.assignedMembers || []}
       />
 
       <StatusPicker
-        initialStatus="Planned"
+        initialStatus={initialData?.status || "Planned"}
         onStatusChange={(status) => setValue("status", status)}
       />
 
       <DatePickerFields
         startDate={startDate}
-        deadline={deadline}
+        endDate={endDate}
         onStartDateChange={(date) => {
           setStartDate(date);
           clearErrors("startDate");
         }}
-        onDeadlineChange={(date) => {
-          setDeadline(date);
+        onEndDateChange={(date) => {
+          setEndDate(date);
           clearErrors("endDate");
         }}
         errors={{
@@ -162,9 +177,9 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onCancel }) => {
         onIconSelect={handleIconSelect}
       />
 
-      <Buttons onCancel={onCancel} />
+      <Buttons buttonText={initialData ? "Edit" : "Create"} />
     </form>
   );
 };
 
-export default CreateProjectForm;
+export default ProjectForm;

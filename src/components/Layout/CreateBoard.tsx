@@ -48,7 +48,7 @@ const CreateBoard = () => {
       <CustomModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        title="Create New Project"
+        title="Create New Project Board"
       >
         <ProjectForm
           onSubmit={handleCreateProject}

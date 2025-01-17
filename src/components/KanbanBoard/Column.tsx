@@ -1,7 +1,7 @@
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import Card from "./Card";
 import { Task } from "../../types/task";
-import AddCardButton from "./AddCardButton";
+import AddTaskButton from "./AddTaskButton";
 import { CustomIcon } from "../CustomIcon/CustomIcon";
 import { useDeleteColumn } from "../../hooks/useDeleteColumn";
 import { useState } from "react";
@@ -92,7 +92,7 @@ const Column = ({
 
       {/* Кнопка додавання задач */}
       <div className="mt-auto">
-        <AddCardButton />
+        <AddTaskButton status={column.id} />
       </div>
 
       {/* Модалка підтвердження видалення */}

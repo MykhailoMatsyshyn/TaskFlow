@@ -142,12 +142,9 @@
       "description": "Complete redesign of the corporate website to improve user experience and SEO.",
       "startDate": "2025-01-04T22:00:00.000Z",
       "endDate": "2025-01-16T03:05:00.000Z",
-      "assignedMembers": [
-        12,
-        11
-      ],
+      "assignedMembers": [12, 11],
       "status": "In Progress",
-      "icon": "puzzle",
+      "icon": "lightning",
       "userId": 4,
       "columns": [
         {
@@ -169,7 +166,7 @@
       "description": "",
       "startDate": "2025-01-16T22:00:00.000Z",
       "endDate": "2025-01-23T22:00:00.000Z",
-      "assignedMembers": [],
+      "assignedMembers": [11, 13],
       "status": "Planned",
       "icon": "project",
       "userId": 4,
@@ -215,6 +212,36 @@
         }
       ],
       "id": 3
+    },
+    {
+      "title": "Normal name",
+      "description": "",
+      "startDate": "2025-01-13T22:00:00.000Z",
+      "endDate": "2025-01-24T22:00:00.000Z",
+      "assignedMembers": [],
+      "status": "Planned",
+      "icon": "lightning",
+      "userId": 4,
+      "slug": "normal-name",
+      "columns": [
+        {
+          "id": "to-do",
+          "title": "To Do"
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress"
+        },
+        {
+          "id": "done",
+          "title": "Done"
+        },
+        {
+          "id": "c4918588-6b14-4b05-b217-3eb087739d7e",
+          "title": "Backlog"
+        }
+      ],
+      "id": 4
     }
   ],
   "tasks": [
@@ -267,6 +294,17 @@
       "endDate": "2025-01-15",
       "priority": "High",
       "projectId": 1
+    },
+    {
+      "title": "Test task",
+      "description": "",
+      "assignedMember": "",
+      "startDate": "2025-01-16T22:00:00.000Z",
+      "endDate": "2025-01-17T22:00:00.000Z",
+      "priority": "Without priority",
+      "userId": 4,
+      "status": "in-progress",
+      "id": 11
     }
   ]
 }

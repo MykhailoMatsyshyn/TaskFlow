@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { useTeamMembersQuery } from "../../../../../hooks/useTeamMembersQuery";
@@ -10,11 +10,13 @@ const animatedComponents = makeAnimated();
 interface TeamMemberPickerProps {
   onChange: (selectedUsers: { id: string; name: string }[]) => void;
   defaultMembers?: string[]; // Масив ID учасників
+  isMulti?: boolean; // Чи дозволено вибирати кількох учасників
 }
 
 const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
   onChange,
   defaultMembers = [],
+  isMulti = true,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const { data: teamMembers, isLoading: isSearching } =
@@ -28,7 +30,7 @@ const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
   >([]);
 
   // Оновлюємо `selectedMembers`, коли `loadedMembers` завантажуються
-  React.useEffect(() => {
+  useEffect(() => {
     if (loadedMembers) {
       const formattedMembers = loadedMembers.map((member) => ({
         value: member.id,
@@ -53,12 +55,15 @@ const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
   };
 
   const handleChange = (selected: any) => {
-    // Оновлюємо локальний стан та передаємо нові значення в `onChange`
-    const formattedSelection = selected.map((option: any) => ({
-      id: option.value,
-      name: option.name,
-    }));
-    setSelectedMembers(selected); // Оновлюємо локальний стан
+    const formattedSelection = isMulti
+      ? selected.map((option: any) => ({
+          id: option.value,
+          name: option.name,
+        }))
+      : selected
+      ? [{ id: selected.value, name: selected.name }]
+      : [];
+    setSelectedMembers(isMulti ? selected : selected ? [selected] : []); // Оновлюємо локальний стан
     onChange(formattedSelection); // Передаємо змінені дані в батьківський компонент
   };
 
@@ -84,8 +89,8 @@ const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
       </label>
       <Select
         id="team-members"
-        isMulti
-        closeMenuOnSelect={false}
+        isMulti={isMulti}
+        closeMenuOnSelect={!isMulti}
         components={{
           ...animatedComponents,
           Option: CustomOption,

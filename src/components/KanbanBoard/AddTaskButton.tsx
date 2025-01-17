@@ -1,10 +1,13 @@
 import { useState } from "react";
-// import AddCardForm from "components/AddCardForm";
 import CustomModal from "../CustomModal/CustomModal";
 import { CustomIcon } from "../CustomIcon/CustomIcon";
+import { useCreateTask } from "../../hooks/useCreateTask";
+import TaskForm from "../Layout/ProjectForm/TaskForm";
 
-const AddCardButton = ({ columnId }) => {
+const AddTaskButton = ({ status }) => {
   const [isModalOpen, setModalOpen] = useState(false);
+
+  const { mutate: createTask } = useCreateTask();
 
   const openModal = () => {
     setModalOpen(true);
@@ -12,6 +15,25 @@ const AddCardButton = ({ columnId }) => {
 
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  const handleCreateTask = (taskData) => {
+    console.log("taskData", taskData, "column", status);
+
+    const newTaskData = {
+      ...taskData,
+      status,
+    };
+
+    createTask(newTaskData, {
+      onSuccess: () => {
+        console.log("Task created successfully!");
+        closeModal();
+      },
+      onError: (error) => {
+        console.error("Failed to create task:", error.message);
+      },
+    });
   };
 
   return (
@@ -25,14 +47,18 @@ const AddCardButton = ({ columnId }) => {
         </span>
         Add a card
       </button>
+
       {isModalOpen && (
-        <CustomModal isOpen={isModalOpen} onClose={closeModal}>
-          {/* <AddCardForm onClose={closeModal} columnId={columnId} /> */}
-          <p>add card</p>
+        <CustomModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          title="Add a Task Card"
+        >
+          <TaskForm onSubmit={handleCreateTask} onCancel={closeModal} />
         </CustomModal>
       )}
     </>
   );
 };
 
-export default AddCardButton;
+export default AddTaskButton;

@@ -142,7 +142,10 @@
       "description": "Complete redesign of the corporate website to improve user experience and SEO.",
       "startDate": "2025-01-04T22:00:00.000Z",
       "endDate": "2025-01-16T03:05:00.000Z",
-      "assignedMembers": [12, 11],
+      "assignedMembers": [
+        12,
+        25
+      ],
       "status": "In Progress",
       "icon": "lightning",
       "userId": 4,
@@ -158,34 +161,12 @@
         {
           "id": "done",
           "title": "Done"
+        },
+        {
+          "id": "c4ae03e1-a476-4919-886c-847291de5e7c",
+          "title": "Backlog"
         }
       ]
-    },
-    {
-      "title": "Title",
-      "description": "",
-      "startDate": "2025-01-16T22:00:00.000Z",
-      "endDate": "2025-01-23T22:00:00.000Z",
-      "assignedMembers": [11, 13],
-      "status": "Planned",
-      "icon": "project",
-      "userId": 4,
-      "slug": "title",
-      "columns": [
-        {
-          "id": "to-do",
-          "title": "To Do"
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress"
-        },
-        {
-          "id": "done",
-          "title": "Done"
-        }
-      ],
-      "id": 2
     },
     {
       "title": "New",
@@ -246,65 +227,81 @@
   ],
   "tasks": [
     {
-      "id": 3,
-      "title": "Tasik3",
-      "description": "Treba vykonasik",
-      "status": "to-do",
-      "assignedMember": 2,
-      "endDate": "2025-01-15",
+      "title": "Create Social Media Campaign",
+      "description": "Develop a strategy and content plan for the next quarter's social media campaign.",
+      "assignedMember": 12,
+      "startDate": "2025-01-21T22:00:00.000Z",
+      "endDate": "2025-01-29T22:00:00.000Z",
       "priority": "High",
-      "projectId": 1
+      "status": "to-do",
+      "projectId": 1,
+      "id": 1
     },
     {
-      "id": 4,
-      "title": "Tasik4",
-      "description": "Treba vykonasik",
+      "title": "Research New Market Trends",
+      "description": "Analyze the latest market trends to identify potential opportunities for product expansion.",
+      "assignedMember": 11,
+      "startDate": "2025-01-21T22:00:00.000Z",
+      "endDate": "2025-01-23T22:00:00.000Z",
+      "priority": "Medium",
       "status": "to-do",
-      "assignedMember": 2,
-      "endDate": "2025-01-15",
-      "priority": "High",
-      "projectId": 1
+      "projectId": 1,
+      "id": 2
     },
     {
-      "id": 6,
-      "title": "Tasik6",
-      "description": "Treba vykonasik",
-      "status": "to-do",
-      "assignedMember": 2,
-      "endDate": "2025-01-15",
+      "title": "Update Product Roadmap",
+      "description": "Revise the product roadmap for the next 6 months based on feedback from stakeholders.",
+      "assignedMember": 21,
+      "startDate": "2025-01-13T22:00:00.000Z",
+      "endDate": "2025-01-19T22:00:00.000Z",
       "priority": "High",
-      "projectId": 1
-    },
-    {
-      "id": 7,
-      "title": "Tasik7",
-      "description": "Treba vykonasik",
-      "status": "to-do",
-      "assignedMember": 2,
-      "endDate": "2025-01-15",
-      "priority": "High",
-      "projectId": 1
-    },
-    {
-      "id": 1,
-      "title": "Tasik1",
-      "description": "Treba vykonasik",
       "status": "in-progress",
-      "assignedMember": 2,
-      "endDate": "2025-01-15",
-      "priority": "High",
-      "projectId": 1
+      "projectId": 1,
+      "id": 3
     },
     {
-      "title": "Test task",
-      "description": "",
-      "assignedMember": "",
-      "startDate": "2025-01-16T22:00:00.000Z",
-      "endDate": "2025-01-17T22:00:00.000Z",
-      "priority": "Without priority",
-      "userId": 4,
+      "title": "Write Blog Post on Industry Trends",
+      "description": "Publish a comprehensive article on the top 5 trends shaping the industry in 2025.",
+      "assignedMember": 24,
+      "startDate": "2025-01-11T22:00:00.000Z",
+      "endDate": "2025-01-14T22:00:00.000Z",
+      "priority": "Medium",
+      "status": "done",
+      "projectId": 1,
+      "id": 4
+    },
+    {
+      "title": "Set Up Analytics Dashboard",
+      "description": "Configure a new analytics dashboard to monitor key performance indicators.",
+      "assignedMember": 25,
+      "startDate": "2025-01-19T22:00:00.000Z",
+      "endDate": "2025-01-22T22:00:00.000Z",
+      "priority": "Low",
+      "status": "to-do",
+      "projectId": 1,
+      "id": 5
+    },
+    {
+      "title": "Conduct Customer Surveys",
+      "description": "Interview 20 customers to gather insights about their satisfaction and needs.",
+      "assignedMember": 16,
+      "startDate": "2025-01-20T22:00:00.000Z",
+      "endDate": "2025-01-23T22:00:00.000Z",
+      "priority": "Medium",
+      "status": "to-do",
+      "projectId": 1,
+      "id": 6
+    },
+    {
+      "title": "Design New Landing Page",
+      "description": "Create a modern and user-friendly design for the upcoming product's landing page.",
+      "assignedMember": 17,
+      "startDate": "2025-01-15T22:00:00.000Z",
+      "endDate": "2025-01-20T22:00:00.000Z",
+      "priority": "High",
       "status": "in-progress",
-      "id": 11
+      "projectId": 1,
+      "id": 7
     }
   ]
 }

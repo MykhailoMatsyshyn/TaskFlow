@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../../hooks/useAuth";
 import {
   TitleField,
   DescriptionField,
@@ -11,9 +10,9 @@ import {
 } from "./components";
 
 interface TaskFormProps {
-  initialData?: any; // Дані задачі (для редагування)
-  onSubmit: (data: any) => void; // Дія при сабміті
-  onCancel: () => void; // Закриття форми
+  initialData?: any;
+  onSubmit: (data: any) => void;
+  onCancel: () => void;
 }
 
 const TaskForm: React.FC<TaskFormProps> = ({
@@ -33,10 +32,10 @@ const TaskForm: React.FC<TaskFormProps> = ({
     defaultValues: {
       title: "",
       description: "",
-      assignedMember: "", // Один користувач
+      assignedMember: "",
       startDate: "",
       endDate: "",
-      priority: "Without priority", // Значення за замовчуванням
+      priority: "Without priority",
     },
   });
 
@@ -44,8 +43,6 @@ const TaskForm: React.FC<TaskFormProps> = ({
   const [endDate, setEndDate] = useState<Date | null>(null);
 
   const selectedPriority = watch("priority");
-
-  const { userId } = useAuth();
 
   const validateDates = () => {
     if (!startDate) {
@@ -81,7 +78,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
     const taskData = {
       ...data,
-      userId: Number(userId),
+      // userId: Number(userId),
       startDate: startDate.toISOString(),
       endDate: endDate.toISOString(),
     };
@@ -141,7 +138,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       />
 
       <PriorityPicker
-        selectedPriority={selectedPriority}
+        initialPriority={initialData?.priority || "Without priority"}
         onPriorityChange={(priority) => setValue("priority", priority)}
       />
 

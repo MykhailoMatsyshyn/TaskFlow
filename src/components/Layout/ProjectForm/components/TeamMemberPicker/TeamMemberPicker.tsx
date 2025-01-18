@@ -9,8 +9,8 @@ const animatedComponents = makeAnimated();
 
 interface TeamMemberPickerProps {
   onChange: (selectedUsers: { id: string; name: string }[]) => void;
-  defaultMembers?: string[]; // Масив ID учасників
-  isMulti?: boolean; // Чи дозволено вибирати кількох учасників
+  defaultMembers?: string[];
+  isMulti?: boolean;
 }
 
 const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
@@ -24,12 +24,10 @@ const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
   const { data: loadedMembers, isLoading: isLoadingDefaultMembers } =
     useTeamMembersByIds(defaultMembers);
 
-  // Локальний стан для поточних вибраних учасників
   const [selectedMembers, setSelectedMembers] = useState<
     { value: string; label: string; name: string }[]
   >([]);
 
-  // Оновлюємо `selectedMembers`, коли `loadedMembers` завантажуються
   useEffect(() => {
     if (loadedMembers) {
       const formattedMembers = loadedMembers.map((member) => ({
@@ -41,7 +39,6 @@ const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
     }
   }, [loadedMembers]);
 
-  // Формуємо опції для пошуку
   const options = teamMembers
     ? teamMembers.map((member) => ({
         value: member.id,
@@ -63,8 +60,8 @@ const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
       : selected
       ? [{ id: selected.value, name: selected.name }]
       : [];
-    setSelectedMembers(isMulti ? selected : selected ? [selected] : []); // Оновлюємо локальний стан
-    onChange(formattedSelection); // Передаємо змінені дані в батьківський компонент
+    setSelectedMembers(isMulti ? selected : selected ? [selected] : []);
+    onChange(formattedSelection);
   };
 
   const CustomOption = (props: any) => {
@@ -85,7 +82,7 @@ const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
   return (
     <div>
       <label htmlFor="team-members" className="block mb-[14px]">
-        Team Members
+        {!isMulti ? "Team Member" : "Team Members"}
       </label>
       <Select
         id="team-members"
@@ -96,13 +93,13 @@ const TeamMemberPicker: React.FC<TeamMemberPickerProps> = ({
           Option: CustomOption,
         }}
         options={options}
-        value={selectedMembers} // Контрольований стан для `value`
+        value={selectedMembers}
         onInputChange={handleInputChange}
         isLoading={isSearching || isLoadingDefaultMembers}
         noOptionsMessage={() => "No Team Members"}
         styles={customSelectStyles}
-        onChange={handleChange} // Оновлення стану при зміні вибору
-        placeholder="Search by emails..."
+        onChange={handleChange}
+        placeholder={`Search by email${isMulti ? "s" : ""}...`}
       />
     </div>
   );

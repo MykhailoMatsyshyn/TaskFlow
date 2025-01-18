@@ -16,17 +16,17 @@ const Column = ({
   tasks: Task[];
 }) => {
   const { mutate: deleteColumn } = useDeleteColumn();
-  const [isModalOpen, setIsModalOpen] = useState(false); // Стан модалки
-  const [taskToDelete, setTaskToDelete] = useState<number | null>(null); // ID задачі для видалення
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
 
   const openModal = (taskId: number) => {
-    setTaskToDelete(taskId); // Зберігаємо ID задачі
-    setIsModalOpen(true); // Відкриваємо модалку
+    setTaskToDelete(taskId);
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setTaskToDelete(null); // Скидаємо ID задачі
-    setIsModalOpen(false); // Закриваємо модалку
+    setTaskToDelete(null);
+    setIsModalOpen(false);
   };
 
   const handleDeleteConfirm = () => {
@@ -36,7 +36,6 @@ const Column = ({
 
   return (
     <div className="flex flex-col w-[347px] h-full font-medium text-[14px] tracking-[-0.02em]">
-      {/* Заголовок і кнопки */}
       <div className="flex justify-between items-center h-[56px] w-[335px] px-5 py-[18px] mb-[14px] rounded-lg bg-[#121212]">
         <h3 className="font-bold ">{column.title}</h3>
         <div className="flex gap-2">
@@ -60,7 +59,6 @@ const Column = ({
         </div>
       </div>
 
-      {/* Список задач */}
       <Droppable droppableId={column.id} type="TASK">
         {(provided) => (
           <div
@@ -90,12 +88,10 @@ const Column = ({
         )}
       </Droppable>
 
-      {/* Кнопка додавання задач */}
       <div className="mt-auto">
-        <AddTaskButton status={column.id} />
+        <AddTaskButton status={column.id} projectId={projectId} />
       </div>
 
-      {/* Модалка підтвердження видалення */}
       <CustomModal
         isOpen={isModalOpen}
         onClose={closeModal}

@@ -4,7 +4,7 @@ import { CustomIcon } from "../CustomIcon/CustomIcon";
 import { useCreateTask } from "../../hooks/useCreateTask";
 import TaskForm from "../Layout/ProjectForm/TaskForm";
 
-const AddTaskButton = ({ status }) => {
+const AddTaskButton = ({ status, projectId }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const { mutate: createTask } = useCreateTask();
@@ -23,6 +23,7 @@ const AddTaskButton = ({ status }) => {
     const newTaskData = {
       ...taskData,
       status,
+      projectId,
     };
 
     createTask(newTaskData, {
@@ -39,7 +40,7 @@ const AddTaskButton = ({ status }) => {
   return (
     <>
       <button
-        className="flex items-center justify-center gap-2 w-[335px] h-[56px] mt-[14px] mb-[24px] md:mb-[52px] xl:mb-[16px] bg-[#BEDBB0] rounded-lg text-[#161616] font-medium tracking-[-0.02em] transition-transform duration-250 hover:scale-105"
+        className="flex items-center justify-center gap-2 w-[335px] h-[56px] mt-[14px] mb-[24px] md:mb-[52px] xl:mb-[16px] bg-[#BEDBB0] rounded-lg text-[#161616] font-medium tracking-[-0.02em] transition-transform duration-250"
         onClick={openModal}
       >
         <span className="p-[7px] rounded-md bg-[#161616]">

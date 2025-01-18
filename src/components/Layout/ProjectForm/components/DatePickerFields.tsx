@@ -30,7 +30,6 @@ const DatePickerFields: React.FC<DatePickerFieldsProps> = ({
           label="Start Date"
           selectedDate={startDate}
           onDateChange={onStartDateChange}
-          // {...register("title", { required: "Project title is required" })}
           error={errors.startDate}
         />
 
@@ -44,7 +43,6 @@ const DatePickerFields: React.FC<DatePickerFieldsProps> = ({
             start: startDate,
             end: endDate,
           }}
-          // {...register("title", { required: "Project title is required" })}
           error={errors.endDate}
         />
       </div>

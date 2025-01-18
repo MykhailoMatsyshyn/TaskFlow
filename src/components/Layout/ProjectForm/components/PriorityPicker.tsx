@@ -8,7 +8,7 @@ interface PriorityPickerProps {
 
 const PriorityPicker: React.FC<PriorityPickerProps> = ({
   onPriorityChange,
-  initialPriority = "No Priority",
+  initialPriority = "No",
 }) => {
   const [selectedPriority, setSelectedPriority] = useState(initialPriority);
 
@@ -33,13 +33,12 @@ const PriorityPicker: React.FC<PriorityPickerProps> = ({
   return (
     <div>
       <label className="block mb-[14px]">Priority</label>
-      <div className="flex justify-between items-center gap-4">
+      <ul className="flex items-center gap-2">
         {priorityOptions.map((priority) => (
-          <div
+          <li
             key={priority.value}
             className="relative flex flex-col items-center group"
           >
-            {/* Radio Button */}
             <Radio
               checked={selectedPriority === priority.value}
               onChange={handleChange}
@@ -56,18 +55,17 @@ const PriorityPicker: React.FC<PriorityPickerProps> = ({
               }}
             />
 
-            {/* Label (Visible on hover, focus, or checked state) */}
             <span
-              className={`absolute mt-2 text-xs text-white opacity-0 transition-opacity duration-200 
+              className={`font-normal text-[12px] tracking-[-0.02em] text-white/50 opacity-0 transition-opacity duration-200 
               group-hover:opacity-100 group-focus-within:opacity-100 ${
                 selectedPriority === priority.value ? "opacity-100" : ""
               }`}
             >
               {priority.label}
             </span>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

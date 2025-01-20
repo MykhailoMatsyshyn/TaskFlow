@@ -136,172 +136,249 @@
   ],
   "projects": [
     {
-      "id": 1,
-      "title": "Website Redesign",
-      "slug": "website-redesign",
-      "description": "Complete redesign of the corporate website to improve user experience and SEO.",
-      "startDate": "2025-01-04T22:00:00.000Z",
-      "endDate": "2025-01-16T03:05:00.000Z",
+      "title": "New test proj",
+      "description": "",
+      "startDate": "2025-01-17T22:00:00.000Z",
+      "endDate": "2025-01-22T22:00:00.000Z",
+      "assignedMembers": [],
+      "status": "Planned",
+      "icon": "loading",
+      "userId": 4,
+      "slug": "new-test-proj",
+      "columns": [
+        {
+          "id": "in-progress",
+          "title": "In Progress",
+          "tasks": [
+            10,
+            9
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Done",
+          "tasks": [
+            12
+          ]
+        },
+        {
+          "id": "to-do",
+          "title": "To Do",
+          "tasks": [
+            11
+          ]
+        }
+      ],
+      "id": 5
+    },
+    {
+      "title": "E-Commerce Platform Development",
+      "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
+      "startDate": "2025-01-12T22:00:00.000Z",
+      "endDate": "2025-02-24T22:00:00.000Z",
       "assignedMembers": [
-        12,
+        11,
+        13,
+        14,
+        24,
         25
       ],
       "status": "In Progress",
       "icon": "lightning",
       "userId": 4,
+      "slug": "e-commerce-platform-development",
       "columns": [
         {
           "id": "to-do",
-          "title": "To Do"
+          "title": "To Do",
+          "tasks": [
+            17,
+            18,
+            19
+          ]
         },
         {
           "id": "in-progress",
-          "title": "In Progress"
+          "title": "In Progress",
+          "tasks": [
+            15,
+            22
+          ]
+        },
+        {
+          "id": "review",
+          "title": "Review",
+          "tasks": [
+            20,
+            23
+          ]
         },
         {
           "id": "done",
-          "title": "Done"
-        },
-        {
-          "id": "c4ae03e1-a476-4919-886c-847291de5e7c",
-          "title": "Backlog"
-        }
-      ]
-    },
-    {
-      "title": "New",
-      "description": "",
-      "startDate": "2025-01-16T22:00:00.000Z",
-      "endDate": "2025-01-23T22:00:00.000Z",
-      "assignedMembers": [],
-      "status": "Completed",
-      "icon": "hexagon",
-      "userId": 4,
-      "slug": "new",
-      "columns": [
-        {
-          "id": "to-do",
-          "title": "To Do"
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress"
-        },
-        {
-          "id": "done",
-          "title": "Done"
+          "title": "Done",
+          "tasks": [
+            14,
+            21
+          ]
         }
       ],
-      "id": 3
-    },
-    {
-      "title": "Normal name",
-      "description": "",
-      "startDate": "2025-01-13T22:00:00.000Z",
-      "endDate": "2025-01-24T22:00:00.000Z",
-      "assignedMembers": [],
-      "status": "Planned",
-      "icon": "lightning",
-      "userId": 4,
-      "slug": "normal-name",
-      "columns": [
-        {
-          "id": "to-do",
-          "title": "To Do"
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress"
-        },
-        {
-          "id": "done",
-          "title": "Done"
-        },
-        {
-          "id": "c4918588-6b14-4b05-b217-3eb087739d7e",
-          "title": "Backlog"
-        }
-      ],
-      "id": 4
+      "id": 6
     }
   ],
   "tasks": [
     {
-      "title": "Create Social Media Campaign",
-      "description": "Develop a strategy and content plan for the next quarter's social media campaign.",
-      "assignedMember": 12,
-      "startDate": "2025-01-21T22:00:00.000Z",
-      "endDate": "2025-01-29T22:00:00.000Z",
-      "priority": "High",
-      "status": "to-do",
-      "projectId": 1,
-      "id": 1
-    },
-    {
-      "title": "Research New Market Trends",
-      "description": "Analyze the latest market trends to identify potential opportunities for product expansion.",
+      "title": "Design and Prototyping SoYummy",
+      "description": "Create visually appealing and functional design prototypes based on the approved concepts, ensuring seamless user experience and incorporating feedback for iterative improvements.",
       "assignedMember": 11,
-      "startDate": "2025-01-21T22:00:00.000Z",
-      "endDate": "2025-01-23T22:00:00.000Z",
+      "startDate": "2025-01-11T22:00:00.000Z",
+      "endDate": "2025-01-15T22:00:00.000Z",
       "priority": "Medium",
-      "status": "to-do",
-      "projectId": 1,
-      "id": 2
+      "status": "in-progress",
+      "projectId": 5,
+      "id": 9
     },
     {
-      "title": "Update Product Roadmap",
-      "description": "Revise the product roadmap for the next 6 months based on feedback from stakeholders.",
-      "assignedMember": 21,
-      "startDate": "2025-01-13T22:00:00.000Z",
-      "endDate": "2025-01-19T22:00:00.000Z",
+      "title": "Publication of the project",
+      "description": "Review the project materials: Familiarize yourself with the project's content, including text, images, and any supplementary materials.",
+      "assignedMember": "",
+      "startDate": "2025-01-14T22:00:00.000Z",
+      "endDate": "2025-01-17T22:00:00.000Z",
       "priority": "High",
       "status": "in-progress",
-      "projectId": 1,
-      "id": 3
+      "projectId": 5,
+      "id": 10
     },
     {
-      "title": "Write Blog Post on Industry Trends",
-      "description": "Publish a comprehensive article on the top 5 trends shaping the industry in 2025.",
-      "assignedMember": 24,
-      "startDate": "2025-01-11T22:00:00.000Z",
+      "title": "укен",
+      "description": "",
+      "assignedMember": "",
+      "startDate": "2025-01-19T22:00:00.000Z",
+      "endDate": "2025-01-22T22:00:00.000Z",
+      "priority": "Without priority",
+      "status": "to-do",
+      "projectId": 5,
+      "id": 11
+    },
+    {
+      "title": "rrrr",
+      "description": "",
+      "assignedMember": "",
+      "startDate": "2025-01-25T22:00:00.000Z",
+      "endDate": "2025-01-27T22:00:00.000Z",
+      "priority": "Low",
+      "status": "done",
+      "projectId": 5,
+      "id": 12
+    },
+    {
+      "title": "Create Wireframes",
+      "description": "Design initial wireframes for the e-commerce platform layout.",
+      "assignedMember": 10,
+      "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-01-14T22:00:00.000Z",
       "priority": "Medium",
       "status": "done",
-      "projectId": 1,
-      "id": 4
+      "projectId": 6,
+      "id": 14
     },
     {
-      "title": "Set Up Analytics Dashboard",
-      "description": "Configure a new analytics dashboard to monitor key performance indicators.",
-      "assignedMember": 25,
-      "startDate": "2025-01-19T22:00:00.000Z",
-      "endDate": "2025-01-22T22:00:00.000Z",
-      "priority": "Low",
-      "status": "to-do",
-      "projectId": 1,
-      "id": 5
-    },
-    {
-      "title": "Conduct Customer Surveys",
-      "description": "Interview 20 customers to gather insights about their satisfaction and needs.",
-      "assignedMember": 16,
-      "startDate": "2025-01-20T22:00:00.000Z",
-      "endDate": "2025-01-23T22:00:00.000Z",
-      "priority": "Medium",
-      "status": "to-do",
-      "projectId": 1,
-      "id": 6
-    },
-    {
-      "title": "Design New Landing Page",
-      "description": "Create a modern and user-friendly design for the upcoming product's landing page.",
-      "assignedMember": 17,
+      "title": "Set Up Backend Infrastructure",
+      "description": "Deploy the backend infrastructure using AWS services.",
+      "assignedMember": 10,
       "startDate": "2025-01-15T22:00:00.000Z",
-      "endDate": "2025-01-20T22:00:00.000Z",
+      "endDate": "2025-01-25T22:00:00.000Z",
       "priority": "High",
       "status": "in-progress",
-      "projectId": 1,
-      "id": 7
+      "projectId": 6,
+      "id": 15
+    },
+    {
+      "title": "Frontend Development: Product Page",
+      "description": "Create a responsive product page layout and integrate with backend APIs.",
+      "assignedMember": 11,
+      "startDate": "2025-01-26T22:00:00.000Z",
+      "endDate": "2025-02-01T22:00:00.000Z",
+      "priority": "Medium",
+      "status": "to-do",
+      "projectId": 6,
+      "id": 16
+    },
+    {
+      "title": "Frontend Development: Product Page",
+      "description": "Create a responsive product page layout and integrate with backend APIs.",
+      "assignedMember": 11,
+      "startDate": "2025-01-26T22:00:00.000Z",
+      "endDate": "2025-02-01T22:00:00.000Z",
+      "priority": "Medium",
+      "status": "to-do",
+      "projectId": 6,
+      "id": 17
+    },
+    {
+      "title": "Integration of Payment Gateway",
+      "description": "Implement and test payment gateway integration.",
+      "assignedMember": 12,
+      "startDate": "2025-02-02T22:00:00.000Z",
+      "endDate": "2025-03-06T22:00:00.000Z",
+      "priority": "High",
+      "status": "to-do",
+      "projectId": 6,
+      "id": 18
+    },
+    {
+      "title": "Testing and QA",
+      "description": "Perform testing and quality assurance for all features.",
+      "assignedMember": 12,
+      "startDate": "2025-02-09T22:00:00.000Z",
+      "endDate": "2025-03-22T22:00:00.000Z",
+      "priority": "Low",
+      "status": "to-do",
+      "projectId": 6,
+      "id": 19
+    },
+    {
+      "id": 20,
+      "title": "SEO Optimization",
+      "description": "Optimize the platform for search engines to improve visibility and ranking.",
+      "assignedMember": 12,
+      "startDate": "2025-02-01T00:00:00.000Z",
+      "endDate": "2025-02-04T23:59:59.000Z",
+      "priority": "Medium",
+      "status": "review",
+      "projectId": 6
+    },
+    {
+      "id": 21,
+      "title": "Bug Fixing",
+      "description": "Fix critical bugs identified during testing.",
+      "assignedMember": 12,
+      "startDate": "2025-02-05T00:00:00.000Z",
+      "endDate": "2025-02-06T23:59:59.000Z",
+      "priority": "Without priority",
+      "status": "done",
+      "projectId": 6
+    },
+    {
+      "id": 22,
+      "title": "Content Upload",
+      "description": "Upload product images, descriptions, and pricing details to the platform.",
+      "assignedMember": 12,
+      "startDate": "2025-02-10T00:00:00.000Z",
+      "endDate": "2025-02-20T23:59:59.000Z",
+      "priority": "Medium",
+      "status": "in-progress",
+      "projectId": 6
+    },
+    {
+      "id": 23,
+      "title": "Design Review",
+      "description": "Perform a review of all design elements before final deployment.",
+      "assignedMember": 12,
+      "startDate": "2025-01-16T00:00:00.000Z",
+      "endDate": "2025-01-19T23:59:59.000Z",
+      "priority": "High",
+      "status": "review",
+      "projectId": 6
     }
   ]
 }

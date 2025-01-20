@@ -1,14 +1,28 @@
 import { useForm } from "react-hook-form";
 import { useAddColumn } from "../../hooks/useAddColumn";
-// import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 const AddColumnForm = ({
   onClose,
   projectId,
+  existingColumnTitles,
 }: {
   onClose: () => void;
-  projectId: number;
+  projectId: string;
+  existingColumnTitles: string[];
 }) => {
+  const TitleSchema = yup.object().shape({
+    title: yup
+      .string()
+      .required("Title is required")
+      .test(
+        "unique",
+        "Title must be unique",
+        (value) => !existingColumnTitles.includes(value || "")
+      ),
+  });
+
   const {
     register,
     handleSubmit,
@@ -18,7 +32,7 @@ const AddColumnForm = ({
     defaultValues: {
       title: "",
     },
-    // resolver: yupResolver(TitleSchema),
+    resolver: yupResolver(TitleSchema),
     mode: "onChange",
   });
 
@@ -27,8 +41,8 @@ const AddColumnForm = ({
   const onSubmit = (data: { title: string }) => {
     addColumn(data.title, {
       onSuccess: () => {
-        reset(); // Очищаємо форму після успішного додавання
-        onClose(); // Закриваємо модальне вікно
+        reset();
+        onClose();
       },
       onError: (error) => {
         console.error("Error adding column:", error.message);
@@ -64,8 +78,9 @@ const AddColumnForm = ({
       <button
         type="submit"
         className="w-full h-[49px] bg-green-500 text-white font-medium rounded-md hover:bg-green-600 focus:ring-2 focus:ring-green-300"
+        disabled={isLoading}
       >
-        Add
+        {isLoading ? "Adding..." : "Add"}
       </button>
 
       {/* Cancel Button */}

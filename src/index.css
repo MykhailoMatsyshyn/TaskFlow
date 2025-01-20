@@ -94,3 +94,74 @@
     background-color: rgba(190, 219, 176, 0.05);
   }
 }
+
+/* .droppable-hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px dashed #bedbb0;
+  transition: background-color 0.25s ease-in-out;
+} */
+
+/*  */
+
+.droppable-hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: 2px dashed #bedbb0;
+  outline-offset: -2px;
+  transition: background-color 0.25s ease-in-out,
+    outline-color 0.25s ease-in-out;
+}
+
+.droppable-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: 2px dashed #bedbb0;
+  z-index: -1; /* Робить фон позаду контенту */
+  border-radius: 8px; /* За потреби */
+  transition: background-color 0.25s ease-in-out,
+    outline-color 0.25s ease-in-out;
+}
+
+.draggable-hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  /* border: 2px solid #e09cb5; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.droppable-columns {
+  transition: transform 0.25s ease-in-out;
+}
+
+/* .skeleton-placeholder {
+  height: 150px;
+  width: 330px;
+  background-color: #444;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+} */
+
+.skeleton-placeholder {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    background-color: rgba(128, 128, 128, 0.3);
+  }
+  50% {
+    background-color: rgba(128, 128, 128, 0.5);
+  }
+}

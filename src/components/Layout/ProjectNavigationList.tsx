@@ -14,7 +14,7 @@ const ProjectNavigationList = () => {
   const ref = useRef(null); // Ref для списку
   const { onMouseDown } = useDraggableScroll(ref, { direction: "vertical" }); // Drag-to-scroll
 
-  console.log("ProjectNavigationList projects:", projects);
+  // console.log("ProjectNavigationList projects:", projects);
 
   const handleEdit = (id) => {
     console.log("Edit project with id:", id);

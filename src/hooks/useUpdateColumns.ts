@@ -18,6 +18,10 @@ export const useUpdateColumns = (projectId?: number) => {
         projectId,
       ]);
 
+      console.log("previousProject", previousProject);
+
+      console.log("newColumns", newColumns);
+
       // Оптимістично оновити локальні дані
       if (previousProject) {
         queryClient.setQueryData(["project", projectId], {

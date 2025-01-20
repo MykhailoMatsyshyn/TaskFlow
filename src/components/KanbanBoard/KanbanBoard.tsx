@@ -4,97 +4,175 @@ import { useProjectDataBySlug } from "../../hooks/useProjectDataBySlug";
 import Column from "./Column";
 import AddColumnButton from "./AddColumnButton";
 import { useTasksByProject } from "../../hooks/useTasksByProject";
+import { useEffect, useState } from "react";
+import { useUpdateTask } from "../../hooks/useUpdateTask";
 
 const KanbanBoard = ({ projectId }: { projectId: string }) => {
   const { data: project, isLoading } = useProjectDataBySlug(projectId);
 
+  const [columns, setColumns] = useState(project?.columns || []);
   const { data: tasks, isLoading: tasksLoading } = useTasksByProject(
     project?.id
   );
 
-  console.log("project:", project);
+  console.log(columns);
 
   const { mutate: updateColumns } = useUpdateColumns(project?.id);
+  const { mutate: updateTask } = useUpdateTask();
+
+  // Синхронізація стану колонок із серверними даними
+  useEffect(() => {
+    if (project?.columns) {
+      setColumns(project.columns);
+    }
+  }, [project?.columns]);
 
   const handleDragEnd = (result: any) => {
     const { source, destination, type } = result;
 
-    if (!destination) return;
+    if (!destination) return; // Якщо колонку скинули не на допустиму область
 
     if (type === "COLUMN") {
-      // Логіка для перетягування колонок
-      const updatedColumns = [...project.columns];
+      // Копіюємо колонки
+      const updatedColumns = Array.from(project.columns);
+
+      // Видаляємо колонку з початкової позиції
       const [movedColumn] = updatedColumns.splice(source.index, 1);
+
+      // Додаємо колонку в нову позицію
       updatedColumns.splice(destination.index, 0, movedColumn);
 
-      updateColumns(updatedColumns);
-    } else {
-      // Логіка для перетягування задач
-      const sourceColumn = project.columns.find(
-        (col) => col.id === source.droppableId
-      );
+      console.log("updatedColumns", updatedColumns);
 
-      const destinationColumn = project.columns.find(
+      // Зберігаємо попередній стан для відкату
+      const previousColumns = [...columns];
+
+      // Оновлюємо локальний стан
+      setColumns(updatedColumns);
+
+      // Відправляємо зміни на сервер
+      updateColumns(updatedColumns, {
+        onError: () => {
+          // У разі помилки відновлюємо попередній стан
+          setColumns(previousColumns);
+          alert("Failed to update columns. Please try again.");
+        },
+      });
+    } else if (type === "TASK") {
+      // Логіка для переміщення задач
+      const sourceColumn = columns.find((col) => col.id === source.droppableId);
+      const destinationColumn = columns.find(
         (col) => col.id === destination.droppableId
       );
 
+      if (!sourceColumn || !destinationColumn) return;
+
+      // Копії масивів задач
       const sourceTasks = [...sourceColumn.tasks];
       const destinationTasks = [...destinationColumn.tasks];
 
+      // Виймаємо задачу із джерела
       const [movedTask] = sourceTasks.splice(source.index, 1);
-      destinationTasks.splice(destination.index, 0, movedTask);
 
-      updateColumns(
-        project.columns.map((col) => {
-          if (col.id === sourceColumn.id) col.tasks = sourceTasks;
-          if (col.id === destinationColumn.id) col.tasks = destinationTasks;
+      if (sourceColumn.id === destinationColumn.id) {
+        // Якщо переміщення в межах однієї колонки
+        sourceTasks.splice(destination.index, 0, movedTask);
+
+        const updatedColumns = columns.map((col) => {
+          if (col.id === sourceColumn.id) {
+            return { ...col, tasks: sourceTasks };
+          }
           return col;
-        })
-      );
+        });
+
+        setColumns(updatedColumns);
+
+        // Оновлюємо бекенд
+        updateColumns(updatedColumns, {
+          onError: () => {
+            alert("Failed to update tasks. Please try again.");
+          },
+        });
+      } else {
+        // Якщо переміщення між колонками
+        destinationTasks.splice(destination.index, 0, movedTask);
+
+        const updatedColumns = columns.map((col) => {
+          if (col.id === sourceColumn.id) {
+            return { ...col, tasks: sourceTasks };
+          }
+          if (col.id === destinationColumn.id) {
+            return { ...col, tasks: destinationTasks };
+          }
+          return col;
+        });
+
+        setColumns(updatedColumns);
+
+        // Оновлюємо бекенд
+        updateTask({
+          id: movedTask,
+          data: { status: destinationColumn.id },
+        });
+
+        updateColumns(updatedColumns, {
+          onError: () => {
+            alert("Failed to update tasks. Please try again.");
+          },
+        });
+      }
     }
   };
 
   if (isLoading || tasksLoading) return <div>Loading...</div>;
 
   return (
-    <div className="flex gap-5 overflow-x-auto overflow-y-hidden w-full h-full custom-scrollbar">
+    <div className="flex gap-5 overflow-x-auto overflow-y-hidden w-full h-[calc(100vh-108px)] custom-scrollbar">
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="board" type="COLUMN" direction="horizontal">
           {(provided) => (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="flex gap-4"
+              className="flex"
             >
-              {project.columns.map((column, index) => (
-                <Draggable
-                  key={column.id}
-                  draggableId={column.id}
-                  index={index}
-                >
-                  {(provided) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <Column
-                        projectId={project?.id}
-                        column={column}
-                        tasks={tasks.filter(
-                          (task) => task.status === column.id
-                        )}
-                      />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
+              {Array.isArray(columns) &&
+                columns.map((column, index) => (
+                  <Draggable
+                    key={column.id}
+                    draggableId={column.id}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className="w-[360px]"
+                      >
+                        <Column
+                          projectId={project?.id}
+                          column={column}
+                          tasks={
+                            Array.isArray(column.tasks)
+                              ? column.tasks
+                                  .map((taskId) =>
+                                    tasks.find((task) => task.id === taskId)
+                                  )
+                                  .filter(Boolean) // Фільтруємо null значення
+                              : []
+                          }
+                        />
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
               {provided.placeholder}
             </div>
           )}
         </Droppable>
       </DragDropContext>
-      <AddColumnButton projectId={project?.id} />
+      <AddColumnButton projectId={project?.id} columns={columns} />
     </div>
   );
 };

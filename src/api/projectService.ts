@@ -1,7 +1,7 @@
 import { handleRequest } from "./handleRequest";
 import { Project } from "../types/project";
 import axiosInstance from "./axiosInstance";
-import { v4 as uuidv4 } from "uuid";
+import { kebabCase } from "lodash";
 
 export const createProject = (projectData: Project): Promise<Project> => {
   return handleRequest<Project, Project>("/projects", projectData);
@@ -84,8 +84,9 @@ export const addColumnToProject = async (
 
     // Step 2: Generate a new column
     const newColumn = {
-      id: uuidv4(), // Unique ID for the column
+      id: kebabCase(columnTitle), // Генеруємо унікальний ID
       title: columnTitle,
+      tasks: [], // Порожній масив задач
     };
 
     // Step 3: Update columns array
@@ -131,6 +132,39 @@ export const deleteColumnFromProject = async (
   } catch (error: any) {
     throw new Error(
       error.response?.data?.message || "Error deleting column from project"
+    );
+  }
+};
+
+export const updateColumnTasks = async (
+  projectId: number,
+  columnId: string,
+  tasks: any[] // Масив задач для оновлення
+): Promise<Project> => {
+  try {
+    // Step 1: Отримуємо поточний стан проекту
+    const { data: project } = await axiosInstance.get<Project>(
+      `/projects/${projectId}`
+    );
+
+    // Step 2: Знаходимо колонку та оновлюємо її задачі
+    const updatedColumns = project.columns.map((column) => {
+      if (column.id === columnId) {
+        return { ...column, tasks }; // Оновлюємо тільки tasks у цій колонці
+      }
+      return column;
+    });
+
+    // Step 3: Відправляємо оновлені дані на сервер
+    const { data: updatedProject } = await axiosInstance.patch<Project>(
+      `/projects/${projectId}`,
+      { columns: updatedColumns }
+    );
+
+    return updatedProject;
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data?.message || "Error updating column tasks"
     );
   }
 };

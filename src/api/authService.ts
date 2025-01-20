@@ -21,7 +21,7 @@ export const loginUser = (
 };
 
 export const getUserInfo = (token: string, userId: string): Promise<User> => {
-  console.log("      Authorization: `Bearer ${token}`,", token);
+  // console.log("      Authorization: `Bearer ${token}`,", token);
 
   return axiosInstance
     .get<User>(`/users/${userId}`, {
@@ -53,7 +53,7 @@ export const getUsers = (
     .get<User[]>(`/users?${query}`)
     .then((response) => {
       const totalCount = parseInt(response.headers["x-total-count"], 10); // Загальна кількість записів
-      console.log(totalCount);
+      // console.log(totalCount);
 
       return {
         data: response.data,

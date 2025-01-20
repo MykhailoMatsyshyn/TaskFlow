@@ -95,9 +95,9 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
     const slug = kebabCase(data.title);
 
     const defaultColumns = [
-      { id: "to-do", title: "To Do" },
-      { id: "in-progress", title: "In Progress" },
-      { id: "done", title: "Done" },
+      { id: "to-do", title: "To Do", tasks: [] },
+      { id: "in-progress", title: "In Progress", tasks: [] },
+      { id: "done", title: "Done", tasks: [] },
     ];
 
     const projectData = {

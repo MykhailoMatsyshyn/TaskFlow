@@ -4,10 +4,17 @@ import CustomModal from "../CustomModal/CustomModal";
 import { CustomIcon } from "../CustomIcon/CustomIcon";
 import AddColumnForm from "./AddColumnForm";
 
-const AddColumnButton = (projectId: any) => {
+const AddColumnButton = ({
+  projectId,
+  columns,
+}: {
+  projectId: string;
+  columns: { id: string; title: string }[];
+}) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
-  console.log("AddColumnButton projectId", projectId.projectId);
+  console.log("AddColumnButton", projectId);
+  console.log("AddColumnButton projectId", columns);
 
   const openModal = () => {
     setModalOpen(true);
@@ -32,7 +39,13 @@ const AddColumnButton = (projectId: any) => {
       </div>
       {isModalOpen && (
         <CustomModal isOpen={isModalOpen} onClose={closeModal}>
-          <AddColumnForm onClose={closeModal} projectId={projectId.projectId} />
+          <AddColumnForm
+            onClose={closeModal}
+            projectId={projectId}
+            existingColumnTitles={
+              Array.isArray(columns) ? columns.map((col) => col.title) : []
+            }
+          />
         </CustomModal>
       )}
     </>

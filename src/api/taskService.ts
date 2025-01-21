@@ -1,6 +1,15 @@
 import { Task } from "../types/task";
 import axiosInstance from "./axiosInstance";
 
+export const getAllTasks = async (): Promise<Task[]> => {
+  try {
+    const { data } = await axiosInstance.get<Task[]>("/tasks");
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Error fetching tasks");
+  }
+};
+
 export const getTasksByProject = (projectId: number): Promise<Task[]> => {
   return axiosInstance
     .get<Task[]>(`/tasks?projectId=${projectId}`)

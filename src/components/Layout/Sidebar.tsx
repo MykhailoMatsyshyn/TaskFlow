@@ -1,19 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LogoWithTitle from "../LogoWithTitle/LogoWithTitle";
 import LogOut from "./components/LogOut/LogOut";
 import useUserStore from "../../stores/userStore";
 import CreateBoard from "./CreateBoard";
 import ProjectNavigationList from "./ProjectNavigationList";
 
-import { MdOutlineDashboard } from "react-Icons/md";
-import { FaUsersCog } from "react-Icons/fa";
+import { MdOutlineDashboard } from "react-icons/md";
+import { FaUsersCog } from "react-icons/fa";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { currentUser } = useUserStore();
+  const location = useLocation(); // Отримуємо поточний шлях
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <>
-      {/* Накладка */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-4 xl:hidden"
@@ -21,9 +23,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         />
       )}
 
-      {/* Сайдбар */}
       <div
-        className={`fixed xl:static top-0 left-0 h-full  xl:h-screen w-[225px] md:w-[260px] bg-background-highlight z-5 transform transition-transform duration-300 pt-[14px] pb-6 flex flex-col ${`${
+        className={`fixed xl:static top-0 left-0 h-full xl:h-screen w-[225px] md:w-[260px] bg-background-highlight z-5 transform transition-transform duration-300 pt-[14px] pb-6 flex flex-col ${`${
           isOpen ? "translate-x-0" : "-translate-x-[101%]"
         } xl:translate-x-0`}`}
       >
@@ -36,18 +37,45 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </p>
             <hr className="border-white/10 mt-2" />
 
-            {/* інша навігація */}
-            <ul className="text-white/50 ">
-              <li className="mt-[14px] flex gap-2 items-center">
-                <MdOutlineDashboard size={18} className="fill-white/50" />
-                <Link to="/dashboard">Main Dashboard</Link>{" "}
-                {/* Перехід до Dashboard */}
+            <ul className="text-white/50">
+              <li
+                className={`mt-[14px] flex gap-2 items-center ${
+                  isActive("/dashboard") ? "text-white" : ""
+                }`}
+              >
+                <MdOutlineDashboard
+                  size={18}
+                  className={`${
+                    isActive("/dashboard") ? "fill-white" : "fill-white/50"
+                  }`}
+                />
+                <Link
+                  to="/dashboard"
+                  className={isActive("/dashboard") ? "text-white" : ""}
+                >
+                  Main Dashboard
+                </Link>
               </li>
               {currentUser?.role === "Admin" && (
-                <li className="mt-[14px] flex gap-2 items-center">
-                  <FaUsersCog size={18} className="fill-white/50" />
-                  <Link to="/dashboard/users">User Management</Link>{" "}
-                  {/* Перехід до менеджменту користувачів */}
+                <li
+                  className={`mt-[14px] flex gap-2 items-center ${
+                    isActive("/dashboard/users") ? "text-white" : ""
+                  }`}
+                >
+                  <FaUsersCog
+                    size={18}
+                    className={`${
+                      isActive("/dashboard/users")
+                        ? "fill-white"
+                        : "fill-white/50"
+                    }`}
+                  />
+                  <Link
+                    to="/dashboard/users"
+                    className={isActive("/dashboard/users") ? "text-white" : ""}
+                  >
+                    User Management
+                  </Link>
                 </li>
               )}
             </ul>
@@ -57,7 +85,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </p>
             <hr className="border-white/10 mt-2" />
 
-            {/* Відображення CreateBoard тільки для Admin або Project Manager */}
             {(currentUser?.role === "Admin" ||
               currentUser?.role === "Project Manager") && <CreateBoard />}
           </div>

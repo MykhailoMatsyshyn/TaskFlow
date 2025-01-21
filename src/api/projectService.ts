@@ -3,6 +3,15 @@ import { Project } from "../types/project";
 import axiosInstance from "./axiosInstance";
 import { kebabCase } from "lodash";
 
+export const getAllProjects = async (): Promise<Project[]> => {
+  try {
+    const { data } = await axiosInstance.get<Project[]>("/projects");
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Error fetching projects");
+  }
+};
+
 export const createProject = (projectData: Project): Promise<Project> => {
   return handleRequest<Project, Project>("/projects", projectData);
 };

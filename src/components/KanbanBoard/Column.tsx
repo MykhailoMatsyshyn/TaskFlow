@@ -80,14 +80,11 @@ const Column = ({
                         draggableId={task.id.toString()}
                         index={index}
                       >
-                        {(provided, snapshot) => (
+                        {(provided) => (
                           <div
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={` ${
-                              snapshot.isDragging ? "draggable-hover" : ""
-                            }`}
                           >
                             <Card task={task} />
                           </div>

@@ -6,9 +6,21 @@ import AddColumnButton from "./AddColumnButton";
 import { useTasksByProject } from "../../hooks/useTasksByProject";
 import { useEffect, useState } from "react";
 import { useUpdateTask } from "../../hooks/useUpdateTask";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const KanbanBoard = ({ projectId }: { projectId: string }) => {
-  const { data: project, isLoading } = useProjectDataBySlug(projectId);
+const KanbanBoard = () => {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+
+  const { data: project, error, isLoading } = useProjectDataBySlug(slug);
+
+  useEffect(() => {
+    if (error) {
+      toast.error("Error: Project not found. Please check the URL.");
+      navigate("/dashboard");
+    }
+  }, [error, navigate]);
 
   const [columns, setColumns] = useState(project?.columns || []);
   const { data: tasks, isLoading: tasksLoading } = useTasksByProject(
@@ -127,7 +139,7 @@ const KanbanBoard = ({ projectId }: { projectId: string }) => {
   if (isLoading || tasksLoading) return <div>Loading...</div>;
 
   return (
-    <div className="flex gap-5 overflow-x-auto overflow-y-hidden w-full h-[calc(100vh-108px)] custom-scrollbar">
+    <div className="flex overflow-x-auto overflow-y-hidden w-full h-[calc(100vh-108px)] custom-scrollbar">
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="board" type="COLUMN" direction="horizontal">
           {(provided) => (
@@ -148,7 +160,7 @@ const KanbanBoard = ({ projectId }: { projectId: string }) => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="w-[360px]"
+                        className="w-[368px]"
                       >
                         <Column
                           projectId={project?.id}
@@ -159,7 +171,7 @@ const KanbanBoard = ({ projectId }: { projectId: string }) => {
                                   .map((taskId) =>
                                     tasks.find((task) => task.id === taskId)
                                   )
-                                  .filter(Boolean) // Фільтруємо null значення
+                                  .filter(Boolean)
                               : []
                           }
                         />

@@ -113,7 +113,7 @@ const Card = ({ task }) => {
               display: "-webkit-box",
               WebkitBoxOrient: "vertical",
               WebkitLineClamp: 2,
-              maxHeight: "32px",
+              height: "32px",
             }}
           >
             {task.description}

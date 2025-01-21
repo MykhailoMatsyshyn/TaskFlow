@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useAuth } from "../../../hooks/useAuth";
+import useFetchUserProjects from "../../../hooks/useFetchUserProjects"; // Підключення хука
 import {
   IconPicker,
   DatePickerFields,
@@ -13,9 +16,9 @@ import {
 import { kebabCase } from "lodash";
 
 interface ProjectFormProps {
-  initialData?: any; // Данні проєкту (для редагування)
-  onSubmit: (data: any) => void; // Дія при сабміті
-  onCancel: () => void; // Закриття форми
+  initialData?: any;
+  onSubmit: (data: any) => void;
+  onCancel: () => void;
 }
 
 const IconNames = [
@@ -34,6 +37,28 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
   onSubmit,
   onCancel,
 }) => {
+  const { currentUser } = useAuth();
+  const { data: projects, isLoading } = useFetchUserProjects(currentUser?.id);
+
+  console.log("projects:", projects);
+
+  const schema = yup.object().shape({
+    title: yup
+      .string()
+      .required("Title is required")
+      .test(
+        "unique",
+        "Title must be unique",
+        (value) =>
+          !projects?.data.some((project) => {
+            console.log("project", project);
+            // project.title.toLowerCase() === value?.toLowerCase() &&
+            //   project.id !== initialData?.id
+          })
+      ),
+    description: yup.string().nullable(),
+  });
+
   const {
     register,
     handleSubmit,
@@ -43,6 +68,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
     clearErrors,
     formState: { errors },
   } = useForm({
+    resolver: yupResolver(schema),
     defaultValues: {
       title: "",
       description: "",
@@ -62,8 +88,6 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
   const handleIconSelect = (icon: string) => {
     setValue("icon", icon);
   };
-
-  const { userId } = useAuth();
 
   const validateDates = () => {
     if (!startDate) {
@@ -102,9 +126,9 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
 
     const projectData = {
       ...data,
-      userId: Number(userId),
+      userId: Number(currentUser?.id),
       slug,
-      columns: defaultColumns,
+      columns: initialData ? initialData.columns : defaultColumns,
       startDate: startDate.toISOString(),
       endDate: endDate.toISOString(),
     };
@@ -115,13 +139,11 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
 
   useEffect(() => {
     if (initialData) {
-      // Установлюємо значення у стани дати
       setStartDate(
         initialData.startDate ? new Date(initialData.startDate) : null
       );
       setEndDate(initialData.endDate ? new Date(initialData.endDate) : null);
 
-      // Установлюємо значення в поля форми
       setValue("title", initialData.title || "");
       setValue("description", initialData.description || "");
       setValue("assignedMembers", initialData.assignedMembers || []);
@@ -130,12 +152,14 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
     }
   }, [initialData, setValue]);
 
+  if (isLoading) return <p>Loading...</p>;
+
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}
       className="flex flex-col gap-6 w-[335px] md:w-[350px]"
     >
-      <TitleField register={register} errors={errors} />
+      <TitleField register={register("title")} errors={errors} />
 
       <DescriptionField register={register} />
 

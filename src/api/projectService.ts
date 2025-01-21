@@ -32,15 +32,48 @@ export const getProjectById = (projectId: number): Promise<Project> => {
     });
 };
 
-export const getProjectBySlug = (slug: string): Promise<Project> => {
-  return axiosInstance
-    .get<Project[]>(`/projects?slug=${slug}`)
-    .then((response) => {
-      if (response.data.length === 0) {
-        throw new Error("Project not found");
+// export const getProjectBySlug = (slug: string): Promise<Project> => {
+//   return axiosInstance
+//     .get<Project[]>(`/projects?slug=${slug}`)
+//     .then((response) => {
+//       if (response.data.length === 0) {
+//         throw new Error("Project not found");
+//       }
+//       return response.data[0];
+//     });
+// };
+
+export const getProjectBySlug = async (
+  slug: string,
+  userId: string,
+  role: string
+): Promise<Project> => {
+  try {
+    // Отримуємо проект за slug
+    const response = await axiosInstance.get<Project[]>(
+      `/projects?slug=${slug}`
+    );
+    const project = response.data[0];
+
+    if (!project) {
+      throw new Error("Project not found");
+    }
+
+    // Перевірка доступу
+    if (role === "Admin" || role === "Project Manager") {
+      if (project.userId !== userId) {
+        throw new Error("Access denied: You do not own this project.");
       }
-      return response.data[0];
-    });
+    } else if (role === "Team Member") {
+      if (!project.assignedMembers.includes(userId)) {
+        throw new Error("Access denied: You are not assigned to this project.");
+      }
+    }
+
+    return project;
+  } catch (error: any) {
+    throw new Error(error.message || "Error fetching project data");
+  }
 };
 
 export const updateProject = async (

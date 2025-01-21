@@ -14,11 +14,7 @@ const ProjectNavigationList = () => {
   const ref = useRef(null); // Ref для списку
   const { onMouseDown } = useDraggableScroll(ref, { direction: "vertical" }); // Drag-to-scroll
 
-  // console.log("ProjectNavigationList projects:", projects);
-
-  const handleEdit = (id) => {
-    console.log("Edit project with id:", id);
-  };
+  console.log("ProjectNavigationList projects:", projects);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError || !projects) return <p>Error loading projects</p>;
@@ -39,11 +35,7 @@ const ProjectNavigationList = () => {
         }}
       >
         {projects.data.map((project) => (
-          <ProjectNavigationItem
-            key={project.id}
-            project={project}
-            onEdit={handleEdit}
-          />
+          <ProjectNavigationItem key={project.id} project={project} />
         ))}
       </ul>
     </div>

@@ -11,7 +11,7 @@ import { useDeleteProject } from "../../hooks/useDeleteProject";
 import ProjectForm from "./ProjectForm/ProjectForm";
 import { useUpdateProject } from "../../hooks/useUpdateProject";
 
-const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
+const ProjectNavigationItem = ({ project }) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Стан модалки
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -21,6 +21,9 @@ const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
   const { mutate: deleteProject } = useDeleteProject();
   const { mutate: updateProject } = useUpdateProject();
   const navigate = useNavigate();
+
+  console.log("project", project);
+  console.log("selectedProject", selectedProject);
 
   const role = currentUser?.role;
 
@@ -61,6 +64,8 @@ const ProjectNavigationItem = ({ project, userRole, onEdit }) => {
       id: selectedProject.id,
       data: updatedData,
     };
+
+    console.log(dataWithId);
 
     updateProject(dataWithId, {
       onSuccess: (updatedProject) => {

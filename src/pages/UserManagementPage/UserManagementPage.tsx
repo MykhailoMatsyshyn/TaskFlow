@@ -5,9 +5,8 @@ import React, { useState } from "react";
 import useFetchUsers, { useDeleteUser } from "../../hooks/useFetchUsers";
 import { CustomIcon } from "../../components/CustomIcon/CustomIcon";
 import useModalStore from "../../stores/modalStore";
-import Modal from "../../components/CustomModal/CustomModal";
+// import Modal from "../../components/CustomModal/CustomModal";
 import useFilterStore from "../../stores/filterStore";
-import GanttChart from "../../components/GanttChart";
 
 const UserManagementPage = () => {
   const { filters } = useFilterStore();
@@ -182,12 +181,10 @@ const UserManagementPage = () => {
           <option value="Team Member">Team Member</option>
         </select>
       </div> */}
-      {/* 
-      <Table data={users} columns={columns} /> */}
+
+      <Table data={users} columns={columns} />
 
       {/* <Table data={users} columns={columns} totalRows={totalCount} /> */}
-
-      <GanttChart />
 
       {/* Модальне вікно для підтвердження видалення */}
       {/* <Modal onClose={cancelDelete}>

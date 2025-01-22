@@ -60,6 +60,20 @@ const ProjectPage = () => {
 
   if (isLoading || tasksLoading) return <div>Loading...</div>;
 
+  const renderGanttChart = () => {
+    if (!tasks || tasks.length === 0) {
+      return (
+        <div
+          className="flex items-center justify-center text-2xl text-white/50"
+          style={{ height: "calc(100vh - 164px)" }}
+        >
+          <p>No tasks available.</p>
+        </div>
+      );
+    }
+    return <GanttChart tasks={tasks} />;
+  };
+
   return (
     <div className="p-0">
       <header className="flex items-center justify-between mb-4">
@@ -85,7 +99,7 @@ const ProjectPage = () => {
         <div
           className={`absolute inset-0 transition-all duration-1000 ${
             view === "kanban"
-              ? "translate-x-0 z-10 opacity-100 pointer-events-auto"
+              ? "translate-x-0 z-2 opacity-100 pointer-events-auto"
               : "-translate-x-[110%] z-0  opacity-0 pointer-events-none "
           }`}
         >
@@ -102,11 +116,11 @@ const ProjectPage = () => {
         <div
           className={`absolute inset-0 transition-all duration-1000 ${
             view === "gantt"
-              ? "translate-x-0 z-10  opacity-100  pointer-events-auto mr-[20px]"
+              ? "translate-x-0 z-2  opacity-100  pointer-events-auto mr-[20px]"
               : "translate-x-[110%] z-0 pointer-events-none  opacity-0"
           }`}
         >
-          <GanttChart tasks={tasks} />
+          {renderGanttChart()}
         </div>
       </div>
     </div>

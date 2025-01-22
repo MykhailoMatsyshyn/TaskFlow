@@ -151,3 +151,8 @@
 .gantt-container::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.gantt .bar-progress {
+  fill: #1f1f1f;
+  opacity: 30%;
+}

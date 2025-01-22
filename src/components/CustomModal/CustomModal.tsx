@@ -40,6 +40,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
           boxShadow: "0px 0px 1px 2px rgba(190, 219, 176, 0.5)",
           border: "none",
           overflow: "hidden",
+          zIndex: 9999999,
           // maxHeight: "80vh",
         },
       }}

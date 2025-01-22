@@ -140,7 +140,13 @@
       "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [11, 13, 14, 24, 25],
+      "assignedMembers": [
+        11,
+        13,
+        14,
+        24,
+        25
+      ],
       "status": "In Progress",
       "icon": "lightning",
       "userId": 4,
@@ -149,22 +155,35 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [15, 22, 17, 19]
+          "tasks": [
+            15,
+            22,
+            17,
+            19
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [18]
+          "tasks": [
+            18
+          ]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [20, 23]
+          "tasks": [
+            20,
+            23
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [14, 21]
+          "tasks": [
+            14,
+            21
+          ]
         }
       ],
       "id": 6
@@ -174,7 +193,13 @@
       "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [11, 13, 14, 24, 25],
+      "assignedMembers": [
+        11,
+        13,
+        14,
+        24,
+        25
+      ],
       "status": "In Progress",
       "icon": "lightning",
       "userId": 3,
@@ -183,22 +208,36 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [22, 19, 18]
+          "tasks": [
+            22,
+            19,
+            18
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [15, 16, 17]
+          "tasks": [
+            15,
+            16,
+            17
+          ]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [20, 23]
+          "tasks": [
+            20,
+            23
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [14, 21]
+          "tasks": [
+            14,
+            21
+          ]
         }
       ],
       "id": 7
@@ -217,12 +256,16 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [25]
+          "tasks": [
+            25
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [24]
+          "tasks": [
+            24
+          ]
         },
         {
           "id": "done",
@@ -307,8 +350,8 @@
       "title": "Set Up Backend Infrastructure",
       "description": "Deploy the backend infrastructure using AWS services.",
       "assignedMember": 10,
-      "startDate": "2025-01-15T22:00:00.000Z",
-      "endDate": "2025-01-25T22:00:00.000Z",
+      "startDate": "2025-01-20T22:21:00.000Z",
+      "endDate": "2025-01-22T22:00:00.000Z",
       "priority": "High",
       "status": "to-do",
       "projectId": 6,
@@ -353,8 +396,8 @@
       "description": "Optimize the platform for search engines to improve visibility and ranking.",
       "assignedMember": 12,
       "startDate": "2025-02-01T00:00:00.000Z",
-      "endDate": "2025-02-04T23:59:59.000Z",
-      "priority": "Medium",
+      "endDate": "2025-02-04T13:00:59.000Z",
+      "priority": "Low",
       "status": "review",
       "projectId": 6
     },

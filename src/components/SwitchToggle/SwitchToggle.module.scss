@@ -1,0 +1,78 @@
+:root {
+  --switch-bg-color: #bedbb0;
+  --switch-text-color: #1f1f1f;
+  --label-text-color: #ffffff;
+}
+
+.switchContainer {
+  width: 12rem;
+  position: relative;
+  display: flex;
+  line-height: 2.5rem;
+  border-radius: 2.5rem;
+  overflow: hidden;
+
+  input {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  label {
+    width: 50%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--label-text-color);
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .switchWrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    padding: 0.15rem;
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 2;
+
+    &.moveLeft {
+      transform: translateX(0%);
+    }
+
+    &.moveRight {
+      transform: translateX(100%);
+    }
+  }
+
+  .switch {
+    height: 100%;
+    background-color: var(--switch-bg-color);
+    border-radius: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--switch-text-color);
+
+    .text {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-weight: 400;
+      font-size: 14px;
+      transition: opacity 1.5s ease-in-out;
+      cursor: default;
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &.inactive {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+}

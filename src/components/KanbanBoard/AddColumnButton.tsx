@@ -26,7 +26,7 @@ const AddColumnButton = ({
 
   return (
     <>
-      <div>
+      <div className="mr-[20px]">
         <button
           className="flex items-center justify-center gap-2 w-[335px] h-[56px] bg-[#121212] rounded-lg text-[#fff] font-normal tracking-[-0.02em]"
           onClick={openModal}

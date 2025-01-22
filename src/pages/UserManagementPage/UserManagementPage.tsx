@@ -7,6 +7,7 @@ import { CustomIcon } from "../../components/CustomIcon/CustomIcon";
 import useModalStore from "../../stores/modalStore";
 import Modal from "../../components/CustomModal/CustomModal";
 import useFilterStore from "../../stores/filterStore";
+import GanttChart from "../../components/GanttChart";
 
 const UserManagementPage = () => {
   const { filters } = useFilterStore();
@@ -184,10 +185,12 @@ const UserManagementPage = () => {
       {/* 
       <Table data={users} columns={columns} /> */}
 
-      <Table data={users} columns={columns} totalRows={totalCount} />
+      {/* <Table data={users} columns={columns} totalRows={totalCount} /> */}
+
+      <GanttChart />
 
       {/* Модальне вікно для підтвердження видалення */}
-      <Modal onClose={cancelDelete}>
+      {/* <Modal onClose={cancelDelete}>
         <div>
           <h2>Are you sure you want to delete this user?</h2>
           <div>
@@ -195,7 +198,7 @@ const UserManagementPage = () => {
             <button onClick={cancelDelete}>No</button>
           </div>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };

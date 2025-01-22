@@ -140,13 +140,7 @@
       "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [
-        11,
-        13,
-        14,
-        24,
-        25
-      ],
+      "assignedMembers": [11, 13, 14, 24, 25],
       "status": "In Progress",
       "icon": "lightning",
       "userId": 4,
@@ -155,35 +149,22 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [
-            15,
-            22,
-            17,
-            19
-          ]
+          "tasks": [15, 22, 17, 19]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [
-            18
-          ]
+          "tasks": [18]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [
-            20,
-            23
-          ]
+          "tasks": [20, 23]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [
-            14,
-            21
-          ]
+          "tasks": [14, 21]
         }
       ],
       "id": 6
@@ -193,13 +174,7 @@
       "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [
-        11,
-        13,
-        14,
-        24,
-        25
-      ],
+      "assignedMembers": [11, 13, 14, 24, 25],
       "status": "In Progress",
       "icon": "lightning",
       "userId": 3,
@@ -208,36 +183,22 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [
-            22,
-            19,
-            18
-          ]
+          "tasks": [22, 19, 18]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [
-            15,
-            16,
-            17
-          ]
+          "tasks": [15, 16, 17]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [
-            20,
-            23
-          ]
+          "tasks": [20, 23]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [
-            14,
-            21
-          ]
+          "tasks": [14, 21]
         }
       ],
       "id": 7
@@ -256,16 +217,12 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [
-            25
-          ]
+          "tasks": []
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [
-            24
-          ]
+          "tasks": []
         },
         {
           "id": "done",

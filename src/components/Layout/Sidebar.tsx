@@ -10,7 +10,7 @@ import { FaUsersCog } from "react-icons/fa";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { currentUser } = useUserStore();
-  const location = useLocation(); // Отримуємо поточний шлях
+  const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -18,13 +18,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-4 xl:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-[1] xl:hidden"
           onClick={toggleSidebar}
         />
       )}
 
       <div
-        className={`fixed xl:static top-0 left-0 h-full xl:h-screen w-[225px] md:w-[260px] bg-background-highlight z-5 transform transition-transform duration-300 pt-[14px] pb-6 flex flex-col ${`${
+        className={`fixed xl:static top-0 left-0 h-full xl:h-screen w-[225px] md:w-[260px] bg-background-highlight z-[1] transform transition-transform duration-300 pt-[14px] pb-6 flex flex-col ${`${
           isOpen ? "translate-x-0" : "-translate-x-[101%]"
         } xl:translate-x-0`}`}
       >

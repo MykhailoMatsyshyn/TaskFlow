@@ -71,6 +71,7 @@ const GanttChart = ({ tasks }) => {
         readonly: true,
         popup_on: "hover",
         view_mode_select: true,
+        scroll_to: "start",
         on_click: (task) => console.log("Task clicked:", task),
         on_date_change: (task, start, end) =>
           console.log("Task date changed:", task, start, end),

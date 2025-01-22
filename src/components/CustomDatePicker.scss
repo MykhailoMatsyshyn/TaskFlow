@@ -1,4 +1,7 @@
-// react-datepicker-custom.scss
+.react-datepicker-popper {
+  z-index: 999;
+}
+
 .react-datepicker {
   @apply bg-gray-800 border border-gray-600 rounded-lg p-2 shadow-lg;
 }

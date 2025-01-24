@@ -9,7 +9,7 @@ export type UserFilters = {
 
 export type TaskFilters = {
   status: string;
-  priority: "Without priority" | "Low" | "Medium" | "High";
+  priority: "Without priority" | "Low" | "Medium" | "High" | "all";
   assignedMember: number[];
   startDate: string;
   endDate: string;

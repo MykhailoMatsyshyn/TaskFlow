@@ -14,8 +14,8 @@ type TaskFilterState = {
 
 const initialTaskFilters: TaskFilters = {
   status: "",
-  priority: "Without priority", // Default priority
-  assignedMember: [], // Empty array for members
+  priority: "all",
+  assignedMember: [],
   startDate: "",
   endDate: "",
 };
@@ -25,20 +25,19 @@ const useTaskFilterStore = create<TaskFilterState>()(
     devtools((set) => ({
       filters: { ...initialTaskFilters },
 
-      // Method to update a specific filter
       setFilter: (key, value) =>
         set((state) => {
           if (key === "assignedMember" && Array.isArray(value)) {
-            state.filters.assignedMember = value; // Update array for members
+            state.filters.assignedMember = value;
           } else if (key !== "assignedMember") {
-            state.filters[key] = value || ""; // Set empty string if value is undefined
+            state.filters[key] = value || "";
           }
         }),
 
-      // Method to reset all filters to their initial state
       resetFilters: () =>
         set((state) => {
           state.filters = { ...initialTaskFilters };
+          console.log(state.filters);
         }),
     }))
   )

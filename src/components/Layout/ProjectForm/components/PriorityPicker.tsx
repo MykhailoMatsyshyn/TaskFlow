@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import Radio from "@mui/material/Radio";
 
 interface PriorityPickerProps {
+  value: string;
   onPriorityChange: (priority: string) => void;
-  initialPriority?: string;
+  hideLabel?: boolean;
 }
 
 const PriorityPicker: React.FC<PriorityPickerProps> = ({
+  value,
   onPriorityChange,
-  initialPriority = "No",
+  hideLabel = false,
 }) => {
-  const [selectedPriority, setSelectedPriority] = useState(initialPriority);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newPriority = event.target.value;
-    setSelectedPriority(newPriority);
     onPriorityChange(newPriority);
   };
 
@@ -32,7 +31,7 @@ const PriorityPicker: React.FC<PriorityPickerProps> = ({
 
   return (
     <div>
-      <label className="block mb-[14px]">Priority</label>
+      {!hideLabel && <label className="block mb-[14px]">Priority</label>}
       <ul className="flex items-center gap-2">
         {priorityOptions.map((priority) => (
           <li
@@ -40,7 +39,7 @@ const PriorityPicker: React.FC<PriorityPickerProps> = ({
             className="relative flex flex-col items-center group"
           >
             <Radio
-              checked={selectedPriority === priority.value}
+              checked={value === priority.value}
               onChange={handleChange}
               value={priority.value}
               name="priority"
@@ -58,7 +57,7 @@ const PriorityPicker: React.FC<PriorityPickerProps> = ({
             <span
               className={`font-normal text-[12px] tracking-[-0.02em] text-white/50 opacity-0 transition-opacity duration-200 
               group-hover:opacity-100 group-focus-within:opacity-100 ${
-                selectedPriority === priority.value ? "opacity-100" : ""
+                value === priority.value ? "opacity-100" : ""
               }`}
             >
               {priority.label}

@@ -102,6 +102,7 @@
   border-radius: 12px;
 }
 
+.filter-popup.custom-scrollbar,
 .custom-modal__content.custom-scrollbar {
   &::-webkit-scrollbar {
     width: 6px;

@@ -1,3 +1,4 @@
+import { TaskFilters } from "../types/filters";
 import { Task } from "../types/task";
 import axiosInstance from "./axiosInstance";
 
@@ -9,10 +10,43 @@ export const getAllTasks = async (): Promise<Task[]> => {
     throw new Error(error.response?.data?.message || "Error fetching tasks");
   }
 };
+export const getTasksByProject = (
+  projectId: number,
+  filters: TaskFilters
+): Promise<Task[]> => {
+  const query = new URLSearchParams();
 
-export const getTasksByProject = (projectId: number): Promise<Task[]> => {
+  // Додаємо projectId
+  query.append("projectId", String(projectId));
+
+  // Додаємо статус, якщо він вказаний
+  if (filters.status) {
+    query.append("status", filters.status);
+  }
+
+  // Додаємо пріоритет, якщо він не "all"
+  if (filters.priority && filters.priority !== "all") {
+    query.append("priority", filters.priority);
+  }
+
+  // Додаємо assignedMember як окремі параметри
+  if (filters.assignedMember.length > 0) {
+    filters.assignedMember.forEach((memberId) =>
+      query.append("assignedMember", memberId.toString())
+    );
+  }
+
+  // Додаємо діапазон дат, якщо вони вказані
+  if (filters.startDate) {
+    query.append("startDate", filters.startDate); // Узгодьте ключ з бекендом
+  }
+  if (filters.endDate) {
+    query.append("endDate", filters.endDate); // Узгодьте ключ з бекендом
+  }
+
+  // Відправляємо запит із згенерованими параметрами
   return axiosInstance
-    .get<Task[]>(`/tasks?projectId=${projectId}`)
+    .get<Task[]>(`/tasks?${query.toString()}`)
     .then((response) => response.data)
     .catch((error) => {
       throw new Error(
@@ -20,6 +54,17 @@ export const getTasksByProject = (projectId: number): Promise<Task[]> => {
       );
     });
 };
+
+// export const getTasksByProject = (projectId: number): Promise<Task[]> => {
+//   return axiosInstance
+//     .get<Task[]>(`/tasks?projectId=${projectId}`)
+//     .then((response) => response.data)
+//     .catch((error) => {
+//       throw new Error(
+//         error.response?.data?.message || "Error fetching tasks for project"
+//       );
+//     });
+// };
 
 export const createTask = (taskData: Task): Promise<Task> => {
   return axiosInstance

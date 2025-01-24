@@ -14,7 +14,7 @@ const FilterPopup: React.FC<FilterPopupProps> = ({
 }) => {
   return (
     <div
-      className={`absolute top-12 right-0 w-64 bg-[#1f1f1f] p-4 rounded shadow-lg border border-[#BEDBB0] border-opacity-[50%] z-50 transition-all duration-300 transform ${
+      className={`absolute top-12 right-0 w-[335px] bg-[#151515] py-4 px-5 rounded shadow-lg border border-[#BEDBB0] border-opacity-[50%] z-50 transition-all duration-300 transform ${
         isOpen
           ? "opacity-100 scale-100 pointer-events-auto"
           : "opacity-0 scale-95 pointer-events-none"
@@ -33,7 +33,9 @@ const FilterPopup: React.FC<FilterPopupProps> = ({
 
       <hr className="border-white/30 mb-4" />
 
-      {children}
+      <div className="overflow-y-auto max-h-[320px] filter-popup custom-scrollbar mr-[-12px] pr-[8px]">
+        {children}
+      </div>
     </div>
   );
 };

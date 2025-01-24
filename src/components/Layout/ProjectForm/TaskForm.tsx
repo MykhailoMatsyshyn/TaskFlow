@@ -8,6 +8,8 @@ import {
   PriorityPicker,
   TeamMemberPicker,
 } from "./components";
+import { useParams } from "react-router-dom";
+import { useProjectDataBySlug } from "../../../hooks/useProjectDataBySlug";
 
 interface TaskFormProps {
   initialData?: any;
@@ -38,6 +40,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
       priority: "Without priority",
     },
   });
+  const { slug } = useParams();
+  const { data: project } = useProjectDataBySlug(slug);
 
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
@@ -117,7 +121,8 @@ const TaskForm: React.FC<TaskFormProps> = ({
         defaultMembers={
           initialData?.assignedMember ? [initialData.assignedMember] : []
         }
-        isMulti={false} // Лише один мембер
+        isMulti={false}
+        filterByProjectMembers={project?.assignedMembers}
       />
 
       <DatePickerFields
@@ -138,7 +143,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       />
 
       <PriorityPicker
-        initialPriority={initialData?.priority || "Without priority"}
+        value={initialData?.priority || "Without priority"}
         onPriorityChange={(priority) => setValue("priority", priority)}
       />
 

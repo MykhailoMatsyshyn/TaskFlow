@@ -9,14 +9,19 @@ import { useUpdateColumns } from "../../hooks/useUpdateColumns";
 import { useUpdateTask } from "../../hooks/useUpdateTask";
 import SwitchToggle from "../../components/SwitchToggle/SwitchToggle";
 import FilterManager from "../../components/FilterManager/FilterManager";
+import useTaskFilterStore from "../../stores/TaskFilterStore";
 
 const ProjectPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
 
   const { data: project, error, isLoading } = useProjectDataBySlug(slug);
+
+  const filters = useTaskFilterStore((state) => state.filters);
+
   const { data: tasks, isLoading: tasksLoading } = useTasksByProject(
-    project?.id
+    project?.id,
+    filters
   );
 
   const [columns, setColumns] = useState(project?.columns || []);
@@ -55,7 +60,7 @@ const ProjectPage = () => {
     updateTask({ id: taskId, data });
   };
 
-  if (isLoading || tasksLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   const renderGanttChart = () => {
     if (!tasks || tasks.length === 0) {
@@ -98,13 +103,17 @@ const ProjectPage = () => {
             }
           `}
         >
-          <KanbanBoard
-            projectId={project?.id}
-            columns={columns}
-            tasks={tasks}
-            onColumnUpdate={handleColumnDragEnd}
-            onTaskUpdate={handleTaskUpdate}
-          />
+          {tasksLoading ? (
+            <p className="text-white/50">Loading tasks...</p>
+          ) : (
+            <KanbanBoard
+              projectId={project?.id}
+              columns={columns}
+              tasks={tasks}
+              onColumnUpdate={handleColumnDragEnd}
+              onTaskUpdate={handleTaskUpdate}
+            />
+          )}
         </div>
 
         <div

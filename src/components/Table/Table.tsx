@@ -12,21 +12,13 @@ import useFilterStore from "../../stores/filterStore";
 const Table = ({
   data,
   columns,
-  totalRows,
+  totalCount,
 }: {
   data: User[];
   columns: ColumnDef<User>[];
-  totalRows: number;
+  totalCount: number;
 }) => {
-  const { filters, setFilter, setPagination } = useFilterStore();
-
-  const handleFilterChange = (
-    columnId: string,
-    value: string | number | undefined
-  ) => {
-    setFilter(columnId, value);
-    setPagination(0, filters.pageSize); // Переходимо на першу сторінку при зміні фільтра
-  };
+  const { filters, setPagination } = useFilterStore();
 
   const table = useReactTable({
     data,
@@ -44,9 +36,11 @@ const Table = ({
     manualSorting: true,
   });
 
+  const totalPages = Math.ceil(totalCount / filters.pageSize);
+
   return (
-    <div className="p-2">
-      <table className="h-2">
+    <div className="mr-[15px] mt-[20px] text-white/50">
+      <table className="mb-5 w-full">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -66,10 +60,7 @@ const Table = ({
                     )}
                     {header.column.getCanFilter() ? (
                       <div>
-                        <Filter
-                          column={header.column}
-                          onFilterChange={handleFilterChange}
-                        />
+                        <Filter column={header.column} />
                       </div>
                     ) : null}
                   </div>
@@ -93,213 +84,73 @@ const Table = ({
           ))}
         </tbody>
       </table>
-      <div className="flex items-center gap-2">
-        <button
-          className="border rounded p-1"
-          onClick={() => setPagination(0, filters.pageSize)}
-          disabled={filters.pageIndex === 0}
-        >
-          {"<<"}
-        </button>
-        <button
-          className="border rounded p-1"
-          onClick={() => setPagination(filters.pageIndex - 1, filters.pageSize)}
-          disabled={filters.pageIndex === 0}
-        >
-          {"<"}
-        </button>
-        <button
-          className="border rounded p-1"
-          onClick={() => setPagination(filters.pageIndex + 1, filters.pageSize)}
-          disabled={
-            filters.pageIndex >= Math.ceil(totalRows / filters.pageSize) - 1
-          }
-        >
-          {">"}
-        </button>
-        <button
-          className="border rounded p-1"
-          onClick={() =>
-            setPagination(
-              Math.ceil(totalRows / filters.pageSize) - 1,
-              filters.pageSize
-            )
-          }
-          disabled={
-            filters.pageIndex >= Math.ceil(totalRows / filters.pageSize) - 1
-          }
-        >
-          {">>"}
-        </button>
-        <span className="flex items-center gap-1">
-          <div>Page</div>
-          <strong>
-            {filters.pageIndex + 1} of {Math.ceil(totalRows / filters.pageSize)}
-          </strong>
-        </span>
-        <select
-          value={filters.pageSize}
-          onChange={(e) => setPagination(0, Number(e.target.value))}
-        >
-          {[5, 10, 20, 50].map((size) => (
-            <option key={size} value={size}>
-              Show {size}
-            </option>
-          ))}
-        </select>
+      <div className="flex items-center justify-between mt-4">
+        <div className="text-base text-white/60">
+          <span>
+            Total Users Found: <strong>{totalCount}</strong>
+          </span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            className="px-3 py-1 text-sm text-white border border-white/20 rounded hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            onClick={() => setPagination(1, filters.pageSize)}
+            disabled={filters.pageIndex === 1}
+            aria-label="First Page"
+          >
+            {"<<"}
+          </button>
+          <button
+            className="px-3 py-1 text-sm text-white   border border-white/20 rounded hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            onClick={() =>
+              setPagination(filters.pageIndex - 1, filters.pageSize)
+            }
+            disabled={filters.pageIndex === 1}
+            aria-label="Previous Page"
+          >
+            {"<"}
+          </button>
+          <span className="text-sm text-white/60">
+            Page <strong>{filters.pageIndex}</strong> of{" "}
+            <strong>{totalPages}</strong>
+          </span>
+          <button
+            className="px-3 py-1 text-sm text-white   border border-white/20 rounded hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            onClick={() =>
+              setPagination(filters.pageIndex + 1, filters.pageSize)
+            }
+            disabled={filters.pageIndex >= totalPages}
+            aria-label="Next Page"
+          >
+            {">"}
+          </button>
+          <button
+            className="px-3 py-1 text-sm text-white   border border-white/20 rounded hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            onClick={() => setPagination(totalPages, filters.pageSize)}
+            disabled={filters.pageIndex >= totalPages}
+            aria-label="Last Page"
+          >
+            {">>"}
+          </button>
+          <select
+            value={filters.pageSize}
+            onChange={(e) => setPagination(1, Number(e.target.value))}
+            className="px-3 py-1 text-sm text-white  bg-[#1f1f1f] border border-white/20 rounded hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
+          >
+            {[5, 10, 20, 50].map((size) => (
+              <option
+                key={size}
+                value={size}
+                className="  bg-[#1f1f1f]  text-white"
+              >
+                Show {size}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Table;
-
-//   return (
-//     <div className="p-2">
-//       <table className="h-2">
-//         {/* <thead>
-//           {table.getHeaderGroups().map((headerGroup) => (
-//             <tr key={headerGroup.id}>
-//               {headerGroup.headers.map((header) => (
-//                 <th key={header.id}>
-//                   {header.column.getCanFilter() ? (
-//                     <Filter
-//                       column={header.column}
-//                       onFilterChange={onFilterChange}
-//                     />
-//                   ) : null}
-//                 </th>
-//               ))}
-//             </tr>
-//           ))}
-//         </thead> */}
-//         <thead>
-//           {table.getHeaderGroups().map((headerGroup) => (
-//             <tr key={headerGroup.id}>
-//               {headerGroup.headers.map((header) => {
-//                 return (
-//                   <th key={header.id} colSpan={header.colSpan}>
-//                     <div
-//                       {...{
-//                         className: header.column.getCanSort()
-//                           ? "cursor-pointer select-none"
-//                           : "",
-//                         onClick: header.column.getToggleSortingHandler(),
-//                       }}
-//                     >
-//                       {flexRender(
-//                         header.column.columnDef.header,
-//                         header.getContext()
-//                       )}
-//                       {{
-//                         asc: " 🔼",
-//                         desc: " 🔽",
-//                       }[header.column.getIsSorted() as string] ?? null}
-//                       {header.column.getCanFilter() ? (
-//                         <div>
-//                           <Filter
-//                             column={header.column}
-//                             onFilterChange={onFilterChange}
-//                           />
-//                         </div>
-//                       ) : null}
-//                     </div>
-//                   </th>
-//                 );
-//               })}
-//             </tr>
-//           ))}
-//         </thead>
-//         <tbody>
-//           {table.getRowModel().rows.map((row) => {
-//             return (
-//               <tr key={row.id}>
-//                 {row.getVisibleCells().map((cell) => {
-//                   return (
-//                     <td key={cell.id}>
-//                       {flexRender(
-//                         cell.column.columnDef.cell,
-//                         cell.getContext()
-//                       )}
-//                     </td>
-//                   );
-//                 })}
-//               </tr>
-//             );
-//           })}
-//         </tbody>
-//       </table>
-//       <div className="h-2" />
-//       <div className="flex items-center gap-2">
-//         <button
-//           className="border rounded p-1"
-//           onClick={() => table.firstPage()}
-//           disabled={!table.getCanPreviousPage()}
-//         >
-//           {"<<"}
-//         </button>
-//         <button
-//           className="border rounded p-1"
-//           onClick={() => table.previousPage()}
-//           disabled={!table.getCanPreviousPage()}
-//         >
-//           {"<"}
-//         </button>
-//         <button
-//           className="border rounded p-1"
-//           onClick={() => table.nextPage()}
-//           disabled={!table.getCanNextPage()}
-//         >
-//           {">"}
-//         </button>
-//         <button
-//           className="border rounded p-1"
-//           onClick={() => table.lastPage()}
-//           disabled={!table.getCanNextPage()}
-//         >
-//           {">>"}
-//         </button>
-//         <span className="flex items-center gap-1">
-//           <div>Page</div>
-//           <strong>
-//             {table.getState().pagination.pageIndex + 1} of{" "}
-//             {table.getPageCount().toLocaleString()}
-//           </strong>
-//         </span>
-//         <span className="flex items-center gap-1">
-//           | Go to page:
-//           <input
-//             type="number"
-//             min="1"
-//             max={table.getPageCount()}
-//             defaultValue={table.getState().pagination.pageIndex + 1}
-//             onChange={(e) => {
-//               const page = e.target.value ? Number(e.target.value) - 1 : 0;
-//               table.setPageIndex(page);
-//             }}
-//             className="border p-1 rounded w-16"
-//           />
-//         </span>
-//         <select
-//           value={table.getState().pagination.pageSize}
-//           onChange={(e) => {
-//             table.setPageSize(Number(e.target.value));
-//           }}
-//         >
-//           {[5, 10, 15, 20, 25].map((pageSize) => (
-//             <option key={pageSize} value={pageSize}>
-//               Show {pageSize}
-//             </option>
-//           ))}
-//         </select>
-//       </div>
-//       <div>
-//         Showing {table.getRowModel().rows.length.toLocaleString()} of{" "}
-//         {table.getRowCount().toLocaleString()} Rows
-//       </div>
-//       {/* <pre>{JSON.stringify(table.getState().pagination, null, 2)}</pre> */}
-//     </div>
-//   );
-// };
-
-// export default Table;

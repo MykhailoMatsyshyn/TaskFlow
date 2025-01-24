@@ -1,65 +1,86 @@
-import { Column, Table } from "@tanstack/react-table";
+import { Column } from "@tanstack/react-table";
+import { useState, useEffect } from "react";
+import useFilterStore from "../../stores/filterStore";
 
-function Filter({
-  column,
-  onFilterChange,
-}: {
-  column: Column<any, any>;
-  onFilterChange: (
-    columnId: string,
-    value: string | number | undefined
-  ) => void;
-}) {
-  // const firstValue = table
-  //   .getPreFilteredRowModel()
-  //   .flatRows[0]?.getValue(column.id);
+function Filter({ column }: { column: Column<any, any> }) {
+  const { filters, setFilter } = useFilterStore();
+  const [inputValue, setInputValue] = useState<string | undefined>(
+    filters[column.id as keyof typeof filters] as string | undefined
+  );
 
-  // console.log("firstValue", firstValue);
+  // Sync local state with global zustand state
+  useEffect(() => {
+    setInputValue(
+      filters[column.id as keyof typeof filters] as string | undefined
+    );
+  }, [filters, column.id]);
 
-  const columnFilterValue = column.getFilterValue();
+  // Use debounce to avoid frequent requests
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setFilter(column.id, inputValue);
+    }, 300);
 
-  // Для текстових полів (наприклад, Name, Email)
+    return () => clearTimeout(timeout);
+  }, [inputValue, setFilter, column.id]);
+
+  // For text-based fields (e.g., name, email)
   if (column.id === "name" || column.id === "email") {
     return (
       <input
-        className="w-36 border shadow rounded"
-        onChange={(e) => onFilterChange(column.id, e.target.value)}
-        // onChange={(e) => column.setFilterValue(e.target.value)}
-        // onClick={(e) => e.stopPropagation()}
-        placeholder={`Search ${column.id}...`}
+        className="w-full border-b-2 border-white/20 bg-transparent text-white/50 text-sm font-light placeholder:text-white/40 placeholder:font-light outline-none focus:border-white/40 focus:placeholder:text-white/20 transition-all"
+        placeholder={`Search by ${column.id}...`}
         type="text"
-        value={columnFilterValue ?? ""}
+        value={inputValue ?? ""}
+        onChange={(e) => setInputValue(e.target.value)}
       />
     );
   }
 
-  // Для числових полів (наприклад, ID)
+  // For numeric fields (e.g., ID)
   if (column.id === "id") {
     return (
       <input
-        className="w-24 border shadow rounded"
-        onChange={(e) => onFilterChange(column.id, e.target.value)}
-        // onChange={(e) => column.setFilterValue(e.target.value)}
+        className="w-24 border-b-2 border-white/20 bg-transparent text-white/50 text-sm font-light placeholder:text-white/40 placeholder:font-light outline-none focus:border-white/40 focus:placeholder:text-white/20 transition-all"
         placeholder={`Search ID`}
         type="number"
-        value={columnFilterValue ?? ""}
+        min="0"
+        value={inputValue ?? ""}
+        onChange={(e) => setInputValue(e.target.value)}
       />
     );
   }
 
-  // Для селекту (наприклад, Role)
+  // For select fields (e.g., role)
   if (column.id === "role") {
     return (
-      <select
-        value={columnFilterValue || ""}
-        onChange={(e) => onFilterChange(column.id, e.target.value || undefined)}
-        // onChange={(e) => column.setFilterValue(e.target.value || undefined)}
-      >
-        <option value="">All</option>
-        <option value="Admin">Admin</option>
-        <option value="Project Manager">Project Manager</option>
-        <option value="Team Member">Team Member</option>
-      </select>
+      <div className="relative text-sm font-light">
+        <select
+          className="w-full px-3 border-b-2 border-white/20 bg-transparent text-white/50 outline-none focus:border-white/40 transition-all appearance-none"
+          value={inputValue ?? ""}
+          onChange={(e) => setInputValue(e.target.value)}
+        >
+          <option value="" className="bg-[#2D2D2D] text-white/50">
+            All
+          </option>
+          <option value="Admin" className="bg-[#2D2D2D] text-white/50">
+            Admin
+          </option>
+          <option
+            value="Project Manager"
+            className="bg-[#2D2D2D] text-white/50"
+          >
+            Project Manager
+          </option>
+          <option value="Team Member" className="bg-[#2D2D2D] text-white/50">
+            Team Member
+          </option>
+        </select>
+
+        <span className="absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none text-white/50">
+          ▼
+        </span>
+      </div>
     );
   }
 

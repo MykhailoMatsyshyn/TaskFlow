@@ -81,6 +81,27 @@
   border-radius: 12px;
 }
 
+.main-custom-scrollbar {
+  margin-right: 20px;
+}
+
+.main-custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  padding-right: 16px;
+}
+
+.main-custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #121212;
+  border-radius: 12px;
+}
+
+.main-custom-scrollbar::-webkit-scrollbar-track {
+  margin-top: 80px;
+  margin-bottom: 70px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
 .custom-modal__content.custom-scrollbar {
   &::-webkit-scrollbar {
     width: 6px;

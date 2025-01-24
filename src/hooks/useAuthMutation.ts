@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { registerUser, loginUser } from "../api/authService";
 import {
   RegisterUserData,
@@ -10,6 +10,7 @@ import useUserStore from "../stores/userStore";
 
 const useAuthMutation = (type: AuthType) => {
   const { setCurrentUser } = useUserStore();
+  const queryClient = useQueryClient();
 
   const mutationFn = (data: RegisterUserData | LoginCredentials) => {
     return type === "register"
@@ -30,6 +31,11 @@ const useAuthMutation = (type: AuthType) => {
           id: data.user.id,
         });
       }
+
+      if (type === "register") {
+        queryClient.invalidateQueries(["users"]);
+      }
+
       console.log(
         `${type === "register" ? "Registered" : "Logged in"} successfully:`,
         data

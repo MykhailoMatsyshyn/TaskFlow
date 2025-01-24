@@ -67,7 +67,7 @@ export const getUsers = (
     });
 };
 
-export const deleteUser = (userId: string): Promise<void> => {
+export const deleteUser = (userId: number): Promise<void> => {
   return axiosInstance
     .delete(`/users/${userId}`)
     .then(() => {
@@ -76,6 +76,21 @@ export const deleteUser = (userId: string): Promise<void> => {
     .catch((error) => {
       throw new Error(error.response?.data?.message || "Error deleting user");
     });
+};
+
+export const updateUser = async (
+  userId: number,
+  updatedData: Partial<User>
+): Promise<User> => {
+  try {
+    const { data } = await axiosInstance.patch<User>(
+      `/users/${userId}`,
+      updatedData
+    );
+    return data;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Error updating user");
+  }
 };
 
 export const getTeamMembers = (emailLike: string): Promise<User[]> => {

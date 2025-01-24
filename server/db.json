@@ -1,13 +1,6 @@
 {
   "users": [
     {
-      "email": "admin2@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
-      "role": "Admin",
-      "name": "Admin2",
-      "id": 2
-    },
-    {
       "email": "admin3@example.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Admin",
@@ -43,32 +36,11 @@
       "id": 10
     },
     {
-      "email": "tm3@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
-      "role": "Team Member",
-      "name": "TeamMember3",
-      "id": 11
-    },
-    {
       "email": "tm4@example.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Team Member",
-      "name": "Member4",
+      "name": "Member44",
       "id": 12
-    },
-    {
-      "email": "tm5@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
-      "role": "Team Member",
-      "name": "TeamMember5",
-      "id": 13
-    },
-    {
-      "email": "tm6@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
-      "role": "Team Member",
-      "name": "TeamMember6",
-      "id": 14
     },
     {
       "email": "tm7@example.com",
@@ -95,7 +67,7 @@
       "email": "tm10@example.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Team Member",
-      "name": "TeamMember10",
+      "name": "TeamMemb",
       "id": 18
     },
     {
@@ -120,18 +92,39 @@
       "id": 21
     },
     {
-      "email": "tm16@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
-      "role": "Team Member",
-      "name": "TeamMember16",
-      "id": 24
-    },
-    {
       "email": "tm17@example.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Team Member",
       "name": "TeamMember17",
       "id": 25
+    },
+    {
+      "email": "testuser@emil.com",
+      "password": "$2a$10$bpZeY.6LsN9UIPhmVIBpTuZr3cJSIiYXZ0BDqc76dmkKD5mjr0EUW",
+      "name": "TestUser",
+      "role": "Project Manager",
+      "id": 26
+    },
+    {
+      "email": "Userok@email.com",
+      "password": "$2a$10$7eACWvmtyxyB0rO9XqG7ieP1d3DhCn3kYsWgP4D25ySH5OA2pQKuW",
+      "name": "Userok",
+      "role": "Team Member",
+      "id": 27
+    },
+    {
+      "email": "Userok2@email.com",
+      "password": "$2a$10$fFL7VPdan87pfJ1KGxkeO./wy2YinPzMF8LzskOydWYl8.RxXYQLm",
+      "name": "Userok2",
+      "role": "Project Manager",
+      "id": 28
+    },
+    {
+      "email": "testik@testik",
+      "password": "$2a$10$UGo.EIvYIS.kyhydOD5q/OsANfnP6917yqD.seo9A3n9S0I3FvwzO",
+      "name": "testik",
+      "role": "Admin",
+      "id": 29
     }
   ],
   "projects": [
@@ -140,31 +133,46 @@
       "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [11, 13, 14, 24, 25],
+      "assignedMembers": [
+        25
+      ],
       "status": "In Progress",
-      "icon": "lightning",
+      "icon": "puzzle",
       "userId": 4,
       "slug": "e-commerce-platform-development",
       "columns": [
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [15, 22, 17, 19]
+          "tasks": [
+            15,
+            22,
+            17,
+            19
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [18]
+          "tasks": [
+            18
+          ]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [20, 23]
+          "tasks": [
+            20,
+            23
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [14, 21]
+          "tasks": [
+            14,
+            21
+          ]
         }
       ],
       "id": 6
@@ -174,7 +182,9 @@
       "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [11, 13, 14, 24, 25],
+      "assignedMembers": [
+        25
+      ],
       "status": "In Progress",
       "icon": "lightning",
       "userId": 3,
@@ -183,22 +193,36 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [22, 19, 18]
+          "tasks": [
+            22,
+            19,
+            18
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [15, 16, 17]
+          "tasks": [
+            15,
+            16,
+            17
+          ]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [20, 23]
+          "tasks": [
+            20,
+            23
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [14, 21]
+          "tasks": [
+            14,
+            21
+          ]
         }
       ],
       "id": 7
@@ -217,7 +241,9 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": []
+          "tasks": [
+            24
+          ]
         },
         {
           "id": "in-progress",
@@ -231,64 +257,6 @@
         }
       ],
       "id": 9
-    },
-    {
-      "title": "rrr",
-      "description": "",
-      "startDate": "2025-01-26T22:00:00.000Z",
-      "endDate": "2025-01-29T22:00:00.000Z",
-      "assignedMembers": [],
-      "status": "Planned",
-      "icon": "project",
-      "userId": null,
-      "slug": "rrr",
-      "columns": [
-        {
-          "id": "to-do",
-          "title": "To Do",
-          "tasks": []
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress",
-          "tasks": []
-        },
-        {
-          "id": "done",
-          "title": "Done",
-          "tasks": []
-        }
-      ],
-      "id": 12
-    },
-    {
-      "title": "New test proj",
-      "description": "",
-      "startDate": "2025-01-20T22:00:00.000Z",
-      "endDate": "2025-01-22T22:00:00.000Z",
-      "assignedMembers": [],
-      "status": "Planned",
-      "icon": "loading",
-      "userId": null,
-      "slug": "new-test-proj",
-      "columns": [
-        {
-          "id": "to-do",
-          "title": "To Do",
-          "tasks": []
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress",
-          "tasks": []
-        },
-        {
-          "id": "done",
-          "title": "Done",
-          "tasks": []
-        }
-      ],
-      "id": 13
     }
   ],
   "tasks": [
@@ -317,7 +285,7 @@
     {
       "title": "Frontend Development: Product Page",
       "description": "Create a responsive product page layout and integrate with backend APIs.",
-      "assignedMember": 11,
+      "assignedMember": "",
       "startDate": "2025-01-26T22:00:00.000Z",
       "endDate": "2025-02-01T22:00:00.000Z",
       "priority": "Medium",

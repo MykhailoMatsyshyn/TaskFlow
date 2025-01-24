@@ -8,6 +8,7 @@ interface InputFieldProps {
   register: UseFormRegister<FieldValues>;
   name: string;
   errors: any;
+  defaultValue?: string;
 }
 
 const InputField = ({
@@ -17,6 +18,7 @@ const InputField = ({
   register,
   name,
   errors,
+  defaultValue,
 }: InputFieldProps) => {
   return (
     <div>
@@ -24,6 +26,7 @@ const InputField = ({
         type={type}
         id={name}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         {...register(name, { required: `${label} is required` })}
         className={`${styles.field} ${
           errors[name] ? "border-red-500" : "border-[#BEDBB0]"

@@ -8,6 +8,7 @@ import { useTasksByProject } from "../../hooks/useTasksByProject";
 import { useUpdateColumns } from "../../hooks/useUpdateColumns";
 import { useUpdateTask } from "../../hooks/useUpdateTask";
 import SwitchToggle from "../../components/SwitchToggle/SwitchToggle";
+import FilterManager from "../../components/FilterManager/FilterManager";
 
 const ProjectPage = () => {
   const { slug } = useParams();
@@ -76,12 +77,15 @@ const ProjectPage = () => {
         <h1 className="text-lg font-normal italic underline">
           {project?.title}
         </h1>
-        <SwitchToggle
-          leftLabel="Kanban"
-          rightLabel="Gantt"
-          currentView={view}
-          onToggle={toggleView}
-        />
+        <div className="flex gap-2">
+          <SwitchToggle
+            leftLabel="Kanban"
+            rightLabel="Gantt"
+            currentView={view}
+            onToggle={toggleView}
+          />
+          <FilterManager />
+        </div>
       </header>
 
       <div className="relative">

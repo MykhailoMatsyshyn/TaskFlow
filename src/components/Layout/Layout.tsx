@@ -1,10 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { useState } from "react";
 
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  const shouldApplyScrollbar =
+    location.pathname === "/dashboard" ||
+    location.pathname === "/dashboard/users";
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -20,7 +25,11 @@ const Layout = () => {
         <Header toggleSidebar={toggleSidebar} />
       </header>
 
-      <main className="py-5 pl-5 overflow-auto main-custom-scrollbar overflow-x-hidden  xl:col-start-2 xl:row-start-2 relative">
+      <main
+        className={`py-5 pl-5 overflow-auto ${
+          shouldApplyScrollbar ? "main-custom-scrollbar" : ""
+        } overflow-x-hidden xl:col-start-2 xl:row-start-2 relative`}
+      >
         <Outlet />
       </main>
     </div>

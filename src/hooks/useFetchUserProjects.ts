@@ -1,14 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getUserProjects } from "../api/projectService";
+import { Project } from "../types/project";
+import { ProjectFilters } from "../types/filters";
 
-const useFetchUserProjects = (userId?: number) => {
+export const useFetchUserProjects = (
+  userId: number,
+  filters?: ProjectFilters
+): UseQueryResult<Project[], Error> => {
   return useQuery({
-    queryKey: ["projects", userId],
-    queryFn: () => {
-      if (!userId) throw new Error("User ID is undefined");
-      return getUserProjects(userId);
-    },
-    enabled: Boolean(userId),
+    queryKey: ["projects", userId, filters],
+    queryFn: () => getUserProjects(userId, filters),
+    enabled: !!userId,
+    staleTime: 5000,
   });
 };
-export default useFetchUserProjects;

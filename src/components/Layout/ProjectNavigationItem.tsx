@@ -95,9 +95,9 @@ const ProjectNavigationItem = ({ project }) => {
           className={`relative flex justify-between items-center pl-[14px] py-[22px] px-[14px] h-[61px] hover:bg-[#1f1f1f] ${
             isActive
               ? `bg-[#1F1F1F] after:content-[''] after:block after:rounded-l-md after:w-[4px] after:h-[61px] after:absolute after:right-0 after:top-[calc(50%-30.5px)] ${
-                  project.status === "Planned"
+                  project.status === "planned"
                     ? "after:bg-[#8FA1D0]"
-                    : project.status === "In Progress"
+                    : project.status === "in-progress"
                     ? "after:bg-[#E09CB5]"
                     : "after:bg-[#BEDBB0]"
                 }`

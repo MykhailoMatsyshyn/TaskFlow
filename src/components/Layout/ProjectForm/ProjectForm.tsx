@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "../../../hooks/useAuth";
-import useFetchUserProjects from "../../../hooks/useFetchUserProjects"; // Підключення хука
 import {
   IconPicker,
   DatePickerFields,
@@ -14,6 +13,7 @@ import {
   Buttons,
 } from "./components";
 import { kebabCase } from "lodash";
+import { useFetchUserProjects } from "../../../hooks/useFetchUserProjects";
 
 interface ProjectFormProps {
   initialData?: any;

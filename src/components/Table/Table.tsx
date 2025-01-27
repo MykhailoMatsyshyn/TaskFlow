@@ -87,7 +87,7 @@ const Table = ({
       <div className="flex items-center justify-between mt-4">
         <div className="text-base text-white/60">
           <span>
-            Total Users Found: <strong>{totalCount}</strong>
+            Total Users: <strong>{totalCount}</strong>
           </span>
         </div>
 

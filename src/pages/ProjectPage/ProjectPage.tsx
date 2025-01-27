@@ -79,7 +79,7 @@ const ProjectPage = () => {
   return (
     <div className="p-0">
       <header className="flex items-center justify-between mb-4">
-        <h1 className="text-lg font-normal italic underline">
+        <h1 className="text-lg font-normal italic underline text-white/70">
           {project?.title}
         </h1>
         <div className="flex gap-2">

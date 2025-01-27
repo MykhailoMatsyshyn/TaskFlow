@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-// import { useTeamMembersQuery } from "../../hooks/useTeamMembersQuery";
 import { customSelectStyles } from "./customSelectStyles";
 import { useTeamMembersQuery } from "../../../../../hooks/useTeamMembersQuery";
 import { useTeamMembersByIds } from "../../../../../hooks/useTeamMembersByIds";
-// import { useTeamMembersByIds } from "../../hooks/useTeamMembersByIds";
 
 const animatedComponents = makeAnimated();
 
 interface TeamMemberSelectorProps {
   onChange: (selectedUsers: { id: string; name: string }[]) => void;
-  defaultMembers?: string[]; // Масив ID дефолтних користувачів
-  isMulti?: boolean; // Чи дозволено мультивибір
-  filterByProjectMembers?: string[]; // Фільтр за учасниками проекту (масив ID)
+  defaultMembers?: string[];
+  isMulti?: boolean;
+  filterByProjectMembers?: string[];
 }
 
 const TeamMemberSelector: React.FC<TeamMemberSelectorProps> = ({
@@ -32,30 +30,31 @@ const TeamMemberSelector: React.FC<TeamMemberSelectorProps> = ({
     { value: string; label: string; name: string }[]
   >([]);
 
+  // Синхронізація selectedMembers з defaultMembers
   useEffect(() => {
-    if (loadedMembers) {
+    if (defaultMembers?.length && loadedMembers) {
       const formattedMembers = loadedMembers.map((member) => ({
         value: member.id,
         label: member.email,
         name: member.name,
       }));
       setSelectedMembers(formattedMembers);
+    } else {
+      setSelectedMembers([]);
     }
-  }, [loadedMembers]);
+  }, [defaultMembers, loadedMembers]);
 
-  const options = allTeamMembers
-    ? allTeamMembers
-        .filter((member) =>
-          filterByProjectMembers
-            ? filterByProjectMembers.includes(member.id)
-            : true
-        )
-        .map((member) => ({
-          value: member.id,
-          label: member.email,
-          name: member.name,
-        }))
-    : [];
+  const options =
+    allTeamMembers?.map((member) => ({
+      value: member.id,
+      label: member.email,
+      name: member.name,
+    })) || [];
+
+  // Фільтрація за projectMembers
+  const filteredOptions = filterByProjectMembers
+    ? options.filter((option) => filterByProjectMembers.includes(option.value))
+    : options;
 
   const handleInputChange = (inputValue: string) => {
     setSearchQuery(inputValue);
@@ -75,12 +74,12 @@ const TeamMemberSelector: React.FC<TeamMemberSelectorProps> = ({
   };
 
   return (
-    <div className=" w-full">
+    <div className="w-full">
       <Select
         isMulti={isMulti}
         closeMenuOnSelect={!isMulti}
         components={animatedComponents}
-        options={options}
+        options={filteredOptions}
         value={selectedMembers}
         onInputChange={handleInputChange}
         isLoading={isSearching || isLoadingDefaultMembers}

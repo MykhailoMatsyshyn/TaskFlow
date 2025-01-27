@@ -19,9 +19,9 @@ const StatusPicker: React.FC<StatusPickerProps> = ({
   };
 
   const statusOptions = [
-    { value: "Planned", label: "Planned", color: "#8FA1D0" },
-    { value: "In Progress", label: "In Progress", color: "#E09CB5" },
-    { value: "Completed", label: "Completed", color: "#BEDBB0" },
+    { value: "planned", label: "Planned", color: "#8FA1D0" },
+    { value: "in-progress", label: "In Progress", color: "#E09CB5" },
+    { value: "completed", label: "Completed", color: "#BEDBB0" },
   ];
 
   return (

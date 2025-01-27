@@ -14,6 +14,7 @@ export const customSelectStyles: StylesConfig = {
     borderRadius: "6px",
     "::-webkit-scrollbar": {
       width: "6px",
+      height: "6px",
     },
     "::-webkit-scrollbar-thumb": {
       backgroundColor: "rgba(190, 219, 176, 0.5)",
@@ -39,6 +40,7 @@ export const customSelectStyles: StylesConfig = {
     minHeight: "49px",
     paddingLeft: "9px",
     cursor: "pointer",
+    fontSize: "12px",
   }),
   dropdownIndicator: (provided) => ({
     ...provided,

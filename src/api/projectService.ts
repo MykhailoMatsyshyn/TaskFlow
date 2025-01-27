@@ -2,6 +2,7 @@ import { handleRequest } from "./handleRequest";
 import { Project } from "../types/project";
 import axiosInstance from "./axiosInstance";
 import { kebabCase } from "lodash";
+import { ProjectFilters } from "../types/filters";
 
 export const getAllProjects = async (): Promise<Project[]> => {
   try {
@@ -26,9 +27,37 @@ export const deleteProject = async (projectId: number): Promise<void> => {
   }
 };
 
-export const getUserProjects = (userId: number) => {
-  return axiosInstance.get(`/projects?userId=${userId}`);
+export const getUserProjects = (
+  userId: number,
+  filters?: ProjectFilters
+): Promise<Project[]> => {
+  const query = new URLSearchParams();
+
+  query.append("userId", String(userId));
+
+  if (filters.status) {
+    query.append("status", filters.status);
+  }
+
+  if (filters.assignedMembers.length > 0) {
+    filters.assignedMembers.forEach((memberId) =>
+      query.append("assignedMembers_like", memberId.toString())
+    );
+  }
+
+  return axiosInstance
+    .get<Project[]>(`/projects?${query.toString()}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      throw new Error(
+        error.response?.data?.message || "Error fetching projects with filters"
+      );
+    });
 };
+
+// export const getUserProjects = (userId: number) => {
+//   return axiosInstance.get(`/projects?userId=${userId}`);
+// };
 
 export const getProjectById = (projectId: number): Promise<Project> => {
   return axiosInstance

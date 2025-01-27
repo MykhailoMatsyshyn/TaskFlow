@@ -1,29 +1,26 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { devtools } from "zustand/middleware";
-import { TaskFilters } from "../types/filters";
+import { ProjectFilters } from "../types/filters";
 
-type TaskFilterState = {
-  filters: TaskFilters;
+type ProjectFilterState = {
+  filters: ProjectFilters;
   setFilter: (
-    key: keyof TaskFilters,
+    key: keyof ProjectFilters,
     value: string | number[] | undefined
   ) => void;
   resetFilters: () => void;
 };
 
-const initialTaskFilters: TaskFilters = {
+const initialProjectFilters: ProjectFilters = {
   status: "",
-  priority: "all",
   assignedMembers: [],
-  startDate: "",
-  endDate: "",
 };
 
-const useTaskFilterStore = create<TaskFilterState>()(
+const useProjectFilterStore = create<ProjectFilterState>()(
   immer(
     devtools((set) => ({
-      filters: { ...initialTaskFilters },
+      filters: { ...initialProjectFilters },
 
       setFilter: (key, value) =>
         set((state) => {
@@ -36,11 +33,10 @@ const useTaskFilterStore = create<TaskFilterState>()(
 
       resetFilters: () =>
         set((state) => {
-          state.filters = { ...initialTaskFilters };
-          console.log(state.filters);
+          state.filters = { ...initialProjectFilters };
         }),
     }))
   )
 );
 
-export default useTaskFilterStore;
+export default useProjectFilterStore;

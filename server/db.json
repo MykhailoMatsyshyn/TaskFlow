@@ -140,7 +140,7 @@
         27,
         20
       ],
-      "status": "In Progress",
+      "status": "in-progress",
       "icon": "puzzle",
       "userId": 4,
       "slug": "e-commerce-platform-development",
@@ -182,62 +182,12 @@
       "id": 6
     },
     {
-      "title": "2 Platform Development",
-      "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
-      "startDate": "2025-01-12T22:00:00.000Z",
-      "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [
-        25
-      ],
-      "status": "In Progress",
-      "icon": "lightning",
-      "userId": 3,
-      "slug": "2-platform-development",
-      "columns": [
-        {
-          "id": "to-do",
-          "title": "To Do",
-          "tasks": [
-            22,
-            19,
-            18
-          ]
-        },
-        {
-          "id": "in-progress",
-          "title": "In Progress",
-          "tasks": [
-            15,
-            16,
-            17
-          ]
-        },
-        {
-          "id": "review",
-          "title": "Review",
-          "tasks": [
-            20,
-            23
-          ]
-        },
-        {
-          "id": "done",
-          "title": "Done",
-          "tasks": [
-            14,
-            21
-          ]
-        }
-      ],
-      "id": 7
-    },
-    {
       "title": "ккк",
       "description": "",
       "startDate": "2025-01-26T22:00:00.000Z",
       "endDate": "2025-01-30T22:00:00.000Z",
       "assignedMembers": [],
-      "status": "Planned",
+      "status": "planned",
       "icon": "palette",
       "userId": 4,
       "slug": "ккк",
@@ -300,7 +250,7 @@
     {
       "title": "Integration of Payment Gateway",
       "description": "Implement and test payment gateway integration.",
-      "assignedMember": 17,
+      "assignedMember": 20,
       "startDate": "2025-02-02T22:00:00.000Z",
       "endDate": "2025-03-06T22:00:00.000Z",
       "priority": "High",

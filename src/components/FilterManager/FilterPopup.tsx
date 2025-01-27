@@ -5,20 +5,22 @@ interface FilterPopupProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  className?: string;
 }
 
 const FilterPopup: React.FC<FilterPopupProps> = ({
   isOpen,
   onClose,
   children,
+  className = "",
 }) => {
   return (
     <div
-      className={`absolute top-12 right-0 w-[335px] bg-[#151515] py-4 px-5 rounded shadow-lg border border-[#BEDBB0] border-opacity-[50%] z-50 transition-all duration-300 transform ${
+      className={`absolute right-0 py-4 px-5 rounded shadow-lg bg-[#151515] border border-[#BEDBB0] border-opacity-[50%] z-50 transition-all duration-300 transform ${
         isOpen
           ? "opacity-100 scale-100 pointer-events-auto"
           : "opacity-0 scale-95 pointer-events-none"
-      }`}
+      } ${className}`}
     >
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-white font-semibold text-lg">Filters</h3>

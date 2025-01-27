@@ -7,6 +7,7 @@ import ProjectNavigationList from "./ProjectNavigationList";
 
 import { MdOutlineDashboard } from "react-icons/md";
 import { FaUsersCog } from "react-icons/fa";
+import ProjectFilterManager from "../FilterManager/ProjectFilterManager";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { currentUser } = useUserStore();
@@ -80,9 +81,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               )}
             </ul>
 
-            <p className="font-normal text-xs tracking-[-0.02em] text-white/50 mt-[40px]">
-              My boards
-            </p>
+            <div className="flex justify-between mt-[40px]">
+              <p className="font-normal text-xs tracking-[-0.02em] text-white/50">
+                My boards
+              </p>
+              <ProjectFilterManager />
+            </div>
             <hr className="border-white/10 mt-2" />
 
             {(currentUser?.role === "Admin" ||

@@ -10,7 +10,12 @@ export type UserFilters = {
 export type TaskFilters = {
   status: string;
   priority: "Without priority" | "Low" | "Medium" | "High" | "all";
-  assignedMember: number[];
+  assignedMembers: number[];
   startDate: string;
   endDate: string;
+};
+
+export type ProjectFilters = {
+  status: "Planned" | "In Progress" | "Completed" | "";
+  assignedMembers: number[];
 };

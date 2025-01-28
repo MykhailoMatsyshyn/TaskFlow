@@ -5,7 +5,7 @@ import AddTaskButton from "./AddTaskButton";
 import { CustomIcon } from "../CustomIcon/CustomIcon";
 import { useDeleteColumn } from "../../hooks/useDeleteColumn";
 import { useState } from "react";
-import CustomModal from "../CustomModal/CustomModal";
+import DeleteModal from "../Modals/DeleteModal";
 
 const Column = ({
   projectId,
@@ -17,15 +17,12 @@ const Column = ({
 }) => {
   const { mutate: deleteColumn } = useDeleteColumn();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
 
-  const openModal = (taskId: number) => {
-    setTaskToDelete(taskId);
+  const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setTaskToDelete(null);
     setIsModalOpen(false);
   };
 
@@ -67,7 +64,7 @@ const Column = ({
             className={`flex flex-col pr-[8px] mr-[-16px] overflow-y-auto overflow-x-hidden h-full custom-scrollbar`}
           >
             <div
-              className={`h-full w-[335px] relative ${
+              className={`w-[335px] relative ${
                 snapshot.isDraggingOver ? "droppable-hover" : ""
               }`}
             >
@@ -102,27 +99,13 @@ const Column = ({
         <AddTaskButton status={column.id} projectId={projectId} />
       </div>
 
-      <CustomModal
+      <DeleteModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        title="Confirm Deletion"
-      >
-        <p>Are you sure you want to delete this column?</p>
-        <div className="flex justify-end gap-4 mt-4">
-          <button
-            onClick={closeModal}
-            className="px-4 py-2 bg-gray-500 text-white rounded"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleDeleteConfirm}
-            className="px-4 py-2 bg-red-600 text-white rounded"
-          >
-            Delete
-          </button>
-        </div>
-      </CustomModal>
+        onConfirm={handleDeleteConfirm}
+        message={`Are you sure you want to delete the column "${column.title}"?`}
+        extraMessage={`(!) All tasks in this column will also be deleted permanently.`}
+      />
     </div>
   );
 };

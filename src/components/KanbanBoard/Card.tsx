@@ -4,6 +4,7 @@ import TaskForm from "../Layout/ProjectForm/TaskForm";
 import { useDeleteTask } from "../../hooks/useDeleteTask";
 import { useUpdateTask } from "../../hooks/useUpdateTask";
 import { CustomIcon } from "../CustomIcon/CustomIcon";
+import DeleteModal from "../Modals/DeleteModal";
 
 const Card = ({ task }) => {
   const { mutate: deleteTask } = useDeleteTask();
@@ -178,27 +179,12 @@ const Card = ({ task }) => {
           </div>
         </div>
 
-        <CustomModal
+        <DeleteModal
           isOpen={isDeleteModalOpen}
           onClose={closeDeleteModal}
-          title="Confirm Deletion"
-        >
-          <p>Are you sure you want to delete this task?</p>
-          <div className="flex justify-end gap-4 mt-4">
-            <button
-              onClick={closeDeleteModal}
-              className="px-4 py-2 bg-gray-500 text-white rounded"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleDeleteConfirm}
-              className="px-4 py-2 bg-red-600 text-white rounded"
-            >
-              Delete
-            </button>
-          </div>
-        </CustomModal>
+          onConfirm={handleDeleteConfirm}
+          message="Are you sure you want to delete this task?"
+        />
 
         <CustomModal
           isOpen={isEditModalOpen}

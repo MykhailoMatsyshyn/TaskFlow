@@ -19,7 +19,6 @@ const CreateBoard = () => {
   const handleCreateProject = (projectData: any) => {
     createProject(projectData, {
       onSuccess: () => {
-        console.log("Project created successfully");
         handleCloseModal();
       },
       onError: (error) => {

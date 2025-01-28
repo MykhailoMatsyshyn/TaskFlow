@@ -18,8 +18,6 @@ const AddTaskButton = ({ status, projectId }) => {
   };
 
   const handleCreateTask = (taskData) => {
-    // console.log("taskData", taskData, "column", status);
-
     const newTaskData = {
       ...taskData,
       status,

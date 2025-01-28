@@ -10,6 +10,8 @@ import { useUpdateTask } from "../../hooks/useUpdateTask";
 import SwitchToggle from "../../components/SwitchToggle/SwitchToggle";
 import FilterManager from "../../components/FilterManager/FilterManager";
 import useTaskFilterStore from "../../stores/TaskFilterStore";
+import { useQueryClient } from "@tanstack/react-query";
+import { Task } from "../../types/task";
 
 const ProjectPage = () => {
   const { slug } = useParams();
@@ -49,11 +51,7 @@ const ProjectPage = () => {
 
   const handleColumnDragEnd = (updatedColumns) => {
     setColumns(updatedColumns);
-    updateColumns(updatedColumns, {
-      onError: () => {
-        toast.error("Failed to update columns. Please try again.");
-      },
-    });
+    updateColumns(updatedColumns);
   };
 
   const handleTaskUpdate = (taskId, data) => {

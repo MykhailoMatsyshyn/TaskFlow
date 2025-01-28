@@ -1,10 +1,11 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { keepPreviousData, useQuery, useMutation } from "@tanstack/react-query";
 import { deleteUser, getUsers } from "../api/authService";
 // import { User } from "../types/user";
 import { useQueryClient } from "@tanstack/react-query";
 import { UserFilters } from "../types/filters";
 import { getAllTasks, updateTask } from "../api/taskService";
 import { getAllProjects, updateProject } from "../api/projectService";
+import { toast } from "react-toastify";
 
 const useFetchUsers = (filters: UserFilters) => {
   return useQuery({
@@ -15,6 +16,7 @@ const useFetchUsers = (filters: UserFilters) => {
       totalCount: data.totalCount,
     }),
     staleTime: 30000,
+    placeholderData: keepPreviousData,
   });
 };
 
@@ -45,25 +47,19 @@ export const useDeleteUser = () => {
 
   return useMutation({
     mutationFn: async (userId: number) => {
-      // Видаляємо користувача
+      // Delete the user
       await deleteUser(userId);
 
-      // Отримуємо всі завдання
+      // Get all tasks and unassign the user from them
       const tasks = await getAllTasks();
-
-      // Оновлюємо завдання, де користувач призначений
       await Promise.all(
         tasks
           .filter((task) => task.assignedMember === userId)
-          .map(
-            (task) => updateTask(task.id, { assignedMember: "" }) // Видаляємо призначення
-          )
+          .map((task) => updateTask(task.id, { assignedMember: "" }))
       );
 
-      // Отримуємо всі проєкти
+      // Get all projects and remove the user from assigned members
       const projects = await getAllProjects();
-
-      // Оновлюємо проєкти, видаляючи користувача з assignedMembers
       await Promise.all(
         projects.map((project) => {
           const updatedMembers = project.assignedMembers.filter(
@@ -74,15 +70,20 @@ export const useDeleteUser = () => {
               assignedMembers: updatedMembers,
             });
           }
-          return Promise.resolve(); // Якщо оновлення не потрібне
+          return Promise.resolve();
         })
       );
     },
     onSuccess: () => {
-      // Інвалідуємо кеш, щоб оновити дані на сторінці
+      // Invalidate caches to update UI
       queryClient.invalidateQueries(["users"]);
       queryClient.invalidateQueries(["tasks"]);
       queryClient.invalidateQueries(["projects"]);
+      toast.success("User deleted successfully! ✅");
+    },
+
+    onError: () => {
+      toast.error("Failed to delete user. Please try again.");
     },
   });
 };

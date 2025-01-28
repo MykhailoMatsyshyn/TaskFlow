@@ -17,6 +17,11 @@ export const createProject = (projectData: Project): Promise<Project> => {
   return handleRequest<Project, Project>("/projects", projectData);
 };
 
+/**
+ * Deletes a project by its ID.
+ * @param projectId - The ID of the project to be deleted.
+ * @throws Error if the deletion request fails.
+ */
 export const deleteProject = async (projectId: number): Promise<void> => {
   try {
     await axiosInstance.delete(`/projects/${projectId}`);
@@ -178,22 +183,40 @@ export const addColumnToProject = async (
   }
 };
 
+/**
+ * Deletes a column from the project and also removes all tasks assigned to that column.
+ * @param projectId - The ID of the project.
+ * @param columnId - The ID of the column to be deleted.
+ * @returns Updated project data after column removal.
+ */
 export const deleteColumnFromProject = async (
   projectId: number,
   columnId: string
 ): Promise<Project> => {
   try {
-    // Step 1: Отримуємо проект
+    // Fetch the project data
     const { data: project } = await axiosInstance.get<Project>(
       `/projects/${projectId}`
     );
 
-    // Step 2: Фільтруємо колонки, видаляючи потрібну
+    // Fetch all tasks associated with this column (status)
+    const { data: tasksToDelete } = await axiosInstance.get(
+      `/tasks?projectId=${projectId}&status=${columnId}`
+    );
+
+    // Delete each task individually
+    await Promise.all(
+      tasksToDelete.map((task: { id: number }) =>
+        axiosInstance.delete(`/tasks/${task.id}`)
+      )
+    );
+
+    // Remove the column from the project
     const updatedColumns = project.columns.filter(
       (column) => column.id !== columnId
     );
 
-    // Step 3: Оновлюємо проект на сервері
+    // Update the project with new columns
     const { data: updatedProject } = await axiosInstance.patch<Project>(
       `/projects/${projectId}`,
       { columns: updatedColumns }

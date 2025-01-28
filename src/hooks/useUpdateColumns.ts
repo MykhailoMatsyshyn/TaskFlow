@@ -17,10 +17,7 @@ export const useUpdateColumns = (projectId?: number) => {
         "project",
         projectId,
       ]);
-
-      console.log("previousProject", previousProject);
-
-      console.log("newColumns", newColumns);
+      k;
 
       // Оптимістично оновити локальні дані
       if (previousProject) {

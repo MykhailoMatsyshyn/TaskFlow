@@ -3,16 +3,19 @@ import { Tooltip } from "react-tippy";
 import { CustomIcon } from "../CustomIcon/CustomIcon";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { kebabCase } from "lodash";
-import EllipsisText from "react-ellipsis-text";
 import "react-tippy/dist/tippy.css";
 import useUserStore from "../../stores/userStore";
 import CustomModal from "../CustomModal/CustomModal";
 import { useDeleteProject } from "../../hooks/useDeleteProject";
 import ProjectForm from "./ProjectForm/ProjectForm";
 import { useUpdateProject } from "../../hooks/useUpdateProject";
+import DeleteModal from "../Modals/DeleteModal";
 
+/**
+ * Component representing a single project navigation item.
+ */
 const ProjectNavigationItem = ({ project }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false); // Стан модалки
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const location = useLocation();
@@ -22,35 +25,37 @@ const ProjectNavigationItem = ({ project }) => {
   const { mutate: updateProject } = useUpdateProject();
   const navigate = useNavigate();
 
-  console.log("project", project);
-  console.log("selectedProject", selectedProject);
-
   const role = currentUser?.role;
 
+  // Check if the current project is active
   const isActive =
     location.pathname ===
     `/dashboard/${encodeURIComponent(kebabCase(project.title))}`;
 
+  // Function to check if the user can edit or delete the project
   const canEditOrDelete = (role) =>
     role === "Admin" || role === "Project Manager";
 
+  // Modal controls
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
   const openEditModal = (project) => {
     setSelectedProject(project);
     setEditModalOpen(true);
   };
-
   const closeEditModal = () => {
     setSelectedProject(null);
     setEditModalOpen(false);
   };
 
+  // Handle project deletion
   const handleDeleteConfirm = () => {
-    deleteProject(project.id);
-    console.log("navigate here");
-    navigate("/dashboard");
+    deleteProject(project.id, {
+      onSuccess: () => {
+        // Redirect after successful deletion
+        navigate("/dashboard");
+      },
+    });
     closeModal();
   };
 
@@ -65,18 +70,12 @@ const ProjectNavigationItem = ({ project }) => {
       data: updatedData,
     };
 
-    console.log(dataWithId);
-
     updateProject(dataWithId, {
       onSuccess: (updatedProject) => {
-        console.log("Project updated successfully:", updatedProject);
-
-        // Перевіряємо, чи змінився slug (або title)
         const newSlug = kebabCase(updatedProject.title);
         const currentSlug = kebabCase(selectedProject.title);
 
         if (newSlug !== currentSlug) {
-          // Перенаправлення на новий URL
           navigate(`/dashboard/${encodeURIComponent(newSlug)}`);
         }
 
@@ -111,21 +110,38 @@ const ProjectNavigationItem = ({ project }) => {
               className={`mr-2`}
               color={isActive ? "#fff" : "rgba(255, 255, 255, 0.5)"}
             />
-            <Tooltip
-              title={project.title.length > 18 ? project.title : " "}
-              theme={theme === "dark" ? "dark" : "light"}
-              position="top"
-              animation="fade"
-              trigger="mouseenter"
-            >
-              <EllipsisText
-                text={project.title}
-                length={18}
+            {project.title.length > 18 ? (
+              <Tooltip
+                title={project.title}
+                // theme={theme === "dark" ? "dark" : "light"}
+                // position="right"
+                // animation="fade"
+                // trigger="mouseenter"
+                // trigger="click"
+              >
+                <p
+                  className={`text-sm font-medium tracking-[-0.02em] block truncate ${
+                    isActive ? "text-white" : "text-white/50"
+                  }`}
+                  style={{
+                    maxWidth: "150px",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {project.title}
+                </p>
+              </Tooltip>
+            ) : (
+              <span
                 className={`text-sm font-medium tracking-[-0.02em] ${
                   isActive ? "text-white" : "text-white/50"
                 }`}
-              />
-            </Tooltip>
+              >
+                {project.title}
+              </span>
+            )}
           </div>
           {isActive && canEditOrDelete(role) && (
             <div className="flex gap-2">
@@ -149,27 +165,12 @@ const ProjectNavigationItem = ({ project }) => {
       </Link>
 
       {/* Модалка підтвердження видалення */}
-      <CustomModal
+      <DeleteModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        title="Confirm Deletion"
-      >
-        <p>Are you sure you want to delete the project "{project.title}"?</p>
-        <div className="flex justify-end gap-4 mt-4">
-          <button
-            onClick={closeModal}
-            className="px-4 py-2 bg-gray-500 text-white rounded"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleDeleteConfirm}
-            className="px-4 py-2 bg-red-600 text-white rounded"
-          >
-            Delete
-          </button>
-        </div>
-      </CustomModal>
+        onConfirm={handleDeleteConfirm}
+        message={`Are you sure you want to delete the project "${project.title}"?`}
+      />
 
       {/* Модалка редагування */}
       {isEditModalOpen && (

@@ -11,8 +11,6 @@ export type TaskFilters = {
   status: string;
   priority: "Without priority" | "Low" | "Medium" | "High" | "all";
   assignedMembers: number[];
-  startDate: string;
-  endDate: string;
 };
 
 export type ProjectFilters = {

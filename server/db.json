@@ -104,27 +104,6 @@
       "name": "TestUser",
       "role": "Project Manager",
       "id": 26
-    },
-    {
-      "email": "Userok@email.com",
-      "password": "$2a$10$7eACWvmtyxyB0rO9XqG7ieP1d3DhCn3kYsWgP4D25ySH5OA2pQKuW",
-      "name": "Userok",
-      "role": "Team Member",
-      "id": 27
-    },
-    {
-      "email": "Userok2@email.com",
-      "password": "$2a$10$fFL7VPdan87pfJ1KGxkeO./wy2YinPzMF8LzskOydWYl8.RxXYQLm",
-      "name": "Userok2",
-      "role": "Project Manager",
-      "id": 28
-    },
-    {
-      "email": "testik@testik",
-      "password": "$2a$10$UGo.EIvYIS.kyhydOD5q/OsANfnP6917yqD.seo9A3n9S0I3FvwzO",
-      "name": "testik",
-      "role": "Admin",
-      "id": 29
     }
   ],
   "projects": [
@@ -137,7 +116,6 @@
         25,
         12,
         17,
-        27,
         20
       ],
       "status": "in-progress",
@@ -149,68 +127,93 @@
           "id": "to-do",
           "title": "To Do",
           "tasks": [
-            15,
-            22,
-            17,
-            19
+            14,
+            20
           ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
           "tasks": [
-            18
-          ]
-        },
-        {
-          "id": "review",
-          "title": "Review",
-          "tasks": [
-            20,
-            23
+            17,
+            22
           ]
         },
         {
           "id": "done",
           "title": "Done",
           "tasks": [
-            14,
-            21
+            15,
+            19,
+            23
+          ]
+        },
+        {
+          "id": "reviw",
+          "title": "Reviw",
+          "tasks": [
+            18
           ]
         }
       ],
       "id": 6
     },
     {
-      "title": "ккк",
-      "description": "",
-      "startDate": "2025-01-26T22:00:00.000Z",
-      "endDate": "2025-01-30T22:00:00.000Z",
-      "assignedMembers": [],
-      "status": "planned",
-      "icon": "palette",
+      "title": "Marketing Campaign Automation",
+      "description": "Develop an automated marketing campaign system including email automation, analytics tracking, and customer segmentation.",
+      "startDate": "2025-02-01T00:00:00.000Z",
+      "endDate": "2025-03-20T23:59:59.000Z",
+      "assignedMembers": [
+        12,
+        15,
+        18,
+        20
+      ],
+      "status": "in-progress",
+      "icon": "lightning",
       "userId": 4,
-      "slug": "ккк",
+      "slug": "marketing-campaign-automation",
       "columns": [
         {
           "id": "to-do",
           "title": "To Do",
           "tasks": [
-            24
+            30,
+            31,
+            32,
+            33,
+            34
           ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": []
+          "tasks": [
+            35,
+            36,
+            37,
+            38
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": []
+          "tasks": [
+            39,
+            40
+          ]
+        },
+        {
+          "id": "blocked",
+          "title": "Blocked",
+          "tasks": [
+            41,
+            42,
+            43
+          ]
         }
       ],
-      "id": 9
+      "id": 7
     }
   ],
   "tasks": [
@@ -221,7 +224,7 @@
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-01-14T22:00:00.000Z",
       "priority": "Medium",
-      "status": "done",
+      "status": "to-do",
       "projectId": 6,
       "id": 14
     },
@@ -232,18 +235,18 @@
       "startDate": "2025-01-20T22:21:00.000Z",
       "endDate": "2025-01-22T22:00:00.000Z",
       "priority": "High",
-      "status": "to-do",
+      "status": "done",
       "projectId": 6,
       "id": 15
     },
     {
       "title": "Frontend Development: Product Page",
       "description": "Create a responsive product page layout and integrate with backend APIs.",
-      "assignedMember": 27,
+      "assignedMember": 20,
       "startDate": "2025-01-26T22:00:00.000Z",
       "endDate": "2025-02-01T22:00:00.000Z",
       "priority": "Medium",
-      "status": "to-do",
+      "status": "in-progress",
       "projectId": 6,
       "id": 17
     },
@@ -254,7 +257,7 @@
       "startDate": "2025-02-02T22:00:00.000Z",
       "endDate": "2025-03-06T22:00:00.000Z",
       "priority": "High",
-      "status": "in-progress",
+      "status": "review",
       "projectId": 6,
       "id": 18
     },
@@ -265,7 +268,7 @@
       "startDate": "2025-02-09T22:00:00.000Z",
       "endDate": "2025-03-22T22:00:00.000Z",
       "priority": "Low",
-      "status": "to-do",
+      "status": "done",
       "projectId": 6,
       "id": 19
     },
@@ -277,18 +280,7 @@
       "startDate": "2025-02-01T00:00:00.000Z",
       "endDate": "2025-02-04T13:00:59.000Z",
       "priority": "Low",
-      "status": "review",
-      "projectId": 6
-    },
-    {
-      "id": 21,
-      "title": "Bug Fixing",
-      "description": "Fix critical bugs identified during testing.",
-      "assignedMember": 12,
-      "startDate": "2025-02-05T00:00:00.000Z",
-      "endDate": "2025-02-06T23:59:59.000Z",
-      "priority": "Without priority",
-      "status": "done",
+      "status": "to-do",
       "projectId": 6
     },
     {
@@ -299,7 +291,7 @@
       "startDate": "2025-02-10T00:00:00.000Z",
       "endDate": "2025-02-20T23:59:59.000Z",
       "priority": "Medium",
-      "status": "to-do",
+      "status": "in-progress",
       "projectId": 6
     },
     {
@@ -310,8 +302,162 @@
       "startDate": "2025-01-16T00:00:00.000Z",
       "endDate": "2025-01-19T23:59:59.000Z",
       "priority": "High",
-      "status": "review",
+      "status": "done",
       "projectId": 6
+    },
+    {
+      "id": 30,
+      "title": "Define Campaign Goals",
+      "description": "Establish clear objectives and KPIs for the marketing campaign.",
+      "assignedMember": 12,
+      "startDate": "2025-02-02T00:00:00.000Z",
+      "endDate": "2025-02-04T23:59:59.000Z",
+      "priority": "High",
+      "status": "to-do",
+      "projectId": 7
+    },
+    {
+      "id": 31,
+      "title": "Audience Segmentation",
+      "description": "Identify target audiences and segment them based on demographics and behavior.",
+      "assignedMember": 15,
+      "startDate": "2025-02-05T00:00:00.000Z",
+      "endDate": "2025-02-07T23:59:59.000Z",
+      "priority": "Medium",
+      "status": "to-do",
+      "projectId": 7
+    },
+    {
+      "id": 32,
+      "title": "Email Content Creation",
+      "description": "Draft and design engaging email templates for the campaign.",
+      "assignedMember": 18,
+      "startDate": "2025-02-06T00:00:00.000Z",
+      "endDate": "2025-02-10T23:59:59.000Z",
+      "priority": "High",
+      "status": "to-do",
+      "projectId": 7
+    },
+    {
+      "id": 33,
+      "title": "Landing Page Development",
+      "description": "Create and optimize landing pages for the campaign.",
+      "assignedMember": 20,
+      "startDate": "2025-02-08T00:00:00.000Z",
+      "endDate": "2025-02-12T23:59:59.000Z",
+      "priority": "High",
+      "status": "to-do",
+      "projectId": 7
+    },
+    {
+      "id": 34,
+      "title": "Setup A/B Testing",
+      "description": "Plan and implement A/B tests for email subject lines and CTA buttons.",
+      "assignedMember": "",
+      "startDate": "2025-02-10T00:00:00.000Z",
+      "endDate": "2025-02-14T23:59:59.000Z",
+      "priority": "Medium",
+      "status": "to-do",
+      "projectId": 7
+    },
+    {
+      "id": 35,
+      "title": "Develop Automation Workflow",
+      "description": "Create an automated email workflow based on user actions.",
+      "assignedMember": 12,
+      "startDate": "2025-02-12T00:00:00.000Z",
+      "endDate": "2025-02-15T23:59:59.000Z",
+      "priority": "High",
+      "status": "in-progress",
+      "projectId": 7
+    },
+    {
+      "id": 36,
+      "title": "Integrate with CRM",
+      "description": "Sync customer interactions with the CRM system.",
+      "assignedMember": 15,
+      "startDate": "2025-02-14T00:00:00.000Z",
+      "endDate": "2025-02-17T23:59:59.000Z",
+      "priority": "High",
+      "status": "in-progress",
+      "projectId": 7
+    },
+    {
+      "id": 37,
+      "title": "Run Initial Campaign",
+      "description": "Launch the first phase of the email campaign and collect user data.",
+      "assignedMember": 18,
+      "startDate": "2025-02-16T00:00:00.000Z",
+      "endDate": "2025-02-19T23:59:59.000Z",
+      "priority": "Medium",
+      "status": "in-progress",
+      "projectId": 7
+    },
+    {
+      "id": 38,
+      "title": "Analyze Engagement Metrics",
+      "description": "Monitor open rates, click-through rates, and conversions.",
+      "assignedMember": 20,
+      "startDate": "2025-02-18T00:00:00.000Z",
+      "endDate": "2025-02-21T23:59:59.000Z",
+      "priority": "Medium",
+      "status": "in-progress",
+      "projectId": 7
+    },
+    {
+      "id": 39,
+      "title": "Optimize Campaign Strategy",
+      "description": "Make data-driven optimizations based on early campaign results.",
+      "assignedMember": "",
+      "startDate": "2025-02-22T00:00:00.000Z",
+      "endDate": "2025-02-26T23:59:59.000Z",
+      "priority": "High",
+      "status": "done",
+      "projectId": 7
+    },
+    {
+      "id": 40,
+      "title": "Final Reporting",
+      "description": "Compile a final campaign performance report and insights.",
+      "assignedMember": 12,
+      "startDate": "2025-02-28T00:00:00.000Z",
+      "endDate": "2025-03-05T23:59:59.000Z",
+      "priority": "Low",
+      "status": "done",
+      "projectId": 7
+    },
+    {
+      "id": 41,
+      "title": "Resolve Email Deliverability Issues",
+      "description": "Fix issues related to spam filters and email bounces.",
+      "assignedMember": 15,
+      "startDate": "2025-02-14T00:00:00.000Z",
+      "endDate": "2025-02-17T23:59:59.000Z",
+      "priority": "High",
+      "status": "blocked",
+      "projectId": 7
+    },
+    {
+      "id": 42,
+      "title": "Fix Landing Page Load Time",
+      "description": "Optimize landing pages to reduce load times and improve performance.",
+      "assignedMember": 18,
+      "startDate": "2025-02-15T00:00:00.000Z",
+      "endDate": "2025-02-18T23:59:59.000Z",
+      "priority": "Medium",
+      "status": "blocked",
+      "projectId": 7
+    },
+    {
+      "id": 43,
+      "title": "Update Compliance Policies",
+      "description": "Ensure GDPR and CAN-SPAM compliance for the campaign.",
+      "assignedMember": 20,
+      "startDate": "2025-02-16T00:00:00.000Z",
+      "endDate": "2025-02-19T23:59:59.000Z",
+      "priority": "Low",
+      "status": "blocked",
+      "projectId": 7
     }
   ]
 }

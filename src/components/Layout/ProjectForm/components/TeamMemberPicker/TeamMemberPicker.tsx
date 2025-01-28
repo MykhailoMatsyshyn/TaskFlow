@@ -30,7 +30,6 @@ const TeamMemberSelector: React.FC<TeamMemberSelectorProps> = ({
     { value: string; label: string; name: string }[]
   >([]);
 
-  // Синхронізація selectedMembers з defaultMembers
   useEffect(() => {
     if (defaultMembers?.length && loadedMembers) {
       const formattedMembers = loadedMembers.map((member) => ({
@@ -51,7 +50,6 @@ const TeamMemberSelector: React.FC<TeamMemberSelectorProps> = ({
       name: member.name,
     })) || [];
 
-  // Фільтрація за projectMembers
   const filteredOptions = filterByProjectMembers
     ? options.filter((option) => filterByProjectMembers.includes(option.value))
     : options;

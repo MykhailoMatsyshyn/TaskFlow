@@ -21,8 +21,6 @@ const EditUserForm: React.FC<EditUserFormProps> = ({
     defaultValues,
   });
 
-  console.log("defaultValues", defaultValues);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <InputField

@@ -1,4 +1,8 @@
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useQuery,
+  UseQueryResult,
+} from "@tanstack/react-query";
 import { getTasksByProject } from "../api/taskService";
 import { Task } from "../types/task";
 import { TaskFilters } from "../types/filters";
@@ -11,7 +15,9 @@ export const useTasksByProject = (
     queryKey: ["tasks", projectId, filters],
     queryFn: () => getTasksByProject(projectId, filters),
     enabled: !!projectId,
-    staleTime: 5000,
+    // staleTime: 5000,
+    placeholderData: keepPreviousData,
+    refetchOnWindowFocus: false,
   });
 };
 

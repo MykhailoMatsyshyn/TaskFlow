@@ -25,7 +25,6 @@ const CreateUserForm = ({
 
   // Form submission handler
   const handleFormSubmit = (data: RegisterUserData) => {
-    console.log("Form Data:", data); // Output data to the console
     onSubmit(data); // Call parent-provided onSubmit handler
     reset(); // Reset form fields after submission
   };

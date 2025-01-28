@@ -13,8 +13,6 @@ const FilterIcon = () => {
       key !== "pageSize"
   );
 
-  console.log(areFiltersActive);
-
   return (
     <div>
       <button

@@ -46,7 +46,7 @@ const KanbanBoard = ({
           return col;
         });
         onColumnUpdate(updatedColumns);
-        onTaskUpdate(movedTask.id, { status: destinationColumn.id });
+        onTaskUpdate(movedTask, { status: destinationColumn.id });
       }
     }
   };
@@ -77,9 +77,15 @@ const KanbanBoard = ({
                       <Column
                         projectId={projectId}
                         column={column}
-                        tasks={tasks.filter((task) =>
-                          column.tasks.includes(task.id)
-                        )}
+                        tasks={
+                          Array.isArray(column.tasks)
+                            ? column.tasks
+                                .map((taskId) =>
+                                  tasks.find((task) => task.id === taskId)
+                                )
+                                .filter(Boolean) // Фільтруємо null значення
+                            : []
+                        }
                       />
                     </div>
                   )}

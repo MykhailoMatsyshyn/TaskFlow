@@ -13,9 +13,6 @@ const AddColumnButton = ({
 }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
-  console.log("AddColumnButton", projectId);
-  console.log("AddColumnButton projectId", columns);
-
   const openModal = () => {
     setModalOpen(true);
   };

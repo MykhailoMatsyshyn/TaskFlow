@@ -40,8 +40,6 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
   const { currentUser } = useAuth();
   const { data: projects, isLoading } = useFetchUserProjects(currentUser?.id);
 
-  console.log("projects:", projects);
-
   const schema = yup.object().shape({
     title: yup
       .string()
@@ -51,7 +49,6 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
         "Title must be unique",
         (value) =>
           !projects?.data.some((project) => {
-            console.log("project", project);
             // project.title.toLowerCase() === value?.toLowerCase() &&
             //   project.id !== initialData?.id
           })

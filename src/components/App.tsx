@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import UserManagementPage from "../pages/UserManagementPage/UserManagementPage";
 import Modal from "react-modal";
 import MainDashboardPage from "../pages/MainDashboardPage/MainDashboardPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 Modal.setAppElement("#root");
 
@@ -91,6 +93,8 @@ export default function App() {
           />
         </Routes>
       </Suspense>
+
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }

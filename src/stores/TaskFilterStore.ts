@@ -37,7 +37,6 @@ const useTaskFilterStore = create<TaskFilterState>()(
       resetFilters: () =>
         set((state) => {
           state.filters = { ...initialTaskFilters };
-          console.log(state.filters);
         }),
     }))
   )

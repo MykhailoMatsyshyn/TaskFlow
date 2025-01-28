@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteColumnFromProject } from "../api/projectService";
+import { toast } from "react-toastify";
 
 export const useDeleteColumn = () => {
   const queryClient = useQueryClient();
@@ -12,11 +13,18 @@ export const useDeleteColumn = () => {
       projectId: number;
       columnId: string;
     }) => deleteColumnFromProject(projectId, columnId),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["project"]); // Інвалідуємо кеш проекту
+    onSuccess: (_, { columnId }) => {
+      // Invalidate project and tasks cache to refetch updated data
+      queryClient.invalidateQueries(["project"]);
+      queryClient.invalidateQueries(["tasks"]);
+
+      toast.success(
+        `Column "${columnId}" and its tasks were deleted successfully.`
+      );
     },
+
     onError: (error: any) => {
-      console.error("Error deleting column:", error.message);
+      toast.error("Failed to delete column and its tasks. Please try again.");
     },
   });
 };

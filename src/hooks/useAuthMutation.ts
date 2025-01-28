@@ -35,11 +35,6 @@ const useAuthMutation = (type: AuthType) => {
       if (type === "register") {
         queryClient.invalidateQueries(["users"]);
       }
-
-      console.log(
-        `${type === "register" ? "Registered" : "Logged in"} successfully:`,
-        data
-      );
     },
     onError: (error: Error) => {
       console.error(

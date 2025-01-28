@@ -52,16 +52,15 @@ const CustomModal: React.FC<CustomModalProps> = ({
         </button> */}
         {title && <h2 className="custom-modal__title">{title}</h2>}
 
-        <div
+        {/* <div
           className="custom-modal__content mr-[-19px] pr-[11px] custom-scrollbar font-medium text-sm tracking-[-0.02em] text-white"
           style={{
             overflowY: "auto",
             maxHeight: "calc(80vh - 40px - 20px)",
             // paddingBottom: "20px",
           }}
-        >
-          {children}
-        </div>
+        > */}
+        <div className=" text-white">{children}</div>
       </div>
     </Modal>
   );

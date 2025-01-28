@@ -18,8 +18,6 @@ const ProjectNavigationList = () => {
   const ref = useRef(null);
   const { onMouseDown } = useDraggableScroll(ref, { direction: "vertical" });
 
-  console.log("ProjectNavigationList projects:", projects);
-
   if (isLoading) return <p>Loading...</p>;
   if (isError || !projects) return <p>Error loading projects</p>;
 

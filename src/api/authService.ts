@@ -67,15 +67,18 @@ export const getUsers = (
     });
 };
 
-export const deleteUser = (userId: number): Promise<void> => {
-  return axiosInstance
-    .delete(`/users/${userId}`)
-    .then(() => {
-      console.log(`User with ID ${userId} has been deleted.`);
-    })
-    .catch((error) => {
-      throw new Error(error.response?.data?.message || "Error deleting user");
-    });
+/**
+ * Deletes a user by their ID from the backend.
+ * @param {number} userId - The ID of the user to be deleted.
+ * @returns {Promise<void>} - Resolves when the user is successfully deleted.
+ * @throws {Error} - If the deletion fails, throws an error with the response message.
+ */
+export const deleteUser = async (userId: number): Promise<void> => {
+  try {
+    await axiosInstance.delete(`/users/${userId}`);
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Error deleting user");
+  }
 };
 
 export const updateUser = async (

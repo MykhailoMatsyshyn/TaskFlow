@@ -33,13 +33,6 @@ export const getTasksByProject = (
     );
   }
 
-  if (filters.startDate) {
-    query.append("startDate", filters.startDate);
-  }
-  if (filters.endDate) {
-    query.append("endDate", filters.endDate);
-  }
-
   return axiosInstance
     .get<Task[]>(`/tasks?${query.toString()}`)
     .then((response) => response.data)

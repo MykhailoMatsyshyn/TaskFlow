@@ -13,6 +13,7 @@ import { RegisterUserData } from "../../types/auth";
 import CreateUserForm from "../../components/CreateUserForm";
 import useAuthMutation from "../../hooks/useAuthMutation";
 import { useUpdateUser } from "../../hooks/useUpdateUser";
+import DeleteModal from "../../components/Modals/DeleteModal";
 
 const UserManagementPage = () => {
   const { filters } = useFilterStore();
@@ -164,30 +165,14 @@ const UserManagementPage = () => {
         <CreateUserForm onSubmit={handleCreateUserSubmit} />
       </CustomModal>
 
-      <CustomModal
+      <DeleteModal
         isOpen={isModalOpen}
         onClose={cancelDelete}
-        title="Confirm Deletion"
-      >
-        <p>
-          Are you sure you want to delete{" "}
-          <span className="font-bold">{userNameToDelete}</span>?
-        </p>
-        <div className="modal-buttons">
-          <button
-            className="bg-[#E85050] text-white px-4 py-2 rounded mr-2"
-            onClick={confirmDelete}
-          >
-            Yes
-          </button>
-          <button
-            className="bg-gray-500 text-white px-4 py-2 rounded"
-            onClick={cancelDelete}
-          >
-            No
-          </button>
-        </div>
-      </CustomModal>
+        onConfirm={confirmDelete}
+        message={`Are you sure you want to delete ${userNameToDelete}?`}
+        confirmText="Yes"
+        cancelText="No"
+      />
 
       <CustomModal
         isOpen={isEditModalOpen}

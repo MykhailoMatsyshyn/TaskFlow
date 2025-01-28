@@ -112,7 +112,12 @@
       "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [25, 12, 17, 20],
+      "assignedMembers": [
+        25,
+        12,
+        17,
+        20
+      ],
       "status": "in-progress",
       "icon": "puzzle",
       "userId": 4,
@@ -121,32 +126,93 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [14, 20]
+          "tasks": [
+            14,
+            20
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [17, 22]
+          "tasks": [
+            17,
+            22
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [15, 19, 23]
+          "tasks": [
+            15,
+            19,
+            23
+          ]
         },
         {
           "id": "reviw",
           "title": "Reviw",
-          "tasks": [18]
+          "tasks": [
+            18
+          ]
         }
       ],
       "id": 6
+    },
+    {
+      "title": "Cloud-Based NLP Processing Platform",
+      "description": "Development of a cloud-based natural language processing (NLP) platform for automated text analysis. The platform will support entity recognition, sentiment analysis, topic modeling, and multi-language support.",
+      "startDate": "2024-09-01T08:00:00.000Z",
+      "endDate": "2025-01-25T18:00:00.000Z",
+      "assignedMembers": [
+        6,
+        8,
+        10,
+        12,
+        15,
+        18
+      ],
+      "status": "completed",
+      "icon": "container",
+      "userId": 4,
+      "slug": "cloud-based-nlp-processing-platform",
+      "columns": [
+        {
+          "id": "to-do",
+          "title": "To Do",
+          "tasks": []
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress",
+          "tasks": []
+        },
+        {
+          "id": "done",
+          "title": "Done",
+          "tasks": [
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76
+          ]
+        }
+      ],
+      "id": 9
     },
     {
       "title": "Marketing Campaign Automation",
       "description": "Develop an automated marketing campaign system including email automation, analytics tracking, and customer segmentation.",
       "startDate": "2025-02-01T00:00:00.000Z",
       "endDate": "2025-03-20T23:59:59.000Z",
-      "assignedMembers": [12, 15, 18, 20],
+      "assignedMembers": [
+        12,
+        15,
+        18,
+        20
+      ],
       "status": "in-progress",
       "icon": "lightning",
       "userId": 4,
@@ -155,22 +221,40 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [30, 31, 32, 33, 34]
+          "tasks": [
+            30,
+            31,
+            32,
+            33,
+            34
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [35, 36, 37, 38]
+          "tasks": [
+            35,
+            36,
+            37,
+            38
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [39, 40]
+          "tasks": [
+            39,
+            40
+          ]
         },
         {
           "id": "blocked",
           "title": "Blocked",
-          "tasks": [41, 42, 43]
+          "tasks": [
+            41,
+            42,
+            43
+          ]
         }
       ],
       "id": 7
@@ -180,7 +264,14 @@
       "description": "Development of an AI-driven data analysis system for real-time predictive analytics. The system will process large datasets, train machine learning models, and provide actionable insights through an intuitive dashboard.",
       "startDate": "2025-01-10T08:00:00.000Z",
       "endDate": "2025-03-30T18:00:00.000Z",
-      "assignedMembers": [6, 8, 10, 12, 15, 18],
+      "assignedMembers": [
+        6,
+        8,
+        10,
+        12,
+        15,
+        18
+      ],
       "status": "in-progress",
       "icon": "star",
       "userId": 4,
@@ -189,25 +280,109 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [58, 60]
+          "tasks": [
+            58,
+            60
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [59, 53, 54, 55, 57]
+          "tasks": [
+            59,
+            53,
+            54,
+            55,
+            57
+          ]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [51, 52, 56]
+          "tasks": [
+            51,
+            52,
+            56
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [50]
+          "tasks": [
+            50
+          ]
         }
       ],
       "id": 8
+    },
+    {
+      "title": "AI-Powered Resume Screening System",
+      "description": "Development of an AI-driven system that automates the screening of resumes based on skills, experience, and key job requirements. The system will use NLP to extract key information and match candidates to job descriptions.",
+      "startDate": "2025-02-15T08:00:00.000Z",
+      "endDate": "2025-06-01T18:00:00.000Z",
+      "assignedMembers": [
+        6,
+        8,
+        12
+      ],
+      "status": "planned",
+      "icon": "loading",
+      "userId": 4,
+      "slug": "ai-powered-resume-screening-system",
+      "columns": [
+        {
+          "id": "to-do",
+          "title": "To Do",
+          "tasks": [
+            80,
+            81
+          ]
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress",
+          "tasks": []
+        },
+        {
+          "id": "done",
+          "title": "Done",
+          "tasks": []
+        }
+      ],
+      "id": 10
+    },
+    {
+      "title": "Blockchain-Based Digital Identity Platform",
+      "description": "A decentralized digital identity system that allows users to securely store and verify their personal data without third-party intermediaries. The system will utilize blockchain and cryptographic signatures.",
+      "startDate": "2025-03-10T08:00:00.000Z",
+      "endDate": "2025-07-30T18:00:00.000Z",
+      "assignedMembers": [
+        8,
+        10,
+        15
+      ],
+      "status": "planned",
+      "icon": "hexagon",
+      "userId": 4,
+      "slug": "blockchain-based-digital-identity-platform",
+      "columns": [
+        {
+          "id": "to-do",
+          "title": "To Do",
+          "tasks": []
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress",
+          "tasks": []
+        },
+        {
+          "id": "done",
+          "title": "Done",
+          "tasks": []
+        }
+      ],
+      "id": 11
     }
   ],
   "tasks": [
@@ -573,6 +748,105 @@
       "priority": "High",
       "status": "to-do",
       "projectId": 8
+    },
+    {
+      "id": 70,
+      "title": "Set Up Cloud Infrastructure",
+      "description": "Configured AWS Lambda, S3, and API Gateway for scalable NLP processing.",
+      "assignedMember": 6,
+      "startDate": "2024-09-05T09:00:00.000Z",
+      "endDate": "2024-10-01T17:30:00.000Z",
+      "priority": "High",
+      "status": "done",
+      "projectId": 9
+    },
+    {
+      "id": 71,
+      "title": "Develop Entity Recognition Model",
+      "description": "Trained a Named Entity Recognition (NER) model using BERT to identify key entities in text.",
+      "assignedMember": 8,
+      "startDate": "2024-10-05T08:00:00.000Z",
+      "endDate": "2024-11-15T18:00:00.000Z",
+      "priority": "High",
+      "status": "done",
+      "projectId": 9
+    },
+    {
+      "id": 72,
+      "title": "Implement Sentiment Analysis Pipeline",
+      "description": "Developed a sentiment analysis model to classify text into positive, neutral, and negative categories.",
+      "assignedMember": 10,
+      "startDate": "2024-11-20T09:30:00.000Z",
+      "endDate": "2024-12-05T16:30:00.000Z",
+      "priority": "Medium",
+      "status": "done",
+      "projectId": 9
+    },
+    {
+      "id": 73,
+      "title": "Build REST API for Model Inference",
+      "description": "Developed a RESTful API to allow clients to submit text data and receive analysis results.",
+      "assignedMember": 12,
+      "startDate": "2024-12-10T07:00:00.000Z",
+      "endDate": "2025-01-05T19:45:00.000Z",
+      "priority": "High",
+      "status": "done",
+      "projectId": 9
+    },
+    {
+      "id": 74,
+      "title": "Optimize Performance for Large Datasets",
+      "description": "Implemented batch processing and parallel computation techniques for handling large text datasets efficiently.",
+      "assignedMember": 15,
+      "startDate": "2025-01-07T10:00:00.000Z",
+      "endDate": "2025-01-15T22:00:00.000Z",
+      "priority": "High",
+      "status": "done",
+      "projectId": 9
+    },
+    {
+      "id": 75,
+      "title": "Finalize UI Dashboard",
+      "description": "Designed and implemented a dashboard with real-time NLP insights and visualizations.",
+      "assignedMember": 18,
+      "startDate": "2025-01-12T08:30:00.000Z",
+      "endDate": "2025-01-22T20:00:00.000Z",
+      "priority": "Medium",
+      "status": "done",
+      "projectId": 9
+    },
+    {
+      "id": 76,
+      "title": "Comprehensive Testing & Deployment",
+      "description": "Performed end-to-end testing and deployed the system in production.",
+      "assignedMember": 6,
+      "startDate": "2025-01-20T09:00:00.000Z",
+      "endDate": "2025-01-25T18:00:00.000Z",
+      "priority": "High",
+      "status": "done",
+      "projectId": 9
+    },
+    {
+      "id": 80,
+      "title": "Research Resume Parsing Techniques",
+      "description": "Analyze different NLP techniques and libraries (e.g., spaCy, NLTK, BERT) for extracting structured information from resumes.",
+      "assignedMember": 6,
+      "startDate": "2025-02-20T09:00:00.000Z",
+      "endDate": "2025-02-25T17:00:00.000Z",
+      "priority": "High",
+      "status": "to-do",
+      "projectId": 10
+    },
+    {
+      "id": 81,
+      "title": "Design Database Schema",
+      "description": "Define the database schema to store parsed resume data efficiently, ensuring scalability and quick retrieval.",
+      "assignedMember": 8,
+      "startDate": "2025-02-22T08:30:00.000Z",
+      "endDate": "2025-03-01T16:30:00.000Z",
+      "priority": "Medium",
+      "status": "to-do",
+      "projectId": 10
     }
   ]
 }

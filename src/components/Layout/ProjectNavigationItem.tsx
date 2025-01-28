@@ -123,7 +123,7 @@ const ProjectNavigationItem = ({ project }) => {
                     isActive ? "text-white" : "text-white/50"
                   }`}
                   style={{
-                    maxWidth: isActive ? "180px" : "200px",
+                    maxWidth: isActive ? "150px" : "200px",
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",

@@ -8,8 +8,7 @@ const Layout = () => {
   const location = useLocation();
 
   const shouldApplyScrollbar =
-    location.pathname === "/dashboard" ||
-    location.pathname === "/dashboard/users";
+    location.pathname === "/dashboard" || location.pathname === "/users";
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -26,8 +25,8 @@ const Layout = () => {
       </header>
 
       <main
-        className={`py-5 pl-5 overflow-auto ${
-          shouldApplyScrollbar ? "main-custom-scrollbar" : ""
+        className={`py-5 pl-5 overflow-y-hidden ${
+          shouldApplyScrollbar ? "main-custom-scrollbar overflow-y-visible" : ""
         } overflow-x-hidden xl:col-start-2 xl:row-start-2 relative`}
       >
         <Outlet />
@@ -37,50 +36,3 @@ const Layout = () => {
 };
 
 export default Layout;
-
-// import { Outlet } from "react-router-dom";
-// import Sidebar from "./Sidebar";
-// import Header from "./Header";
-// import { useState } from "react";
-
-// const Layout = () => {
-//   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-//   const toggleSidebar = () => {
-//     setIsSidebarOpen((prev) => !prev);
-//   };
-
-//   return (
-//     // <div className="grid h-screen bg-background text-white lg:grid-cols-layout lg:grid-rows-layout">
-//     <div className="grid grid-cols-2 bg-background text-white">
-//       {/* Sidebar */}
-//       {/* <aside
-//         className={` transition-transform fixed lg:relative z-50 ${
-//           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-//         } lg:translate-x-0 w-64 h-full`}
-//       > */}
-//       <aside
-//       // className={` transition-transform fixed lg:relative z-50 ${
-//       //   isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-//       // } lg:translate-x-0 w-64 h-full`}
-//       >
-//         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-//       </aside>
-
-//       {/* Header */}
-//       {/* <header className="bg-gray-800 row-start-1 row-end-2 col-start-1 lg:col-start-2 col-end-3 lg:col-end-3"> */}
-//       {/* <header className="bg-background-secondary p-4 flex justify-between items-center row-start-1 row-end-2 col-start-1 lg:col-start-2 col-end-3 lg:col-end-3"> */}
-//       <header className=" ">
-//         <Header toggleSidebar={toggleSidebar} />
-//       </header>
-
-//       {/* Main Content */}
-//       {/* <main className="overflow-hidden p-4 row-start-2 row-end-3 col-start-1 lg:col-start-2 col-end-3"> */}
-//       <main className="">
-//         <Outlet />
-//       </main>
-//     </div>
-//   );
-// };
-
-// export default Layout;

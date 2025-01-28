@@ -87,6 +87,12 @@ const ProjectNavigationItem = ({ project }) => {
     });
   };
 
+  const maxTitleLength = isActive ? 18 : 28;
+  const truncatedTitle =
+    project.title.length > maxTitleLength
+      ? `${project.title.slice(0, maxTitleLength)}…`
+      : project.title;
+
   return (
     <li className="list-none scroll-snap-start">
       <Link to={`/dashboard/${kebabCase(project.title)}`} className="block">
@@ -110,27 +116,20 @@ const ProjectNavigationItem = ({ project }) => {
               className={`mr-2`}
               color={isActive ? "#fff" : "rgba(255, 255, 255, 0.5)"}
             />
-            {project.title.length > 18 ? (
-              <Tooltip
-                title={project.title}
-                // theme={theme === "dark" ? "dark" : "light"}
-                // position="right"
-                // animation="fade"
-                // trigger="mouseenter"
-                // trigger="click"
-              >
+            {project.title.length > maxTitleLength ? (
+              <Tooltip title={project.title}>
                 <p
                   className={`text-sm font-medium tracking-[-0.02em] block truncate ${
                     isActive ? "text-white" : "text-white/50"
                   }`}
                   style={{
-                    maxWidth: "150px",
+                    maxWidth: isActive ? "180px" : "200px",
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                   }}
                 >
-                  {project.title}
+                  {truncatedTitle}
                 </p>
               </Tooltip>
             ) : (

@@ -38,7 +38,11 @@ const CreateBoard = () => {
           onClick={handleOpenModal}
           className="px-[10px] py-2 w-10 h-[36px] rounded-md bg-[#BEDBB0]"
         >
-          <CustomIcon id="plus" size={20} />
+          <CustomIcon
+            id="plus"
+            size={20}
+            className="fill-[#121212] stroke-[#121212]"
+          />
         </button>
       </div>
       <hr className="border-white/10 mb-10" />

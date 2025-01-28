@@ -60,20 +60,18 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               {currentUser?.role === "Admin" && (
                 <li
                   className={`mt-[14px] flex gap-2 items-center ${
-                    isActive("/dashboard/users") ? "text-white" : ""
+                    isActive("/users") ? "text-white" : ""
                   }`}
                 >
                   <FaUsersCog
                     size={18}
                     className={`${
-                      isActive("/dashboard/users")
-                        ? "fill-white"
-                        : "fill-white/50"
+                      isActive("/users") ? "fill-white" : "fill-white/50"
                     }`}
                   />
                   <Link
-                    to="/dashboard/users"
-                    className={isActive("/dashboard/users") ? "text-white" : ""}
+                    to="/users"
+                    className={isActive("/users") ? "text-white" : ""}
                   >
                     User Management
                   </Link>

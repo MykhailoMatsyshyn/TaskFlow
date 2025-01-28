@@ -10,6 +10,7 @@ import Modal from "react-modal";
 import MainDashboardPage from "../pages/MainDashboardPage/MainDashboardPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PageLoader from "./Loaders/PageLoader";
 
 Modal.setAppElement("#root");
 
@@ -35,7 +36,7 @@ export default function App() {
   }, [data, currentUser, setCurrentUser]);
 
   if (isLoading) {
-    return <div>Loading user data...</div>;
+    return <PageLoader />;
   }
 
   if (isError) {
@@ -50,7 +51,7 @@ export default function App() {
 
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<PageLoader />}>
         <Routes>
           {/* Public Route */}
           <Route path="/welcome" element={<WelcomePage />} />
@@ -65,7 +66,7 @@ export default function App() {
           <Route element={<PrivateRoute component={<Layout />} />}>
             <Route path="/dashboard" element={<MainDashboardPage />} />
             <Route
-              path="/dashboard/users"
+              path="/users"
               element={
                 <PrivateRoute
                   component={<UserManagementPage />}
@@ -74,6 +75,7 @@ export default function App() {
                 />
               }
             />
+
             <Route
               path="/dashboard/:slug"
               element={<PrivateRoute component={<ProjectPage />} />}

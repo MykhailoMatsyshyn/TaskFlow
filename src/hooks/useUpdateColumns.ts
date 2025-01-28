@@ -17,7 +17,6 @@ export const useUpdateColumns = (projectId?: number) => {
         "project",
         projectId,
       ]);
-      k;
 
       // Оптимістично оновити локальні дані
       if (previousProject) {

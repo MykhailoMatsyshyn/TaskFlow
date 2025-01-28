@@ -10,8 +10,7 @@ import { useUpdateTask } from "../../hooks/useUpdateTask";
 import SwitchToggle from "../../components/SwitchToggle/SwitchToggle";
 import FilterManager from "../../components/FilterManager/FilterManager";
 import useTaskFilterStore from "../../stores/TaskFilterStore";
-import { useQueryClient } from "@tanstack/react-query";
-import { Task } from "../../types/task";
+import { ClipLoader } from "react-spinners";
 
 const ProjectPage = () => {
   const { slug } = useParams();
@@ -51,14 +50,23 @@ const ProjectPage = () => {
 
   const handleColumnDragEnd = (updatedColumns) => {
     setColumns(updatedColumns);
-    updateColumns(updatedColumns);
+    updateColumns(updatedColumns, {
+      onError: () => {
+        toast.error("Failed to update columns. Please try again.");
+      },
+    });
   };
 
   const handleTaskUpdate = (taskId, data) => {
     updateTask({ id: taskId, data });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading || tasksLoading)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <ClipLoader color="#BEDBB0" size={50} />
+      </div>
+    );
 
   const renderGanttChart = () => {
     if (!tasks || tasks.length === 0) {
@@ -101,17 +109,13 @@ const ProjectPage = () => {
             }
           `}
         >
-          {tasksLoading ? (
-            <p className="text-white/50">Loading tasks...</p>
-          ) : (
-            <KanbanBoard
-              projectId={project?.id}
-              columns={columns}
-              tasks={tasks}
-              onColumnUpdate={handleColumnDragEnd}
-              onTaskUpdate={handleTaskUpdate}
-            />
-          )}
+          <KanbanBoard
+            projectId={project?.id}
+            columns={columns}
+            tasks={tasks}
+            onColumnUpdate={handleColumnDragEnd}
+            onTaskUpdate={handleTaskUpdate}
+          />
         </div>
 
         <div

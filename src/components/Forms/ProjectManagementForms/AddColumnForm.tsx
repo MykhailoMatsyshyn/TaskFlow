@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useAddColumn } from "../../../hooks/useAddColumn";
+import { useCreateColumn } from "../../../hooks/useCreateColumn";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -36,16 +36,13 @@ const AddColumnForm = ({
     mode: "onChange",
   });
 
-  const { mutate: addColumn, isLoading } = useAddColumn(projectId);
+  const { mutate: addColumn, isLoading } = useCreateColumn(projectId);
 
-  const onSubmit = (data: { title: string }) => {
+  const onSubmit = (data) => {
     addColumn(data.title, {
       onSuccess: () => {
         reset();
         onClose();
-      },
-      onError: (error) => {
-        console.error("Error adding column:", error.message);
       },
     });
   };

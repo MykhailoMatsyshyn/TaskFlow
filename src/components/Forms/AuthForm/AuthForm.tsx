@@ -15,6 +15,7 @@ import {
 import useAuthMutation from "../../../hooks/useAuthMutation";
 import { LoginCredentials, RegisterUserData } from "../../../types/auth";
 import { loginUser } from "../../../api/authService";
+import { toast } from "react-toastify";
 
 const AuthForm = ({ type }: { type: "login" | "register" }) => {
   const navigate = useNavigate();
@@ -45,7 +46,6 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
     mutation.mutate(filteredData, {
       onSuccess: async () => {
         if (type === "register") {
-          // Після реєстрації викликаємо логін
           try {
             const loginResponse = await loginUser({
               email: (data as RegisterUserData).email,
@@ -56,7 +56,7 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
             console.error("Automatic login failed:", error);
           }
         }
-        navigate("/dashboard"); // Redirect після успішної авторизації
+        navigate("/dashboard");
       },
       onError: (error) => {
         console.error("Error during authentication:", error.message);

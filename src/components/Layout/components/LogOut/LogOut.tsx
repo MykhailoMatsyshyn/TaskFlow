@@ -1,38 +1,29 @@
 import { useNavigate } from "react-router-dom";
 import { CustomIcon } from "../../../CustomIcon/CustomIcon";
-// import Modal from "../../../Modal/Modal"; // Імпортуємо Modal
-// import useModalStore from "../../../../stores/modalStore"; // Імпортуємо useModalStore для керування станом модального вікна
 import useUserStore from "../../../../stores/userStore";
 import { useState } from "react";
 import CustomModal from "../../../CustomModal/CustomModal";
+import { toast } from "react-toastify";
 
 const LogOut = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { setCurrentUser } = useUserStore(); // Отримуємо стан користувача та змінюємо ��ого зміст використовуючи useUserStore
-  // const { isModalOpen, openModal, closeModal } = useModalStore(); // Отримуємо стан модального вікна
-
-  // const handleOpenModal = () => {
-  //   openModal(); // Відкриваємо модальне вікно
-  // };
-
-  // const handleCloseModal = () => {
-  //   closeModal(); // Закриваємо модальне вікно
-  // };
+  const { setCurrentUser } = useUserStore();
 
   const handleOpenModal = () => {
-    setIsModalOpen(true); // Відкриваємо модальне вікно
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // Закриваємо модальне вікно
+    setIsModalOpen(false);
   };
 
   const handleConfirmLogout = () => {
-    localStorage.removeItem("token"); // Видаляємо токен з localStorage
+    localStorage.removeItem("token");
     setCurrentUser(null);
-    navigate("/welcome"); // Перенаправляємо на сторінку вітання
-    handleCloseModal(); // Закриваємо модальне вікно після підтвердження
+    navigate("/welcome");
+    handleCloseModal();
+    toast.success("You have successfully logged out!");
   };
 
   return (
@@ -50,25 +41,33 @@ const LogOut = () => {
         <p className="text-lg font-medium">Log Out</p>
       </button>
 
+      {/* Custom Modal */}
       <CustomModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         title="Log Out"
       >
-        <p>Are you sure you want to log out?</p>
-        <div className="flex justify-between mt-4">
-          <button
-            className="bg-green-500 text-white px-4 py-2 rounded"
-            onClick={handleConfirmLogout}
-          >
-            Yes
-          </button>
-          <button
-            className="bg-gray-300 text-black px-4 py-2 rounded"
-            onClick={handleCloseModal}
-          >
-            No
-          </button>
+        <div className="flex flex-col justify-between min-h-[100px] w-[335px] mt-[15px]">
+          {/* Message */}
+          <p className="text-white text-sm leading-[1.5] break-words text-center">
+            Are you sure you want to log out?
+          </p>
+
+          {/* Buttons */}
+          <div className="flex justify-end gap-3 mt-2">
+            <button
+              onClick={handleCloseModal}
+              className="px-4 py-2 text-white rounded bg-white/20 transition-colors hover:bg-white/10"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleConfirmLogout}
+              className="px-4 py-2 text-black rounded bg-[#BEDBB0] transition-colors hover:bg-[#9DC888] active:bg-[#9DC888]"
+            >
+              Log Out
+            </button>
+          </div>
         </div>
       </CustomModal>
     </div>

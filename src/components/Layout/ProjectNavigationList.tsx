@@ -4,7 +4,7 @@ import { useRef } from "react";
 import useDraggableScroll from "use-draggable-scroll";
 import ProjectNavigationItem from "./ProjectNavigationItem";
 import { useFetchUserProjects } from "../../hooks/useFetchUserProjects";
-import { BeatLoader } from "react-spinners";
+import InlineLoader from "../Loaders/InlineLoader";
 
 const ProjectNavigationList = () => {
   const { currentUser } = useUserStore();
@@ -19,12 +19,7 @@ const ProjectNavigationList = () => {
   const ref = useRef(null);
   const { onMouseDown } = useDraggableScroll(ref, { direction: "vertical" });
 
-  if (isLoading)
-    return (
-      <div className="flex items-center justify-center">
-        <BeatLoader color="#BEDBB0" size={16} />
-      </div>
-    );
+  if (isLoading) return <InlineLoader />;
 
   if (isError || !projects) return <p>Error loading projects</p>;
 

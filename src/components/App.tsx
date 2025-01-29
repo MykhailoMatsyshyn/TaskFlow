@@ -10,7 +10,7 @@ import Modal from "react-modal";
 import MainDashboardPage from "../pages/MainDashboardPage/MainDashboardPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PageLoader from "./Loaders/PageLoader";
+import MainLoader from "./Loaders/MainLoader";
 
 Modal.setAppElement("#root");
 
@@ -36,7 +36,7 @@ export default function App() {
   }, [data, currentUser, setCurrentUser]);
 
   if (isLoading) {
-    return <PageLoader />;
+    return <MainLoader fullScreen={true} />;
   }
 
   if (isError) {
@@ -51,7 +51,7 @@ export default function App() {
 
   return (
     <div>
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback={<MainLoader />}>
         <Routes>
           {/* Public Route */}
           <Route path="/welcome" element={<WelcomePage />} />

@@ -10,7 +10,7 @@ import { useUpdateTask } from "../../hooks/useUpdateTask";
 import SwitchToggle from "../../components/SwitchToggle/SwitchToggle";
 import FilterManager from "../../components/FilterManager/FilterManager";
 import useTaskFilterStore from "../../stores/TaskFilterStore";
-import { ClipLoader } from "react-spinners";
+import MainLoader from "../../components/Loaders/MainLoader";
 
 const ProjectPage = () => {
   const { slug } = useParams();
@@ -61,12 +61,7 @@ const ProjectPage = () => {
     updateTask({ id: taskId, data });
   };
 
-  if (isLoading || tasksLoading)
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <ClipLoader color="#BEDBB0" size={50} />
-      </div>
-    );
+  if (isLoading || tasksLoading) return <MainLoader />;
 
   const renderGanttChart = () => {
     if (!tasks || tasks.length === 0) {

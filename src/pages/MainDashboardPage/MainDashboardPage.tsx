@@ -6,7 +6,7 @@ import {
   ProjectList,
   TaskStatistics,
 } from "../../components/Dashboard";
-import { ClipLoader } from "react-spinners";
+import MainLoader from "../../components/Loaders/MainLoader";
 
 const MainDashboardPage = () => {
   const { data: projects, isLoading: isProjectsLoading } =
@@ -16,11 +16,7 @@ const MainDashboardPage = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   if (isProjectsLoading || isTasksLoading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <ClipLoader color="#BEDBB0" size={50} />
-      </div>
-    );
+    return <MainLoader />;
   }
 
   if (!projects || !tasks) {

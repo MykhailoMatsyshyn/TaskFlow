@@ -1,8 +1,8 @@
 import { useState } from "react";
-import CustomModal from "../CustomModal/CustomModal";
-import { CustomIcon } from "../CustomIcon/CustomIcon";
-import { useCreateTask } from "../../hooks/useCreateTask";
-import TaskForm from "../Layout/ProjectForm/TaskForm";
+import CustomModal from "../../../CustomModal/CustomModal";
+import { CustomIcon } from "../../../CustomIcon/CustomIcon";
+import { useCreateTask } from "../../../../hooks/useCreateTask";
+import { TaskForm } from "../../../Forms";
 
 const AddTaskButton = ({ status, projectId }) => {
   const [isModalOpen, setModalOpen] = useState(false);

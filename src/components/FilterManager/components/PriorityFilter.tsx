@@ -1,6 +1,6 @@
 import React from "react";
 import useTaskFilterStore from "../../../stores/TaskFilterStore";
-import { PriorityPicker } from "../../Layout/ProjectForm/components";
+import { PriorityPicker } from "../../Forms/ProjectManagementForms/components";
 
 const PriorityFilter: React.FC = () => {
   const setFilter = useTaskFilterStore((state) => state.setFilter);

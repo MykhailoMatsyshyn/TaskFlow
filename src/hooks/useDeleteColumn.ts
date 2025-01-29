@@ -13,6 +13,7 @@ export const useDeleteColumn = () => {
       projectId: number;
       columnId: string;
     }) => deleteColumnFromProject(projectId, columnId),
+
     onSuccess: (_, { columnId }) => {
       // Invalidate project and tasks cache to refetch updated data
       queryClient.invalidateQueries(["project"]);

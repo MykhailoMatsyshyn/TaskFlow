@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { InputField } from "../AuthForm/components";
+import { InputField } from "../components";
 
 interface EditUserFormProps {
   defaultValues: { name: string; email: string };

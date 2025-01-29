@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import AuthForm from "../../components/AuthForm/AuthForm";
+import { AuthForm } from "../../components/Forms";
 import LogoWithTitle from "../../components/LogoWithTitle/LogoWithTitle";
 
 const AuthPage = () => {

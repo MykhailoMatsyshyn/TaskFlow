@@ -2,16 +2,19 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema, loginSchema } from "../../validation/authValidation";
+import {
+  registerSchema,
+  loginSchema,
+} from "../../../validation/authValidation";
 import {
   AuthSwitch,
   SubmitButton,
   RoleSelectField,
   InputField,
-} from "./components";
-import useAuthMutation from "../../hooks/useAuthMutation";
-import { LoginCredentials, RegisterUserData } from "../../types/auth";
-import { loginUser } from "../../api/authService";
+} from "../components";
+import useAuthMutation from "../../../hooks/useAuthMutation";
+import { LoginCredentials, RegisterUserData } from "../../../types/auth";
+import { loginUser } from "../../../api/authService";
 
 const AuthForm = ({ type }: { type: "login" | "register" }) => {
   const navigate = useNavigate();

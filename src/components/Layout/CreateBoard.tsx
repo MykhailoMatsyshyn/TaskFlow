@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CustomIcon } from "../CustomIcon/CustomIcon";
 import CustomModal from "../CustomModal/CustomModal";
-import ProjectForm from "./ProjectForm/ProjectForm";
+import { ProjectForm } from "../Forms";
 import { useCreateProject } from "../../hooks/useCreateProject";
 
 const CreateBoard = () => {

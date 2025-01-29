@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useAddColumn } from "../../hooks/useAddColumn";
+import { useAddColumn } from "../../../hooks/useAddColumn";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 

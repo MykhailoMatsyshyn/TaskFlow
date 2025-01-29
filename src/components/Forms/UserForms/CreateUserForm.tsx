@@ -1,12 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { RegisterUserData } from "../types/auth";
-import { registerSchema } from "../validation/authValidation";
-import {
-  InputField,
-  RoleSelectField,
-  SubmitButton,
-} from "./AuthForm/components";
+import { RegisterUserData } from "../../../types/auth";
+import { registerSchema } from "../../../validation/authValidation";
+import { InputField, RoleSelectField, SubmitButton } from "../components";
 
 const CreateUserForm = ({
   onSubmit,

@@ -7,7 +7,7 @@ import "react-tippy/dist/tippy.css";
 import useUserStore from "../../stores/userStore";
 import CustomModal from "../CustomModal/CustomModal";
 import { useDeleteProject } from "../../hooks/useDeleteProject";
-import ProjectForm from "./ProjectForm/ProjectForm";
+import {ProjectForm} from "../Forms";
 import { useUpdateProject } from "../../hooks/useUpdateProject";
 import DeleteModal from "../Modals/DeleteModal";
 

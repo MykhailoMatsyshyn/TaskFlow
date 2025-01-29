@@ -1,8 +1,7 @@
 import { useState } from "react";
-
-import CustomModal from "../CustomModal/CustomModal";
-import { CustomIcon } from "../CustomIcon/CustomIcon";
-import AddColumnForm from "./AddColumnForm";
+import CustomModal from "../../../CustomModal/CustomModal";
+import { CustomIcon } from "../../../CustomIcon/CustomIcon";
+import { AddColumnForm } from "../../../Forms";
 
 const AddColumnButton = ({
   projectId,
@@ -34,6 +33,7 @@ const AddColumnButton = ({
           Add another column
         </button>
       </div>
+
       {isModalOpen && (
         <CustomModal isOpen={isModalOpen} onClose={closeModal}>
           <AddColumnForm

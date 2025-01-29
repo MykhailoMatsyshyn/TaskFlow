@@ -127,7 +127,7 @@
           "id": "to-do",
           "title": "To Do",
           "tasks": [
-            14,
+            19,
             20
           ]
         },
@@ -135,8 +135,15 @@
           "id": "in-progress",
           "title": "In Progress",
           "tasks": [
-            17,
             22
+          ]
+        },
+        {
+          "id": "reviw",
+          "title": "Reviw",
+          "tasks": [
+            18,
+            17
           ]
         },
         {
@@ -144,15 +151,8 @@
           "title": "Done",
           "tasks": [
             15,
-            19,
+            14,
             23
-          ]
-        },
-        {
-          "id": "reviw",
-          "title": "Reviw",
-          "tasks": [
-            18
           ]
         }
       ],
@@ -195,8 +195,7 @@
             72,
             73,
             74,
-            75,
-            76
+            75
           ]
         }
       ],
@@ -393,7 +392,7 @@
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-01-14T22:00:00.000Z",
       "priority": "Medium",
-      "status": "to-do",
+      "status": "done",
       "projectId": 6,
       "id": 14
     },
@@ -415,7 +414,7 @@
       "startDate": "2025-01-26T22:00:00.000Z",
       "endDate": "2025-02-01T22:00:00.000Z",
       "priority": "Medium",
-      "status": "in-progress",
+      "status": "reviw",
       "projectId": 6,
       "id": 17
     },
@@ -437,7 +436,7 @@
       "startDate": "2025-02-09T22:00:00.000Z",
       "endDate": "2025-03-22T22:00:00.000Z",
       "priority": "Low",
-      "status": "done",
+      "status": "to-do",
       "projectId": 6,
       "id": 19
     },
@@ -812,17 +811,6 @@
       "startDate": "2025-01-12T08:30:00.000Z",
       "endDate": "2025-01-22T20:00:00.000Z",
       "priority": "Medium",
-      "status": "done",
-      "projectId": 9
-    },
-    {
-      "id": 76,
-      "title": "Comprehensive Testing & Deployment",
-      "description": "Performed end-to-end testing and deployed the system in production.",
-      "assignedMember": 6,
-      "startDate": "2025-01-20T09:00:00.000Z",
-      "endDate": "2025-01-25T18:00:00.000Z",
-      "priority": "High",
       "status": "done",
       "projectId": 9
     },

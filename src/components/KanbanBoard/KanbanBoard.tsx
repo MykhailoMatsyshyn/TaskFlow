@@ -5,10 +5,10 @@ import { useKanbanDragAndDrop } from "../../hooks/useKanbanDragAndDrop";
 
 /**
  * KanbanBoard Component
- * 
+ *
  * This component renders the main Kanban board layout, allowing users to manage columns and tasks
  * with drag-and-drop functionality.
- * 
+ *
  * Features:
  * - Supports column reordering via drag and drop.
  * - Allows tasks to be moved between columns.
@@ -55,6 +55,7 @@ const KanbanBoard = ({
               <Column
                 projectId={projectId}
                 column={column}
+                columns={columns}
                 tasks={column.tasks
                   .map((taskId) => tasks.find((task) => task.id === taskId))
                   .filter(Boolean)}

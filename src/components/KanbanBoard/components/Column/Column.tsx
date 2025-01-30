@@ -13,15 +13,20 @@ import AddTaskButton from "../Buttons/AddTaskButton";
  * @param {Object} props
  * @param {string} props.projectId - The ID of the project.
  * @param {Object} props.column - Column details (id, title, tasks).
+ * @param {Array} props.columns - The list of all columns (needed for uniqueness validation).
  * @param {Array} props.tasks - List of tasks assigned to this column.
  */
-const Column = ({ projectId, column, tasks }) => {
+const Column = ({ projectId, column, columns, tasks }) => {
   return (
     <div className="flex flex-col w-[335px] h-full font-medium text-[14px] tracking-[-0.02em]">
       {/* Column Header with Title & Actions */}
       <div className="flex justify-between items-center h-[56px] w-[335px] px-5 py-[18px] mb-[14px] rounded-lg bg-[#121212]">
         <h3 className="font-bold">{column.title}</h3>
-        <ColumnActions projectId={projectId} column={column} />
+        <ColumnActions
+          projectId={projectId}
+          column={column}
+          existingColumnTitles={columns.map((col) => col.title)}
+        />
       </div>
 
       {/* Droppable Zone for Tasks */}

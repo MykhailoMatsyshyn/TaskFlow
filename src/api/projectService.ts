@@ -262,3 +262,44 @@ export const updateColumnTasks = async (
     );
   }
 };
+
+export const updateColumnInProject = async (
+  projectId: number,
+  columnId: string,
+  newTitle: string
+): Promise<Project> => {
+  try {
+    // Fetch the project data
+    const { data: project } = await axiosInstance.get<Project>(
+      `/projects/${projectId}`
+    );
+
+    // Generate new kebab-case ID
+    const newColumnId = kebabCase(newTitle);
+
+    // Check if the new ID already exists (ensuring uniqueness)
+    const isDuplicate = project.columns.some(
+      (col) => col.id === newColumnId && col.id !== columnId
+    );
+    if (isDuplicate) {
+      throw new Error("A column with this title already exists.");
+    }
+
+    // Update columns: modify the correct column
+    const updatedColumns = project.columns.map((column) =>
+      column.id === columnId
+        ? { ...column, id: newColumnId, title: newTitle }
+        : column
+    );
+
+    // Update the project with new columns
+    const { data: updatedProject } = await axiosInstance.patch<Project>(
+      `/projects/${projectId}`,
+      { columns: updatedColumns }
+    );
+
+    return updatedProject;
+  } catch (error: any) {
+    throw new Error(error.response?.data?.message || "Error updating column");
+  }
+};

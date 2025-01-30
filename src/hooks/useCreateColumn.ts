@@ -10,7 +10,7 @@ export const useCreateColumn = (projectId: number) => {
       addColumnToProject(projectId, columnTitle),
     onSuccess: () => {
       queryClient.invalidateQueries(["project"]);
-      toast.success("Column added successfully!");
+      toast.success(`Column added successfully!`);
     },
     onError: (error: any) => {
       toast.error("Failed to add column. Please try again.");

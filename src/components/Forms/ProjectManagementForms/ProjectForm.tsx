@@ -10,7 +10,7 @@ import {
   TitleField,
   DescriptionField,
   TeamMemberPicker,
-  Buttons,
+  SubmitButton,
 } from "./components";
 import { kebabCase } from "lodash";
 import { useFetchUserProjects } from "../../../hooks/useFetchUserProjects";
@@ -198,7 +198,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
         onIconSelect={handleIconSelect}
       />
 
-      <Buttons buttonText={initialData ? "Edit" : "Create"} />
+      <SubmitButton buttonText={initialData ? "Edit" : "Create"} />
     </form>
   );
 };

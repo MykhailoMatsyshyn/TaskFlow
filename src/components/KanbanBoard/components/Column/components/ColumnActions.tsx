@@ -3,8 +3,7 @@ import { CustomIcon } from "../../../../CustomIcon/CustomIcon";
 import DeleteModal from "../../../../Modals/DeleteModal";
 import CustomModal from "../../../../CustomModal/CustomModal";
 import { useDeleteColumn } from "../../../../../hooks/useDeleteColumn";
-// import { useUpdateColumn } from "../../../hooks/useUpdateColumn";
-import ColumnForm from "../ColumnForm";
+import { ColumnForm } from "../../../../Forms";
 
 /**
  * ColumnActions Component
@@ -15,39 +14,28 @@ import ColumnForm from "../ColumnForm";
  * @param {Object} props
  * @param {string} props.projectId - The ID of the project.
  * @param {Object} props.column - The column details.
+ * @param {Array} props.existingColumnTitles - List of column titles for uniqueness validation.
  */
-const ColumnActions = ({ projectId, column }) => {
+const ColumnActions = ({ projectId, column, existingColumnTitles }) => {
   const { mutate: deleteColumn } = useDeleteColumn();
-  //   const { mutate: updateColumn } = useUpdateColumn();
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
 
-  // Toggle modal states
   const openDeleteModal = () => setDeleteModalOpen(true);
   const closeDeleteModal = () => setDeleteModalOpen(false);
   const openEditModal = () => setEditModalOpen(true);
   const closeEditModal = () => setEditModalOpen(false);
 
-  // Handle column deletion
   const handleDeleteConfirm = () => {
     deleteColumn({ projectId, columnId: column.id });
     closeDeleteModal();
   };
 
-  // Handle column editing
-  //   const handleEditColumn = (updatedData) => {
-  //     // updateColumn({ id: column.id, data: updatedData });
-  //     closeEditModal();
-  //   };
-
   return (
     <div className="flex gap-2">
-      {/* Edit Column Button */}
       <button onClick={openEditModal}>
         <CustomIcon id="edit" size={16} className="fill-none stroke-white/50" />
       </button>
-
-      {/* Delete Column Button */}
       <button onClick={openDeleteModal}>
         <CustomIcon
           id="trash2"
@@ -66,13 +54,18 @@ const ColumnActions = ({ projectId, column }) => {
       />
 
       {/* Edit Column Modal */}
-      {/* <CustomModal
+      <CustomModal
         isOpen={isEditModalOpen}
         onClose={closeEditModal}
         title="Edit Column"
       >
-        <ColumnForm initialData={column} onSubmit={handleEditColumn} />
-      </CustomModal> */}
+        <ColumnForm
+          projectId={projectId}
+          existingColumnTitles={existingColumnTitles}
+          columnId={column.id}
+          initialTitle={column.title}
+        />
+      </CustomModal>
     </div>
   );
 };

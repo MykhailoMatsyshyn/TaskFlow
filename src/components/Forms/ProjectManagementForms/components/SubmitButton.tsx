@@ -1,11 +1,13 @@
 import React from "react";
 import { CustomIcon } from "../../../CustomIcon/CustomIcon";
 
-interface ButtonsProps {
+interface SubmitButtonProps {
   buttonText?: string;
 }
 
-const Buttons: React.FC<ButtonsProps> = ({ buttonText = "Create" }) => {
+const SubmitButton: React.FC<SubmitButtonProps> = ({
+  buttonText = "Create",
+}) => {
   return (
     <div className="flex justify-end gap-4">
       <button
@@ -21,4 +23,4 @@ const Buttons: React.FC<ButtonsProps> = ({ buttonText = "Create" }) => {
   );
 };
 
-export default Buttons;
+export default SubmitButton;

@@ -4,7 +4,7 @@ import {
   TitleField,
   DescriptionField,
   DatePickerFields,
-  Buttons,
+  SubmitButton,
   PriorityPicker,
   TeamMemberPicker,
 } from "./components";
@@ -147,7 +147,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         onPriorityChange={(priority) => setValue("priority", priority)}
       />
 
-      <Buttons buttonText={initialData ? "Edit" : "Create"} />
+      <SubmitButton buttonText={initialData ? "Edit" : "Create"} />
     </form>
   );
 };

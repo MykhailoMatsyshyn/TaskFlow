@@ -2,6 +2,7 @@ import { Droppable, Draggable } from "@hello-pangea/dnd";
 import Card from "../Card/Card";
 import ColumnActions from "./components/ColumnActions";
 import AddTaskButton from "../Buttons/AddTaskButton";
+import TaskSkeleton from "../../../Loaders/TaskSkeleton";
 
 /**
  * Column Component
@@ -16,7 +17,7 @@ import AddTaskButton from "../Buttons/AddTaskButton";
  * @param {Array} props.columns - The list of all columns (needed for uniqueness validation).
  * @param {Array} props.tasks - List of tasks assigned to this column.
  */
-const Column = ({ projectId, column, columns, tasks }) => {
+const Column = ({ projectId, column, columns, tasks, tasksLoading }) => {
   return (
     <div className="flex flex-col w-[335px] h-full font-medium text-[14px] tracking-[-0.02em]">
       {/* Column Header with Title & Actions */}
@@ -37,32 +38,39 @@ const Column = ({ projectId, column, columns, tasks }) => {
             {...provided.droppableProps}
             className="flex flex-col pr-[8px] mr-[-16px] overflow-y-auto overflow-x-hidden h-full custom-scrollbar"
           >
-            <div
-              className={`w-[335px] relative ${
-                snapshot.isDraggingOver ? "droppable-hover" : ""
-              }`}
-            >
-              {tasks.map((task, index) => (
-                <Draggable
-                  key={task.id}
-                  draggableId={task.id.toString()}
-                  index={index}
-                >
-                  {(provided) => (
-                    <li
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <Card task={task} />
-                    </li>
-                  )}
-                </Draggable>
-              ))}
+            {tasksLoading ? (
+              <div className="flex flex-col gap-2">
+                <TaskSkeleton />
+                <TaskSkeleton />
+              </div>
+            ) : (
+              <div
+                className={`w-[335px] relative ${
+                  snapshot.isDraggingOver ? "droppable-hover" : ""
+                }`}
+              >
+                {tasks.map((task, index) => (
+                  <Draggable
+                    key={task.id}
+                    draggableId={task.id.toString()}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <li
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <Card task={task} />
+                      </li>
+                    )}
+                  </Draggable>
+                ))}
 
-              {/* Keeps the layout stable while dragging */}
-              {provided.placeholder}
-            </div>
+                {/* Keeps the layout stable while dragging */}
+                {provided.placeholder}
+              </div>
+            )}
           </ul>
         )}
       </Droppable>

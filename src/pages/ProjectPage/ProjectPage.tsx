@@ -61,7 +61,7 @@ const ProjectPage = () => {
     updateTask({ id: taskId, data });
   };
 
-  if (isLoading || tasksLoading) return <MainLoader />;
+  if (isLoading) return <MainLoader />;
 
   const renderGanttChart = () => {
     if (!tasks || tasks.length === 0) {
@@ -110,6 +110,7 @@ const ProjectPage = () => {
             tasks={tasks}
             onColumnUpdate={handleColumnDragEnd}
             onTaskUpdate={handleTaskUpdate}
+            tasksLoading={tasksLoading}
           />
         </div>
 

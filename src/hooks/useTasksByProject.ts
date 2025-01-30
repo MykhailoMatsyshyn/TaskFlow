@@ -16,7 +16,7 @@ export const useTasksByProject = (
     queryFn: () => getTasksByProject(projectId, filters),
     enabled: !!projectId,
     // staleTime: 5000,
-    placeholderData: keepPreviousData,
+    // placeholderData: keepPreviousData,
     refetchOnWindowFocus: false,
   });
 };

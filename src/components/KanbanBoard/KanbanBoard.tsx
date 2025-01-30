@@ -2,6 +2,7 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import Column from "./components/Column/Column";
 import AddColumnButton from "./components/Buttons/AddColumnButton";
 import { useKanbanDragAndDrop } from "../../hooks/useKanbanDragAndDrop";
+import { useEffect, useState } from "react";
 
 /**
  * KanbanBoard Component
@@ -27,6 +28,7 @@ const KanbanBoard = ({
   tasks,
   onColumnUpdate,
   onTaskUpdate,
+  tasksLoading,
 }) => {
   // Custom hook to handle drag-and-drop logic
   const { handleDragEnd } = useKanbanDragAndDrop(
@@ -34,6 +36,19 @@ const KanbanBoard = ({
     onColumnUpdate,
     onTaskUpdate
   );
+
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    if (!tasksLoading) {
+      const timer = setTimeout(() => {
+        setShowLoader(false);
+      }, 1500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowLoader(true);
+    }
+  }, [tasksLoading]);
 
   /**
    * Renders the list of columns as draggable elements.
@@ -56,9 +71,16 @@ const KanbanBoard = ({
                 projectId={projectId}
                 column={column}
                 columns={columns}
-                tasks={column.tasks
-                  .map((taskId) => tasks.find((task) => task.id === taskId))
-                  .filter(Boolean)}
+                tasks={
+                  tasksLoading
+                    ? []
+                    : column.tasks
+                        .map((taskId) =>
+                          tasks.find((task) => task.id === taskId)
+                        )
+                        .filter(Boolean)
+                }
+                tasksLoading={showLoader}
               />
             </li>
           )}

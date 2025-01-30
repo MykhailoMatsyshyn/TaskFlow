@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 import "./CustomModal.scss";
 
@@ -15,6 +15,28 @@ const CustomModal: React.FC<CustomModalProps> = ({
   children,
   title,
 }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [hasScrollbar, setHasScrollbar] = useState(false);
+
+  const checkScrollbar = () => {
+    if (contentRef.current) {
+      setHasScrollbar(
+        contentRef.current.scrollHeight > contentRef.current.clientHeight
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(checkScrollbar, 0);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    window.addEventListener("resize", checkScrollbar);
+    return () => window.removeEventListener("resize", checkScrollbar);
+  }, []);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -46,21 +68,25 @@ const CustomModal: React.FC<CustomModalProps> = ({
         },
       }}
     >
-      <div className="custom-modal text-white">
+      <div className={`custom-modal text-white`}>
         {/* <button className="custom-modal__close" onClick={onClose}>
           &times;
         </button> */}
         {title && <h2 className="custom-modal__title">{title}</h2>}
 
-        {/* <div
-          className="custom-modal__content mr-[-19px] pr-[11px] custom-scrollbar font-medium text-sm tracking-[-0.02em] text-white"
+        <div
+          ref={contentRef}
+          className={`custom-modal__content font-medium text-sm tracking-[-0.02em] text-white custom-scrollbar ${
+            hasScrollbar ? "mr-[-19px] pr-[11px]" : ""
+          }`}
           style={{
             overflowY: "auto",
             maxHeight: "calc(80vh - 40px - 20px)",
             // paddingBottom: "20px",
           }}
-        > */}
-        <div className=" text-white">{children}</div>
+        >
+          {children}
+        </div>
       </div>
     </Modal>
   );

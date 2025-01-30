@@ -26,7 +26,7 @@ const ColumnForm = ({
     formState: { errors },
   } = useForm({
     defaultValues: { title: initialTitle },
-    resolver: yupResolver(getColumnSchema(existingColumnTitles)),
+    resolver: yupResolver(getColumnSchema(existingColumnTitles, initialTitle)),
     mode: "onChange",
   });
 
@@ -48,9 +48,8 @@ const ColumnForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[287px] md:w-[302px] flex flex-col gap-[2px] mt-[20px]"
+      className="w-[287px] md:w-[302px] flex flex-col h-full gap-[14px] mt-2"
     >
-      {/* InputField */}
       <InputField
         label="Column Title"
         type="text"
@@ -61,7 +60,6 @@ const ColumnForm = ({
         defaultValue={initialTitle}
       />
 
-      {/* Submit Button */}
       <SubmitButton buttonText={columnId ? "Edit" : "Add"} />
     </form>
   );

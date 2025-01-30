@@ -37,25 +37,32 @@ const Column = ({ projectId, column, columns, tasks }) => {
             {...provided.droppableProps}
             className="flex flex-col pr-[8px] mr-[-16px] overflow-y-auto overflow-x-hidden h-full custom-scrollbar"
           >
-            {tasks.map((task, index) => (
-              <Draggable
-                key={task.id}
-                draggableId={task.id.toString()}
-                index={index}
-              >
-                {(provided) => (
-                  <li
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <Card task={task} />
-                  </li>
-                )}
-              </Draggable>
-            ))}
-            {/* Keeps the layout stable while dragging */}
-            {provided.placeholder}
+            <div
+              className={`w-[335px] relative ${
+                snapshot.isDraggingOver ? "droppable-hover" : ""
+              }`}
+            >
+              {tasks.map((task, index) => (
+                <Draggable
+                  key={task.id}
+                  draggableId={task.id.toString()}
+                  index={index}
+                >
+                  {(provided) => (
+                    <li
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <Card task={task} />
+                    </li>
+                  )}
+                </Draggable>
+              ))}
+
+              {/* Keeps the layout stable while dragging */}
+              {provided.placeholder}
+            </div>
           </ul>
         )}
       </Droppable>

@@ -135,7 +135,8 @@
           "id": "in-progress",
           "title": "In Progress",
           "tasks": [
-            22
+            22,
+            83
           ]
         },
         {
@@ -184,13 +185,14 @@
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": []
+          "tasks": [
+            70
+          ]
         },
         {
           "id": "done",
           "title": "Done",
           "tasks": [
-            70,
             71,
             72,
             73,
@@ -351,19 +353,21 @@
       "id": 10
     },
     {
-      "title": "Blockchain-Based Digital Identity Platform",
+      "title": "Blockchain-Based Platform",
       "description": "A decentralized digital identity system that allows users to securely store and verify their personal data without third-party intermediaries. The system will utilize blockchain and cryptographic signatures.",
       "startDate": "2025-03-10T08:00:00.000Z",
       "endDate": "2025-07-30T18:00:00.000Z",
       "assignedMembers": [
-        8,
-        10,
+        25,
+        20,
+        12,
+        16,
         15
       ],
       "status": "planned",
       "icon": "hexagon",
       "userId": 4,
-      "slug": "blockchain-based-digital-identity-platform",
+      "slug": "blockchain-based-platform",
       "columns": [
         {
           "id": "to-do",
@@ -532,10 +536,10 @@
       "id": 35,
       "title": "Develop Automation Workflow",
       "description": "Create an automated email workflow based on user actions.",
-      "assignedMember": 12,
+      "assignedMember": "12",
       "startDate": "2025-02-12T00:00:00.000Z",
       "endDate": "2025-02-15T23:59:59.000Z",
-      "priority": "High",
+      "priority": "Low",
       "status": "in-progress",
       "projectId": 7
     },
@@ -756,7 +760,7 @@
       "startDate": "2024-09-05T09:00:00.000Z",
       "endDate": "2024-10-01T17:30:00.000Z",
       "priority": "High",
-      "status": "done",
+      "status": "in-progress",
       "projectId": 9
     },
     {
@@ -835,6 +839,17 @@
       "priority": "Medium",
       "status": "to-do",
       "projectId": 10
+    },
+    {
+      "title": "Bestik",
+      "description": "newnewnew\nnewnewnew\nnewnewnew",
+      "assignedMember": "20",
+      "startDate": "2025-01-22T22:00:00.000Z",
+      "endDate": "2025-01-30T22:00:00.000Z",
+      "priority": "Medium",
+      "status": "in-progress",
+      "projectId": 6,
+      "id": 83
     }
   ]
 }

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateTask } from "../api/taskService";
 import { Task } from "../types/task";
+import { toast } from "react-toastify";
 
 export const useUpdateTask = (taskId?: number) => {
   const queryClient = useQueryClient();
@@ -30,6 +31,10 @@ export const useUpdateTask = (taskId?: number) => {
       if (context?.previousTask) {
         queryClient.setQueryData(["task", taskId], context.previousTask);
       }
+      toast.error("Failed to update task. Please try again.");
+    },
+    onSuccess: () => {
+      toast.success("Task updated successfully!");
     },
     onSettled: () => {
       // Інвалідовуємо кеш для оновлення даних

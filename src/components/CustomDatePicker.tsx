@@ -37,7 +37,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
         {label}
       </h3>
       {error && (
-        <p className="absolute text-red-500 text-xs mt-[-21px] ml-[65px] backdrop-blur-sm bg-opacity-30 bg-black rounded px-[5px]">
+        <p className="absolute text-red-500 text-xs mt-[-21px] backdrop-blur-sm bg-opacity-30 bg-black rounded px-[5px]">
           {error}
         </p>
       )}

@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createTask } from "../api/taskService";
 import { updateColumnTasks, getProjectById } from "../api/projectService";
 import { Task } from "../types/task";
+import { toast } from "react-toastify";
 
 export const useCreateTask = () => {
   const queryClient = useQueryClient();
@@ -26,7 +27,7 @@ export const useCreateTask = () => {
         );
 
         if (!targetColumn) {
-          console.warn("Target column not found");
+          toast.error("Error: Target column not found.");
           return;
         }
 
@@ -51,13 +52,13 @@ export const useCreateTask = () => {
         // Інвалідовуємо список завдань
         queryClient.invalidateQueries(["tasks"]);
 
-        console.log("Task created and column updated successfully");
+        toast.success("Task created successfully!");
       } catch (error) {
-        console.error("Error updating column tasks:", error);
+        toast.error("Failed to update column tasks.");
       }
     },
     onError: (error) => {
-      console.error("Error creating task:", error.message);
+      toast.error("Failed to create task. Please try again later.");
     },
   });
 };

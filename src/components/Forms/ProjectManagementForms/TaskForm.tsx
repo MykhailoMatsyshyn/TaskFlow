@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   TitleField,
   DescriptionField,
@@ -10,6 +11,7 @@ import {
 } from "./components";
 import { useParams } from "react-router-dom";
 import { useProjectDataBySlug } from "../../../hooks/useProjectDataBySlug";
+import { getTaskSchema } from "../../../validation/taskValidation";
 
 interface TaskFormProps {
   initialData?: any;
@@ -27,90 +29,60 @@ const TaskForm: React.FC<TaskFormProps> = ({
     handleSubmit,
     setValue,
     watch,
-    setError,
-    clearErrors,
     formState: { errors },
   } = useForm({
     defaultValues: {
       title: "",
       description: "",
       assignedMember: "",
-      startDate: "",
-      endDate: "",
+      startDate: null,
+      endDate: null,
       priority: "Without priority",
     },
+    resolver: yupResolver(getTaskSchema),
+    mode: "onChange",
   });
+
   const { slug } = useParams();
   const { data: project } = useProjectDataBySlug(slug);
 
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
-
-  const selectedPriority = watch("priority");
-
-  const validateDates = () => {
-    if (!startDate) {
-      setError("startDate", {
-        type: "required",
-        message: "Start Date is required",
-      });
-    } else {
-      clearErrors("startDate");
-    }
-
-    if (!endDate) {
-      setError("endDate", {
-        type: "required",
-        message: "End Date is required",
-      });
-    } else if (startDate && endDate && startDate > endDate) {
-      setError("endDate", {
-        type: "validate",
-        message: "End Date cannot be before Start Date",
-      });
-    } else {
-      clearErrors("endDate");
-    }
-  };
-
-  const onSubmitHandler = (data: any) => {
-    validateDates();
-
-    if (!startDate || !endDate || errors.startDate || errors.endDate) {
-      return;
-    }
-
-    const taskData = {
-      ...data,
-      // userId: Number(userId),
-      startDate: startDate.toISOString(),
-      endDate: endDate.toISOString(),
-    };
-
-    onSubmit(taskData);
-    onCancel();
-  };
-
   useEffect(() => {
     if (initialData) {
-      setStartDate(
-        initialData.startDate ? new Date(initialData.startDate) : null
-      );
-      setEndDate(initialData.endDate ? new Date(initialData.endDate) : null);
-
       setValue("title", initialData.title || "");
       setValue("description", initialData.description || "");
       setValue("assignedMember", initialData.assignedMember || "");
       setValue("priority", initialData.priority || "Without priority");
+      setValue(
+        "startDate",
+        initialData.startDate ? new Date(initialData.startDate) : null
+      );
+      setValue(
+        "endDate",
+        initialData.endDate ? new Date(initialData.endDate) : null
+      );
     }
   }, [initialData, setValue]);
+
+  const onSubmitHandler = (data: any) => {
+    console.log("Submitting task:", data);
+
+    const taskData = {
+      ...data,
+      startDate: data.startDate ? new Date(data.startDate).toISOString() : null,
+      endDate: data.endDate ? new Date(data.endDate).toISOString() : null,
+    };
+
+    console.log("Final Task Data:", taskData);
+    onSubmit(taskData);
+    onCancel();
+  };
 
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}
       className="flex flex-col gap-6 w-[335px] md:w-[350px]"
     >
-      <TitleField register={register} errors={errors} />
+      <TitleField register={register("title")} errors={errors} />
 
       <DescriptionField register={register} />
 
@@ -126,16 +98,10 @@ const TaskForm: React.FC<TaskFormProps> = ({
       />
 
       <DatePickerFields
-        startDate={startDate}
-        endDate={endDate}
-        onStartDateChange={(date) => {
-          setStartDate(date);
-          clearErrors("startDate");
-        }}
-        onEndDateChange={(date) => {
-          setEndDate(date);
-          clearErrors("endDate");
-        }}
+        startDate={watch("startDate")}
+        endDate={watch("endDate")}
+        onStartDateChange={(date) => setValue("startDate", date)}
+        onEndDateChange={(date) => setValue("endDate", date)}
         errors={{
           startDate: errors.startDate?.message,
           endDate: errors.endDate?.message,
@@ -143,7 +109,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
       />
 
       <PriorityPicker
-        value={initialData?.priority || "Without priority"}
+        value={watch("priority")}
         onPriorityChange={(priority) => setValue("priority", priority)}
       />
 

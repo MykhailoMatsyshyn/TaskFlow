@@ -1,10 +1,10 @@
 .field {
-  @apply w-full h-[49px] mb-[14px] p-[18px] border  bg-[#1F1F1F] rounded-md opacity-40 focus:outline-none focus:opacity-100 text-white font-normal text-[14px] tracking-tight;
+  @apply w-full h-[49px] p-[18px] border  bg-[#1F1F1F] rounded-md opacity-40 focus:outline-none focus:opacity-100 font-normal text-[14px] tracking-tight  placeholder:text-white;
 }
 
 .errorMessage {
   @apply absolute text-red-500 text-xs;
-  margin-top: -70px;
+  margin-top: -57px;
   margin-left: 13px;
   backdrop-filter: blur(2px);
   background-color: rgba(0, 0, 0, 0.3);

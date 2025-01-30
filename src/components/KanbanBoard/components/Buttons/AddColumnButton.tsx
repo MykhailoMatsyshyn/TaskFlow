@@ -28,7 +28,11 @@ const AddColumnButton = ({
           onClick={openModal}
         >
           <span className="p-[7px] rounded-md bg-[#FFFFFF]">
-            <CustomIcon id="plus" size={14} className="fill-[#121212]" />
+            <CustomIcon
+              id="plus"
+              size={14}
+              className="fill-[#121212] stroke-black"
+            />
           </span>
           Add another column
         </button>

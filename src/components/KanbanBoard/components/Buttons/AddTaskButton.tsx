@@ -41,8 +41,8 @@ const AddTaskButton = ({ status, projectId }) => {
         className="flex items-center justify-center gap-2 w-[335px] h-[56px] mt-[14px] mb-[24px] md:mb-[52px] xl:mb-[16px] bg-[#BEDBB0] rounded-lg text-[#161616] font-medium tracking-[-0.02em] hover:bg-[#9DC888] transition-all duration-400 ease-in-out"
         onClick={openModal}
       >
-        <span className="p-[7px] rounded-md bg-[#161616]">
-          <CustomIcon id="plus" size={14} className="fill-white" />
+        <span className="flex items-center justify-center w-[30px] h-[30px] rounded-md bg-[#161616]">
+          <CustomIcon id="plus" size={14} className="fill-white stroke-white" />
         </span>
         Add a card
       </button>

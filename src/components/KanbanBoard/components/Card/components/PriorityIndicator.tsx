@@ -23,7 +23,7 @@ const PriorityIndicator = ({ priority }) => {
           }`}
         ></span>
         <span className="font-normal text-[10px] tracking-[-0.02em]">
-          {priority || "Without"}
+          {priority !== "Without priority" ? priority : "Without"}
         </span>
       </div>
     </div>

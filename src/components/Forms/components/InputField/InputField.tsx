@@ -21,7 +21,7 @@ const InputField = ({
   defaultValue,
 }: InputFieldProps) => {
   return (
-    <div>
+    <div className="relative">
       <input
         type={type}
         id={name}

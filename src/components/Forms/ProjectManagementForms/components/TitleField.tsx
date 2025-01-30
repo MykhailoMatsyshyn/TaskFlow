@@ -1,5 +1,6 @@
 import React from "react";
 import { UseFormRegisterReturn, FieldErrors } from "react-hook-form";
+import { InputField } from "../../components";
 
 interface FormData {
   title: string;
@@ -12,24 +13,18 @@ interface TitleFieldProps {
 
 const TitleField: React.FC<TitleFieldProps> = ({ register, errors }) => {
   return (
-    <div className="relative">
+    <div>
       <label htmlFor="title" className="block mb-2 text-white">
         Title
       </label>
-      <input
+      <InputField
+        label="Title"
         type="text"
-        id="title"
         placeholder="Enter project title"
-        {...register}
-        className={`w-full h-[49px] p-4 border ${
-          errors.title ? "border-red-500" : "border-[#BEDBB0]"
-        } bg-[#1F1F1F] rounded-md text-white placeholder-white focus:outline-none focus:ring focus:ring-green-500 transition-all duration-200`}
+        register={() => register}
+        name="title"
+        errors={errors}
       />
-      {errors.title && (
-        <p className="absolute text-red-500 text-sm mt-1">
-          {errors.title.message}
-        </p>
-      )}
     </div>
   );
 };

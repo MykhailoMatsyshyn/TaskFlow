@@ -6,6 +6,6 @@ export const useTeamMembersQuery = (emailLike: string) => {
     queryKey: ["teamMembers", emailLike],
     queryFn: () => getTeamMembers(emailLike),
     refetchOnWindowFocus: false,
-    enabled: Boolean(emailLike),
+    // enabled: Boolean(emailLike),
   });
 };

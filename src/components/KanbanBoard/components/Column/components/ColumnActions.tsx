@@ -60,6 +60,7 @@ const ColumnActions = ({ projectId, column, existingColumnTitles }) => {
         title="Edit Column"
       >
         <ColumnForm
+          onClose={closeEditModal}
           projectId={projectId}
           existingColumnTitles={existingColumnTitles}
           columnId={column.id}

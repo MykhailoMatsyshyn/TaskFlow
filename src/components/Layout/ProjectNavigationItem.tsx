@@ -7,7 +7,7 @@ import "react-tippy/dist/tippy.css";
 import useUserStore from "../../stores/userStore";
 import CustomModal from "../CustomModal/CustomModal";
 import { useDeleteProject } from "../../hooks/useDeleteProject";
-import {ProjectForm} from "../Forms";
+import { ProjectForm } from "../Forms";
 import { useUpdateProject } from "../../hooks/useUpdateProject";
 import DeleteModal from "../Modals/DeleteModal";
 
@@ -179,7 +179,7 @@ const ProjectNavigationItem = ({ project }) => {
           title="Edit Project"
         >
           <ProjectForm
-            initialData={selectedProject} // Передаємо дані проєкту
+            initialData={selectedProject}
             onCancel={closeEditModal}
             onSubmit={handleEdit}
           />

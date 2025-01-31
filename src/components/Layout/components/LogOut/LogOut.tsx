@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { CustomIcon } from "../../../CustomIcon/CustomIcon";
 import useUserStore from "../../../../stores/userStore";
 import { useState } from "react";
@@ -28,9 +29,12 @@ const LogOut = () => {
 
   return (
     <div className="flex px-6">
-      <button
+      <motion.button
         onClick={handleOpenModal}
-        className="flex justify-between items-center gap-[14px] bg-transparent text-base font-medium hover:fill-[#9DC888]"
+        className="flex justify-between items-center gap-[14px] bg-transparent text-base font-medium"
+        animate={{ opacity: 0.7, y: isModalOpen ? -4 : 4 }} // Якщо модалка відкрита — залишається піднятим
+        whileHover={{ opacity: 1, y: -4 }} // При наведенні теж піднімається
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <CustomIcon
           id="logout"
@@ -39,7 +43,7 @@ const LogOut = () => {
           className="fill-[#BEDBB0] group-hover:fill-[#9DC888]"
         />
         <p className="text-lg font-medium">Log Out</p>
-      </button>
+      </motion.button>
 
       {/* Custom Modal */}
       <CustomModal

@@ -8,14 +8,14 @@ import {
 } from "../../../validation/authValidation";
 import {
   AuthSwitch,
-  SubmitButton,
+  SubmitAuthButton,
   RoleSelectField,
   InputField,
 } from "../components";
 import useAuthMutation from "../../../hooks/useAuthMutation";
 import { LoginCredentials, RegisterUserData } from "../../../types/auth";
 import { loginUser } from "../../../api/authService";
-import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const AuthForm = ({ type }: { type: "login" | "register" }) => {
   const navigate = useNavigate();
@@ -70,65 +70,72 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
   }, [type, reset]);
 
   return (
-    <form
+    <motion.form
+      key={type}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[335px] mx-auto p-6 bg-[#151515] rounded-lg"
+      className="w-[335px] mx-auto p-6 bg-[#151515] text-white rounded-lg"
     >
       {/* Render the switch between login and register */}
       <AuthSwitch type={type} />
 
-      {/* Role selection field, only visible during registration */}
-      {type === "register" && (
-        <RoleSelectField register={register} errors={errors} />
-      )}
+      <div className="flex flex-col gap-[14px] mb-[24px]">
+        {/* Role selection field, only visible during registration */}
+        {type === "register" && (
+          <RoleSelectField register={register} errors={errors} />
+        )}
 
-      {/* Name input field, only visible during registration */}
-      {type === "register" && (
+        {/* Name input field, only visible during registration */}
+        {type === "register" && (
+          <InputField
+            label="Name"
+            type="text"
+            placeholder="Enter your name"
+            register={register}
+            name="name"
+            errors={errors}
+          />
+        )}
+
+        {/* Email input field */}
         <InputField
-          label="Name"
-          type="text"
-          placeholder="Enter your name"
+          label="Email"
+          type="email"
+          placeholder="Enter your email"
           register={register}
-          name="name"
+          name="email"
           errors={errors}
         />
-      )}
 
-      {/* Email input field */}
-      <InputField
-        label="Email"
-        type="email"
-        placeholder="Enter your email"
-        register={register}
-        name="email"
-        errors={errors}
-      />
-
-      {/* Password input field */}
-      <InputField
-        label="Password"
-        type="password"
-        placeholder="Enter your password"
-        register={register}
-        name="password"
-        errors={errors}
-      />
-
-      {/* Confirm password field, only visible during registration */}
-      {type === "register" && (
+        {/* Password input field */}
         <InputField
-          label="Confirm Password"
+          label="Password"
           type="password"
-          placeholder="Confirm your password"
+          placeholder="Enter your password"
           register={register}
-          name="confirmPassword"
+          name="password"
           errors={errors}
         />
-      )}
+
+        {/* Confirm password field, only visible during registration */}
+        {type === "register" && (
+          <InputField
+            label="Confirm Password"
+            type="password"
+            placeholder="Confirm your password"
+            register={register}
+            name="confirmPassword"
+            errors={errors}
+          />
+        )}
+      </div>
 
       {/* Submit button */}
-      <SubmitButton type={type} />
-    </form>
+      <SubmitAuthButton type={type} />
+    </motion.form>
   );
 };
 

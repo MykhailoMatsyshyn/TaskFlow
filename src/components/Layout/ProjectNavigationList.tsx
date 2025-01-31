@@ -27,7 +27,7 @@ const ProjectNavigationList = () => {
     <div
       ref={ref}
       onMouseDown={onMouseDown}
-      className="overflow-y-auto max-h-[200px] custom-scrollbar"
+      className="overflow-y-auto max-h-[200px] project-list-scrollbar"
       style={{
         direction: "rtl",
       }}

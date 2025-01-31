@@ -10,12 +10,6 @@ import TaskSkeleton from "../../../Loaders/TaskSkeleton";
  * Represents a single column in the Kanban board, containing tasks.
  * Supports drag-and-drop reordering of tasks and provides actions for
  * editing or deleting the column.
- *
- * @param {Object} props
- * @param {string} props.projectId - The ID of the project.
- * @param {Object} props.column - Column details (id, title, tasks).
- * @param {Array} props.columns - The list of all columns (needed for uniqueness validation).
- * @param {Array} props.tasks - List of tasks assigned to this column.
  */
 const Column = ({ projectId, column, columns, tasks, tasksLoading }) => {
   return (
@@ -55,13 +49,13 @@ const Column = ({ projectId, column, columns, tasks, tasksLoading }) => {
                     draggableId={task.id.toString()}
                     index={index}
                   >
-                    {(provided) => (
+                    {(provided, snapshot) => (
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <Card task={task} />
+                        <Card task={task} isDragging={snapshot.isDragging} />
                       </li>
                     )}
                   </Draggable>

@@ -1,20 +1,16 @@
 import { Link } from "react-router-dom";
 
 const AuthSwitch = ({ type }: { type: "login" | "register" }) => (
-  <div className="flex justify-center space-x-6 mb-6">
+  <div className="flex justify-start gap-[14px] mb-[40px] text-lg font-medium cursor-pointer">
     <Link
       to="/auth/register"
-      className={`text-sm font-medium cursor-pointer ${
-        type === "register" ? "text-white" : "text-gray-500"
-      }`}
+      className={`${type === "register" ? "text-white" : "text-white/30"}`}
     >
       Registration
     </Link>
     <Link
       to="/auth/login"
-      className={`text-sm font-medium cursor-pointer ${
-        type === "login" ? "text-white" : "text-gray-500"
-      }`}
+      className={`${type === "login" ? "text-white" : "text-white/30"}`}
     >
       Log In
     </Link>

@@ -1,11 +1,11 @@
 import React from "react";
-import { CustomIcon } from "../../../CustomIcon/CustomIcon";
+import { CustomIcon } from "../../CustomIcon/CustomIcon";
 
-interface SubmitButtonProps {
+interface SubmitFormButtonProps {
   buttonText?: string;
 }
 
-const SubmitButton: React.FC<SubmitButtonProps> = ({
+const SubmitFormButton: React.FC<SubmitFormButtonProps> = ({
   buttonText = "Create",
 }) => {
   return (
@@ -23,4 +23,4 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
   );
 };
 
-export default SubmitButton;
+export default SubmitFormButton;

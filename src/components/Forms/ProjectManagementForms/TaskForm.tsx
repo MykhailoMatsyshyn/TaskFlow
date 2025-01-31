@@ -5,10 +5,10 @@ import {
   TitleField,
   DescriptionField,
   DatePickerFields,
-  SubmitButton,
   PriorityPicker,
   TeamMemberPicker,
 } from "./components";
+import { SubmitFormButton } from "../components";
 import { useParams } from "react-router-dom";
 import { useProjectDataBySlug } from "../../../hooks/useProjectDataBySlug";
 import { getTaskSchema } from "../../../validation/taskValidation";
@@ -34,7 +34,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     defaultValues: {
       title: "",
       description: "",
-      assignedMember: "",
+      assignedMember: initialData?.assignedMember || "", // Запам'ятовуємо значення
       startDate: null,
       endDate: null,
       priority: "Without priority",
@@ -45,6 +45,9 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
   const { slug } = useParams();
   const { data: project } = useProjectDataBySlug(slug);
+
+  // Використовуємо watch() для відстеження стану assignedMember
+  const selectedMember = watch("assignedMember");
 
   useEffect(() => {
     if (initialData) {
@@ -90,9 +93,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         onChange={(selectedUser) =>
           setValue("assignedMember", selectedUser[0]?.id || null)
         }
-        defaultMembers={
-          initialData?.assignedMember ? [initialData.assignedMember] : []
-        }
+        defaultMembers={selectedMember ? [selectedMember] : []} // Виправлено
         isMulti={false}
         filterByProjectMembers={project?.assignedMembers}
       />
@@ -113,7 +114,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         onPriorityChange={(priority) => setValue("priority", priority)}
       />
 
-      <SubmitButton buttonText={initialData ? "Edit" : "Create"} />
+      <SubmitFormButton buttonText={initialData ? "Edit" : "Create"} />
     </form>
   );
 };

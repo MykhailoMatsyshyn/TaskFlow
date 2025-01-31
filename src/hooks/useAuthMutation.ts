@@ -7,6 +7,7 @@ import {
   AuthType,
 } from "../types/auth";
 import useUserStore from "../stores/userStore";
+import { toast } from "react-toastify";
 
 const useAuthMutation = (type: AuthType) => {
   const { setCurrentUser } = useUserStore();
@@ -37,9 +38,10 @@ const useAuthMutation = (type: AuthType) => {
       }
     },
     onError: (error: Error) => {
-      console.error(
-        `${type === "register" ? "Registration" : "Login"} failed:`,
-        error.message
+      toast.error(
+        type === "register"
+          ? "Registration failed. Please try again."
+          : "Login failed. Please check your credentials."
       );
     },
   });

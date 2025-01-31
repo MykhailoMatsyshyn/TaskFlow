@@ -40,14 +40,16 @@ export const getUserProjects = (
 
   query.append("userId", String(userId));
 
-  if (filters.status) {
-    query.append("status", filters.status);
-  }
+  if (filters) {
+    if (filters.status) {
+      query.append("status", filters.status);
+    }
 
-  if (filters.assignedMembers.length > 0) {
-    filters.assignedMembers.forEach((memberId) =>
-      query.append("assignedMembers_like", memberId.toString())
-    );
+    if (filters.assignedMembers && filters.assignedMembers.length > 0) {
+      filters.assignedMembers.forEach((memberId) =>
+        query.append("assignedMembers_like", memberId.toString())
+      );
+    }
   }
 
   return axiosInstance

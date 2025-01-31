@@ -14,10 +14,12 @@ import { CreateUserForm } from "../../components/Forms";
 import useAuthMutation from "../../hooks/useAuthMutation";
 import { useUpdateUser } from "../../hooks/useUpdateUser";
 import DeleteModal from "../../components/Modals/DeleteModal";
+import MainLoader from "../../components/Loaders/MainLoader";
+import { toast } from "react-toastify";
 
 const UserManagementPage = () => {
   const { filters } = useFilterStore();
-  const { data } = useFetchUsers(filters);
+  const { data, isLoading } = useFetchUsers(filters);
 
   const { users, totalCount } = data || { users: [], totalCount: 0 };
 
@@ -41,9 +43,7 @@ const UserManagementPage = () => {
     createUserMutation.mutate(filteredData, {
       onSuccess: () => {
         setIsCreateModalOpen(false);
-      },
-      onError: (error) => {
-        console.error("Error creating user:", error.message);
+        toast.success("User created successfully!");
       },
     });
   };
@@ -143,50 +143,60 @@ const UserManagementPage = () => {
 
   return (
     <div>
-      <div className="flex justify-end items-center gap-5 mr-[12px]">
-        <button
-          className={`px-3 py-2 text-sm rounded-lg border-[2px] transition-all ${
-            isCreateModalOpen
-              ? "bg-[#BEDBB0] text-black border-[#BEDBB0]"
-              : "bg-transparent text-white border-[#BEDBB0] hover:bg-[#BEDBB0] hover:text-black"
-          }`}
-          onClick={handleCreateUser}
-        >
-          Register New User
-        </button>
-        <FilterIcon />
-      </div>
-      <Table data={users} columns={columns} totalCount={totalCount} />
-      <CustomModal
-        isOpen={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-        title="Register New User"
-      >
-        <CreateUserForm onSubmit={handleCreateUserSubmit} />
-      </CustomModal>
+      {isLoading ? (
+        <div className="flex items-center justify-center h-screen w-full">
+          <MainLoader />
+        </div>
+      ) : (
+        <>
+          <div className="flex justify-end items-center gap-5 mr-[12px]">
+            <button
+              className={`px-3 py-2 text-sm rounded-lg border-[2px] transition-all ${
+                isCreateModalOpen
+                  ? "bg-[#BEDBB0] text-black border-[#BEDBB0]"
+                  : "bg-transparent text-white border-[#BEDBB0] hover:bg-[#BEDBB0] hover:text-black"
+              }`}
+              onClick={handleCreateUser}
+            >
+              Register New User
+            </button>
+            <FilterIcon />
+          </div>
+          <Table data={users} columns={columns} totalCount={totalCount} />
+          <CustomModal
+            isOpen={isCreateModalOpen}
+            onClose={() => setIsCreateModalOpen(false)}
+            title="Register New User"
+          >
+            <CreateUserForm onSubmit={handleCreateUserSubmit} />
+          </CustomModal>
 
-      <DeleteModal
-        isOpen={isModalOpen}
-        onClose={cancelDelete}
-        onConfirm={confirmDelete}
-        message={`Are you sure you want to delete ${userNameToDelete}?`}
-        confirmText="Yes"
-        cancelText="No"
-      />
-
-      <CustomModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        title="Edit User"
-      >
-        {userToEdit && (
-          <EditUserForm
-            defaultValues={{ name: userToEdit.name, email: userToEdit.email }}
-            onSubmit={handleEditSubmit}
-            onCancel={() => setIsEditModalOpen(false)}
+          <DeleteModal
+            isOpen={isModalOpen}
+            onClose={cancelDelete}
+            onConfirm={confirmDelete}
+            message={`Are you sure you want to delete ${userNameToDelete}?`}
+            confirmText="Yes"
+            cancelText="No"
           />
-        )}
-      </CustomModal>
+
+          <CustomModal
+            isOpen={isEditModalOpen}
+            onClose={() => setIsEditModalOpen(false)}
+            title="Edit User"
+          >
+            {userToEdit && (
+              <EditUserForm
+                defaultValues={{
+                  name: userToEdit.name,
+                  email: userToEdit.email,
+                }}
+                onSubmit={handleEditSubmit}
+              />
+            )}
+          </CustomModal>
+        </>
+      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import useUserStore from "../stores/userStore";
 
 interface DecodedToken {
-  sub: string; // userId
+  sub: string;
   email: string;
   exp: number;
 }

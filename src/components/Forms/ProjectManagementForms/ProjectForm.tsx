@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useAuth } from "../../../hooks/useAuth";
 import {
   IconPicker,
@@ -10,10 +9,11 @@ import {
   TitleField,
   DescriptionField,
   TeamMemberPicker,
-  SubmitButton,
 } from "./components";
+import { SubmitFormButton } from "../components";
 import { kebabCase } from "lodash";
 import { useFetchUserProjects } from "../../../hooks/useFetchUserProjects";
+import { getProjectSchema } from "../../../validation/projectValidation";
 
 interface ProjectFormProps {
   initialData?: any;
@@ -37,83 +37,58 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
   onSubmit,
   onCancel,
 }) => {
-  const { currentUser } = useAuth();
-  const { data: projects, isLoading } = useFetchUserProjects(currentUser?.id);
+  const { userId } = useAuth();
+  const { data: projects } = useFetchUserProjects(userId);
 
-  const schema = yup.object().shape({
-    title: yup
-      .string()
-      .required("Title is required")
-      .test(
-        "unique",
-        "Title must be unique",
-        (value) =>
-          !projects?.data.some((project) => {
-            // project.title.toLowerCase() === value?.toLowerCase() &&
-            //   project.id !== initialData?.id
-          })
-      ),
-    description: yup.string().nullable(),
-  });
+  const existingProjectTitles = Array.isArray(projects)
+    ? projects.map((p) => p.title)
+    : [];
+
+  // const projectSchema = useMemo(() => {
+  //   return getProjectSchema(existingProjectTitles, initialData?.title);
+  // }, [existingProjectTitles, initialData?.title]);
 
   const {
     register,
     handleSubmit,
     setValue,
     watch,
-    setError,
-    clearErrors,
+    getValues,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(
+      getProjectSchema(existingProjectTitles, initialData?.title)
+    ),
     defaultValues: {
       title: "",
       description: "",
-      startDate: "",
-      endDate: "",
+      startDate: null,
+      endDate: null,
       assignedMembers: [] as string[],
-      status: "Planned",
+      status: "planned",
       icon: IconNames[0],
     },
+    mode: "onChange",
   });
 
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
+  const assignedMembers = watch("assignedMembers") || [];
+  const selectedStartDate = watch("startDate") || null;
+  const selectedEndDate = watch("endDate") || null;
   const selectedIcon = watch("icon");
+  const selectedStatus = watch("status") || "planned";
 
   const handleIconSelect = (icon: string) => {
     setValue("icon", icon);
   };
 
-  const validateDates = () => {
-    if (!startDate) {
-      setError("startDate", {
-        type: "required",
-        message: "Start Date is required",
-      });
-    } else {
-      clearErrors("startDate");
-    }
+  const onSubmitHandler = () => {
+    console.log("onSubmitHandler");
+    const formData = getValues(); // Забираємо актуальні значення
 
-    if (!endDate) {
-      setError("endDate", {
-        type: "required",
-        message: "End Date is required",
-      });
-    } else {
-      clearErrors("endDate");
-    }
-  };
-
-  const onSubmitHandler = (data: any) => {
-    validateDates();
-
-    if (!startDate || !endDate || errors.startDate || errors.endDate) {
-      return;
-    }
-
-    const slug = kebabCase(data.title);
+    const slug = kebabCase(formData.title);
 
     const defaultColumns = [
       { id: "to-do", title: "To Do", tasks: [] },
@@ -122,38 +97,49 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
     ];
 
     const projectData = {
-      ...data,
-      userId: Number(currentUser?.id),
+      ...formData,
+      userId: Number(userId),
       slug,
       columns: initialData ? initialData.columns : defaultColumns,
-      startDate: startDate.toISOString(),
-      endDate: endDate.toISOString(),
+      startDate: formData.startDate
+        ? new Date(formData.startDate).toISOString()
+        : null,
+      endDate: formData.endDate
+        ? new Date(formData.endDate).toISOString()
+        : null,
     };
 
+    console.log("Submitting project:", projectData);
     onSubmit(projectData);
     onCancel();
   };
 
   useEffect(() => {
-    if (initialData) {
-      setStartDate(
-        initialData.startDate ? new Date(initialData.startDate) : null
-      );
-      setEndDate(initialData.endDate ? new Date(initialData.endDate) : null);
+    if (!initialData) return;
 
-      setValue("title", initialData.title || "");
-      setValue("description", initialData.description || "");
-      setValue("assignedMembers", initialData.assignedMembers || []);
-      setValue("status", initialData.status || "Planned");
-      setValue("icon", initialData.icon || IconNames[0]);
-    }
+    setValue("title", initialData.title || "");
+    setValue("description", initialData.description || "");
+    setValue("assignedMembers", initialData.assignedMembers || []);
+    setValue("status", initialData.status || "planned");
+    setValue("icon", initialData.icon || IconNames[0]);
+    setValue(
+      "startDate",
+      initialData.startDate ? new Date(initialData.startDate) : null
+    );
+    setValue(
+      "endDate",
+      initialData.endDate ? new Date(initialData.endDate) : null
+    );
   }, [initialData, setValue]);
 
-  if (isLoading) return <p>Loading...</p>;
+  // if (isLoading) return <p>Loading...</p>;
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmitHandler)}
+      onSubmit={handleSubmit(() => {
+        console.log("Form errors:", errors);
+        onSubmitHandler();
+      })}
       className="flex flex-col gap-6 w-[335px] md:w-[350px]"
     >
       <TitleField register={register("title")} errors={errors} />
@@ -167,25 +153,19 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
             selectedMembers.map((member) => member.id)
           )
         }
-        defaultMembers={initialData?.assignedMembers || []}
+        defaultMembers={assignedMembers}
       />
 
       <StatusPicker
-        initialStatus={initialData?.status || "Planned"}
+        initialStatus={selectedStatus}
         onStatusChange={(status) => setValue("status", status)}
       />
 
       <DatePickerFields
-        startDate={startDate}
-        endDate={endDate}
-        onStartDateChange={(date) => {
-          setStartDate(date);
-          clearErrors("startDate");
-        }}
-        onEndDateChange={(date) => {
-          setEndDate(date);
-          clearErrors("endDate");
-        }}
+        startDate={selectedStartDate}
+        endDate={selectedEndDate}
+        onStartDateChange={(date) => setValue("startDate", date)}
+        onEndDateChange={(date) => setValue("endDate", date)}
         errors={{
           startDate: errors.startDate?.message,
           endDate: errors.endDate?.message,
@@ -195,10 +175,10 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
       <IconPicker
         IconNames={IconNames}
         selectedIcon={selectedIcon}
-        onIconSelect={handleIconSelect}
+        onIconSelect={(icon) => setValue("icon", icon)}
       />
 
-      <SubmitButton buttonText={initialData ? "Edit" : "Create"} />
+      <SubmitFormButton buttonText={initialData ? "Edit" : "Create"} />
     </form>
   );
 };

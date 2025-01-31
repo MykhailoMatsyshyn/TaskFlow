@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterUserData } from "../../../types/auth";
 import { registerSchema } from "../../../validation/authValidation";
-import { InputField, RoleSelectField, SubmitButton } from "../components";
+import { InputField, RoleSelectField, SubmitAuthButton } from "../components";
 
 const CreateUserForm = ({
   onSubmit,
@@ -28,7 +28,7 @@ const CreateUserForm = ({
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="w-[335px] mx-auto p-6 bg-[#151515] rounded-lg"
+      className="w-[335px] mx-auto p-6 bg-[#151515] rounded-lg flex flex-col gap-[14px]"
     >
       {/* Role selection field */}
       <RoleSelectField register={register} errors={errors} />
@@ -74,7 +74,7 @@ const CreateUserForm = ({
       />
 
       {/* Submit button */}
-      <SubmitButton type="register" />
+      <SubmitAuthButton type="register" />
     </form>
   );
 };

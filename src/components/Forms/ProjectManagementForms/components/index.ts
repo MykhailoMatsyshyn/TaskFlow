@@ -5,4 +5,3 @@ export { default as PriorityPicker } from "./PriorityPicker";
 export { default as TitleField } from "./TitleField";
 export { default as DescriptionField } from "./DescriptionField";
 export { default as TeamMemberPicker } from "./TeamMemberPicker/TeamMemberPicker";
-export { default as SubmitButton } from "./SubmitButton";

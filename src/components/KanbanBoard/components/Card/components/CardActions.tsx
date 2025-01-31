@@ -5,6 +5,7 @@ import CustomModal from "../../../../CustomModal/CustomModal";
 import { useDeleteTask } from "../../../../../hooks/useDeleteTask";
 import { useUpdateTask } from "../../../../../hooks/useUpdateTask";
 import { TaskForm } from "../../../../Forms";
+import { toast } from "react-toastify";
 
 const CardActions = ({ task }) => {
   const { mutate: deleteTask } = useDeleteTask();
@@ -27,7 +28,14 @@ const CardActions = ({ task }) => {
 
   const handleEditTask = useCallback(
     (updatedData) => {
-      updateTask({ id: task.id, data: updatedData });
+      updateTask(
+        { id: task.id, data: updatedData },
+        {
+          onSuccess: () => {
+            toast.success("Task updated successfully!");
+          },
+        }
+      );
       closeModal("edit");
     },
     [updateTask, task]

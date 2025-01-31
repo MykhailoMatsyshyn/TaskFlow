@@ -8,7 +8,7 @@ interface StatusPickerProps {
 
 const StatusPicker: React.FC<StatusPickerProps> = ({
   onStatusChange,
-  initialStatus = "Planned",
+  initialStatus,
 }) => {
   const [selectedStatus, setSelectedStatus] = useState(initialStatus);
 

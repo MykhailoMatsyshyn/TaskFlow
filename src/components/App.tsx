@@ -51,7 +51,7 @@ export default function App() {
 
   return (
     <div>
-      <Suspense fallback={<MainLoader />}>
+      <Suspense fallback={<MainLoader fullScreen={true} />}>
         <Routes>
           {/* Public Route */}
           <Route path="/welcome" element={<WelcomePage />} />

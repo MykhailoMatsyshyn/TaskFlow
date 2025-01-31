@@ -4,7 +4,7 @@ import { useUpdateColumn } from "../../../hooks/useUpdateColumn";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getColumnSchema } from "../../../validation/columnValidation";
 import InputField from "../../Forms/components/InputField/InputField";
-import { SubmitButton } from "./components";
+import { SubmitFormButton } from "../components";
 
 const ColumnForm = ({
   onClose,
@@ -60,7 +60,7 @@ const ColumnForm = ({
         defaultValue={initialTitle}
       />
 
-      <SubmitButton buttonText={columnId ? "Edit" : "Add"} />
+      <SubmitFormButton buttonText={columnId ? "Edit" : "Add"} />
     </form>
   );
 };

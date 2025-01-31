@@ -25,14 +25,14 @@
       "email": "pm4@example.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Project Manager",
-      "name": "ProjectManager4",
+      "name": "ProjectMan4",
       "id": 8
     },
     {
-      "email": "tm2tm2tm2tm2tm2tm2tm2@example.com",
+      "email": "tm2tm2tm2@example.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Team Member",
-      "name": "Team2",
+      "name": "Team22",
       "id": 10
     },
     {
@@ -104,6 +104,13 @@
       "name": "TestUser",
       "role": "Project Manager",
       "id": 26
+    },
+    {
+      "email": "adminchik123@test.com",
+      "password": "$2a$10$HxC3oqxknvW0TvIqdhZB6uDA0lz3YL6xP0D8hlOjMvcnnB/5fZcGi",
+      "role": "Admin",
+      "name": "NewAdmin",
+      "id": 27
     }
   ],
   "projects": [
@@ -135,8 +142,7 @@
           "id": "in-progress",
           "title": "In Progress",
           "tasks": [
-            22,
-            83
+            22
           ]
         },
         {
@@ -185,14 +191,13 @@
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [
-            70
-          ]
+          "tasks": []
         },
         {
           "id": "done",
           "title": "Done",
           "tasks": [
+            70,
             71,
             72,
             73,
@@ -223,7 +228,6 @@
           "id": "to-do",
           "title": "To Do",
           "tasks": [
-            30,
             31,
             32,
             33,
@@ -235,7 +239,6 @@
           "title": "In Progress",
           "tasks": [
             35,
-            36,
             37,
             38
           ]
@@ -244,16 +247,18 @@
           "id": "done",
           "title": "Done",
           "tasks": [
-            39,
-            40
+            40,
+            36,
+            30,
+            42,
+            41,
+            39
           ]
         },
         {
           "id": "blocked",
           "title": "Blocked",
           "tasks": [
-            41,
-            42,
             43
           ]
         }
@@ -418,7 +423,7 @@
       "startDate": "2025-01-26T22:00:00.000Z",
       "endDate": "2025-02-01T22:00:00.000Z",
       "priority": "Medium",
-      "status": "reviw",
+      "status": "review",
       "projectId": 6,
       "id": 17
     },
@@ -459,7 +464,7 @@
       "id": 22,
       "title": "Content Upload",
       "description": "Upload product images, descriptions, and pricing details to the platform.",
-      "assignedMember": 12,
+      "assignedMember": "12",
       "startDate": "2025-02-10T00:00:00.000Z",
       "endDate": "2025-02-20T23:59:59.000Z",
       "priority": "Medium",
@@ -485,7 +490,7 @@
       "startDate": "2025-02-02T00:00:00.000Z",
       "endDate": "2025-02-04T23:59:59.000Z",
       "priority": "High",
-      "status": "to-do",
+      "status": "done",
       "projectId": 7
     },
     {
@@ -551,7 +556,7 @@
       "startDate": "2025-02-14T00:00:00.000Z",
       "endDate": "2025-02-17T23:59:59.000Z",
       "priority": "High",
-      "status": "in-progress",
+      "status": "done",
       "projectId": 7
     },
     {
@@ -606,7 +611,7 @@
       "startDate": "2025-02-14T00:00:00.000Z",
       "endDate": "2025-02-17T23:59:59.000Z",
       "priority": "High",
-      "status": "blocked",
+      "status": "done",
       "projectId": 7
     },
     {
@@ -617,7 +622,7 @@
       "startDate": "2025-02-15T00:00:00.000Z",
       "endDate": "2025-02-18T23:59:59.000Z",
       "priority": "Medium",
-      "status": "blocked",
+      "status": "done",
       "projectId": 7
     },
     {
@@ -756,11 +761,11 @@
       "id": 70,
       "title": "Set Up Cloud Infrastructure",
       "description": "Configured AWS Lambda, S3, and API Gateway for scalable NLP processing.",
-      "assignedMember": 6,
+      "assignedMember": "6",
       "startDate": "2024-09-05T09:00:00.000Z",
       "endDate": "2024-10-01T17:30:00.000Z",
       "priority": "High",
-      "status": "in-progress",
+      "status": "done",
       "projectId": 9
     },
     {
@@ -839,17 +844,6 @@
       "priority": "Medium",
       "status": "to-do",
       "projectId": 10
-    },
-    {
-      "title": "Bestik",
-      "description": "newnewnew\nnewnewnew\nnewnewnew",
-      "assignedMember": "20",
-      "startDate": "2025-01-22T22:00:00.000Z",
-      "endDate": "2025-01-30T22:00:00.000Z",
-      "priority": "Medium",
-      "status": "in-progress",
-      "projectId": 6,
-      "id": 83
     }
   ]
 }

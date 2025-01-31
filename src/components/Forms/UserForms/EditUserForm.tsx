@@ -1,17 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { InputField } from "../components";
+import { SubmitFormButton } from "../components";
 
 interface EditUserFormProps {
   defaultValues: { name: string; email: string };
   onSubmit: (data: { name: string; email: string }) => void;
-  onCancel: () => void;
 }
 
 const EditUserForm: React.FC<EditUserFormProps> = ({
   defaultValues,
   onSubmit,
-  onCancel,
 }) => {
   const {
     register,
@@ -43,21 +42,7 @@ const EditUserForm: React.FC<EditUserFormProps> = ({
         defaultValue={defaultValues.email}
       />
 
-      <div className="flex justify-end space-x-2">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="px-4 py-2 text-white bg-gray-600 rounded hover:bg-gray-700 transition"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700 transition"
-        >
-          Save
-        </button>
-      </div>
+      <SubmitFormButton buttonText={"Edit"} />
     </form>
   );
 };

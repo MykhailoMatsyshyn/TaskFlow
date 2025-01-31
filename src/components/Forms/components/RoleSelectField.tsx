@@ -5,7 +5,7 @@ const RoleSelectField = ({
   register: any;
   errors: any;
 }) => (
-  <div className="mb-[14px]">
+  <>
     <select
       {...register("role")}
       id="role"
@@ -19,11 +19,11 @@ const RoleSelectField = ({
       <option value="Team Member">Team Member</option>
     </select>
     {errors.role && (
-      <p className="absolute text-red-500 text-xs -mt-[56px] ml-[13px] backdrop-blur-sm bg-black/30 rounded px-[5px]">
+      <p className="absolute text-red-500 text-xs -mt-[8px] ml-[13px] backdrop-blur-sm bg-black/30 rounded px-[5px]">
         {errors.role?.message}
       </p>
     )}
-  </div>
+  </>
 );
 
 export default RoleSelectField;

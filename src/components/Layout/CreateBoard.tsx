@@ -47,7 +47,6 @@ const CreateBoard = () => {
       </div>
       <hr className="border-white/10 mb-10" />
 
-      {/* Модальне вікно */}
       <CustomModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}

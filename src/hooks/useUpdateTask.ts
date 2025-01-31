@@ -33,9 +33,6 @@ export const useUpdateTask = (taskId?: number) => {
       }
       toast.error("Failed to update task. Please try again.");
     },
-    onSuccess: () => {
-      toast.success("Task updated successfully!");
-    },
     onSettled: () => {
       // Інвалідовуємо кеш для оновлення даних
       queryClient.invalidateQueries(["task", taskId]);

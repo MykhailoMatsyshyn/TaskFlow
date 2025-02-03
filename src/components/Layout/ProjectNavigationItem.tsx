@@ -10,6 +10,7 @@ import { useDeleteProject } from "../../hooks/useDeleteProject";
 import { ProjectForm } from "../Forms";
 import { useUpdateProject } from "../../hooks/useUpdateProject";
 import DeleteModal from "../Modals/DeleteModal";
+import ActionButtons from "../ActionButtons";
 
 /**
  * Component representing a single project navigation item.
@@ -19,7 +20,6 @@ const ProjectNavigationItem = ({ project }) => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const location = useLocation();
-  const theme = localStorage.getItem("theme");
   const { currentUser } = useUserStore();
   const { mutate: deleteProject } = useDeleteProject();
   const { mutate: updateProject } = useUpdateProject();
@@ -40,6 +40,7 @@ const ProjectNavigationItem = ({ project }) => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const openEditModal = (project) => {
+    console.log(project);
     setSelectedProject(project);
     setEditModalOpen(true);
   };
@@ -70,6 +71,8 @@ const ProjectNavigationItem = ({ project }) => {
       data: updatedData,
     };
 
+    console.log(selectedProject);
+
     updateProject(dataWithId, {
       onSuccess: (updatedProject) => {
         const newSlug = kebabCase(updatedProject.title);
@@ -97,9 +100,9 @@ const ProjectNavigationItem = ({ project }) => {
     <li className="list-none scroll-snap-start">
       <Link to={`/dashboard/${kebabCase(project.title)}`} className="block">
         <div
-          className={`relative flex justify-between items-center pl-[14px] py-[22px] px-[14px] h-[61px] hover:bg-[#1f1f1f] ${
+          className={`relative flex justify-between items-center pl-[14px] py-[22px] px-[14px] h-[61px] hover:bg-background ${
             isActive
-              ? `bg-[#1F1F1F] after:content-[''] after:block after:rounded-l-md after:w-[4px] after:h-[61px] after:absolute after:right-0 after:top-[calc(50%-30.5px)] ${
+              ? `bg-background after:content-[''] after:block after:rounded-l-md after:w-[4px] after:h-[61px] after:absolute after:right-0 after:top-[calc(50%-30.5px)] ${
                   project.status === "planned"
                     ? "after:bg-[#8FA1D0]"
                     : project.status === "in-progress"
@@ -114,16 +117,19 @@ const ProjectNavigationItem = ({ project }) => {
               id={project.icon}
               size={18}
               className={`mr-2`}
-              color={isActive ? "#fff" : "rgba(255, 255, 255, 0.5)"}
+              color={
+                isActive ? "var(--text-color)" : "var(--text-color-transparent)"
+              }
             />
             {project.title.length > maxTitleLength ? (
               <Tooltip title={project.title}>
                 <p
                   className={`text-sm font-medium tracking-[-0.02em] block truncate ${
-                    isActive ? "text-white" : "text-white/50"
+                    isActive
+                      ? "text-text max-w-[120px] md:max-w-[150px]"
+                      : "text-text opacity-50 max-w-[167px] md:max-w-[200px]"
                   }`}
                   style={{
-                    maxWidth: isActive ? "150px" : "200px",
                     whiteSpace: "nowrap",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
@@ -135,7 +141,7 @@ const ProjectNavigationItem = ({ project }) => {
             ) : (
               <span
                 className={`text-sm font-medium tracking-[-0.02em] ${
-                  isActive ? "text-white" : "text-white/50"
+                  isActive ? "text-text" : "text-text opacity-50"
                 }`}
               >
                 {project.title}
@@ -143,22 +149,10 @@ const ProjectNavigationItem = ({ project }) => {
             )}
           </div>
           {isActive && canEditOrDelete(role) && (
-            <div className="flex gap-2">
-              <button onClick={() => openEditModal(project)}>
-                <CustomIcon
-                  id="edit"
-                  size={16}
-                  className="fill-none stroke-white/50"
-                />
-              </button>
-              <button onClick={openModal}>
-                <CustomIcon
-                  id="trash2"
-                  size={16}
-                  className="fill-none stroke-white/50"
-                />
-              </button>
-            </div>
+            <ActionButtons
+              onEdit={() => openEditModal(project)}
+              onDelete={() => setIsModalOpen(true)}
+            />
           )}
         </div>
       </Link>

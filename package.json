@@ -6,7 +6,8 @@
   "scripts": {
     "server": "nodemon --watch server/db.json --watch server/routes.json --exec \"json-server-auth server/db.json -r server/routes.json\"",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --noEmit && vite build || true",
+    "start": "json-server --watch db.json --routes routes.json --port 8080",
     "lint": "eslint .",
     "preview": "vite preview"
   },

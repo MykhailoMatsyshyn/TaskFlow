@@ -1,122 +1,112 @@
 import { useState, useEffect, useRef } from "react";
-import { CustomIcon } from "../CustomIcon/CustomIcon";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const ThemeSwitcher = () => {
-  const [theme, setTheme] = useState<string>(
-    localStorage.getItem("theme") || "light"
+/**
+ * ThemeSwitcher Component
+ *
+ * A theme toggle dropdown allowing users to switch between "light" and "dark" modes.
+ * The selected theme is saved in `localStorage` and applied to the document root.
+ *
+ * Features:
+ * - Saves the selected theme in local storage.
+ * - Provides a dropdown with animation for switching themes.
+ * - Closes when clicking outside the dropdown.
+ * - Keeps the dropdown open after selecting a theme.
+ */
+const ThemeSwitcher: React.FC = () => {
+  // State for theme and dropdown visibility
+  const [theme, setTheme] = useState<"light" | "dark">(
+    (localStorage.getItem("theme") as "light" | "dark") || "light"
   );
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
+  // Refs for dropdown and button elements
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  // Apply the selected theme to the document and save to localStorage
   useEffect(() => {
     document.documentElement.className = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  // Close dropdown when clicking outside of it
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
       ) {
         setIsDropdownOpen(false);
       }
     };
 
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
 
-  const handleThemeChange = (selectedTheme: string) => {
+  // Handle theme change without closing the dropdown
+  const handleThemeChange = (selectedTheme: "light" | "dark") => {
     setTheme(selectedTheme);
-    setIsDropdownOpen(false);
+  };
+
+  // Animation settings for dropdown menu
+  const dropdownAnimation = {
+    initial: { opacity: 0, y: -15 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -15 },
+    transition: { duration: 0.3 },
   };
 
   return (
-    <div className="text-[14px] tracking-[-0.02em] text-white/80">
+    <div className="relative inline-block text-left">
+      {/* Toggle button for dropdown */}
       <button
-        onClick={() => setIsDropdownOpen((prev) => !prev)}
-        className="flex items-center justify-between gap-1 w-[68px]  font-medium"
+        ref={buttonRef}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsDropdownOpen((prev) => !prev);
+        }}
+        className="flex items-center gap-1 h-full"
       >
-        Theme
-        <CustomIcon
-          id="arrow-down"
-          size={16}
-          className={`fill-none  stroke-white/80 ${
+        <span className="text-text opacity-80">Theme</span>
+        <ChevronDown
+          className={`w-4 h-4 text-text opacity-80 transition-transform duration-500 ${
             isDropdownOpen ? "rotate-180" : ""
-          } `}
+          }`}
         />
       </button>
 
-      {isDropdownOpen && (
-        <div
-          ref={dropdownRef}
-          className="absolute right-0 mt-2 w-40 bg-gray-800 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none font-normal"
-        >
-          <ul className="py-1">
-            <li>
-              <button
-                onClick={() => handleThemeChange("light")}
-                className={`block w-full px-4 py-2 text-left  ${
-                  theme === "light" ? "bg-gray-700" : ""
-                }`}
-              >
-                Light
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => handleThemeChange("dark")}
-                className={`block w-full px-4 py-2 text-left ${
-                  theme === "dark" ? "bg-gray-700" : ""
-                }`}
-              >
-                Dark
-              </button>
-            </li>
-          </ul>
-        </div>
-      )}
+      {/* Dropdown menu with animation */}
+      <AnimatePresence>
+        {isDropdownOpen && (
+          <motion.div
+            ref={dropdownRef}
+            {...dropdownAnimation}
+            className="absolute z-50 left-0 mt-2 w-[100px] bg-neutral-background text-text font-light rounded-lg border border-[#BEDBB0] shadow-lg ring-1 ring-black ring-opacity-5"
+          >
+            <ul className="py-2">
+              {(["light", "dark"] as const).map((mode) => (
+                <li key={mode}>
+                  <button
+                    onClick={() => handleThemeChange(mode)}
+                    className={`block w-full px-4 py-2 text-left transition-all hover:text-[#BEDBB0] ${
+                      theme === mode ? "text-[#BEDBB0]" : ""
+                    }`}
+                  >
+                    {mode.charAt(0).toUpperCase() + mode.slice(1)}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
 export default ThemeSwitcher;
-
-// import { useState, useEffect } from "react";
-
-// const ThemeSwitcher = () => {
-//   const [theme, setTheme] = useState<string>(
-//     localStorage.getItem("theme") || "light"
-//   );
-
-//   useEffect(() => {
-//     document.documentElement.className = theme;
-//     localStorage.setItem("theme", theme);
-//   }, [theme]);
-
-//   const handleChangeTheme = (event: React.ChangeEvent<HTMLSelectElement>) => {
-//     setTheme(event.target.value);
-//   };
-
-//   return (
-//     <div>
-//       <label htmlFor="theme-selector" className="text-white">
-//         Theme
-//       </label>
-//       <select
-//         id="theme-selector"
-//         value={theme}
-//         onChange={handleChangeTheme}
-//         className="bg-black text-white p-2 rounded"
-//       >
-//         <option value="light">Light</option>
-//         <option value="dark">Dark</option>
-//       </select>
-//     </div>
-//   );
-// };
-
-// export default ThemeSwitcher;

@@ -48,6 +48,8 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
   //   return getProjectSchema(existingProjectTitles, initialData?.title);
   // }, [existingProjectTitles, initialData?.title]);
 
+  console.log(initialData);
+
   const {
     register,
     handleSubmit,
@@ -140,12 +142,15 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
         console.log("Form errors:", errors);
         onSubmitHandler();
       })}
-      className="flex flex-col gap-6 w-[335px] md:w-[350px]"
+      className="flex flex-col gap-6"
     >
       <TitleField register={register("title")} errors={errors} />
 
       <DescriptionField register={register} />
 
+      <label htmlFor="title" className="block mb-[-10px]">
+        Members
+      </label>
       <TeamMemberPicker
         onChange={(selectedMembers) =>
           setValue(

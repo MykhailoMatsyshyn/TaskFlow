@@ -8,12 +8,12 @@ const PriorityIndicator = ({ priority }) => {
     High: "bg-[#BEDBB0]",
     Medium: "bg-[#E09CB5]",
     Low: "bg-[#8FA1D0]",
-    default: "bg-[rgba(255,255,255,0.3)]",
+    default: "bg-[#B7B7B7]",
   };
 
   return (
-    <div className="flex flex-col text-white/50 w-[58px]">
-      <span className="font-normal text-[8px] tracking-[-0.02em] text-white/50 mb-1">
+    <div className="flex flex-col text-text w-[58px]">
+      <span className="font-normal text-[8px] tracking-[-0.02em] text-text opacity-50  mb-1">
         Priority
       </span>
       <div className="flex items-center gap-2">

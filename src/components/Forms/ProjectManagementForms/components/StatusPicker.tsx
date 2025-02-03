@@ -43,7 +43,7 @@ const StatusPicker: React.FC<StatusPickerProps> = ({
                   },
                 }}
               />
-              <span className="text-white text-sm font-medium">
+              <span className="text-text opacity-50 text-sm font-medium">
                 {status.label}
               </span>
             </label>

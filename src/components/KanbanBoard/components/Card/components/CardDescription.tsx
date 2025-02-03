@@ -6,7 +6,7 @@
 const CardDescription = ({ description }) => {
   return (
     <p
-      className="font-normal text-[12px] leading-[16px] tracking-[-0.02em] text-white/50 overflow-hidden text-ellipsis"
+      className="font-normal text-[12px] leading-[16px] tracking-[-0.02em] text-text opacity-50 overflow-hidden text-ellipsis"
       style={{
         display: "-webkit-box",
         WebkitBoxOrient: "vertical",

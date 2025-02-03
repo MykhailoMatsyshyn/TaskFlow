@@ -83,17 +83,20 @@ const TaskForm: React.FC<TaskFormProps> = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}
-      className="flex flex-col gap-6 w-[335px] md:w-[350px]"
+      className="flex flex-col gap-6"
     >
       <TitleField register={register("title")} errors={errors} />
 
       <DescriptionField register={register} />
 
+      <label htmlFor="title" className="block mb-[-10px]">
+        Member
+      </label>
       <TeamMemberPicker
         onChange={(selectedUser) =>
           setValue("assignedMember", selectedUser[0]?.id || null)
         }
-        defaultMembers={selectedMember ? [selectedMember] : []} // Виправлено
+        defaultMembers={selectedMember ? [selectedMember] : []}
         isMulti={false}
         filterByProjectMembers={project?.assignedMembers}
       />

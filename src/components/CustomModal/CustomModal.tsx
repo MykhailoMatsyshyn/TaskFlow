@@ -41,7 +41,6 @@ const CustomModal: React.FC<CustomModalProps> = ({
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
-      // ariaHideApp={false}
       style={{
         overlay: {
           backgroundColor: "rgba(0, 0, 0, 0.3)",
@@ -53,36 +52,31 @@ const CustomModal: React.FC<CustomModalProps> = ({
           left: "50%",
           right: "auto",
           bottom: "auto",
-          marginRight: "-50%",
           transform: "translate(-50%, -50%)",
           padding: "20px 30px",
           borderRadius: "10px",
-          // width: "400px",
           animation: "scaleIn 0.3s ease-out forwards",
-          backgroundColor: "#151515",
+          backgroundColor: "var(--neutral-bg)",
           boxShadow: "0px 0px 1px 2px rgba(190, 219, 176, 0.5)",
           border: "none",
           overflow: "hidden",
-          // maxHeight: "80vh",
-          // zIndex: 999,
+          width: "80vw", // Автоматична ширина
+          maxWidth: "430px", // Максимальна ширина для великих екранів
+          minWidth: "300px", // Мінімальна ширина для мобільних
         },
       }}
     >
-      <div className={`custom-modal text-white`}>
-        {/* <button className="custom-modal__close" onClick={onClose}>
-          &times;
-        </button> */}
+      <div className="custom-modal text-text w-full">
         {title && <h2 className="custom-modal__title">{title}</h2>}
 
         <div
           ref={contentRef}
-          className={`custom-modal__content font-medium text-sm tracking-[-0.02em] text-white custom-scrollbar ${
+          className={`custom-modal__content font-medium text-sm tracking-[-0.02em] text-text custom-scrollbar ${
             hasScrollbar ? "mr-[-19px] pr-[11px]" : ""
           }`}
           style={{
             overflowY: "auto",
             maxHeight: "calc(80vh - 40px - 20px)",
-            // paddingBottom: "20px",
           }}
         >
           {children}

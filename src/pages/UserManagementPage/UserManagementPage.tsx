@@ -131,9 +131,9 @@ const UserManagementPage = () => {
             onClick={() => handleDelete(row.original.id, row.original.name)}
           >
             <CustomIcon
-              id={"trash2"}
+              id={"trash"}
               size={14}
-              className="stroke-[#E85050] fill-none"
+              className="stroke-none fill-[#E85050]"
             />
           </button>
         </div>
@@ -153,8 +153,8 @@ const UserManagementPage = () => {
             <button
               className={`px-3 py-2 text-sm rounded-lg border-[2px] transition-all ${
                 isCreateModalOpen
-                  ? "bg-[#BEDBB0] text-black border-[#BEDBB0]"
-                  : "bg-transparent text-white border-[#BEDBB0] hover:bg-[#BEDBB0] hover:text-black"
+                  ? "bg-[#BEDBB0] text-text-inverted border-[#BEDBB0]"
+                  : "bg-transparent text-text border-[#BEDBB0] hover:bg-[#BEDBB0] hover:text-text-inverted"
               }`}
               onClick={handleCreateUser}
             >

@@ -33,7 +33,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 
   return (
     <div className="relative">
-      <h3 className="font-normal text-[12px] tracking-[-0.02em] text-white/50 mb-1">
+      <h3 className="font-normal text-[12px] tracking-[-0.02em] text-text opacity-50 mb-1">
         {label}
       </h3>
       {error && (
@@ -50,7 +50,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
         dayClassName={(date) => {
           if (highlightRange?.start && highlightRange?.end) {
             if (date >= highlightRange.start && date <= highlightRange.end) {
-              return "bg-green-500 text-white rounded-full";
+              return "bg-green-500 text-text rounded-full";
             }
           }
           return "";
@@ -58,10 +58,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
         popperPlacement="bottom-start"
         portalId="datepicker-portal"
         customInput={
-          <button
-            type="button"
-            className="text-left text-white bg-transparent w-full"
-          >
+          <button type="button" className="text-left bg-transparent w-full">
             <span className="font-medium text-[14px] tracking-[-0.02em] text-[#BEDBB0]">
               {selectedDate ? formatDate(selectedDate) : "Select a date"}
             </span>

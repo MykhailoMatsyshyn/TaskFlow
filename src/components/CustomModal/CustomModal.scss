@@ -12,16 +12,12 @@
     cursor: pointer;
     color: #333;
     transition: color 0.3s ease;
-
-    &:hover {
-      color: #ff0000;
-    }
   }
 
   &__title {
     margin: 0;
     padding-bottom: 5px;
-    border-bottom: 1px solid rgb(255, 255, 255, 0.3);
+    border-bottom: 1px solid var(--text-color-transparent);
     font-size: 18px;
     text-align: center;
   }

@@ -6,6 +6,7 @@ type SwitchToggleProps = {
   rightLabel: string;
   currentView: "kanban" | "gantt";
   onToggle: () => void;
+  className?: string;
 };
 
 const SwitchToggle: React.FC<SwitchToggleProps> = ({
@@ -13,9 +14,10 @@ const SwitchToggle: React.FC<SwitchToggleProps> = ({
   rightLabel,
   currentView,
   onToggle,
+  className = "",
 }) => {
   return (
-    <div className={styles.switchContainer}>
+    <div className={`${styles.switchContainer} ${className}`}>
       <input
         type="radio"
         id="kanban"

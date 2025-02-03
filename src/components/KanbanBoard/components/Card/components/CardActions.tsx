@@ -6,6 +6,7 @@ import { useDeleteTask } from "../../../../../hooks/useDeleteTask";
 import { useUpdateTask } from "../../../../../hooks/useUpdateTask";
 import { TaskForm } from "../../../../Forms";
 import { toast } from "react-toastify";
+import ActionButtons from "../../../../ActionButtons";
 
 const CardActions = ({ task }) => {
   const { mutate: deleteTask } = useDeleteTask();
@@ -75,12 +76,11 @@ const CardActions = ({ task }) => {
   return (
     <div className="flex gap-2">
       {getDeadlineStatusIcon()}
-      <button onClick={() => openModal("edit")}>
-        <CustomIcon id="edit" size={16} color="rgba(255, 255, 255, 0.5)" />
-      </button>
-      <button onClick={() => openModal("delete")}>
-        <CustomIcon id="trash2" size={16} color="rgba(255, 255, 255, 0.5)" />
-      </button>
+
+      <ActionButtons
+        onEdit={() => openModal("edit")}
+        onDelete={() => openModal("delete")}
+      />
 
       {/* Модалка видалення */}
       <DeleteModal

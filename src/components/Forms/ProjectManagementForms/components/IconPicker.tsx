@@ -28,8 +28,13 @@ const IconPicker: React.FC<IconPickerProps> = ({
               <CustomIcon
                 id={name}
                 size={20}
+                // color={
+                //   selectedIcon === name ? "#fff" : "rgba(255, 255, 255, 0.5)"
+                // }
                 color={
-                  selectedIcon === name ? "#fff" : "rgba(255, 255, 255, 0.5)"
+                  selectedIcon === name
+                    ? "var(--text-color)"
+                    : "var(--text-color-transparent)"
                 }
               />
             </button>

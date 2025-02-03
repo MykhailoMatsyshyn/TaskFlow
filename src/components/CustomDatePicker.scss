@@ -3,28 +3,39 @@
 }
 
 .react-datepicker {
-  @apply bg-gray-800 border border-gray-600 rounded-lg p-2 shadow-lg;
+  @apply border rounded-lg p-2 shadow-lg;
+  background-color: var(--neutral-bg);
+  border: 1px solid var(--droppable-hover-bg);
 }
 
 .react-datepicker__header {
-  @apply bg-gray-800 border-b border-gray-600 py-2;
+  background-color: var(--neutral-bg);
+  border-bottom: 1px solid var(--droppable-hover-bg);
+  padding: 10px;
 }
 
 .react-datepicker__current-month {
-  @apply text-white text-base font-medium mb-2;
+  @apply text-base font-medium mb-2;
+  color: var(--text-color);
 }
 
 .react-datepicker__day-name,
 .react-datepicker__day {
-  @apply text-white w-8 h-8 leading-8 text-center font-medium;
+  @apply w-8 h-8 leading-8 text-center font-medium;
+  color: var(--text-color);
 }
 
 .react-datepicker__day:hover {
-  @apply bg-green-500 text-white rounded-full cursor-pointer;
+  background-color: rgba(190, 219, 176, 0.3);
+  color: var(--text-color);
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .react-datepicker__day--selected {
-  @apply bg-green-600 text-white rounded-full;
+  background-color: rgba(190, 219, 176, 0.8);
+  color: var(--text-inverted);
+  border-radius: 50%;
 }
 
 .react-datepicker__triangle {
@@ -32,9 +43,11 @@
 }
 
 .react-datepicker__day--in-range {
-  @apply bg-green-500 text-white rounded-full;
+  background-color: rgba(190, 219, 176, 0.3);
+  color: var(--text-color);
+  border-radius: 50%;
 }
 
 .react-datepicker__day--in-range:hover {
-  @apply bg-green-600;
+  background-color: rgba(190, 219, 176, 0.6);
 }

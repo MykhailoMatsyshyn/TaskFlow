@@ -63,7 +63,7 @@ const MainDashboardPage = () => {
   };
 
   return (
-    <div className="p-4 h-screen flex flex-col">
+    <div className="pr-4 h-screen flex flex-col pl-0">
       <GeneralStats totalProjects={totalProjects} totalTasks={totalTasks} />
       <div className="grid grid-cols-3 gap-6 flex-grow overflow-y-auto">
         <ProjectList

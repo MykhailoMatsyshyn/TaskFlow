@@ -67,7 +67,7 @@ const ProjectPage = () => {
     if (!tasks || tasks.length === 0) {
       return (
         <div
-          className="flex items-center justify-center text-2xl text-white/50"
+          className="flex items-center justify-center text-2xl text-text opacity-50"
           style={{ height: "calc(100vh - 164px)" }}
         >
           <p>No tasks available.</p>
@@ -78,21 +78,23 @@ const ProjectPage = () => {
   };
 
   return (
-    <div className="p-0">
-      <header className="flex items-center justify-between mb-4">
-        <h1 className="text-lg font-normal italic underline text-white/70">
+    <div>
+      <section className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 ml-5">
+        <h1 className="pr-[20px] md:pr-0 md:text-lg md:font-normal italic underline text-text opacity-70">
           {project?.title}
         </h1>
-        <div className="flex gap-2">
+
+        <div className="flex flex-row justify-between md:flex-row md:gap-2">
           <SwitchToggle
             leftLabel="Kanban"
             rightLabel="Gantt"
             currentView={view}
             onToggle={toggleView}
+            className="mt-2 md:mt-0"
           />
-          <FilterManager />
+          <FilterManager className="mt-2 md:mt-0" />
         </div>
-      </header>
+      </section>
 
       <div className="relative">
         <div

@@ -23,6 +23,8 @@ const ProjectNavigationList = () => {
 
   if (isError || !projects) return <p>Error loading projects</p>;
 
+  console.log(projects);
+
   return (
     <div
       ref={ref}

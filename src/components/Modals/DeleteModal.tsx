@@ -12,19 +12,19 @@ const DeleteModal = ({
 }) => {
   return (
     <CustomModal isOpen={isOpen} onClose={onClose} title={title}>
-      <div className="flex flex-col justify-between min-h-[100px] w-[335px]  mt-[15px]">
-        <p className="text-white text-sm leading-[1.5] break-words text-center">
+      <div className="flex flex-col justify-between min-h-[100px] mt-[15px]">
+        <p className="text-text text-sm leading-[1.5] break-words text-center">
           {message}
         </p>
         {extraMessage && (
-          <p className="text-white/50 text-xs leading-[1.4] break-words text-center mt-2">
+          <p className="text-text opacity-50 text-xs leading-[1.4] break-words text-center mt-2">
             {extraMessage}
           </p>
         )}
         <div className="flex justify-end gap-3 mt-4">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-white rounded bg-white/20 transition-colors hover:bg-white/10"
+            className="px-4 py-2 text-[var(--text-inverted)] rounded bg-text opacity-70 transition-colors hover:opacity-50"
           >
             {cancelText}
           </button>

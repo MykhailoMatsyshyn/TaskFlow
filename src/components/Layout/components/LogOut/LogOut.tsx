@@ -42,7 +42,7 @@ const LogOut = () => {
           color="#BEDBB0"
           className="fill-[#BEDBB0] group-hover:fill-[#9DC888]"
         />
-        <p className="text-lg font-medium">Log Out</p>
+        <p className="text-lg font-medium text-text">Log Out</p>
       </motion.button>
 
       {/* Custom Modal */}
@@ -51,17 +51,17 @@ const LogOut = () => {
         onClose={handleCloseModal}
         title="Log Out"
       >
-        <div className="flex flex-col justify-between min-h-[100px] w-[335px] mt-[15px]">
+        <div className="flex flex-col justify-between min-h-[100px] mt-[15px]">
           {/* Message */}
-          <p className="text-white text-sm leading-[1.5] break-words text-center">
-            Are you sure you want to log out?
+          <p className="text-text text-sm leading-[1.5] break-words text-center">
+            Nooo! Who will move the tasks now?!
           </p>
 
           {/* Buttons */}
           <div className="flex justify-end gap-3 mt-2">
             <button
               onClick={handleCloseModal}
-              className="px-4 py-2 text-white rounded bg-white/20 transition-colors hover:bg-white/10"
+              className="px-4 py-2 text-[var(--text-inverted)] rounded bg-text opacity-70 transition-colors hover:opacity-50"
             >
               Cancel
             </button>

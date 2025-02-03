@@ -142,6 +142,7 @@
           "id": "in-progress",
           "title": "In Progress",
           "tasks": [
+            18,
             22
           ]
         },
@@ -149,7 +150,6 @@
           "id": "review",
           "title": "Review",
           "tasks": [
-            18,
             17
           ]
         },
@@ -430,20 +430,20 @@
     {
       "title": "Integration of Payment Gateway",
       "description": "Implement and test payment gateway integration.",
-      "assignedMember": 20,
+      "assignedMember": "20",
       "startDate": "2025-02-02T22:00:00.000Z",
       "endDate": "2025-03-06T22:00:00.000Z",
-      "priority": "High",
-      "status": "done",
+      "priority": "Low",
+      "status": "in-progress",
       "projectId": 6,
       "id": 18
     },
     {
       "title": "Testing and QA",
       "description": "Perform testing and quality assurance for all features.",
-      "assignedMember": 20,
+      "assignedMember": "20",
       "startDate": "2025-02-09T22:00:00.000Z",
-      "endDate": "2025-03-22T22:00:00.000Z",
+      "endDate": "2025-03-23T10:00:00.000Z",
       "priority": "Low",
       "status": "to-do",
       "projectId": 6,
@@ -453,10 +453,10 @@
       "id": 20,
       "title": "SEO Optimization",
       "description": "Optimize the platform for search engines to improve visibility and ranking.",
-      "assignedMember": 12,
+      "assignedMember": "12",
       "startDate": "2025-02-01T00:00:00.000Z",
       "endDate": "2025-02-04T13:00:59.000Z",
-      "priority": "Low",
+      "priority": "High",
       "status": "to-do",
       "projectId": 6
     },
@@ -753,7 +753,7 @@
       "assignedMember": "15",
       "startDate": "2025-01-28T10:00:00.000Z",
       "endDate": "2025-02-06T18:30:00.000Z",
-      "priority": "Low",
+      "priority": "Without priority",
       "status": "to-do",
       "projectId": 8
     },

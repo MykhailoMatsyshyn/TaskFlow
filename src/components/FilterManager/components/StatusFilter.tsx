@@ -18,15 +18,13 @@ const StatusFilter: React.FC<StatusFilterProps> = ({
     setFilter("status", status === "All" ? "" : kebabCase(status));
   };
 
-  const isAllActive = currentStatus === "";
-
   return (
     <div className="flex flex-col items-start gap-3 mb-[14px]">
-      <div className="flex items-center justify-between w-full">
+      <div className="flex items-center justify-between w-full text-text">
         <h4>Status</h4>
         <button
           onClick={onReset}
-          className="text-white/50 text-sm font-light underline hover:text-white transition"
+          className="opacity-50 text-sm font-light underline hover:text-text hover:opacity-100  transition"
         >
           Show all
         </button>
@@ -39,8 +37,8 @@ const StatusFilter: React.FC<StatusFilterProps> = ({
               className={`flex items-center gap-2 w-full px-3 py-2 text-sm rounded-lg transition ${
                 (label === "All" && currentStatus === "") ||
                 currentStatus === kebabCase(label)
-                  ? "bg-white/10 text-white"
-                  : "bg-transparent text-white/50 hover:bg-white/5"
+                  ? "bg-[var(--project-list-scrollbar-track)] text-text"
+                  : "bg-transparent text-text opacity-50 hover:bg-white/5"
               }`}
             >
               <span

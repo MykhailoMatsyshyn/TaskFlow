@@ -13,10 +13,10 @@ import TaskSkeleton from "../../../Loaders/TaskSkeleton";
  */
 const Column = ({ projectId, column, columns, tasks, tasksLoading }) => {
   return (
-    <div className="flex flex-col w-[335px] h-full font-medium text-[14px] tracking-[-0.02em]">
+    <div className="flex flex-col w-[335px] h-full  text-[14px] tracking-[-0.02em]">
       {/* Column Header with Title & Actions */}
-      <div className="flex justify-between items-center h-[56px] w-[335px] px-5 py-[18px] mb-[14px] rounded-lg bg-[#121212]">
-        <h3 className="font-bold">{column.title}</h3>
+      <div className="flex justify-between items-center h-[56px] w-[335px] px-5 py-[18px] mb-[14px] rounded-lg bg-background-highlight">
+        <h3 className="text-text font-light">{column.title}</h3>
         <ColumnActions
           projectId={projectId}
           column={column}

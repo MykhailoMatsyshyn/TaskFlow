@@ -9,7 +9,7 @@ const statuses = [
   { label: "Planned", color: "#8FA1D0" },
   { label: "In Progress", color: "#E09CB5" },
   { label: "Completed", color: "#BEDBB0" },
-  { label: "All", color: "rgba(255, 255, 255, 0.5)" },
+  { label: "All", color: "#B7B7B7" },
 ];
 
 const ProjectFilterManager: React.FC = () => {
@@ -46,7 +46,7 @@ const ProjectFilterManager: React.FC = () => {
       <button
         onClick={toggleFilterPopup}
         className={`flex items-center gap-1 text-xs transition ${
-          isOpen ? "text-white" : "text-white/50 hover:text-white"
+          isOpen ? "text-text" : "text-text opacity-50 hover:text-text"
         }`}
       >
         <FiFilter size={14} />
@@ -56,7 +56,7 @@ const ProjectFilterManager: React.FC = () => {
       <FilterPopup
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        className="w-[232px]  top-6"
+        className="w-[197px] md:w-[232px] top-6"
       >
         <StatusFilter
           statuses={statuses}

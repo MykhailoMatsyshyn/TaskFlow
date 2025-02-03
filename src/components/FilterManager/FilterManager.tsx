@@ -10,10 +10,14 @@ const statuses = [
   { label: "To Do", color: "#8FA1D0" },
   { label: "In Progress", color: "#E09CB5" },
   { label: "Done", color: "#BEDBB0" },
-  { label: "All", color: "rgba(255, 255, 255, 0.5)" },
+  { label: "All", color: "#B7B7B7" },
 ];
 
-const FilterManager: React.FC = () => {
+interface FilterManagerProps {
+  className?: string;
+}
+
+const FilterManager: React.FC<FilterManagerProps> = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
   const setFilter = useTaskFilterStore((state) => state.setFilter);
@@ -22,8 +26,6 @@ const FilterManager: React.FC = () => {
   const toggleFilterPopup = () => {
     setIsOpen((prev) => !prev);
   };
-
-  // const resetFilters = useTaskFilterStore((state) => state.resetFilters);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -43,10 +45,13 @@ const FilterManager: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative mr-[20px] text-sm font-light" ref={popupRef}>
+    <div
+      className={`relative mr-[20px] text-sm font-light ${className}`}
+      ref={popupRef}
+    >
       <button
         onClick={toggleFilterPopup}
-        className="flex items-center gap-2 h-[40px] px-3 py-2 text-sm text-white bg-transparent border border-white/20 rounded hover:bg-white/10 transition"
+        className="flex items-center gap-2 h-[40px] px-3 py-2 text-sm text-text bg-transparent border border-[--text-color-transparent] rounded hover:bg-white/10 transition"
       >
         <FiFilter size={20} />
         Filters

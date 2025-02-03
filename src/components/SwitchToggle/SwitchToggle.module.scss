@@ -1,7 +1,7 @@
 :root {
   --switch-bg-color: #bedbb0;
-  --switch-text-color: #1f1f1f;
-  --label-text-color: #ffffff;
+  --switch-text-color: var(--primary-bg);
+  --label-text-color: var(--text-color);
 }
 
 .switchContainer {

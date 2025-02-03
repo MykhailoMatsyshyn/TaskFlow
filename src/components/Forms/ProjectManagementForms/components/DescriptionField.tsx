@@ -19,7 +19,7 @@ const DescriptionField: React.FC<DescriptionFieldProps> = ({ register }) => {
         id="description"
         {...register("description")}
         placeholder="Enter project description"
-        className="w-full h-[120px] p-[18px] pr-[10px] border border-[#BEDBB0] bg-[#1F1F1F] rounded-md opacity-40 focus:outline-none focus:opacity-100 text-white font-normal text-[14px] tracking-tight custom-scrollbar resize-none overflow-auto  transition-all duration-200 ease-in-out placeholder:text-white"
+        className="w-full h-[120px] p-[18px] pr-[10px] border border-[#BEDBB0] bg-background rounded-md opacity-40 focus:outline-none focus:opacity-100 text-text font-normal text-[14px] tracking-tight custom-scrollbar resize-none overflow-auto placeholder:text-text"
         style={{ maxHeight: "200px" }}
       />
     </div>

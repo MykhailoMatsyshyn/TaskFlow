@@ -4,6 +4,7 @@ import DeleteModal from "../../../../Modals/DeleteModal";
 import CustomModal from "../../../../CustomModal/CustomModal";
 import { useDeleteColumn } from "../../../../../hooks/useDeleteColumn";
 import { ColumnForm } from "../../../../Forms";
+import ActionButtons from "../../../../ActionButtons";
 
 /**
  * ColumnActions Component
@@ -33,16 +34,7 @@ const ColumnActions = ({ projectId, column, existingColumnTitles }) => {
 
   return (
     <div className="flex gap-2">
-      <button onClick={openEditModal}>
-        <CustomIcon id="edit" size={16} className="fill-none stroke-white/50" />
-      </button>
-      <button onClick={openDeleteModal}>
-        <CustomIcon
-          id="trash2"
-          size={16}
-          className="fill-none stroke-white/50"
-        />
-      </button>
+      <ActionButtons onEdit={openEditModal} onDelete={openDeleteModal} />
 
       {/* Delete Confirmation Modal */}
       <DeleteModal

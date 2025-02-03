@@ -11,6 +11,10 @@ export default {
         background: "var(--primary-bg)",
         "background-secondary": "var(--secondary-bg)",
         "background-highlight": "var(--highlight-bg)",
+        "neutral-background": "var(--neutral-bg)",
+        input: "var(--input-bg)",
+        text: "var(--text-color)",
+        "text-inverted": "var(--text-inverted)",
       },
       backgroundImage: {
         "custom-gradient":
@@ -20,10 +24,10 @@ export default {
         xl: "1440px",
       },
       gridTemplateColumns: {
-        layout: "260px 1fr", // Сайдбар і основний контент
+        layout: "260px 1fr",
       },
       gridTemplateRows: {
-        layout: "auto 1fr", // Хедер і мейн
+        layout: "auto 1fr",
       },
     },
   },

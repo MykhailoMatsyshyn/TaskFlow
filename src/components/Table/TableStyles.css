@@ -1,31 +1,106 @@
-table {
-  width: 100%;
-  table-layout: fixed;
-
-  border-radius: 10px;
-  overflow: hidden;
-
-  background-color: rgba(45, 45, 45, 1);
-  border: 5px solid rgba(190, 219, 176, 0.3);
-  border-collapse: separate;
-  border-spacing: 0;
-
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 4px 15px rgba(0, 0, 0, 0.08);
+/* Light theme */
+:root {
+  --input-border: rgba(22, 22, 22, 0.3);
+  --input-border-focus: rgba(22, 22, 22, 0.5);
+  --input-placeholder: rgba(22, 22, 22, 0.5);
+  --input-text: #161616;
+  --input-bg: #fff;
+  --select-bg: #f6f6f7;
 }
 
+/* Dark theme */
+:root.dark {
+  --input-border: rgba(255, 255, 255, 0.2);
+  --input-border-focus: rgba(255, 255, 255, 0.4);
+  --input-placeholder: rgba(255, 255, 255, 0.4);
+  --input-text: #fff;
+  --input-bg: transparent;
+  --select-bg: #2d2d2d;
+}
+
+/* Light theme */
+:root {
+  --table-text-color-transparent: rgba(22, 22, 22, 0.6);
+
+  --table-bg: #ffffff;
+  --table-border: rgba(190, 219, 176, 0.5);
+  --table-shadow1: rgba(0, 0, 0, 0.05);
+  --table-shadow2: rgba(0, 0, 0, 0.04);
+
+  --table-header-text: rgba(22, 22, 22, 0.9);
+  --table-header-bg: #f6f6f7;
+
+  --table-row-even: #f8f8f8;
+  --table-row-hover: #e8e8e8;
+}
+
+/* Dark theme */
+:root.dark {
+  --table-text-color-transparent: rgba(255, 255, 255, 0.4);
+
+  --table-bg: rgba(45, 45, 45, 1);
+  --table-border: rgba(190, 219, 176, 0.3);
+  --table-shadow1: rgba(0, 0, 0, 0.1);
+  --table-shadow2: rgba(0, 0, 0, 0.08);
+
+  --table-header-text: rgba(255, 255, 255, 0.9);
+  --table-header-bg: #1f1f1f;
+
+  --table-row-even: rgba(37, 37, 37, 1);
+  --table-row-hover: rgba(55, 55, 55, 1);
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Додаємо горизонтальний скролл при необхідності */
+}
+
+table {
+  width: 100%;
+  min-width: 600px; /* Мінімальна ширина таблиці */
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--table-bg);
+  border: 5px solid var(--table-border);
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0px 4px 6px var(--table-shadow1),
+    0px 4px 15px var(--table-shadow2);
+}
+
+/* Мінімальна ширина колонок, щоб не стискалися занадто сильно */
 table th,
 table td {
+  min-width: 120px;
   padding: 8px;
-  border: 1px solid rgba(190, 219, 176, 0.3);
-
+  border: 1px solid var(--table-border);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+/* Фіксована шапка таблиці (thead) */
+thead {
+  position: sticky;
+  top: 0;
+  background-color: var(--table-header-bg);
+  z-index: 2;
+}
+
+/* Налаштування для маленьких екранів */
+@media (max-width: 768px) {
+  table {
+    min-width: 800px; /* Змушуємо таблицю бути прокручуваною */
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+}
+
 table th {
-  color: rgba(255, 255, 255, 0.9);
-  background-color: #1f1f1f;
+  color: var(--table-header-text);
+  background-color: var(--table-header-bg);
 }
 
 table tr:first-child th {
@@ -47,11 +122,11 @@ table tr th:last-child {
 }
 
 tr:nth-child(even) {
-  background-color: rgba(37, 37, 37, 1);
+  background-color: var(--table-row-even);
 }
 
 tr:hover {
-  background-color: rgba(55, 55, 55, 1);
+  background-color: var(--table-row-hover);
 }
 
 table th:nth-child(1),

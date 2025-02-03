@@ -21,7 +21,7 @@ const PriorityPicker: React.FC<PriorityPickerProps> = ({
     {
       value: "Without priority",
       label: "No",
-      color: "rgba(255, 255, 255, 0.3)",
+      color: "#B7B7B7",
       size: 12,
     },
     { value: "Low", label: "Low", color: "#8FA1D0", size: 16 },
@@ -55,7 +55,7 @@ const PriorityPicker: React.FC<PriorityPickerProps> = ({
             />
 
             <span
-              className={`font-normal text-[12px] tracking-[-0.02em] text-white/50 opacity-0 transition-opacity duration-200 
+              className={`font-normal text-[12px] tracking-[-0.02em] text-text opacity-0 transition-opacity duration-200 
               group-hover:opacity-100 group-focus-within:opacity-100 ${
                 value === priority.value ? "opacity-100" : ""
               }`}

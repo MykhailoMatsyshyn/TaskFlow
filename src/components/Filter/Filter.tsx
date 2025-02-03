@@ -7,6 +7,9 @@ function Filter({ column }: { column: Column<any, any> }) {
   const [inputValue, setInputValue] = useState<string | undefined>(
     filters[column.id as keyof typeof filters] as string | undefined
   );
+  const [isDarkMode, setIsDarkMode] = useState(
+    document.documentElement.classList.contains("dark")
+  );
 
   // Sync local state with global zustand state
   useEffect(() => {
@@ -24,11 +27,51 @@ function Filter({ column }: { column: Column<any, any> }) {
     return () => clearTimeout(timeout);
   }, [inputValue, setFilter, column.id]);
 
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // **Styles for light and dark themes**
+  const baseStyles =
+    "w-full border-b-2 text-sm font-light placeholder:font-light outline-none transition-all";
+
+  const darkThemeStyles =
+    "border-white/20 bg-transparent text-white/50 placeholder:text-white/40 focus:border-white/40 focus:placeholder:text-white/20";
+
+  const lightThemeStyles =
+    "border-[rgba(22,22,22,0.3)] bg-transparent text-[rgba(22,22,22,0.8)] placeholder:text-[rgba(22,22,22,0.6)] focus:border-[rgba(22,22,22,0.5)] focus:placeholder:text-[rgba(22,22,22,0.4)]";
+
+  // **Styles for select elements**
+  const selectBaseStyles =
+    "w-full px-3 border-b-2 outline-none transition-all appearance-none";
+
+  const selectDarkStyles =
+    "border-white/20 bg-transparent text-white/50 focus:border-white/40";
+  const selectLightStyles =
+    "border-[rgba(22,22,22,0.3)] bg-transparent text-[rgba(22,22,22,0.8)] focus:border-[rgba(22,22,22,0.5)]";
+
+  // **Dropdown item styles**
+  const optionBaseStyles = "px-2 py-1";
+  const optionDarkStyles = "bg-[#2D2D2D] text-white/50";
+  const optionLightStyles =
+    "bg-[rgba(22,22,22,0.05)] text-[rgba(22,22,22,0.8)]";
+
   // For text-based fields (e.g., name, email)
   if (column.id === "name" || column.id === "email") {
     return (
       <input
-        className="w-full border-b-2 border-white/20 bg-transparent text-white/50 text-sm font-light placeholder:text-white/40 placeholder:font-light outline-none focus:border-white/40 focus:placeholder:text-white/20 transition-all"
+        className={`${baseStyles} ${
+          isDarkMode ? darkThemeStyles : lightThemeStyles
+        }`}
         placeholder={`Search by ${column.id}...`}
         type="text"
         value={inputValue ?? ""}
@@ -41,8 +84,10 @@ function Filter({ column }: { column: Column<any, any> }) {
   if (column.id === "id") {
     return (
       <input
-        className="w-24 border-b-2 border-white/20 bg-transparent text-white/50 text-sm font-light placeholder:text-white/40 placeholder:font-light outline-none focus:border-white/40 focus:placeholder:text-white/20 transition-all"
-        placeholder={`Search ID`}
+        className={`${baseStyles} ${
+          isDarkMode ? darkThemeStyles : lightThemeStyles
+        }`}
+        placeholder="Search ID"
         type="number"
         min="0"
         value={inputValue ?? ""}
@@ -56,28 +101,51 @@ function Filter({ column }: { column: Column<any, any> }) {
     return (
       <div className="relative text-sm font-light">
         <select
-          className="w-full px-3 border-b-2 border-white/20 bg-transparent text-white/50 outline-none focus:border-white/40 transition-all appearance-none"
+          className={`${selectBaseStyles} ${
+            isDarkMode ? selectDarkStyles : selectLightStyles
+          }`}
           value={inputValue ?? ""}
           onChange={(e) => setInputValue(e.target.value)}
         >
-          <option value="" className="bg-[#2D2D2D] text-white/50">
+          <option
+            value=""
+            className={`${optionBaseStyles} ${
+              isDarkMode ? optionDarkStyles : optionLightStyles
+            }`}
+          >
             All
           </option>
-          <option value="Admin" className="bg-[#2D2D2D] text-white/50">
+          <option
+            value="Admin"
+            className={`${optionBaseStyles} ${
+              isDarkMode ? optionDarkStyles : optionLightStyles
+            }`}
+          >
             Admin
           </option>
           <option
             value="Project Manager"
-            className="bg-[#2D2D2D] text-white/50"
+            className={`${optionBaseStyles} ${
+              isDarkMode ? optionDarkStyles : optionLightStyles
+            }`}
           >
             Project Manager
           </option>
-          <option value="Team Member" className="bg-[#2D2D2D] text-white/50">
+          <option
+            value="Team Member"
+            className={`${optionBaseStyles} ${
+              isDarkMode ? optionDarkStyles : optionLightStyles
+            }`}
+          >
             Team Member
           </option>
         </select>
 
-        <span className="absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none text-white/50">
+        <span
+          className={`absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-none ${
+            isDarkMode ? "text-white/50" : "text-[rgba(22,22,22,0.5)]"
+          }`}
+        >
           ▼
         </span>
       </div>

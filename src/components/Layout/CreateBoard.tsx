@@ -30,7 +30,7 @@ const CreateBoard = () => {
   return (
     <>
       <div className="flex justify-between items-center pr-1 my-[14px]">
-        <p className="font-medium text-sm tracking-[-0.02em] h-[42px]">
+        <p className="font-medium text-sm text-text tracking-[-0.02em] h-[42px]">
           Create a <br /> new board
         </p>
 
@@ -41,11 +41,11 @@ const CreateBoard = () => {
           <CustomIcon
             id="plus"
             size={20}
-            className="fill-[#121212] stroke-[#121212]"
+            className="fill-background-highlight stroke-background-highlight"
           />
         </button>
       </div>
-      <hr className="border-white/10 mb-10" />
+      <hr className="text-text opacity-50 mb-10" />
 
       <CustomModal
         isOpen={isModalOpen}

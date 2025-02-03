@@ -3,7 +3,7 @@ import { useCreateColumn } from "../../../hooks/useCreateColumn";
 import { useUpdateColumn } from "../../../hooks/useUpdateColumn";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getColumnSchema } from "../../../validation/columnValidation";
-import InputField from "../../Forms/components/InputField/InputField";
+import InputField from "../components/InputField";
 import { SubmitFormButton } from "../components";
 
 const ColumnForm = ({

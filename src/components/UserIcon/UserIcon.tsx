@@ -1,15 +1,19 @@
-import { createAvatar } from "@dicebear/avatars";
-import * as style from "@dicebear/avatars-bottts-sprites";
+import { CustomIcon } from "../CustomIcon/CustomIcon";
 
-const UserIcon = () => {
-  const avatarSvg = createAvatar(style, {
-    seed: Math.random().toString(36).substring(2, 15),
-    dataUri: true,
-  });
-
+/**
+ * UserIcon Component
+ *
+ * A simple user avatar placeholder. Currently, it displays a user icon inside
+ * a rounded background. Can be extended to include a profile image in the future.
+ */
+const UserIcon: React.FC = () => {
   return (
-    <div>
-      <img src={avatarSvg} alt="User Avatar" className="w-8 h-8 bg-black" />
+    <div className="w-8 h-8 bg-background rounded">
+      <CustomIcon
+        id={"user"}
+        size={32}
+        className="fill-text-inverted stroke-text-inverted"
+      />
     </div>
   );
 };

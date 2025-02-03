@@ -57,7 +57,11 @@ const KanbanBoard = ({
    * @returns {JSX.Element} Rendered list of draggable columns.
    */
   const renderColumns = (provided) => (
-    <ul {...provided.droppableProps} ref={provided.innerRef} className="flex">
+    <ul
+      {...provided.droppableProps}
+      ref={provided.innerRef}
+      className="flex ml-5"
+    >
       {columns.map((column, index) => (
         <Draggable key={column.id} draggableId={column.id} index={index}>
           {(provided) => (
@@ -91,7 +95,7 @@ const KanbanBoard = ({
   );
 
   return (
-    <div className="flex overflow-x-auto overflow-y-hidden w-full h-[calc(100vh-164px)] custom-scrollbar">
+    <div className="flex overflow-x-auto overflow-y-hidden w-full h-[calc(100vh-195.2px)] md:h-[calc(100vh-164px)] custom-scrollbar">
       {/* Drag-and-drop context to enable reordering */}
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="board" type="COLUMN" direction="horizontal">

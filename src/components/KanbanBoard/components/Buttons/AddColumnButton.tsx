@@ -24,14 +24,14 @@ const AddColumnButton = ({
     <>
       <div className="mr-[20px]">
         <button
-          className="flex items-center justify-center gap-2 w-[335px] h-[56px] bg-[#121212] rounded-lg text-[#fff] font-normal tracking-[-0.02em]"
+          className="flex items-center justify-center gap-2 w-[335px] h-[56px] bg-background-highlight rounded-lg text-text font-normal tracking-[-0.02em]"
           onClick={openModal}
         >
-          <span className="p-[7px] rounded-md bg-[#FFFFFF]">
+          <span className="p-[7px] rounded-md bg-text">
             <CustomIcon
               id="plus"
               size={14}
-              className="fill-[#121212] stroke-black"
+              className="fill-background-highlight stroke-background-highlight"
             />
           </span>
           Add another column

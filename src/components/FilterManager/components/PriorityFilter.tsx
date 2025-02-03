@@ -12,11 +12,11 @@ const PriorityFilter: React.FC = () => {
 
   return (
     <div className="flex flex-col items-start gap-2">
-      <div className="flex items-center justify-between w-full">
+      <div className="flex items-center justify-between w-full text-text">
         <h4>Priority</h4>
         <button
           onClick={() => handlePriorityChange("all")}
-          className="text-white/50 text-sm font-light underline hover:text-white transition"
+          className="opacity-50 text-sm font-light underline hover:text-text hover:opacity-100  transition"
         >
           Show all
         </button>

@@ -50,14 +50,14 @@ const TeamMemberFilter: React.FC<TeamMemberFilterProps> = ({
   return (
     <div className="flex flex-col items-start gap-2">
       <div
-        className={`flex ${
+        className={`flex text-text ${
           isProjectFilter ? "flex-col gap-1" : "flex-row justify-between"
         } w-full`}
       >
         <h4>Assigned Members</h4>
         <button
           onClick={() => setFilter("assignedMembers", [])}
-          className={`text-white/50 text-sm font-light underline hover:text-white transition ${
+          className={`opacity-50 text-sm font-light underline hover:opacity-100 transition ${
             isProjectFilter ? "text-left" : ""
           }`}
         >

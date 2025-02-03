@@ -14,7 +14,7 @@ interface TitleFieldProps {
 const TitleField: React.FC<TitleFieldProps> = ({ register, errors }) => {
   return (
     <div>
-      <label htmlFor="title" className="block mb-2 text-white">
+      <label htmlFor="title" className="block mb-2">
         Title
       </label>
       <InputField

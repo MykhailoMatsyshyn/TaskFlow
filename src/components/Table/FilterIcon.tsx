@@ -17,13 +17,13 @@ const FilterIcon = () => {
     <div>
       <button
         onClick={resetFilters}
-        className="flex items-center text-white rounded-full"
+        className="flex items-center text-text rounded-full"
         title="Reset Filters"
       >
         {areFiltersActive ? (
-          <RiFilterOffLine size={28} color="rgba(255, 255, 255, 0.8)" />
+          <RiFilterOffLine size={28} />
         ) : (
-          <RiFilterLine size={28} color="rgba(255, 255, 255, 0.8)" />
+          <RiFilterLine size={28} />
         )}
         <span className="sr-only">Toggle Filters</span>
       </button>

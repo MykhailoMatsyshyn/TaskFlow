@@ -3,7 +3,7 @@ import { StylesConfig } from "react-select";
 export const customSelectStyles: StylesConfig = {
   menu: (provided) => ({
     ...provided,
-    backgroundColor: "#1f1f1f",
+    backgroundColor: "var(--primary-bg)", // Використовуємо змінну
     padding: "8px",
     borderRadius: "6px",
   }),
@@ -17,17 +17,17 @@ export const customSelectStyles: StylesConfig = {
       height: "6px",
     },
     "::-webkit-scrollbar-thumb": {
-      backgroundColor: "rgba(190, 219, 176, 0.5)",
+      backgroundColor: "var(--scrollbar-thumb)", // Використовуємо змінну
       borderRadius: "8px",
     },
     "::-webkit-scrollbar-track": {
-      backgroundColor: "rgba(190, 219, 176, 0.05)",
+      backgroundColor: "var(--scrollbar-track)", // Використовуємо змінну
     },
   }),
   control: (provided, state) => ({
     ...provided,
-    backgroundColor: "#1f1f1f",
-    border: "1px solid #BEDBB0",
+    backgroundColor: "var(--primary-bg)", // Використовуємо змінну
+    border: "1px solid #BEDBB0", // Використовуємо змінну
     borderRadius: "6px",
     padding: "10px",
     opacity: state.isFocused ? 1 : 0.4,
@@ -35,7 +35,7 @@ export const customSelectStyles: StylesConfig = {
     "&:hover": {
       opacity: 1,
     },
-    color: "#fff",
+    color: "var(--text-color)", // Використовуємо змінну
     boxShadow: "none",
     minHeight: "49px",
     paddingLeft: "9px",
@@ -44,63 +44,63 @@ export const customSelectStyles: StylesConfig = {
   }),
   dropdownIndicator: (provided) => ({
     ...provided,
-    color: "#BEDBB0",
+    color: "var(--text-color-transparent)", // Використовуємо змінну
     transition: "color 0.2s ease-in-out",
     "&:hover": {
-      color: "#fff",
+      color: "var(--text-color)", // Використовуємо змінну
     },
   }),
   clearIndicator: (provided) => ({
     ...provided,
-    color: "#BEDBB0",
+    color: "var(--text-color-transparent)", // Використовуємо змінну
     transition: "color 0.2s ease-in-out",
     "&:hover": {
-      color: "#fff",
+      color: "var(--text-color)", // Використовуємо змінну
     },
   }),
   singleValue: (provided) => ({
     ...provided,
-    color: "#fff",
+    color: "var(--text-color)", // Використовуємо змінну
   }),
   input: (provided) => ({
     ...provided,
-    color: "#fff",
+    color: "var(--text-color)", // Використовуємо змінну
     fontWeight: "400",
   }),
   placeholder: (provided) => ({
     ...provided,
-    color: "#fff",
+    color: "var(--text-color-transparent)", // Використовуємо змінну
     fontWeight: "400",
   }),
   option: (provided, state) => ({
     ...provided,
-    backgroundColor: state.isFocused ? "#3d3d3d" : "#1f1f1f",
-    color: "#fff",
+    backgroundColor: state.isFocused
+      ? "var(--highlight-bg)"
+      : "var(--primary-bg)", // Використовуємо змінні
+    color: "var(--text-color)", // Використовуємо змінну
     "&:hover": {
-      backgroundColor: "#525252",
+      backgroundColor: "var(--secondary-bg)", // Використовуємо змінну
     },
   }),
   multiValue: (provided) => ({
     ...provided,
-    backgroundColor: "#1F1F1F",
+    backgroundColor: "var(--primary-bg)", // Використовуємо змінну
     borderRadius: "8px",
-    border: "1px solid #BEDBB0",
-    color: "#fff",
+    border: "1px solid #BEDBB0", // Використовуємо змінну
+    color: "var(--text-color)", // Використовуємо змінну
     padding: "2px 5px",
   }),
   multiValueLabel: (provided) => ({
     ...provided,
-    color: "#fff",
+    color: "var(--text-color)", // Використовуємо змінну
     fontWeight: "400",
   }),
   multiValueRemove: (provided) => ({
     ...provided,
-    color: "#fff",
+    color: "var(--text-color)", // Використовуємо змінну
     cursor: "pointer",
     "&:hover": {
-      //   backgroundColor: "#BEDBB0",
-      //   borderRadius: "50%",
-      color: "#1F1F1F",
+      color: "var(--primary-bg)", // Використовуємо змінну для hover
     },
   }),
 };

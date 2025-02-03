@@ -43,7 +43,7 @@ const LogoWithTitle = () => {
         }}
         transition={{ duration: 0.3 }}
       />
-      <h1>Task Flow</h1>
+      <h1 className={` ${isMainPage ? "text-text" : "ml-2"}`}>Task Flow</h1>
     </motion.div>
   );
 };

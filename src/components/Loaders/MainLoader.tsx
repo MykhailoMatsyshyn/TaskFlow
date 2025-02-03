@@ -17,7 +17,7 @@ const Loader = ({
   return (
     <div
       className={`flex items-center justify-center ${
-        fullScreen ? "w-full h-screen bg-background-highlight" : "h-full"
+        fullScreen ? "w-full h-screen bg-[var(--highlight-bg)]" : "h-full"
       }`}
     >
       <ClipLoader color="#BEDBB0" size={size} />

@@ -77,7 +77,7 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[335px] mx-auto p-6 bg-[#151515] text-white rounded-lg"
+      className="w-[335px] mx-auto p-6 bg-neutral-background rounded-lg border border-[#bedbb0]"
     >
       {/* Render the switch between login and register */}
       <AuthSwitch type={type} />

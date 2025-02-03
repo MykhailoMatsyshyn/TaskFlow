@@ -123,17 +123,17 @@
 
 .project-list-scrollbar::-webkit-scrollbar-thumb {
   background-color: var(--project-list-scrollbar-thumb);
-
   border-radius: 12px;
 }
 
 .project-list-scrollbar::-webkit-scrollbar-track {
   background-color: var(--project-list-scrollbar-track);
   border-radius: 12px;
+  margin: 20px 0;
 }
 
 .main-custom-scrollbar {
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 
 .main-custom-scrollbar::-webkit-scrollbar {
@@ -243,4 +243,24 @@
 
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@media screen and (max-width: 765px) {
+  .dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media screen and (min-width: 765px) and (max-width: 1440px) {
+  .dashboard-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .dashboard-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

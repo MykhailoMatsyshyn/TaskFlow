@@ -48,7 +48,7 @@ const ColumnForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[287px] md:w-[302px] flex flex-col h-full gap-[14px] mt-2"
+      className="flex flex-col h-full gap-[14px] mt-2"
     >
       <InputField
         label="Column Title"

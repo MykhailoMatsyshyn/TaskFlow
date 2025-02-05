@@ -1,10 +1,10 @@
 {
   "users": [
     {
-      "email": "admin3@example.com",
+      "email": "tony.stark@starkindustries.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Admin",
-      "name": "Admin3",
+      "name": "Tony Stark",
       "id": 3
     },
     {
@@ -53,7 +53,7 @@
       "email": "tm8@example.com",
       "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
       "role": "Team Member",
-      "name": "TeamMember8",
+      "name": "TeamMember88",
       "id": 16
     },
     {
@@ -119,12 +119,7 @@
       "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [
-        25,
-        12,
-        17,
-        20
-      ],
+      "assignedMembers": [25, 12, 17, 20],
       "status": "in-progress",
       "icon": "puzzle",
       "userId": 4,
@@ -133,34 +128,22 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [
-            19,
-            20
-          ]
+          "tasks": [19, 20]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [
-            18,
-            22
-          ]
+          "tasks": [18, 22]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [
-            17
-          ]
+          "tasks": [17]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [
-            14,
-            15,
-            23
-          ]
+          "tasks": [14, 15, 23]
         }
       ],
       "id": 6
@@ -170,14 +153,7 @@
       "description": "Development of a cloud-based natural language processing (NLP) platform for automated text analysis. The platform will support entity recognition, sentiment analysis, topic modeling, and multi-language support.",
       "startDate": "2024-09-01T08:00:00.000Z",
       "endDate": "2025-01-25T18:00:00.000Z",
-      "assignedMembers": [
-        6,
-        8,
-        10,
-        12,
-        15,
-        18
-      ],
+      "assignedMembers": [6, 8, 10, 12, 15, 18],
       "status": "completed",
       "icon": "container",
       "userId": 4,
@@ -186,7 +162,7 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": []
+          "tasks": [83]
         },
         {
           "id": "in-progress",
@@ -196,14 +172,7 @@
         {
           "id": "done",
           "title": "Done",
-          "tasks": [
-            70,
-            71,
-            72,
-            73,
-            74,
-            75
-          ]
+          "tasks": [70, 71, 72, 73, 74, 75]
         }
       ],
       "id": 9
@@ -213,54 +182,31 @@
       "description": "Develop an automated marketing campaign system including email automation, analytics tracking, and customer segmentation.",
       "startDate": "2025-02-01T00:00:00.000Z",
       "endDate": "2025-03-20T23:59:59.000Z",
-      "assignedMembers": [
-        12,
-        15,
-        18,
-        20
-      ],
+      "assignedMembers": [12, 15, 18, 20],
       "status": "in-progress",
-      "icon": "lightning",
+      "icon": "loading",
       "userId": 4,
       "slug": "marketing-campaign-automation",
       "columns": [
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [
-            31,
-            32,
-            33,
-            34
-          ]
+          "tasks": [31, 32, 33, 34]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [
-            35,
-            37,
-            38
-          ]
+          "tasks": [35, 37, 38]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [
-            40,
-            36,
-            30,
-            42,
-            41,
-            39
-          ]
+          "tasks": [40, 36, 30, 42, 41, 39]
         },
         {
           "id": "blocked",
           "title": "Blocked",
-          "tasks": [
-            43
-          ]
+          "tasks": [43]
         }
       ],
       "id": 7
@@ -270,14 +216,7 @@
       "description": "Development of an AI-driven data analysis system for real-time predictive analytics. The system will process large datasets, train machine learning models, and provide actionable insights through an intuitive dashboard.",
       "startDate": "2025-01-10T08:00:00.000Z",
       "endDate": "2025-03-30T18:00:00.000Z",
-      "assignedMembers": [
-        6,
-        8,
-        10,
-        12,
-        15,
-        18
-      ],
+      "assignedMembers": [6, 8, 10, 12, 15, 18],
       "status": "in-progress",
       "icon": "star",
       "userId": 4,
@@ -286,37 +225,22 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [
-            58,
-            60
-          ]
+          "tasks": [58, 60]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [
-            59,
-            53,
-            54,
-            55,
-            57
-          ]
+          "tasks": [59, 53, 54, 55, 57]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [
-            51,
-            52,
-            56
-          ]
+          "tasks": [51, 52, 56]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [
-            50
-          ]
+          "tasks": [50]
         }
       ],
       "id": 8
@@ -326,11 +250,7 @@
       "description": "Development of an AI-driven system that automates the screening of resumes based on skills, experience, and key job requirements. The system will use NLP to extract key information and match candidates to job descriptions.",
       "startDate": "2025-02-15T08:00:00.000Z",
       "endDate": "2025-06-01T18:00:00.000Z",
-      "assignedMembers": [
-        6,
-        8,
-        12
-      ],
+      "assignedMembers": [6, 8, 12],
       "status": "planned",
       "icon": "loading",
       "userId": 4,
@@ -339,10 +259,7 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [
-            80,
-            81
-          ]
+          "tasks": [80, 81]
         },
         {
           "id": "in-progress",
@@ -352,6 +269,11 @@
         {
           "id": "done",
           "title": "Done",
+          "tasks": []
+        },
+        {
+          "id": "new",
+          "title": "new",
           "tasks": []
         }
       ],
@@ -362,13 +284,7 @@
       "description": "A decentralized digital identity system that allows users to securely store and verify their personal data without third-party intermediaries. The system will utilize blockchain and cryptographic signatures.",
       "startDate": "2025-03-10T08:00:00.000Z",
       "endDate": "2025-07-30T18:00:00.000Z",
-      "assignedMembers": [
-        25,
-        20,
-        12,
-        16,
-        15
-      ],
+      "assignedMembers": [25, 20, 12, 16, 15],
       "status": "planned",
       "icon": "hexagon",
       "userId": 4,

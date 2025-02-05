@@ -1,13 +1,14 @@
 import { useState } from "react";
-import CustomModal from "../../../CustomModal/CustomModal";
-import { CustomIcon } from "../../../CustomIcon/CustomIcon";
+import { CustomIcon } from "../../../UI/CustomIcon";
 import { ColumnForm } from "../../../Forms";
+import CustomModal from "../../../Modals/CustomModal";
+// import CustomModal from "../../../CustomModal/CustomModal";
 
 const AddColumnButton = ({
   projectId,
   columns,
 }: {
-  projectId: string;
+  projectId: number;
   columns: { id: string; title: string }[];
 }) => {
   const [isModalOpen, setModalOpen] = useState(false);

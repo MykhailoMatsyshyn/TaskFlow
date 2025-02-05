@@ -1,32 +1,36 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FiFilter } from "react-icons/fi";
 import FilterPopup from "./FilterPopup";
-import useTaskFilterStore from "../../stores/TaskFilterStore";
+import useTasksFilterStore from "../../stores/filters/TasksFilterStore";
 import PriorityFilter from "./components/PriorityFilter";
 import StatusFilter from "./components/StatusFilter";
 import TeamMemberFilter from "./components/TeamMemberFilter";
-
-const statuses = [
-  { label: "To Do", color: "#8FA1D0" },
-  { label: "In Progress", color: "#E09CB5" },
-  { label: "Done", color: "#BEDBB0" },
-  { label: "All", color: "#B7B7B7" },
-];
+import { TASK_STATUSES } from "../../constants/statuses";
 
 interface FilterManagerProps {
   className?: string;
 }
 
-const FilterManager: React.FC<FilterManagerProps> = ({ className }) => {
+/**
+ * FilterManager Component
+ *
+ * Manages task filters and displays a filter popup.
+ * Supports filtering tasks by status, priority, and team members.
+ *
+ * @returns {JSX.Element} - Renders a filter button and popup filter menu.
+ */
+const FilterManager: React.FC<FilterManagerProps> = ({ className = "" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
-  const setFilter = useTaskFilterStore((state) => state.setFilter);
-  const currentStatus = useTaskFilterStore((state) => state.filters.status);
 
-  const toggleFilterPopup = () => {
-    setIsOpen((prev) => !prev);
-  };
+  // Access Zustand store for task filters
+  const setFilter = useTasksFilterStore((state) => state.setFilter);
+  const currentStatus = useTasksFilterStore((state) => state.filters.status);
 
+  // Toggle filter popup visibility
+  const toggleFilterPopup = () => setIsOpen((prev) => !prev);
+
+  // Close popup on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -36,12 +40,8 @@ const FilterManager: React.FC<FilterManagerProps> = ({ className }) => {
         setIsOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -49,6 +49,7 @@ const FilterManager: React.FC<FilterManagerProps> = ({ className }) => {
       className={`relative mr-[20px] text-sm font-light ${className}`}
       ref={popupRef}
     >
+      {/* Filter toggle button */}
       <button
         onClick={toggleFilterPopup}
         className="flex items-center gap-2 h-[40px] px-3 py-2 text-sm text-text bg-transparent border border-[--text-color-transparent] rounded hover:bg-white/10 transition"
@@ -57,13 +58,14 @@ const FilterManager: React.FC<FilterManagerProps> = ({ className }) => {
         Filters
       </button>
 
+      {/* Filter popup */}
       <FilterPopup
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         className="w-[270px] top-12"
       >
         <StatusFilter
-          statuses={statuses}
+          statuses={TASK_STATUSES}
           currentStatus={currentStatus}
           setFilter={setFilter}
           onReset={() => setFilter("status", "")}

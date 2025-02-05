@@ -1,5 +1,4 @@
-// import { UseFormRegister } from "react-hook-form";
-import CustomDatePicker from "../../../CustomDatePicker";
+import CustomDatePicker from "../../../UI/CustomDatePicker/CustomDatePicker";
 
 interface DatePickerFieldsProps {
   onStartDateChange: (date: Date | null) => void;

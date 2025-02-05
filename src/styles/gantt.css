@@ -1,0 +1,40 @@
+/* ============================
+   GANTT CHART CONTAINER
+   Defines the main container styles
+============================ */
+.gantt-container {
+  background-color: white;
+  height: calc(100vh - 164px) !important;
+  overflow: auto;
+}
+
+/* ============================
+   GANTT BAR STYLES
+   Styling for progress bars inside the Gantt chart
+============================ */
+.gantt .bar-progress {
+  fill: #1f1f1f;
+  opacity: 30%;
+}
+
+/* ============================
+   GANTT CHART SCROLLBAR
+   Custom scrollbar for Gantt container
+============================ */
+.gantt-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.gantt-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.gantt-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.gantt-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

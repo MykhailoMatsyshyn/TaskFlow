@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import KanbanBoard from "../../components/KanbanBoard/KanbanBoard";
-import GanttChart from "../../components/GanttChart";
-import { useProjectDataBySlug } from "../../hooks/useProjectDataBySlug";
-import { useTasksByProject } from "../../hooks/useTasksByProject";
-import { useUpdateColumns } from "../../hooks/useUpdateColumns";
-import { useUpdateTask } from "../../hooks/useUpdateTask";
-import SwitchToggle from "../../components/SwitchToggle/SwitchToggle";
+import GanttChart from "../../components/UI/GanttChart";
+import { useProjectDataBySlug } from "../../hooks/projects/useProjectDataBySlug";
+import { useTasksByProject } from "../../hooks/tasks/useTasks";
+import { useUpdateColumns } from "../../hooks/columns/useColumns";
+import { useUpdateTask } from "../../hooks/tasks/useTasks";
+import SwitchToggle from "../../components/UI/SwitchToggle/SwitchToggle";
 import FilterManager from "../../components/FilterManager/FilterManager";
-import useTaskFilterStore from "../../stores/TaskFilterStore";
+import useTasksFilterStore from "../../stores/filters/TasksFilterStore";
 import MainLoader from "../../components/Loaders/MainLoader";
 
 const ProjectPage = () => {
@@ -18,7 +18,7 @@ const ProjectPage = () => {
 
   const { data: project, error, isLoading } = useProjectDataBySlug(slug);
 
-  const filters = useTaskFilterStore((state) => state.filters);
+  const filters = useTasksFilterStore((state) => state.filters);
 
   const { data: tasks, isLoading: tasksLoading } = useTasksByProject(
     project?.id,

@@ -21,14 +21,15 @@ const CreateUserForm = ({
 
   // Form submission handler
   const handleFormSubmit = (data: RegisterUserData) => {
-    onSubmit(data); // Call parent-provided onSubmit handler
+    const { confirmPassword, ...filteredData } = data;
+    onSubmit(filteredData); // Call parent-provided onSubmit handler
     reset(); // Reset form fields after submission
   };
 
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="w-[335px] mx-auto p-6 bg-[#151515] rounded-lg flex flex-col gap-[14px]"
+      className="mx-auto bg-[#151515] rounded-lg flex flex-col gap-[14px]"
     >
       {/* Role selection field */}
       <RoleSelectField register={register} errors={errors} />

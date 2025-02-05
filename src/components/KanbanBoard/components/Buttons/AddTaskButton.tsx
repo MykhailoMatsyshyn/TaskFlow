@@ -1,8 +1,10 @@
 import { useState } from "react";
-import CustomModal from "../../../CustomModal/CustomModal";
-import { CustomIcon } from "../../../CustomIcon/CustomIcon";
-import { useCreateTask } from "../../../../hooks/useCreateTask";
+import { CustomIcon } from "../../../UI/CustomIcon";
+import { useCreateTask } from "../../../../hooks/tasks/useTasks";
 import { TaskForm } from "../../../Forms";
+import CustomModal from "../../../Modals/CustomModal";
+// import CustomModal from "../../../CustomModal/CustomModal";
+// import CustomModal from "./../../../CustomModal/CustomModal";
 
 const AddTaskButton = ({ status, projectId }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -26,7 +28,6 @@ const AddTaskButton = ({ status, projectId }) => {
 
     createTask(newTaskData, {
       onSuccess: () => {
-        console.log("Task created successfully!");
         closeModal();
       },
       onError: (error) => {

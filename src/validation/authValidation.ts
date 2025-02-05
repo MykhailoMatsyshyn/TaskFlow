@@ -1,6 +1,9 @@
 import * as yup from "yup";
 
-// Validation scheme for registration
+/**
+ * Validation schema for user registration.
+ * Ensures name, email, password, and role are properly validated.
+ */
 export const registerSchema = yup.object().shape({
   name: yup
     .string()
@@ -15,7 +18,7 @@ export const registerSchema = yup.object().shape({
     .string()
     .required("Password is required")
     .matches(/\d/, "Password must contain one number")
-    .min(6, "Password must be at least 6 characters"),
+    .min(8, "Password must be at least 8 characters"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password")], "Passwords must match")
@@ -23,7 +26,10 @@ export const registerSchema = yup.object().shape({
   role: yup.string().required("Role is required"),
 });
 
-// Validation scheme for login
+/**
+ * Validation schema for user login.
+ * Ensures email format is valid and password meets length requirement.
+ */
 export const loginSchema = yup.object().shape({
   email: yup
     .string()

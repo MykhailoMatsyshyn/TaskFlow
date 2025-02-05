@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { CustomIcon } from "../../../../CustomIcon/CustomIcon";
-import DeleteModal from "../../../../Modals/DeleteModal";
-import CustomModal from "../../../../CustomModal/CustomModal";
-import { useDeleteColumn } from "../../../../../hooks/useDeleteColumn";
+// import { CustomIcon } from "../../../../CustomIcon/CustomIcon";
+// import DeleteModal from "../../../../UI/Modals/DeleteModal";
+import { useDeleteColumn } from "../../../../../hooks/columns/useColumns";
 import { ColumnForm } from "../../../../Forms";
-import ActionButtons from "../../../../ActionButtons";
+import DeleteModal from "../../../../Modals/DeleteModal";
+import CustomModal from "../../../../Modals/CustomModal";
+import ActionButtons from "../../../../UI/ActionButtons";
 
 /**
  * ColumnActions Component

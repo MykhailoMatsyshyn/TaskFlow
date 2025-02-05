@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAuth } from "../../../hooks/useAuth";
+import { useAuth } from "../../../hooks/auth/useAuth";
 import {
   IconPicker,
   DatePickerFields,
@@ -12,7 +12,7 @@ import {
 } from "./components";
 import { SubmitFormButton } from "../components";
 import { kebabCase } from "lodash";
-import { useFetchUserProjects } from "../../../hooks/useFetchUserProjects";
+import { useUserProjects } from "../../../hooks/projects/useProjects";
 import { getProjectSchema } from "../../../validation/projectValidation";
 
 interface ProjectFormProps {
@@ -38,7 +38,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
   onCancel,
 }) => {
   const { userId } = useAuth();
-  const { data: projects } = useFetchUserProjects(userId);
+  const { data: projects } = useUserProjects(userId);
 
   const existingProjectTitles = Array.isArray(projects)
     ? projects.map((p) => p.title)
@@ -47,8 +47,6 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
   // const projectSchema = useMemo(() => {
   //   return getProjectSchema(existingProjectTitles, initialData?.title);
   // }, [existingProjectTitles, initialData?.title]);
-
-  console.log(initialData);
 
   const {
     register,
@@ -87,7 +85,6 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
   };
 
   const onSubmitHandler = () => {
-    console.log("onSubmitHandler");
     const formData = getValues(); // Забираємо актуальні значення
 
     const slug = kebabCase(formData.title);
@@ -111,7 +108,6 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
         : null,
     };
 
-    console.log("Submitting project:", projectData);
     onSubmit(projectData);
     onCancel();
   };
@@ -139,7 +135,6 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
   return (
     <form
       onSubmit={handleSubmit(() => {
-        console.log("Form errors:", errors);
         onSubmitHandler();
       })}
       className="flex flex-col gap-6"

@@ -1,0 +1,91 @@
+/* ============================
+   🌍 GLOBAL SCROLLBAR STYLES
+   Used in:
+   - FilterPopup.tsx
+   - DescriptionField.tsx
+   - KanbanBoard.tsx
+   - Column.tsx
+   - Table.tsx
+============================ */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  margin: 0 20px;
+  background-color: var(--scrollbar-track);
+  border-radius: 12px;
+}
+
+/* ============================
+   📌 PROJECT LIST SCROLLBAR
+   Used in:
+   - ProjectList.tsx
+   - ProjectNavigationList.tsx
+============================ */
+.project-list-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.project-list-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--project-list-scrollbar-thumb);
+  border-radius: 12px;
+}
+
+.project-list-scrollbar::-webkit-scrollbar-track {
+  background-color: var(--project-list-scrollbar-track);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+/* ============================
+   📌 MAIN CONTENT SCROLLBAR
+   Used in:
+   - Layout.tsx (for main dashboard & users page)
+============================ */
+.main-custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  padding-right: 16px;
+}
+
+.main-custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 12px;
+}
+
+.main-custom-scrollbar::-webkit-scrollbar-track {
+  margin-top: 80px;
+  margin-bottom: 70px;
+  background-color: var(--scrollbar-track);
+  border-radius: 12px;
+}
+
+/* .main-custom-scrollbar {
+  margin-right: 20px;
+} */
+
+/* ============================
+   📌 POPUP & MODAL SCROLLBAR
+   Used in:
+   - FilterPopup.tsx (.popup-content)
+   - CustomModal.tsx (.modal-content)
+============================ */
+.popup-content.custom-scrollbar,
+.modal-content.custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(190, 219, 176, 0.15);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(190, 219, 176, 0.05);
+  }
+}

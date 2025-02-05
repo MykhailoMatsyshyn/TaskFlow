@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import { useCreateColumn } from "../../../hooks/useCreateColumn";
-import { useUpdateColumn } from "../../../hooks/useUpdateColumn";
+import { useCreateColumn } from "../../../hooks/columns/useColumns";
+import { useUpdateColumn } from "../../../hooks/columns/useColumns";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { getColumnSchema } from "../../../validation/columnValidation";
 import InputField from "../components/InputField";
@@ -14,7 +14,7 @@ const ColumnForm = ({
   initialTitle = "",
 }: {
   onClose: () => void;
-  projectId: string;
+  projectId: number;
   existingColumnTitles: string[];
   columnId?: string;
   initialTitle?: string;

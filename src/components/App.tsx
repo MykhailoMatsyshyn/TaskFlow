@@ -1,68 +1,75 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { Suspense, lazy } from "react";
-import { RestrictedRoute } from "./RestrictedRoute";
-import { PrivateRoute } from "./PrivateRoute";
-import useFetchUser from "../hooks/useFetchUser";
-import useUserStore from "../stores/userStore";
+import { Suspense, lazy, useMemo } from "react";
+import { RestrictedRoute } from "../routes/RestrictedRoute";
+import { PrivateRoute } from "../routes/PrivateRoute";
+import { useFetchUser } from "../hooks/users/useUsers";
+import useUserStore from "../stores/auth/userStore";
 import { useEffect } from "react";
-import UserManagementPage from "../pages/UserManagementPage/UserManagementPage";
 import Modal from "react-modal";
-import MainDashboardPage from "../pages/MainDashboardPage/MainDashboardPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MainLoader from "./Loaders/MainLoader";
 
+// Set the root element for modal dialogs
 Modal.setAppElement("#root");
 
-const WelcomePage = lazy(() => import("../pages/WelcomePage/WelcomePage"));
-const AuthPage = lazy(() => import("../pages/AuthPage/AuthPage"));
+// Lazy load pages for improved performance (code splitting)
+const WelcomePage = lazy(() => import("../pages/WelcomePage"));
+const AuthPage = lazy(() => import("../pages/AuthPage"));
 const Layout = lazy(() => import("./Layout/Layout"));
-const ProjectPage = lazy(() => import("../pages/ProjectPage/ProjectPage"));
+const ProjectPage = lazy(() => import("../pages/ProjectPage"));
+const MainDashboardPage = lazy(() => import("../pages/MainDashboardPage"));
+const UserManagementPage = lazy(() => import("../pages/UserManagementPage"));
 
 export default function App() {
+  // Fetch user data from API
   const { data, isLoading, isError } = useFetchUser();
   const { setCurrentUser, currentUser } = useUserStore();
-  const location = useLocation(); // Для перевірки поточного шляху
+  const location = useLocation();
 
-  // console.log("in App", data);
+  // Prevent unnecessary re-renders by memoizing the user data as a JSON string
+  const userDataStr = useMemo(() => JSON.stringify(data), [data]);
 
+  // Update Zustand store with user data when it changes
   useEffect(() => {
-    // console.log("in useEffect", data);
-    // console.log("in useEffect currentUser", currentUser);
-    if (data && data !== currentUser) {
-      // console.log("in if useEffect", data);
+    if (data && userDataStr !== JSON.stringify(currentUser)) {
       setCurrentUser(data);
     }
-  }, [data, currentUser, setCurrentUser]);
+  }, [userDataStr, currentUser, setCurrentUser, data]);
 
-  if (isLoading) {
-    return <MainLoader fullScreen={true} />;
-  }
+  useEffect(() => {
+    const theme = localStorage.getItem("theme") || "light";
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
 
-  if (isError) {
-    return <div>Error loading user data!</div>;
-  }
+  // Show a loading indicator while fetching user data
+  if (isLoading) return <MainLoader fullScreen={true} />;
 
-  // Функція для визначення чи є поточний шлях допустимим
-  const isValidRoute = (path: string) => {
-    // Додайте тут перевірки на існуючі маршрути, якщо треба
-    return path.startsWith("/dashboard"); // Для прикладу перевірка на /dashboard
-  };
+  // Show an error message if user data cannot be retrieved
+  if (isError) return <div>Error loading user data!</div>;
+
+  // Define a list of valid routes (basic validation)
+  const validRoutes = ["/dashboard", "/users", "/dashboard/:slug"];
 
   return (
-    <div>
+    <>
+      {/* Suspense wrapper for lazy-loaded components */}
       <Suspense fallback={<MainLoader fullScreen={true} />}>
         <Routes>
-          {/* Public Route */}
+          {/* Public pages (accessible without authentication) */}
           <Route path="/welcome" element={<WelcomePage />} />
 
-          {/* Restricted Routes */}
+          {/* Restricted routes (only for unauthenticated users) */}
           <Route
             path="/auth/:id"
             element={<RestrictedRoute component={<AuthPage />} />}
           />
 
-          {/* Private Routes */}
+          {/* Private routes (accessible only for authenticated users) */}
           <Route element={<PrivateRoute component={<Layout />} />}>
             <Route path="/dashboard" element={<MainDashboardPage />} />
             <Route
@@ -75,18 +82,17 @@ export default function App() {
                 />
               }
             />
-
             <Route
               path="/dashboard/:slug"
               element={<PrivateRoute component={<ProjectPage />} />}
             />
           </Route>
 
-          {/* Redirect unknown routes */}
+          {/* Redirect unknown routes to a valid page */}
           <Route
             path="*"
             element={
-              isValidRoute(location.pathname) ? (
+              validRoutes.includes(location.pathname) ? (
                 <Navigate to="/dashboard" />
               ) : (
                 <Navigate to="/welcome" />
@@ -97,6 +103,6 @@ export default function App() {
       </Suspense>
 
       <ToastContainer position="top-right" autoClose={3000} />
-    </div>
+    </>
   );
 }

@@ -1,12 +1,15 @@
 import { useState, useCallback } from "react";
-import { CustomIcon } from "../../../../CustomIcon/CustomIcon";
-import DeleteModal from "../../../../Modals/DeleteModal";
-import CustomModal from "../../../../CustomModal/CustomModal";
-import { useDeleteTask } from "../../../../../hooks/useDeleteTask";
-import { useUpdateTask } from "../../../../../hooks/useUpdateTask";
+import { CustomIcon } from "../../../../UI/CustomIcon";
+// import DeleteModal from "../../../../UI/Modals/DeleteModal";
+// import CustomModal from "../../../../Modals/CustomModal/CustomModal";
+import { useDeleteTask } from "../../../../../hooks/tasks/useTasks";
+import { useUpdateTask } from "../../../../../hooks/tasks/useTasks";
 import { TaskForm } from "../../../../Forms";
 import { toast } from "react-toastify";
-import ActionButtons from "../../../../ActionButtons";
+import DeleteModal from "../../../../Modals/DeleteModal";
+import CustomModal from "../../../../Modals/CustomModal";
+import ActionButtons from "../../../../UI/ActionButtons";
+// import CustomModal from "../../../../CustomModal/CustomModal";
 
 const CardActions = ({ task }) => {
   const { mutate: deleteTask } = useDeleteTask();

@@ -24,6 +24,7 @@
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tanstack/react-query-devtools": "^5.62.14",
     "@tanstack/react-table": "^8.20.6",
+    "@tippyjs/react": "^4.2.6",
     "@types/frappe-gantt": "^0.6.4",
     "@types/lodash": "^4.17.14",
     "@types/react-modal": "^3.16.3",

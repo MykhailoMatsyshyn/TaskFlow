@@ -1,8 +1,11 @@
 import * as yup from "yup";
 
 /**
- * Validation schema for project creation and updating.
- * Ensures the title is required and unique (case-insensitive).
+ * Validation schema for project creation and updates.
+ * Ensures title uniqueness, required fields, and valid date ranges.
+ *
+ * @param existingProjectTitles - (Optional) List of existing project titles.
+ * @param currentTitle - (Optional) The title of the project being edited.
  */
 export const getProjectSchema = (
   existingProjectTitles: string[] = [],

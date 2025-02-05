@@ -1,8 +1,24 @@
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
-import Column from "./components/Column/Column";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DroppableProvided,
+} from "@hello-pangea/dnd";
 import AddColumnButton from "./components/Buttons/AddColumnButton";
-import { useKanbanDragAndDrop } from "../../hooks/useKanbanDragAndDrop";
+import { useKanbanDragAndDrop } from "../../hooks/kanban/useKanbanDragAndDrop";
 import { useEffect, useState } from "react";
+import { Task } from "../../types/task";
+import { Column } from "../../types/project";
+import BordColumn from "./components/Column/Column";
+
+interface KanbanBoardProps {
+  projectId: number;
+  columns: Column[];
+  tasks: Task[];
+  onColumnUpdate: (updatedColumns: Column[]) => void;
+  onTaskUpdate: (taskId: number, data: Partial<Task>) => void;
+  tasksLoading: boolean;
+}
 
 /**
  * KanbanBoard Component
@@ -22,7 +38,7 @@ import { useEffect, useState } from "react";
  * @param {Function} props.onColumnUpdate - Function to update column order.
  * @param {Function} props.onTaskUpdate - Function to update task position/status.
  */
-const KanbanBoard = ({
+const KanbanBoard: React.FC<KanbanBoardProps> = ({
   projectId,
   columns,
   tasks,
@@ -56,7 +72,7 @@ const KanbanBoard = ({
    * @param {Object} provided - Droppable props from react-dnd.
    * @returns {JSX.Element} Rendered list of draggable columns.
    */
-  const renderColumns = (provided) => (
+  const renderColumns = (provided: DroppableProvided) => (
     <ul
       {...provided.droppableProps}
       ref={provided.innerRef}
@@ -71,7 +87,7 @@ const KanbanBoard = ({
               {...provided.dragHandleProps}
               className="w-[368px]"
             >
-              <Column
+              <BordColumn
                 projectId={projectId}
                 column={column}
                 columns={columns}
@@ -79,8 +95,8 @@ const KanbanBoard = ({
                   tasksLoading
                     ? []
                     : column.tasks
-                        .map((taskId) =>
-                          tasks.find((task) => task.id === taskId)
+                        .map((taskId: number) =>
+                          tasks.find((task: Task) => task.id === taskId)
                         )
                         .filter(Boolean)
                 }

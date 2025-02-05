@@ -1,0 +1,7 @@
+.droppable-hover {
+  background-color: var(--droppable-hover-bg);
+  outline: 2px dashed #bedbb0;
+  outline-offset: -2px;
+  transition: background-color 0.25s ease-in-out,
+    outline-color 0.25s ease-in-out;
+}

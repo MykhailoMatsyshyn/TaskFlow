@@ -12,7 +12,7 @@ import {
   RoleSelectField,
   InputField,
 } from "../components";
-import useAuthMutation from "../../../hooks/useAuthMutation";
+import useAuthMutation from "../../../hooks/auth/useAuthMutation";
 import { LoginCredentials, RegisterUserData } from "../../../types/auth";
 import { loginUser } from "../../../api/authService";
 import { motion } from "framer-motion";
@@ -77,7 +77,7 @@ const AuthForm = ({ type }: { type: "login" | "register" }) => {
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.5 }}
       onSubmit={handleSubmit(onSubmit)}
-      className="w-[335px] mx-auto p-6 bg-neutral-background rounded-lg border border-[#bedbb0]"
+      className="w-[335px] mx-auto p-6 bg-neutral-background rounded-lg border border-[#bedbb0] text-text"
     >
       {/* Render the switch between login and register */}
       <AuthSwitch type={type} />

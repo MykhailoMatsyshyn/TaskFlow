@@ -19,7 +19,7 @@ const RoleSelectField = ({
       <option value="Team Member">Team Member</option>
     </select>
     {errors.role && (
-      <p className="absolute text-red-500 text-xs -mt-[8px] ml-[13px] backdrop-blur-sm bg-black/30 rounded px-[5px]">
+      <p className="absolute text-red-500 text-xs -mt-[8px] ml-[13px] backdrop-blur-sm bg-[var(--text-color-error-transparent)] rounded px-[5px]">
         {errors.role?.message}
       </p>
     )}

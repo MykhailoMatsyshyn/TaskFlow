@@ -8,6 +8,15 @@ interface FilterPopupProps {
   className?: string;
 }
 
+/**
+ * FilterPopup Component
+ *
+ * A reusable popup for displaying task and project filters.
+ * Supports smooth animations, auto-closing on outside clicks, and flexible styling.
+ *
+ * @param {FilterPopupProps} props - The component props
+ * @returns {JSX.Element} - A styled filter popup
+ */
 const FilterPopup: React.FC<FilterPopupProps> = ({
   isOpen,
   onClose,
@@ -22,6 +31,7 @@ const FilterPopup: React.FC<FilterPopupProps> = ({
           : "opacity-0 scale-95 pointer-events-none"
       } ${className}`}
     >
+      {/* Header with close button */}
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-text font-semibold text-lg">Filters</h3>
         <button
@@ -35,7 +45,8 @@ const FilterPopup: React.FC<FilterPopupProps> = ({
 
       <hr className="border-text opacity-30 mb-4" />
 
-      <div className="overflow-y-auto max-h-[320px] filter-popup custom-scrollbar mr-[-12px] pr-[8px]">
+      {/* Scrollable filter content */}
+      <div className="overflow-y-auto max-h-[320px] popup-content custom-scrollbar mr-[-12px] pr-[8px]">
         {children}
       </div>
     </div>

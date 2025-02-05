@@ -10,7 +10,7 @@ import {
 } from "./components";
 import { SubmitFormButton } from "../components";
 import { useParams } from "react-router-dom";
-import { useProjectDataBySlug } from "../../../hooks/useProjectDataBySlug";
+import { useProjectDataBySlug } from "../../../hooks/projects/useProjectDataBySlug";
 import { getTaskSchema } from "../../../validation/taskValidation";
 
 interface TaskFormProps {
@@ -67,15 +67,12 @@ const TaskForm: React.FC<TaskFormProps> = ({
   }, [initialData, setValue]);
 
   const onSubmitHandler = (data: any) => {
-    console.log("Submitting task:", data);
-
     const taskData = {
       ...data,
       startDate: data.startDate ? new Date(data.startDate).toISOString() : null,
       endDate: data.endDate ? new Date(data.endDate).toISOString() : null,
     };
 
-    console.log("Final Task Data:", taskData);
     onSubmit(taskData);
     onCancel();
   };

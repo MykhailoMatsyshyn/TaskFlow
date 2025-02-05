@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { customSelectStyles } from "./customSelectStyles";
-import { useTeamMembersQuery } from "../../../../../hooks/useTeamMembersQuery";
-import { useTeamMembersByIds } from "../../../../../hooks/useTeamMembersByIds";
+import { useTeamMembersQuery } from "../../../../../hooks/users/useTeamMembers";
+import { useTeamMembersByIds } from "../../../../../hooks/users/useTeamMembers";
 
 const animatedComponents = makeAnimated();
 

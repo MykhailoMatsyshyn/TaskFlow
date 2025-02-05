@@ -1,3 +1,4 @@
+import { UserRole } from "./common";
 import { User } from "./user";
 
 // Type representing authentication types (register or login)
@@ -7,8 +8,8 @@ export type AuthType = "register" | "login";
 export interface RegisterUserData {
   email: string;
   password: string;
-  name: string;
-  role: "Admin" | "Project Manager" | "Team Member";
+  name: string; 
+  role: UserRole;
 }
 
 // Interface for login credentials

@@ -1,0 +1,49 @@
+/* Light theme */
+:root {
+  --primary-bg: #f6f6f7;
+  --secondary-bg: #fcfcfc;
+  --highlight-bg: #fff;
+  --neutral-bg: #fcfcfc;
+
+  --input-bg: #fff;
+
+  --text-color: #161616;
+  --text-color-transparent: rgba(22, 22, 22, 0.5);
+  --text-color-error-transparent: rgba(255, 255, 255, 0.1);
+  --text-inverted: #fff;
+
+  --scrollbar-thumb: #e8e8e8;
+  --scrollbar-track: #fff;
+  --project-list-scrollbar-thumb: rgba(190, 219, 176, 1);
+  --project-list-scrollbar-track: #e8e8e8;
+
+  --droppable-hover-bg: #f0f0f0;
+
+  --skeleton-bg: #e8e8e8;
+  --skeleton-fg: #fcfcfc;
+}
+
+/* Dark theme */
+:root.dark {
+  --primary-bg: #1f1f1f;
+  --secondary-bg: #161616;
+  --highlight-bg: #121212;
+  --neutral-bg: #151515;
+
+  --input-bg: #1f1f1f;
+
+  --text-color: #fff;
+  --text-color-transparent: rgba(255, 255, 255, 0.5);
+  --text-color-error-transparent: rgba(0, 0, 0, 0.2);
+  --text-inverted: #161616;
+
+  --scrollbar-thumb: #121212;
+  --scrollbar-track: rgba(255, 255, 255, 0.05);
+  --project-list-scrollbar-thumb: rgba(190, 219, 176, 0.5);
+  --project-list-scrollbar-track: rgba(255, 255, 255, 0.1);
+
+  --droppable-hover-bg: rgba(255, 255, 255, 0.1);
+
+  --skeleton-bg: #1e1e1e;
+  --skeleton-fg: #2a2a2a;
+}

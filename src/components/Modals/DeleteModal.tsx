@@ -1,5 +1,29 @@
-import CustomModal from "../CustomModal/CustomModal";
+import CustomModal from "./CustomModal";
 
+interface DeleteModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  title?: string;
+  message?: string;
+  confirmText?: string;
+  cancelText?: string;
+  extraMessage?: string;
+}
+
+/**
+ * DeleteModal Component
+ *
+ * A confirmation modal for delete actions.
+ *
+ * Features:
+ * - Displays a title and message to confirm deletion.
+ * - Provides 'Cancel' and 'Delete' buttons.
+ * - Accepts optional extra messages for clarification.
+ *
+ * @param {DeleteModalProps} props - The properties required for the modal.
+ * @returns {JSX.Element} - The delete confirmation modal.
+ */
 const DeleteModal = ({
   isOpen,
   onClose,
@@ -9,7 +33,7 @@ const DeleteModal = ({
   confirmText = "Delete",
   cancelText = "Cancel",
   extraMessage = "",
-}) => {
+}: DeleteModalProps) => {
   return (
     <CustomModal isOpen={isOpen} onClose={onClose} title={title}>
       <div className="flex flex-col justify-between min-h-[100px] mt-[15px]">

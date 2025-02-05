@@ -1,10 +1,10 @@
 export type UserFilters = {
-  id?: string | undefined;
-  name?: string | undefined;
-  email?: string | undefined;
-  role?: string | undefined;
-  pageIndex?: number | undefined;
-  pageSize?: number | undefined;
+  id: number | null;
+  name?: string;
+  email?: string;
+  role?: string;
+  pageIndex: number;
+  pageSize: number;
 };
 
 export type TaskFilters = {

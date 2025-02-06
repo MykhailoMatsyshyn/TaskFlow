@@ -11,10 +11,11 @@ import { useAuth } from "../auth/useAuth";
  */
 export const useProjectDataBySlug = (slug: string) => {
   const { userId, userRole } = useAuth();
+  console.log(userId, userRole);
 
   return useQuery({
-    queryKey: ["project", slug],
-    queryFn: () => getProjectBySlug(slug, userId, userRole),
+    queryKey: ["project", slug, userId, userRole],
+    queryFn: () => getProjectBySlug(slug, Number(userId), userRole),
     staleTime: 0,
     refetchOnWindowFocus: true,
   });

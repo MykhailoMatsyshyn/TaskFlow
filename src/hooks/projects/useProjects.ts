@@ -8,6 +8,7 @@ import {
   createProject,
   deleteProject,
   getAllProjects,
+  getTeamMemberProjects,
   getUserProjects,
   updateProject,
 } from "../../api/projectService";
@@ -27,20 +28,26 @@ export const useProjects = (): UseQueryResult<Project[], Error> => {
 };
 
 /**
- * Fetches projects for a specific user with optional filters.
+ * Fetches projects for a specific user based on their role.
+ * - Admins see all projects.
+ * - Project Managers see only their own projects.
+ * - Team Members see only projects they are assigned to.
+ *
  * @param {number} userId - The ID of the user.
+ * @param {string} userRole - The role of the user ("Admin", "Project Manager", "Team Member").
  * @param {ProjectFilters} [filters] - Optional filters for projects.
  * @returns {UseQueryResult<Project[], Error>} - The user's projects.
  */
 export const useUserProjects = (
   userId: number,
+  userRole: string,
   filters?: ProjectFilters
 ): UseQueryResult<Project[], Error> => {
   return useQuery({
-    queryKey: ["projects", userId, filters],
-    queryFn: () => getUserProjects(userId, filters),
-    enabled: !!userId, // Only fetch if userId is valid
-    staleTime: 5000, // Data stays fresh for 5 seconds
+    queryKey: ["projects", userId, userRole, filters],
+    queryFn: () => getUserProjects(userId, userRole, filters),
+    enabled: !!userId,
+    staleTime: 5000,
   });
 };
 

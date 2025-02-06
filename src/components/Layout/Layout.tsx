@@ -43,7 +43,7 @@ const Layout = () => {
 
       {/* Main content area where nested routes are rendered */}
       <main
-        className={`py-5 pl-0 overflow-y-hidden ${
+        className={`py-5 pl-0 mb-5 overflow-y-hidden ${
           shouldApplyScrollbar ? "main-custom-scrollbar overflow-y-visible" : ""
         } overflow-x-hidden h-full xl:col-start-2 xl:row-start-2 relative`}
       >

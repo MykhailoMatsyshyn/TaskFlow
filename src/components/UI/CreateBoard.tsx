@@ -45,7 +45,7 @@ const CreateBoard = () => {
           />
         </button>
       </div>
-      <hr className="text-text opacity-50 mb-10" />
+      <hr className="text-text opacity-50" />
 
       <CustomModal
         isOpen={isModalOpen}

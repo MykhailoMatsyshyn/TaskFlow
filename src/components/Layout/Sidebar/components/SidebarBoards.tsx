@@ -9,7 +9,7 @@ const SidebarBoards = () => {
 
   return (
     <>
-      <div className="px-[14px]">
+      <div className="px-[14px] mb-10">
         <div className="flex justify-between mt-[40px]">
           <p className="font-normal text-xs tracking-[-0.02em] text-text opacity-50">
             My boards

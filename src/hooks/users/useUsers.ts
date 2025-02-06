@@ -3,6 +3,7 @@ import {
   useMutation,
   useQueryClient,
   UseQueryResult,
+  keepPreviousData,
 } from "@tanstack/react-query";
 import {
   getUsers,
@@ -48,6 +49,7 @@ export const useFetchUsers = (
       totalCount: data.totalCount,
     }),
     staleTime: 30000,
+    placeholderData: keepPreviousData,
   });
 };
 

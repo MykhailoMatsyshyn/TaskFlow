@@ -8,6 +8,7 @@ import { User } from "../../../types/user";
 import TableFilters from "./TableFilters";
 import useUsersFilterStore from "../../../stores/filters/UsersFilterStore";
 import TablePagination from "./TablePagination";
+import "./TableStyles.css";
 
 /**
  * Table Component
@@ -57,7 +58,7 @@ const Table = ({
   const totalPages = Math.ceil(totalCount / filters.pageSize);
 
   return (
-    <div className="mr-[15px] mt-[20px] text-[var(--table-text-color-transparent)]">
+    <div className="mr-[15px] mt-[20px] mb-[60px] md:mb-0 text-[var(--table-text-color-transparent)]">
       {/* Table Wrapper with Scrollbar */}
       <div className="table-wrapper custom-scrollbar pl-5">
         <table className="mb-5 w-full">

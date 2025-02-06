@@ -1,115 +1,101 @@
 {
   "users": [
     {
-      "email": "tony.stark@starkindustries.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "tony.stark@taskflow.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Admin",
       "name": "Tony Stark",
       "id": 3
     },
     {
-      "email": "admin4@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "peter.parker@taskflow.com",
+      "password": "$2a$10$fK6yoTePjw5b7.Wk7UDdietnen6ev7lzmwPj7HPBp78BnkFkkk46G",
       "role": "Admin",
-      "name": "Admin4",
+      "name": "Peter Parker",
       "id": 4
     },
     {
-      "email": "pm2@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "rick.sanchez@gmail.com",
+      "password": "$2a$10$fK6yoTePjw5b7.Wk7UDdietnen6ev7lzmwPj7HPBp78BnkFkkk46G",
       "role": "Project Manager",
-      "name": "ProjectManager2",
+      "name": "Rick Sanchez",
       "id": 6
     },
     {
-      "email": "pm4@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "doc.brown@yahoo.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Project Manager",
-      "name": "ProjectMan4",
+      "name": "Dr. Emmett Brown",
       "id": 8
     },
     {
-      "email": "tm2tm2tm2@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "mario.bros@gmail.com",
+      "password": "$2a$10$fK6yoTePjw5b7.Wk7UDdietnen6ev7lzmwPj7HPBp78BnkFkkk46G",
       "role": "Team Member",
-      "name": "Team22",
+      "name": "Mario Bros",
       "id": 10
     },
     {
-      "email": "tm4@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "luigi.bros@hotmail.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Team Member",
-      "name": "Member44",
+      "name": "Luigi Bros",
       "id": 12
     },
     {
-      "email": "tm7@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "keanu.reeves@gmail.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Team Member",
-      "name": "TeamMember7",
+      "name": "Keanu Reeves",
       "id": 15
     },
     {
-      "email": "tm8@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "doomguy@protonmail.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Team Member",
-      "name": "TeamMember88",
+      "name": "Doom Slayer",
       "id": 16
     },
     {
-      "email": "tm9@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "samus.aran@gmail.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Team Member",
-      "name": "TeamMember9",
+      "name": "Samus Aran",
       "id": 17
     },
     {
-      "email": "tm10@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "kratos@icloud.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Team Member",
-      "name": "TeamMemb",
+      "name": "Kratos",
       "id": 18
     },
     {
-      "email": "tm11@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "geralt.rivia@gmail.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Team Member",
-      "name": "TeamMember11",
+      "name": "Geralt of Rivia",
       "id": 19
     },
     {
-      "email": "tm12@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "john.wick@yahoo.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Team Member",
-      "name": "TeamMember12",
+      "name": "John Wick",
       "id": 20
     },
     {
-      "email": "tm13@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
+      "email": "nikola.tesla@taskflow.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Team Member",
-      "name": "TeamMember13",
+      "name": "Nikola Tesla",
       "id": 21
     },
     {
-      "email": "tm17@example.com",
-      "password": "$2a$10$JST5dQJLwkj3At7/TxuwTOsan6pf.Ge.T6GhcWyX3hLEh.OUU030a",
-      "role": "Team Member",
-      "name": "TeamMember17",
-      "id": 25
-    },
-    {
-      "email": "testuser@emil.com",
-      "password": "$2a$10$bpZeY.6LsN9UIPhmVIBpTuZr3cJSIiYXZ0BDqc76dmkKD5mjr0EUW",
-      "name": "TestUser",
-      "role": "Project Manager",
-      "id": 26
-    },
-    {
-      "email": "adminchik123@test.com",
-      "password": "$2a$10$HxC3oqxknvW0TvIqdhZB6uDA0lz3YL6xP0D8hlOjMvcnnB/5fZcGi",
+      "email": "batman@taskflow.com",
+      "password": "$2a$10$y5QjsBnmftkMIHR4.1Pki.CqjD0Qi.S3uLqf22OoX.dOVlr38Ekxa",
       "role": "Admin",
-      "name": "NewAdmin",
+      "name": "Batman",
       "id": 27
     }
   ],
@@ -119,7 +105,11 @@
       "description": "Development of a scalable e-commerce platform to support multiple vendors, dynamic product catalogs, and seamless payment integration. The platform will also include user analytics and SEO optimization.",
       "startDate": "2025-01-12T22:00:00.000Z",
       "endDate": "2025-02-24T22:00:00.000Z",
-      "assignedMembers": [25, 12, 17, 20],
+      "assignedMembers": [
+        12,
+        17,
+        20
+      ],
       "status": "in-progress",
       "icon": "puzzle",
       "userId": 4,
@@ -128,22 +118,34 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [19, 20]
+          "tasks": [
+            19,
+            20
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [18, 22]
+          "tasks": [
+            18,
+            22
+          ]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [17]
+          "tasks": [
+            17
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [14, 15, 23]
+          "tasks": [
+            14,
+            15,
+            23
+          ]
         }
       ],
       "id": 6
@@ -153,7 +155,14 @@
       "description": "Development of a cloud-based natural language processing (NLP) platform for automated text analysis. The platform will support entity recognition, sentiment analysis, topic modeling, and multi-language support.",
       "startDate": "2024-09-01T08:00:00.000Z",
       "endDate": "2025-01-25T18:00:00.000Z",
-      "assignedMembers": [6, 8, 10, 12, 15, 18],
+      "assignedMembers": [
+        6,
+        8,
+        10,
+        12,
+        15,
+        18
+      ],
       "status": "completed",
       "icon": "container",
       "userId": 4,
@@ -162,7 +171,9 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [83]
+          "tasks": [
+            83
+          ]
         },
         {
           "id": "in-progress",
@@ -172,7 +183,14 @@
         {
           "id": "done",
           "title": "Done",
-          "tasks": [70, 71, 72, 73, 74, 75]
+          "tasks": [
+            70,
+            71,
+            72,
+            73,
+            74,
+            75
+          ]
         }
       ],
       "id": 9
@@ -182,7 +200,12 @@
       "description": "Develop an automated marketing campaign system including email automation, analytics tracking, and customer segmentation.",
       "startDate": "2025-02-01T00:00:00.000Z",
       "endDate": "2025-03-20T23:59:59.000Z",
-      "assignedMembers": [12, 15, 18, 20],
+      "assignedMembers": [
+        12,
+        15,
+        18,
+        20
+      ],
       "status": "in-progress",
       "icon": "loading",
       "userId": 4,
@@ -191,22 +214,40 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [31, 32, 33, 34]
+          "tasks": [
+            31,
+            32,
+            33,
+            34
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [35, 37, 38]
+          "tasks": [
+            35,
+            37,
+            38
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [40, 36, 30, 42, 41, 39]
+          "tasks": [
+            40,
+            36,
+            30,
+            42,
+            41,
+            39
+          ]
         },
         {
           "id": "blocked",
           "title": "Blocked",
-          "tasks": [43]
+          "tasks": [
+            43
+          ]
         }
       ],
       "id": 7
@@ -216,7 +257,14 @@
       "description": "Development of an AI-driven data analysis system for real-time predictive analytics. The system will process large datasets, train machine learning models, and provide actionable insights through an intuitive dashboard.",
       "startDate": "2025-01-10T08:00:00.000Z",
       "endDate": "2025-03-30T18:00:00.000Z",
-      "assignedMembers": [6, 8, 10, 12, 15, 18],
+      "assignedMembers": [
+        6,
+        8,
+        10,
+        12,
+        15,
+        18
+      ],
       "status": "in-progress",
       "icon": "star",
       "userId": 4,
@@ -225,22 +273,37 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [58, 60]
+          "tasks": [
+            58,
+            60
+          ]
         },
         {
           "id": "in-progress",
           "title": "In Progress",
-          "tasks": [59, 53, 54, 55, 57]
+          "tasks": [
+            59,
+            53,
+            54,
+            55,
+            57
+          ]
         },
         {
           "id": "review",
           "title": "Review",
-          "tasks": [51, 52, 56]
+          "tasks": [
+            51,
+            52,
+            56
+          ]
         },
         {
           "id": "done",
           "title": "Done",
-          "tasks": [50]
+          "tasks": [
+            50
+          ]
         }
       ],
       "id": 8
@@ -250,7 +313,11 @@
       "description": "Development of an AI-driven system that automates the screening of resumes based on skills, experience, and key job requirements. The system will use NLP to extract key information and match candidates to job descriptions.",
       "startDate": "2025-02-15T08:00:00.000Z",
       "endDate": "2025-06-01T18:00:00.000Z",
-      "assignedMembers": [6, 8, 12],
+      "assignedMembers": [
+        6,
+        8,
+        12
+      ],
       "status": "planned",
       "icon": "loading",
       "userId": 4,
@@ -259,7 +326,10 @@
         {
           "id": "to-do",
           "title": "To Do",
-          "tasks": [80, 81]
+          "tasks": [
+            80,
+            81
+          ]
         },
         {
           "id": "in-progress",
@@ -284,7 +354,12 @@
       "description": "A decentralized digital identity system that allows users to securely store and verify their personal data without third-party intermediaries. The system will utilize blockchain and cryptographic signatures.",
       "startDate": "2025-03-10T08:00:00.000Z",
       "endDate": "2025-07-30T18:00:00.000Z",
-      "assignedMembers": [25, 20, 12, 16, 15],
+      "assignedMembers": [
+        20,
+        12,
+        16,
+        15
+      ],
       "status": "planned",
       "icon": "hexagon",
       "userId": 4,
@@ -307,6 +382,121 @@
         }
       ],
       "id": 11
+    },
+    {
+      "title": "Corporate Website Redesign",
+      "description": "Redesign the corporate website to improve user experience, optimize performance, and enhance mobile compatibility.",
+      "startDate": "2025-03-05T08:00:00.000Z",
+      "endDate": "2025-06-15T18:00:00.000Z",
+      "assignedMembers": [
+        10,
+        12,
+        15
+      ],
+      "status": "planned",
+      "icon": "project",
+      "userId": 6,
+      "slug": "corporate-website-redesign",
+      "columns": [
+        {
+          "id": "to-do",
+          "title": "To Do",
+          "tasks": [
+            93,
+            90,
+            91,
+            92
+          ]
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress",
+          "tasks": []
+        },
+        {
+          "id": "done",
+          "title": "Done",
+          "tasks": []
+        }
+      ],
+      "id": 13
+    },
+    {
+      "title": "Mobile App for Event Management",
+      "description": "Develop a cross-platform mobile application to manage events, schedule sessions, and facilitate networking among attendees.",
+      "startDate": "2025-04-10T10:00:00.000Z",
+      "endDate": "2025-09-01T18:00:00.000Z",
+      "assignedMembers": [
+        17,
+        18,
+        21
+      ],
+      "status": "planned",
+      "icon": "lightning",
+      "userId": 6,
+      "slug": "mobile-app-for-event-management",
+      "columns": [
+        {
+          "id": "to-do",
+          "title": "To Do",
+          "tasks": [
+            94,
+            95,
+            96
+          ]
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress",
+          "tasks": []
+        },
+        {
+          "id": "done",
+          "title": "Done",
+          "tasks": []
+        }
+      ],
+      "id": 14
+    },
+    {
+      "title": "E-Learning Platform",
+      "description": "Create an interactive e-learning platform with user authentication, course management, and progress tracking.",
+      "startDate": "2025-05-01T09:00:00.000Z",
+      "endDate": "2025-10-01T18:00:00.000Z",
+      "assignedMembers": [
+        10,
+        12,
+        16
+      ],
+      "status": "in-progress",
+      "icon": "puzzle",
+      "userId": 6,
+      "slug": "e-learning-platform",
+      "columns": [
+        {
+          "id": "to-do",
+          "title": "To Do",
+          "tasks": [
+            98,
+            99
+          ]
+        },
+        {
+          "id": "in-progress",
+          "title": "In Progress",
+          "tasks": [
+            100
+          ]
+        },
+        {
+          "id": "done",
+          "title": "Done",
+          "tasks": [
+            97
+          ]
+        }
+      ],
+      "id": 15
     }
   ],
   "tasks": [
@@ -760,6 +950,127 @@
       "priority": "Medium",
       "status": "to-do",
       "projectId": 10
+    },
+    {
+      "id": 90,
+      "title": "UI/UX Wireframe Design",
+      "description": "Create wireframes for the new corporate website layout.",
+      "assignedMember": 10,
+      "startDate": "2025-03-06T08:00:00.000Z",
+      "endDate": "2025-03-15T18:00:00.000Z",
+      "priority": "High",
+      "status": "to-do",
+      "projectId": 13
+    },
+    {
+      "id": 91,
+      "title": "Backend API Setup",
+      "description": "Develop the backend API for handling user authentication and content management.",
+      "assignedMember": 12,
+      "startDate": "2025-03-10T09:00:00.000Z",
+      "endDate": "2025-04-01T18:00:00.000Z",
+      "priority": "Medium",
+      "status": "to-do",
+      "projectId": 13
+    },
+    {
+      "id": 92,
+      "title": "SEO Optimization",
+      "description": "Improve the website's SEO for better search engine ranking.",
+      "assignedMember": 15,
+      "startDate": "2025-04-05T08:00:00.000Z",
+      "endDate": "2025-04-15T18:00:00.000Z",
+      "priority": "Low",
+      "status": "to-do",
+      "projectId": 13
+    },
+    {
+      "id": 93,
+      "title": "Frontend Development",
+      "description": "Implement the redesigned UI with responsive design principles.",
+      "assignedMember": 10,
+      "startDate": "2025-04-10T08:00:00.000Z",
+      "endDate": "2025-05-01T18:00:00.000Z",
+      "priority": "High",
+      "status": "to-do",
+      "projectId": 13
+    },
+    {
+      "id": 94,
+      "title": "Database Schema Design",
+      "description": "Define the database structure for event management data.",
+      "assignedMember": 17,
+      "startDate": "2025-04-12T08:00:00.000Z",
+      "endDate": "2025-04-20T18:00:00.000Z",
+      "priority": "High",
+      "status": "to-do",
+      "projectId": 14
+    },
+    {
+      "id": 95,
+      "title": "Mobile UI Design",
+      "description": "Design mobile app screens and navigation flow.",
+      "assignedMember": 18,
+      "startDate": "2025-04-15T08:00:00.000Z",
+      "endDate": "2025-04-30T18:00:00.000Z",
+      "priority": "Medium",
+      "status": "to-do",
+      "projectId": 14
+    },
+    {
+      "id": 96,
+      "title": "Push Notification System",
+      "description": "Implement push notifications for event reminders.",
+      "assignedMember": 21,
+      "startDate": "2025-05-01T08:00:00.000Z",
+      "endDate": "2025-05-15T18:00:00.000Z",
+      "priority": "Low",
+      "status": "to-do",
+      "projectId": 14
+    },
+    {
+      "id": 97,
+      "title": "User Authentication System",
+      "description": "Develop secure login and registration functionality.",
+      "assignedMember": 10,
+      "startDate": "2025-05-05T08:00:00.000Z",
+      "endDate": "2025-05-15T18:00:00.000Z",
+      "priority": "High",
+      "status": "done",
+      "projectId": 15
+    },
+    {
+      "id": 98,
+      "title": "Course Management System",
+      "description": "Create an admin panel for managing courses and student enrollments.",
+      "assignedMember": 12,
+      "startDate": "2025-05-10T08:00:00.000Z",
+      "endDate": "2025-05-25T18:00:00.000Z",
+      "priority": "Medium",
+      "status": "to-do",
+      "projectId": 15
+    },
+    {
+      "id": 99,
+      "title": "Video Streaming Integration",
+      "description": "Integrate video lectures using a third-party API.",
+      "assignedMember": 16,
+      "startDate": "2025-06-01T08:00:00.000Z",
+      "endDate": "2025-06-20T18:00:00.000Z",
+      "priority": "High",
+      "status": "to-do",
+      "projectId": 15
+    },
+    {
+      "id": 100,
+      "title": "User Dashboard Implementation",
+      "description": "Develop the student dashboard to track course progress and achievements.",
+      "assignedMember": 12,
+      "startDate": "2025-06-10T08:00:00.000Z",
+      "endDate": "2025-06-30T18:00:00.000Z",
+      "priority": "Medium",
+      "status": "in-progress",
+      "projectId": 15
     }
   ]
 }

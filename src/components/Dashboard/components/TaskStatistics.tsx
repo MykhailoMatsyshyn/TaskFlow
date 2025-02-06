@@ -83,12 +83,12 @@ const TaskStatistics: React.FC<TaskStatisticsProps> = ({
   };
 
   return (
-    <div className="bg-neutral-background shadow-md rounded-xl p-6 w-full col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="bg-neutral-background shadow-md rounded-xl p-6 w-full col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
       <div className="flex flex-col items-center">
         <h2 className="text-lg font-semibold text-text opacity-70 mb-4">
           Task Priorities
         </h2>
-        <div className="w-full max-w-[400px] h-full max-h-[400px]">
+        <div className="w-full max-w-[400px] h-full max-h-[600px]">
           <PolarArea data={taskPriorityData} options={chartOptions} />
         </div>
       </div>
@@ -96,7 +96,7 @@ const TaskStatistics: React.FC<TaskStatisticsProps> = ({
         <h2 className="text-lg font-semibold text-text opacity-70 mb-4">
           Task Statuses
         </h2>
-        <div className="w-full max-w-[400px] h-full max-h-[400px]">
+        <div className="w-full max-w-[400px] h-full max-h-[600px]">
           <PolarArea data={taskStatusData} options={chartOptions} />
         </div>
       </div>

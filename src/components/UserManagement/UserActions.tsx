@@ -13,7 +13,7 @@ const UserActions: React.FC<UserActionsProps> = ({
   onDelete,
 }) => {
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 justify-center">
       <button
         className="border-[2px] border-[#59B17A] border-opacity-50 rounded-[50%] p-2"
         onClick={() => onEdit(user)}

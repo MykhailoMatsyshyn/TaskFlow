@@ -58,7 +58,7 @@ const ProjectPage = () => {
   // Handle errors when project is not found
   useEffect(() => {
     if (error) {
-      toast.error("Error: Project not found. Please check the URL.");
+      toast.error("Error: Project not found.");
       navigate("/dashboard");
     }
   }, [error, navigate]);

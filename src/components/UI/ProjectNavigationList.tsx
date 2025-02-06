@@ -1,20 +1,20 @@
-import useUserStore from "../../stores/auth/userStore";
 import useProjectsFilterStore from "../../stores/filters/ProjectsFilterStore";
 import { useRef } from "react";
 import useDraggableScroll from "use-draggable-scroll";
 import ProjectNavigationItem from "./ProjectNavigationItem";
 import { useUserProjects } from "../../hooks/projects/useProjects";
 import InlineLoader from "../Loaders/InlineLoader";
+import { useAuth } from "../../hooks/auth/useAuth";
 
 const ProjectNavigationList = () => {
-  const { currentUser } = useUserStore();
   const filters = useProjectsFilterStore((state) => state.filters);
 
+  const { userId, userRole } = useAuth();
   const {
     data: projects,
     isLoading,
     isError,
-  } = useUserProjects(currentUser?.id, filters);
+  } = useUserProjects(Number(userId), userRole, filters);
 
   const ref = useRef(null);
   const { onMouseDown } = useDraggableScroll(ref, { direction: "vertical" });

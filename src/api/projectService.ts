@@ -23,25 +23,33 @@ export const getAllProjects = async (): Promise<Project[]> => {
 };
 
 /**
- * Fetches projects assigned to a specific user with optional filters.
+ * Fetches projects assigned to a specific user based on their role.
+ * - Project Managers see only their own projects.
+ * - Team Members see only projects they are assigned to.
  * @param {number} userId - The ID of the user.
+ * @param {string} userRole - The role of the user ("Admin", "Project Manager", "Team Member").
  * @param {ProjectFilters} [filters] - Optional filters for querying projects.
  * @returns {Promise<Project[]>} - A list of filtered projects.
  * @throws {Error} - If the request fails.
  */
 export const getUserProjects = async (
   userId: number,
+  userRole: string,
   filters?: ProjectFilters
 ): Promise<Project[]> => {
   try {
     const query = new URLSearchParams();
-    query.append("userId", String(userId));
+
+    if (userRole === "Team Member") {
+      query.append("assignedMembers_like", String(userId));
+    } else {
+      query.append("userId", String(userId));
+    }
 
     if (filters) {
       if (filters.status) {
         query.append("status", filters.status);
       }
-
       if (filters.assignedMembers && filters.assignedMembers.length > 0) {
         filters.assignedMembers.forEach((memberId) =>
           query.append("assignedMembers_like", memberId.toString())

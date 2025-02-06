@@ -3,7 +3,6 @@
 @import "./styles/scrollbars.css";
 @import "./styles/gantt.css";
 @import "./styles/drag-and-drop.css";
-@import "./styles/table.css";
 
 @tailwind base;
 @tailwind components;

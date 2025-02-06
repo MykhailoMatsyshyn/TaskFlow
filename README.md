@@ -135,6 +135,18 @@ npm start
 
 ---
 
+## 🔑 **Test User Credentials**
+
+To test the platform from different user roles, use the following demo credentials:
+
+| **Role**            | **Email**                   | **Password**   |
+| ------------------- | --------------------------- | -------------- |
+| **Admin**           | `peter.parker@taskflow.com` | `TaskFlow2025` |
+| **Project Manager** | `rick.sanchez@gmail.com`    | `TaskFlow2025` |
+| **Team Member**     | `mario.bros@gmail.com`      | `TaskFlow2025` |
+
+---
+
 ## 🏗 **Architecture & Scalability**
 
 ### **Folder Structure**
